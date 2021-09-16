@@ -1,41 +1,31 @@
 package soccer.game.streetSoccerManager.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 
 public class Team {
-    private Long id;
+    @Getter
+    @Setter
+    private int id;
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
+    private Formation formation;
+
+
+    @Getter
+    @Setter
     private User manager;
 
 
-    public Team(Long id, String name, User manager) {
+    public Team(int id, String name, Formation formation, User manager) {
         this.id = id;
         this.name = name;
-        this.manager = manager; // connection with user
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User getManager() {
-        return manager;
-    }
-
-    public void setManager(User manager) {
+        this.formation = formation;
         this.manager = manager;
     }
 }

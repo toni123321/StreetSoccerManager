@@ -1,28 +1,56 @@
 package soccer.game.streetSoccerManager.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Match {
+
+    @Getter
+    @Setter
     protected int Id;
 
+    @Getter
+    @Setter
     protected Team homeTeam;
+    @Getter
+    @Setter
     protected Team awayTeam;
 
-    // result
-    protected int homeTeamGoals;
-    protected int awayTeamGoals;
+    @Getter
+    @Setter
+    protected List<Player> homeTeamPlayers;
+    @Getter
+    @Setter
+    protected List<Player> awayTeamPlayers;
 
+    @Getter
+    @Setter
     protected Kit homeTeamKit;
+    @Getter
+    @Setter
     protected Kit awayTeamKit;
 
+    @Getter
+    @Setter
     protected Stadium stadium;
 
+    @Getter
+    @Setter
+    // result
+    protected int homeTeamGoals;
+    @Getter
+    @Setter
+    protected int awayTeamGoals;
+
+    @Getter
+    @Setter
     // Goals
     protected String matchStatistic;
 
-    protected List<Player> homeTeamPlayers;
-    protected List<Player> awayTeamPlayers;
+
 
 
     public Match(int id, Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, Kit homeTeamKit, Kit awayTeamKit, Stadium stadium, String matchStatistic) {

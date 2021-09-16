@@ -1,8 +1,17 @@
 package soccer.game.streetSoccerManager.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Stadium {
+    @Getter
+    @Setter
     private int id;
+    @Getter
+    @Setter
     private String name;
+    @Getter
+    @Setter
     private double price;
 
 
@@ -12,27 +21,4 @@ public class Stadium {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }
