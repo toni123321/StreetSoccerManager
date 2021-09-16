@@ -5,9 +5,11 @@ stages:
 build:
   stage: build
   script:
+    - cd streetSoccerManager/streetSoccerManager/
     - ./gradlew build -x test
 
 test:
   stage: test
   script:
+    - cd streetSoccerManager/streetSoccerManager/
     - ./gradlew test
