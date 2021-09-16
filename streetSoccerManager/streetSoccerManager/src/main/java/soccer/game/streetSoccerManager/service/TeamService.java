@@ -19,7 +19,7 @@ public class TeamService {
         return teams;
     }
 
-    public Team getTeam(Long id) {
+    public Team getTeam(int id) {
         for (Team team : teams) {
             if (team.getId() == id)
                 return team;
@@ -27,7 +27,7 @@ public class TeamService {
         return null;
     }
 
-    public boolean deleteTeam(Long id) {
+    public boolean deleteTeam(int id) {
         Team team = getTeam(id);
         if (team == null){
             return false;

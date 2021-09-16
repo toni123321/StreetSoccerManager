@@ -1,18 +1,20 @@
 package soccer.game.streetSoccerManager.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class FrontendUser extends User {
+    @Getter
+    @Setter
     private String nickname;
 
-    public FrontendUser(int id, String email, String password, String nickname) {
+    @Getter
+    @Setter
+    private double points;
+
+    public FrontendUser(int id, String email, String password, String nickname, double points) {
         super(id, email, password);
         this.nickname = nickname;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.points = points;
     }
 }
