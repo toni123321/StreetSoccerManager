@@ -16,6 +16,6 @@ public class ExampleTest {
         String toCompare = "Hello";
 
         // Assert - Check if the method postconditions is as expected
-        assertEquals("Hello peter!", toCompare);
+        assertEquals("Hello test!", toCompare);
     }
 }
