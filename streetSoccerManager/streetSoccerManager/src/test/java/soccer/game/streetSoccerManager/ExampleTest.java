@@ -1,21 +1,22 @@
 package soccer.game.streetSoccerManager;
 
 import org.junit.jupiter.api.Test;
+import soccer.game.streetSoccerManager.service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExampleTest {
 
     @Test
-    public void TestGreetingPeter()
+    public void testUserEmail()
     {
         // Arrange - Setup the code to be used
-
+        UserService userService = new UserService();
 
         // Act - Execute the method to be tested
-        String toCompare = "Hello";
+        String userEmail = userService.getUser(1).getEmail();
 
         // Assert - Check if the method postconditions is as expected
-        assertEquals("Hello test!", toCompare);
+        assertEquals("peter@gmail.com", userEmail);
     }
 }
