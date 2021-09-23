@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
-import AboutPage from "./AboutPage";
-import HomePage from "./HomePage";
-import LoginPage from "./LoginPage";
+import { BrowserRouter, Link } from 'react-router-dom';
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Routers from "./Routers";
 
 
 function MainNavbar() {
@@ -27,11 +26,7 @@ function MainNavbar() {
                 </div>
 
                 <div className="container mt-3">
-                    <Switch>
-                        <Route exact path="/" component={HomePage} />
-                        <Route exact path="/about" component={AboutPage} />
-                        <Route exact path="/login" component={LoginPage} />
-                    </Switch>
+                    <Routers/>
                 </div>
             </div>
         </BrowserRouter>

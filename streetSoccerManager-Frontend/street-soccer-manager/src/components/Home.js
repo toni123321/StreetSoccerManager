@@ -1,10 +1,10 @@
 import React from "react";
 
-function LoginPage() {
+function Home() {
     return (
         <div>
-            Login page
+            Home page
         </div>
     );
 }
-export default LoginPage;
+export default Home;
