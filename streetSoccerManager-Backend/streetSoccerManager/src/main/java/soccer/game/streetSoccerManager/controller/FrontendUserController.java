@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.*;
-import soccer.game.streetSoccerManager.service.FormationService;
-import soccer.game.streetSoccerManager.service.TeamService;
-import soccer.game.streetSoccerManager.service.UserService;
 
 import java.net.URI;
 import java.util.List;
@@ -20,16 +19,15 @@ public class FrontendUserController {
 
 
     @Qualifier("teamService")
-    private IService teamService;
+    private ITeamService teamService;
 
     @Qualifier("userService")
-    private IService userService;
+    private IUserService userService;
 
     @Qualifier("formationService")
-    private IService formationService;
+    private IFormationService formationService;
 
-
-    public FrontendUserController(IService teamService, IService userService, IService formationService) {
+    public FrontendUserController(ITeamService teamService, IUserService userService, IFormationService formationService) {
         this.teamService = teamService;
         this.userService = userService;
         this.formationService = formationService;
@@ -58,7 +56,7 @@ public class FrontendUserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllFrontendUsers() {
         List<User> users = null;
-        users = ((List<User>) userService.getAll()).stream().filter(user -> user instanceof FrontendUser).collect(Collectors.toList());
+        users = userService.getAll().stream().filter(user -> user instanceof FrontendUser).collect(Collectors.toList());
 
         if(users != null) {
             return ResponseEntity.ok().body(users);

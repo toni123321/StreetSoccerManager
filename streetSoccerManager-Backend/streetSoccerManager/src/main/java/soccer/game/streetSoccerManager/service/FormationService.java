@@ -1,27 +1,23 @@
 package soccer.game.streetSoccerManager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationRepository;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.repository.FakeDatabase;
 
 import java.util.List;
 
 @Service
-public class FormationService implements IService {
+public class FormationService implements IFormationService {
     private List<Formation> formations;
 
 
+    private IFormationRepository fakeDatabase;
 
-    private IRepository fakeDatabase;
-
-    public FormationService(@Qualifier("formationFakeDatabase") IRepository fakeDatabase) {
+    public FormationService(@Qualifier("formationFakeDatabase") IFormationRepository fakeDatabase) {
         this.fakeDatabase = fakeDatabase;
-        this.formations = (List<Formation>) fakeDatabase.getAll();
+        this.formations = fakeDatabase.getAll();
     }
 
 
@@ -31,41 +27,40 @@ public class FormationService implements IService {
     }
 
     @Override
-    public Formation get(Object id) {
+    public Formation get(int id) {
         for (Formation formation : formations) {
-            if (formation.getId() == (int) id)
+            if (formation.getId() == id)
                 return formation;
         }
         return null;
     }
 
     @Override
-    public Boolean delete(Object id) {
+    public Boolean delete(int id) {
         Formation formation = get(id);
         if (formation == null){
             return false;
         }
-
         return formations.remove(formation);
     }
 
 
     @Override
-    public Boolean add(Object formation) {
-        if (this.get(((Formation) formation).getId()) != null){
+    public Boolean add(Formation formation) {
+        if (this.get(formation.getId()) != null){
             return false;
         }
-        formations.add(((Formation) formation));
+        formations.add(formation);
         return true;
     }
 
     @Override
-    public Boolean update(Object formation) {
-        Formation oldFormation = this.get(((Formation) formation).getId());
+    public Boolean update(Formation formation) {
+        Formation oldFormation = this.get(formation.getId());
         if (oldFormation == null) {
             return false;
         }
-        oldFormation.setName(((Formation) formation).getName());
+        oldFormation.setName(formation.getName());
         return true;
     }
 }

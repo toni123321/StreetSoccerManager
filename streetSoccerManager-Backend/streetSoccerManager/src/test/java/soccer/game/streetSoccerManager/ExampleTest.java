@@ -1,8 +1,7 @@
 package soccer.game.streetSoccerManager;
 
 import org.junit.jupiter.api.Test;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
-import soccer.game.streetSoccerManager.repository.UserFakeDatabase;
+import soccer.game.streetSoccerManager.repository.User.UserFakeDatabase;
 import soccer.game.streetSoccerManager.service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +12,7 @@ public class ExampleTest {
     public void testUserEmail()
     {
         // Arrange - Setup the code to be used
-        
+
         UserService userService = new UserService(new UserFakeDatabase());
 
         // Act - Execute the method to be tested

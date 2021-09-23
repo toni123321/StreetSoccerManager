@@ -1,8 +1,8 @@
-package soccer.game.streetSoccerManager.repository;
+package soccer.game.streetSoccerManager.repository.User;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IUserRepository;
 import soccer.game.streetSoccerManager.model.Admin;
 import soccer.game.streetSoccerManager.model.FrontendUser;
 import soccer.game.streetSoccerManager.model.User;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserFakeDatabase implements IRepository {
+public class UserFakeDatabase implements IUserRepository {
 
     @Getter
     private List<User> users = new ArrayList<>();
@@ -25,27 +25,27 @@ public class UserFakeDatabase implements IRepository {
     }
 
     @Override
-    public Object getAll() {
+    public List<User> getAll() {
         return users;
     }
 
     @Override
-    public Object get(Object obj) {
+    public User get(int id) {
         return null;
     }
 
     @Override
-    public Object delete(Object obj) {
+    public Boolean delete(int id) {
         return null;
     }
 
     @Override
-    public Object add(Object obj) {
+    public Boolean add(User user) {
         return null;
     }
 
     @Override
-    public Object update(Object obj) {
+    public Boolean update(User user) {
         return null;
     }
 }

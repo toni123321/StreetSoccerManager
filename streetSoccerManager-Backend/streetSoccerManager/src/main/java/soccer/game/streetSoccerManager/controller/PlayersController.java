@@ -5,15 +5,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.Interfaces.IService;
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IPlayerService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.Player;
 import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.model.User;
-import soccer.game.streetSoccerManager.service.FormationService;
-import soccer.game.streetSoccerManager.service.PlayerService;
-import soccer.game.streetSoccerManager.service.TeamService;
-import soccer.game.streetSoccerManager.service.UserService;
 
 import java.net.URI;
 import java.util.Date;
@@ -24,19 +21,18 @@ import java.util.List;
 public class PlayersController {
 
     @Qualifier("playerService")
-    private IService playerService;
-    
+    private IPlayerService playerService;
+
     @Qualifier("teamService")
-    private IService teamService;
+    private ITeamService teamService;
 
     @Qualifier("userService")
-    private IService userService;
+    private IUserService userService;
 
     @Qualifier("formationService")
-    private IService formationService;
+    private IFormationService formationService;
 
-
-    public PlayersController(IService playerService, IService teamService, IService userService, IService formationService) {
+    public PlayersController(IPlayerService playerService, ITeamService teamService, IUserService userService, IFormationService formationService) {
         this.playerService = playerService;
         this.teamService = teamService;
         this.userService = userService;
@@ -46,7 +42,7 @@ public class PlayersController {
 
     @GetMapping("{id}")
     public ResponseEntity<Player> getPlayer(@PathVariable(value = "id") int id) {
-        Player player = ((Player) playerService.get(id));
+        Player player = playerService.get(id);
 
         if(player != null) {
             return ResponseEntity.ok().body(player);
@@ -59,7 +55,7 @@ public class PlayersController {
     @GetMapping
     public ResponseEntity<List<Player>> getAllPlayers() {
         List<Player> players = null;
-        players = ((List<Player>) playerService.getAll());
+        players = playerService.getAll();
 
         if(players != null) {
             return ResponseEntity.ok().body(players);
@@ -102,12 +98,12 @@ public class PlayersController {
 
     @PutMapping("{id}")
     public ResponseEntity<Player> updatePlayer(@PathVariable("id") int id, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("dob") Date dob, @RequestParam("price") double price, @RequestParam("team") int teamId) {
-        Player player = ((Player) playerService.get(id));
+        Player player = playerService.get(id);
         if (player == null){
             return new ResponseEntity("Please provide a valid player id.",HttpStatus.NOT_FOUND);
         }
 
-        Team team = ((Team) teamService.get(teamId));
+        Team team = teamService.get(teamId);
 
         if (team == null){
             return new ResponseEntity("Please provide a valid team id.",HttpStatus.BAD_REQUEST);

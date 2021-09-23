@@ -1,28 +1,25 @@
 package soccer.game.streetSoccerManager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IPlayerRepository;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IPlayerService;
 import soccer.game.streetSoccerManager.model.Player;
-import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.repository.FakeDatabase;
 
 import java.util.List;
 
 @Service
-public class PlayerService implements IService {
+public class PlayerService implements IPlayerService {
 
     private List<Player> players;
 
 
 
-    private IRepository fakeDatabase;
+    private IPlayerRepository fakeDatabase;
 
-    public PlayerService(@Qualifier("playerFakeDatabase") IRepository fakeDatabase) {
+    public PlayerService(@Qualifier("playerFakeDatabase") IPlayerRepository fakeDatabase) {
         this.fakeDatabase = fakeDatabase;
-        this.players = (List<Player>) fakeDatabase.getAll();
+        this.players = fakeDatabase.getAll();
     }
 
 
@@ -33,16 +30,16 @@ public class PlayerService implements IService {
     }
 
     @Override
-    public Player get(Object id) {
+    public Player get(int id) {
         for (Player player : players) {
-            if (player.getId() == (int) id)
+            if (player.getId() == id)
                 return player;
         }
         return null;
     }
 
     @Override
-    public Boolean delete(Object id) {
+    public Boolean delete(int id) {
         Player player = get(id);
         if (player == null){
             return false;
@@ -52,25 +49,25 @@ public class PlayerService implements IService {
     }
 
     @Override
-    public Boolean add(Object player) {
-        if (this.get(((Player) player).getId()) != null){
+    public Boolean add(Player player) {
+        if (this.get(player.getId()) != null){
             return false;
         }
-        players.add(((Player) player));
+        players.add(player);
         return true;
     }
 
     @Override
-    public Boolean update(Object player) {
-        Player oldPlayer = this.get(((Player) player).getId());
+    public Boolean update(Player player) {
+        Player oldPlayer = this.get(player.getId());
         if (oldPlayer == null) {
             return false;
         }
-        oldPlayer.setFirstName(((Player) player).getFirstName());
-        oldPlayer.setLastName(((Player) player).getLastName());
-        oldPlayer.setDob(((Player) player).getDob());
-        oldPlayer.setPrice(((Player) player).getPrice());
-        oldPlayer.setTeam(((Player) player).getTeam());
+        oldPlayer.setFirstName(player.getFirstName());
+        oldPlayer.setLastName(player.getLastName());
+        oldPlayer.setDob(player.getDob());
+        oldPlayer.setPrice(player.getPrice());
+        oldPlayer.setTeam(player.getTeam());
 
         return true;
     }
