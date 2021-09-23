@@ -1,31 +1,25 @@
 package soccer.game.streetSoccerManager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.ITeamRepository;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.repository.FakeDatabase;
-import soccer.game.streetSoccerManager.repository.TeamFakeDatabase;
-import soccer.game.streetSoccerManager.repository.UserFakeDatabase;
 
 import java.util.List;
 
 @Service
-public class TeamService implements IService {
+public class TeamService implements ITeamService {
 
     private List<Team> teams;
 
 
+    private ITeamRepository fakeDatabase;
 
 
-    private IRepository fakeDatabase;
-
-
-    public TeamService(@Qualifier("teamFakeDatabase") IRepository fakeDatabase) {
+    public TeamService(@Qualifier("teamFakeDatabase") ITeamRepository fakeDatabase) {
         this.fakeDatabase = fakeDatabase;
-        this.teams = (List<Team>) fakeDatabase.getAll();
+        this.teams = fakeDatabase.getAll();
     }
 
 
@@ -35,17 +29,17 @@ public class TeamService implements IService {
     }
 
     @Override
-    public Team get(Object id) {
+    public Team get(int id) {
         for (Team team : teams) {
-            if (team.getId() == (int)id)
+            if (team.getId() == id)
                 return team;
         }
         return null;
     }
 
     @Override
-    public Boolean delete(Object id) {
-        Team team = (Team) get(id);
+    public Boolean delete(int id) {
+        Team team = get(id);
         if (team == null){
             return false;
         }
@@ -54,22 +48,22 @@ public class TeamService implements IService {
     }
 
     @Override
-    public Boolean add(Object team) {
-        if (this.get(((Team) team).getId()) != null){
+    public Boolean add(Team team) {
+        if (this.get(team.getId() )!= null){
             return false;
         }
-        teams.add(((Team) team));
+        teams.add(team);
         return true;
     }
 
     @Override
-    public Boolean update(Object team) {
-        Team oldTeam = (Team) this.get(((Team)team).getId());
+    public Boolean update(Team team) {
+        Team oldTeam = this.get(team.getId());
         if (oldTeam == null) {
             return false;
         }
-        oldTeam.setName(((Team) team).getName());
-        oldTeam.setManager(((Team) team).getManager());
+        oldTeam.setName(team.getName());
+        oldTeam.setManager(team.getManager());
         return true;
     }
 

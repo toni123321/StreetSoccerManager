@@ -5,44 +5,41 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.model.User;
-import soccer.game.streetSoccerManager.repository.FakeDatabase;
-import soccer.game.streetSoccerManager.service.FormationService;
-import soccer.game.streetSoccerManager.service.TeamService;
-import soccer.game.streetSoccerManager.service.UserService;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/teams")
 public class TeamsController {
 
-    
+
     @Qualifier("teamService")
-    private IService teamService;
+    private ITeamService teamService;
 
     @Qualifier("userService")
-    private IService userService;
+    private IUserService userService;
 
     @Qualifier("formationService")
-    private IService formationService;
+    private IFormationService formationService;
 
-
-    public TeamsController(IService teamService, IService userService, IService formationService) {
+    public TeamsController(ITeamService teamService, IUserService userService, IFormationService formationService) {
         this.teamService = teamService;
         this.userService = userService;
         this.formationService = formationService;
     }
 
 
+
     @GetMapping("{id}")
     public ResponseEntity<Team> getTeam(@PathVariable(value = "id") int id) {
-        Team team = (Team) teamService.get(id);
+        Team team = teamService.get(id);
 
         if(team != null) {
             return ResponseEntity.ok().body(team);
@@ -55,7 +52,7 @@ public class TeamsController {
     @GetMapping
     public ResponseEntity<List<Team>> getAllTeams() {
         List<Team> teams = null;
-        teams = ((List<Team>) teamService.getAll());
+        teams = teamService.getAll();
 
         if(teams != null) {
             return ResponseEntity.ok().body(teams);
@@ -98,13 +95,13 @@ public class TeamsController {
 
     @PutMapping("{id}")
     public ResponseEntity<Team> updateTeam(@PathVariable("id") int id,  @RequestParam("name") String name, @RequestParam("formation") int formationId, @RequestParam("manager") int managerId) {
-        Team team = ((Team) teamService.get(id));
+        Team team = teamService.get(id);
         if (team == null){
             return new ResponseEntity("Please provide a valid team id.",HttpStatus.NOT_FOUND);
         }
 
-        User manager = ((User) userService.get(managerId));
-        Formation formation = ((Formation) formationService.get(formationId));
+        User manager = userService.get(managerId);
+        Formation formation = formationService.get(formationId);
 
         if (manager == null){
             return new ResponseEntity("Please provide a valid manager id.",HttpStatus.BAD_REQUEST);

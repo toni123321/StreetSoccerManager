@@ -1,15 +1,15 @@
-package soccer.game.streetSoccerManager.repository;
+package soccer.game.streetSoccerManager.repository.Formation;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.model.Formation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class FormationFakeDatabase implements IRepository {
+public class FormationFakeDatabase implements IFormationRepository {
 
     @Getter
     private List<Formation> formations = new ArrayList<>();
@@ -19,28 +19,29 @@ public class FormationFakeDatabase implements IRepository {
         formations.add(new Formation(2, "2-1-1"));
     }
 
+
     @Override
-    public Object getAll() {
+    public List<Formation> getAll() {
         return formations;
     }
 
     @Override
-    public Object get(Object obj) {
+    public Formation get(int id) {
         return null;
     }
 
     @Override
-    public Object delete(Object obj) {
+    public Boolean delete(int id) {
         return null;
     }
 
     @Override
-    public Object add(Object obj) {
+    public Boolean add(Formation formation) {
         return null;
     }
 
     @Override
-    public Object update(Object obj) {
+    public Boolean update(Formation formation) {
         return null;
     }
 }

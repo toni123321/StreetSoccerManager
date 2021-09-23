@@ -1,32 +1,25 @@
 package soccer.game.streetSoccerManager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.Interfaces.IRepository;
-import soccer.game.streetSoccerManager.Interfaces.IService;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IUserRepository;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.Admin;
 import soccer.game.streetSoccerManager.model.FrontendUser;
-import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.model.User;
-import soccer.game.streetSoccerManager.repository.FakeDatabase;
-import soccer.game.streetSoccerManager.repository.UserFakeDatabase;
 
 import java.util.List;
 
 @Service
-public class UserService implements IService {
+public class UserService implements IUserService {
 
     private List<User> users;
 
+    private IUserRepository fakeDatabase;
 
-
-
-    private IRepository fakeDatabase;
-
-    public UserService(@Qualifier("userFakeDatabase") IRepository fakeDatabase) {
+    public UserService(@Qualifier("userFakeDatabase") IUserRepository fakeDatabase) {
         this.fakeDatabase = fakeDatabase;
-        this.users = (List<User>) fakeDatabase.getAll();
+        this.users = fakeDatabase.getAll();
     }
 
 
@@ -36,16 +29,16 @@ public class UserService implements IService {
     }
 
     @Override
-    public User get(Object id) {
+    public User get(int id) {
         for (User user : users) {
-            if (user.getId() == (int) id)
+            if (user.getId() == id)
                 return user;
         }
         return null;
     }
 
     @Override
-    public Boolean delete(Object id) {
+    public Boolean delete(int id) {
         User user = get(id);
         if (user == null){
             return false;
@@ -56,22 +49,22 @@ public class UserService implements IService {
 
 
     @Override
-    public Boolean add(Object user) {
-        if (this.get(((User) user).getId()) != null){
+    public Boolean add(User user) {
+        if (this.get(user.getId()) != null){
             return false;
         }
-        users.add(((User) user));
+        users.add(user);
         return true;
     }
 
     @Override
-    public Boolean update(Object user) {
-        User oldUser = this.get(((User) user).getId());
+    public Boolean update(User user) {
+        User oldUser = this.get(user.getId());
         if (oldUser == null) {
             return false;
         }
-        oldUser.setEmail(((User) user).getEmail());
-        oldUser.setPassword(((User) user).getPassword());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setPassword(user.getPassword());
 
         if(user instanceof FrontendUser){
             ((FrontendUser)oldUser).setNickname(((FrontendUser) user).getNickname());
