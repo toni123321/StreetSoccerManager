@@ -10,58 +10,39 @@ import java.util.List;
 
 @Service
 public class FormationService implements IFormationService {
-    private List<Formation> formations;
 
+    @Qualifier("formationFakeDatabase")
+    private IFormationRepository dataStore;
 
-    private IFormationRepository fakeDatabase;
-
-    public FormationService(@Qualifier("formationFakeDatabase") IFormationRepository fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-        this.formations = fakeDatabase.getAll();
+    public FormationService( IFormationRepository dataStore) {
+        this.dataStore = dataStore;
     }
 
 
     @Override
     public List<Formation> getAll() {
-        return formations;
+        return dataStore.getAll();
     }
 
     @Override
     public Formation get(int id) {
-        for (Formation formation : formations) {
-            if (formation.getId() == id)
-                return formation;
-        }
-        return null;
+        return dataStore.get(id);
     }
 
     @Override
     public Boolean delete(int id) {
-        Formation formation = get(id);
-        if (formation == null){
-            return false;
-        }
-        return formations.remove(formation);
+        return dataStore.delete(id);
     }
 
 
     @Override
     public Boolean add(Formation formation) {
-        if (this.get(formation.getId()) != null){
-            return false;
-        }
-        formations.add(formation);
-        return true;
+        return dataStore.add(formation);
     }
 
     @Override
     public Boolean update(Formation formation) {
-        Formation oldFormation = this.get(formation.getId());
-        if (oldFormation == null) {
-            return false;
-        }
-        oldFormation.setName(formation.getName());
-        return true;
+        return dataStore.update(formation);
     }
 }
 

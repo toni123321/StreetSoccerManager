@@ -13,68 +13,36 @@ import java.util.List;
 @Service
 public class UserService implements IUserService {
 
-    private List<User> users;
+    private IUserRepository dataStore;
 
-    private IUserRepository fakeDatabase;
-
-    public UserService(@Qualifier("userFakeDatabase") IUserRepository fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-        this.users = fakeDatabase.getAll();
+    public UserService(@Qualifier("userFakeDatabase") IUserRepository dataStore) {
+        this.dataStore = dataStore;
     }
 
 
     @Override
     public List<User> getAll() {
-        return users;
+        return dataStore.getAll();
     }
 
     @Override
     public User get(int id) {
-        for (User user : users) {
-            if (user.getId() == id)
-                return user;
-        }
-        return null;
+        return dataStore.get(id);
     }
 
     @Override
     public Boolean delete(int id) {
-        User user = get(id);
-        if (user == null){
-            return false;
-        }
-
-        return users.remove(user);
+        return dataStore.delete(id);
     }
 
 
     @Override
     public Boolean add(User user) {
-        if (this.get(user.getId()) != null){
-            return false;
-        }
-        users.add(user);
-        return true;
+        return dataStore.add(user);
     }
 
     @Override
     public Boolean update(User user) {
-        User oldUser = this.get(user.getId());
-        if (oldUser == null) {
-            return false;
-        }
-        oldUser.setEmail(user.getEmail());
-        oldUser.setPassword(user.getPassword());
-
-        if(user instanceof FrontendUser){
-            ((FrontendUser)oldUser).setNickname(((FrontendUser) user).getNickname());
-            ((FrontendUser)oldUser).setPoints(((FrontendUser) user).getPoints());
-
-        }
-        else{
-            ((Admin)oldUser).setFirstName(((Admin) user).getFirstName());
-            ((Admin)oldUser).setLastName(((Admin) user).getLastName());
-        }
-        return true;
+        return dataStore.update(user);
     }
 }

@@ -27,21 +27,38 @@ public class FormationFakeDatabase implements IFormationRepository {
 
     @Override
     public Formation get(int id) {
+        for (Formation formation : formations) {
+            if (formation.getId() == id)
+                return formation;
+        }
         return null;
     }
 
     @Override
     public Boolean delete(int id) {
-        return null;
+        Formation formation = get(id);
+        if (formation == null){
+            return false;
+        }
+        return formations.remove(formation);
     }
 
     @Override
     public Boolean add(Formation formation) {
-        return null;
+        if (this.get(formation.getId()) != null){
+            return false;
+        }
+        formations.add(formation);
+        return true;
     }
 
     @Override
     public Boolean update(Formation formation) {
-        return null;
+        Formation oldFormation = this.get(formation.getId());
+        if (oldFormation == null) {
+            return false;
+        }
+        oldFormation.setName(formation.getName());
+        return true;
     }
 }

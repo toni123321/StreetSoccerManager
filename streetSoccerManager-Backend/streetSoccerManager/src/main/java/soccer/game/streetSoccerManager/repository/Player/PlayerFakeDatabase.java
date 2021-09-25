@@ -17,8 +17,7 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     private List<Player> players = new ArrayList<>();
 
     private TeamFakeDatabase teamFakeDatabase = new TeamFakeDatabase();
-    private List<Team> teams = teamFakeDatabase.getTeams();
-
+    List<Team> teams = teamFakeDatabase.getAll();
 
     public PlayerFakeDatabase() {
         players.add(new Player(1, "Xavi", "Simons", new Date(2003, 4, 21), 150, teams.get(0)));
@@ -32,21 +31,44 @@ public class PlayerFakeDatabase implements IPlayerRepository {
 
     @Override
     public Player get(int id) {
+        for (Player player : players) {
+            if (player.getId() == id)
+                return player;
+        }
         return null;
     }
 
     @Override
     public Boolean delete(int id) {
-        return null;
+        Player player = get(id);
+        if (player == null){
+            return false;
+        }
+
+        return players.remove(player);
     }
 
     @Override
     public Boolean add(Player player) {
-        return null;
+        if (this.get(player.getId()) != null){
+            return false;
+        }
+        players.add(player);
+        return true;
     }
 
     @Override
     public Boolean update(Player player) {
-        return null;
+        Player oldPlayer = this.get(player.getId());
+        if (oldPlayer == null) {
+            return false;
+        }
+        oldPlayer.setFirstName(player.getFirstName());
+        oldPlayer.setLastName(player.getLastName());
+        oldPlayer.setDob(player.getDob());
+        oldPlayer.setPrice(player.getPrice());
+        oldPlayer.setTeam(player.getTeam());
+
+        return true;
     }
 }

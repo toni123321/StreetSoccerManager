@@ -11,65 +11,37 @@ import java.util.List;
 @Service
 public class PlayerService implements IPlayerService {
 
-    private List<Player> players;
+    @Qualifier("playerFakeDatabase")
+    private IPlayerRepository dataStore;
 
-
-
-    private IPlayerRepository fakeDatabase;
-
-    public PlayerService(@Qualifier("playerFakeDatabase") IPlayerRepository fakeDatabase) {
-        this.fakeDatabase = fakeDatabase;
-        this.players = fakeDatabase.getAll();
+    public PlayerService(IPlayerRepository dataStore) {
+        this.dataStore = dataStore;
     }
-
 
 
     @Override
     public List<Player> getAll() {
-        return players;
+        return dataStore.getAll();
     }
 
     @Override
     public Player get(int id) {
-        for (Player player : players) {
-            if (player.getId() == id)
-                return player;
-        }
-        return null;
+        return dataStore.get(id);
     }
 
     @Override
     public Boolean delete(int id) {
-        Player player = get(id);
-        if (player == null){
-            return false;
-        }
-
-        return players.remove(player);
+        return dataStore.delete(id);
     }
 
     @Override
     public Boolean add(Player player) {
-        if (this.get(player.getId()) != null){
-            return false;
-        }
-        players.add(player);
-        return true;
+        return dataStore.add(player);
     }
 
     @Override
     public Boolean update(Player player) {
-        Player oldPlayer = this.get(player.getId());
-        if (oldPlayer == null) {
-            return false;
-        }
-        oldPlayer.setFirstName(player.getFirstName());
-        oldPlayer.setLastName(player.getLastName());
-        oldPlayer.setDob(player.getDob());
-        oldPlayer.setPrice(player.getPrice());
-        oldPlayer.setTeam(player.getTeam());
-
-        return true;
+       return dataStore.update(player);
     }
 
    

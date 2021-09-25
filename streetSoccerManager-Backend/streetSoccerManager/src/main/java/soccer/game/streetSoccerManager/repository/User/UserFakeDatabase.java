@@ -31,21 +31,51 @@ public class UserFakeDatabase implements IUserRepository {
 
     @Override
     public User get(int id) {
+        for (User user : users) {
+            if (user.getId() == id)
+                return user;
+        }
         return null;
     }
 
     @Override
     public Boolean delete(int id) {
-        return null;
+        User user = get(id);
+        if (user == null){
+            return false;
+        }
+
+        return users.remove(user);
     }
 
     @Override
     public Boolean add(User user) {
-        return null;
+        if (this.get(user.getId()) != null){
+            return false;
+        }
+        users.add(user);
+        return true;
     }
 
     @Override
     public Boolean update(User user) {
-        return null;
+
+        User oldUser = this.get(user.getId());
+        if (oldUser == null) {
+            return false;
+        }
+        oldUser.setEmail(user.getEmail());
+        oldUser.setPassword(user.getPassword());
+
+        if(user instanceof FrontendUser){
+            ((FrontendUser)oldUser).setNickname(((FrontendUser) user).getNickname());
+            ((FrontendUser)oldUser).setPoints(((FrontendUser) user).getPoints());
+
+        }
+        else{
+            ((Admin)oldUser).setFirstName(((Admin) user).getFirstName());
+            ((Admin)oldUser).setLastName(((Admin) user).getLastName());
+        }
+        return true;
     }
 }
