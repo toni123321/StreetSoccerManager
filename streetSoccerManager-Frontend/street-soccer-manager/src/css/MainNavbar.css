@@ -1,0 +1,34 @@
+#main-nav-core {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        justify-content: center;
+        flex-basis: auto;
+    }
+}
+
+#nav-brand {
+    margin-left: 2rem;
+}
+
+.nav-link.active {
+    color: floralwhite !important;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.main-navbar {
+    margin-top: 5%;
+    border-radius: 25px;
+    max-width: 700px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

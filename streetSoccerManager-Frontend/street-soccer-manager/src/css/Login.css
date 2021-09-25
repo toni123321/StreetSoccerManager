@@ -1,0 +1,17 @@
+.loginForm {
+    border: 5px solid lightcyan;
+    border-radius: 25px;
+    padding: 30px;
+    width: 70%;
+    max-width:400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.loginForm .loginForm-rememberMe {
+    text-align: left;
+    font-weight: 200;
+}
+
