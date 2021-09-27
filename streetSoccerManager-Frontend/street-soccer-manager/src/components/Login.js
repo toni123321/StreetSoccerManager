@@ -1,13 +1,18 @@
+
 import React, {useState, useEffect} from "react";
+
+import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
+
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import {LinkContainer} from "react-router-bootstrap";
+
+
 import { useHistory } from 'react-router-dom';
 import FrontendUserService from "../services/FrontendUserService";
 
-
-import LoginForm from "./LoginForm";
-
-
-function Login() {
-
+const Login = () => {
     const history = useHistory();
 
     const [user, setUser] = useState({
@@ -70,10 +75,13 @@ function Login() {
                 <button onClick={LogOut}>Log out</button>
             </div>
             ) :
-            (<LoginForm Login={LogIn} error={error}/>)
+            (
+            <LoginForm Login={LogIn} error={error}/>
+            )
             }
             
         </div>
     );
 }
+
 export default Login;

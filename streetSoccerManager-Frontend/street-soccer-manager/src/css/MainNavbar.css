@@ -15,11 +15,11 @@
     margin-left: 2rem;
 }
 
-.nav-link.active {
+.main-navbar .nav-link.active {
     color: floralwhite !important;
 }
 
-.nav-link {
+.main-navbar .nav-link {
     color: black !important;
 }
 

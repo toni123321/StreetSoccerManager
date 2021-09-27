@@ -1,31 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import styles from "../css/Login.css";
 
-const LoginForm = ({Login, error}) => {
 
-    const [details, setDetails] = useState({
-        email: "",
-        password: ""
-    })
-
-    const handleInput = (e) => {
-        const {name, value} = e.target;
-        setDetails({...details, [name]: value}); 
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        Login(details);
-
-    }
-
+const SignUpForm = () => {
     return (
         <div className="login-wrap">
             <div className="login-html">
                 <LinkContainer to="/login">
-                    <Nav.Link className="singInUp-links">Sign in</Nav.Link>
+                    <Nav.Link className="singInUp-links">Log in</Nav.Link>
                 </LinkContainer>
 
                 <LinkContainer to="/signUp">
@@ -33,7 +17,7 @@ const LoginForm = ({Login, error}) => {
                 </LinkContainer>
                 
                 <div className="login-form">
-                <div className="sign-in-htm">
+                <div className="sign-up-htm">
                     <div className="group">
                         <label htmlFor="user" className="label">Username</label>
                         <input id="user" type="text" className="input"/>
@@ -43,15 +27,21 @@ const LoginForm = ({Login, error}) => {
                         <input id="pass" type="password" className="input" data-type="password"/>
                     </div>
                     <div className="group">
-                        <input id="check" type="checkbox" className="check" />
-                        <label htmlFor="check">Keep me Signed in</label>
+                        <label htmlFor="repeat-pass" className="label">Repeat Password</label>
+                        <input id="repeat-pass" type="password" className="input" data-type="password"/>
                     </div>
                     <div className="group">
-                        <input type="submit" className="button" value="Sign In"/>
+                        <label htmlFor="email" className="label">Email Address</label>
+                        <input id="email" type="text" className="input"/>
+                    </div>
+                    <div className="group">
+                        <input type="submit" className="button" value="Sign Up"/>
                     </div>
                     <div className="hr"></div>
                     <div className="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
+                    <LinkContainer to="/login">
+                        <Nav.Link id="link-already-member">Already a member? </Nav.Link>
+                    </LinkContainer>
                     </div>
                 </div>
                 </div>    
@@ -61,4 +51,4 @@ const LoginForm = ({Login, error}) => {
     );
 }
 
-export default LoginForm;
+export default SignUpForm;
