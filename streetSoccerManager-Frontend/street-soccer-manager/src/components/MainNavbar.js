@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, NavLink} from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 
 import Routers from "./Routers";
 
@@ -22,6 +22,10 @@ function MainNavbar() {
                             <LinkContainer to="/" exact>
                                 <Nav.Link ><i className="fas fa-home"></i> Home</Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="/game" exact>
+                                <Nav.Link ><i className="fas fa-gamepad"></i> Game</Nav.Link>
+                            </LinkContainer>
+                            
                             <LinkContainer to="/about">
                                 <Nav.Link ><i className="fas fa-info"></i> About</Nav.Link>
                             </LinkContainer>
@@ -29,19 +33,10 @@ function MainNavbar() {
                                 <Nav.Link ><i className="far fa-address-book"></i> Contact</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/login">
-                            <Nav.Link ><i className="fas fa-sign-in-alt"></i> Login</Nav.Link>
+                            <Nav.Link ><i className="fas fa-sign-in-alt"></i> Log in</Nav.Link>
                             </LinkContainer>
                             
                         </Nav>
-                        {/* <Nav> */}
-                            {/* <LinkContainer to="/signup">
-                            <Nav.Link><i className="fas fa-user-plus"></i> Signup</Nav.Link>
-                            </LinkContainer> */}
-                            
-                            {/* <LinkContainer to="/profile">
-                            <Nav.Link><i className="fas fa-user"></i> Profile</Nav.Link>
-                            </LinkContainer>     */}
-                        {/* </Nav> */}
                         </Navbar.Collapse>
                         
                     
