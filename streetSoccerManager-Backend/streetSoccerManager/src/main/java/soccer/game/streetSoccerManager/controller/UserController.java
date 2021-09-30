@@ -10,6 +10,7 @@ import soccer.game.streetSoccerManager.model.User;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/users")
 public class UserController {
