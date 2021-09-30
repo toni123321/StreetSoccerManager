@@ -16,6 +16,7 @@ import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/players")
 public class PlayersController {

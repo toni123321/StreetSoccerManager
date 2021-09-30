@@ -15,11 +15,10 @@ import soccer.game.streetSoccerManager.model.User;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/teams")
 public class TeamsController {
-
-
     @Qualifier("teamService")
     private ITeamService teamService;
 
@@ -78,7 +77,7 @@ public class TeamsController {
         } else {
             String url = "team" + "/" + team.getId(); // url of the created student
             URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+            return new ResponseEntity(team,HttpStatus.CREATED);
         }
 
     }

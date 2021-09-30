@@ -28,9 +28,8 @@ public class TeamFakeDatabase implements ITeamRepository {
 
 
     public TeamFakeDatabase() {
-        teams.add(new Team(1, "Real Madrid-Pro", formations.get(0) ,users.get(0)));
-        teams.add(new Team(2, "newBarca", formations.get(1), users.get(1)));
-
+        teams.add(new Team("Real Madrid-Pro", formations.get(0) ,users.get(0)));
+        teams.add(new Team( "newBarca", formations.get(1), users.get(1)));
     }
 
 

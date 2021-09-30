@@ -13,11 +13,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/frontendUsers")
 public class FrontendUserController {
-
-
     @Qualifier("teamService")
     private ITeamService teamService;
 
