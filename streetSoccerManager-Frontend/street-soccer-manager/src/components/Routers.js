@@ -7,6 +7,8 @@ import CreateTeam from "./CreateTeam";
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 import GameNavbar from './GameNavbar';
+import Login from './Login';
+import SignUp from './SignUp';
 
 const Routers = () => {
     return (
@@ -16,8 +18,8 @@ const Routers = () => {
             
             <Route exact path="/about" component={About} />
 
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/signUp" component={SignUpForm} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signUp" component={SignUp} />
             
             <Route path="/createTeam" component={CreateTeam} />
         </Switch>
