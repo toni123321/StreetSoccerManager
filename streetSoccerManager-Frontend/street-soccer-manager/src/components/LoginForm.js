@@ -3,7 +3,7 @@ import { Nav } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import styles from "../css/Login.css";
 
-const LoginForm = ({Login, error}) => {
+const LoginForm = ({handleLogin}) => {
 
     const [details, setDetails] = useState({
         email: "",
@@ -17,7 +17,8 @@ const LoginForm = ({Login, error}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Login(details);
+        //console.log(details.email, details.password);
+        handleLogin(details);
 
     }
 
@@ -33,14 +34,15 @@ const LoginForm = ({Login, error}) => {
                 </LinkContainer>
                 
                 <div className="login-form">
-                <div className="sign-in-htm">
+                <form className="sign-in-htm" id="sign-in" onSubmit={handleSubmit}>
+
                     <div className="group">
-                        <label htmlFor="user" className="label">Username</label>
-                        <input id="user" type="text" className="input"/>
+                        <label htmlFor="email" className="label">Email</label>
+                        <input name="email" value={details.email} id="email" type="text" className="input" onChange={handleInput}/>
                     </div>
                     <div className="group">
-                        <label htmlFor="pass" className="label">Password</label>
-                        <input id="pass" type="password" className="input" data-type="password"/>
+                        <label htmlFor="password" className="label">Password</label>
+                        <input name="password" value={details.password} id="password" type="password" className="input" data-type="password" onChange={handleInput}/>
                     </div>
                     <div className="group">
                         <input id="check" type="checkbox" className="check" />
@@ -53,7 +55,7 @@ const LoginForm = ({Login, error}) => {
                     <div className="foot-lnk">
                         <a href="#forgot">Forgot Password?</a>
                     </div>
-                </div>
+                </form>
                 </div>    
             </div>
         </div>

@@ -2,32 +2,35 @@
 import React, {useState, useEffect} from "react";
 
 import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import {LinkContainer} from "react-router-bootstrap";
-
-
 import { useHistory } from 'react-router-dom';
 import FrontendUserService from "../services/FrontendUserService";
+import UserService from "../services/UserService";
 
 const Login = () => {
     const history = useHistory();
 
-    const [user, setUser] = useState({
+
+    const [loggedUser, setLoggedUser] = useState({
+        id:null,
         email: "",
-        password: ""
     });
+
+    const loggedUserId = loggedUser.id;
+    const loggedUserEmail = loggedUser.email;
+
+    const [isUserLogged, setIsUserLogged] = useState(false);
 
     
     const [users, setUsers] = useState();
+
+    
+
     useEffect(() => {
         retrieveUsers();
-    }, [])
+    }, []);
 
     const retrieveUsers = () => {
-        FrontendUserService.getAll()
+        UserService.getAll()
           .then(response => {
             setUsers(response.data);
             console.log(response.data);
@@ -35,48 +38,53 @@ const Login = () => {
           .catch(e => {
             console.log(e);
         })
-    }
+    };
       
 
     const [error, setError] = useState("");
 
     const checkCredentials = (email, password) => {
-        return users.find(user => user.email === email && user.password === password)
-    }
+        return users.find(user => user.email === email && user.password === password);
+    };
 
-    const LogIn = details => {
-        console.log(checkCredentials(details.email, details.password));
-        // if(checkCredentials(details.email, details.password)){
-        //     setUser({
-        //         name: details.name,
-        //         password: details.password
-        //     })
-        //     setError("");
-        // }
-        // else{
-        //     setError("Details do not match!");
-        // }
-    }
+    
+    const handleLogin = (details) => {
+        const currentUser = checkCredentials(details.email, details.password);
+        console.log(currentUser.id, currentUser.email);
+        if(currentUser !== undefined){
+            setLoggedUser({
+                id: currentUser.id,
+                email: currentUser.email
+            })
+            setError("");
+            setIsUserLogged(true);
+        }
+        else{
+            setError("Details do not match!");
+        }
+        //console.log(loggedUser.id, loggedUser.email);   
+    };
 
     const LogOut = () => {
-        setUser({
-            email: "",
-            password: ""
+        setLoggedUser({
+            id: null,
+            email: ""
         });
-    }
+        setIsUserLogged(false);
+    };
 
 
     return (
         <div>
-            {(user.email !== "") ?
+            {(isUserLogged) ?
             (
             <div className="welcome">
-                <h1>Welcome</h1>
+                <h1>Welcome, {loggedUser.email}</h1>
                 <button onClick={LogOut}>Log out</button>
             </div>
             ) :
             (
-            <LoginForm Login={LogIn} error={error}/>
+            <LoginForm handleLogin={handleLogin}/>
             )
             }
             

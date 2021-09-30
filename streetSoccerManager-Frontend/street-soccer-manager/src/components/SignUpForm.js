@@ -9,7 +9,7 @@ const SignUpForm = () => {
         <div className="login-wrap">
             <div className="login-html">
                 <LinkContainer to="/login">
-                    <Nav.Link className="singInUp-links">Log in</Nav.Link>
+                    <Nav.Link className="singInUp-links">Sign in</Nav.Link>
                 </LinkContainer>
 
                 <LinkContainer to="/signUp">
