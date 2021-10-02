@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.PlayerStats;
 import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
 
@@ -20,7 +21,9 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     List<Team> teams = teamFakeDatabase.getAll();
 
     public PlayerFakeDatabase() {
-        players.add(new Player(1, "Xavi", "Simons", new Date(2003, 4, 21), 150, teams.get(0)));
+        players.add(new Player(1, "Xavi", "Simons",
+                new Date(2003, 4, 21), 150,
+                new PlayerStats(80),  teams.get(0)));
     }
 
 

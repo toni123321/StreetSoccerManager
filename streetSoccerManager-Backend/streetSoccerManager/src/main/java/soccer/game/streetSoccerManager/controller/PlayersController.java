@@ -10,6 +10,7 @@ import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IPlayerServi
 import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.PlayerStats;
 import soccer.game.streetSoccerManager.model.Team;
 
 import java.net.URI;
@@ -98,7 +99,13 @@ public class PlayersController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Player> updatePlayer(@PathVariable("id") int id, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("dob") Date dob, @RequestParam("price") double price, @RequestParam("team") int teamId) {
+    public ResponseEntity<Player> updatePlayer(@PathVariable("id") int id,
+                                               @RequestParam("firstName") String firstName,
+                                               @RequestParam("lastName") String lastName,
+                                               @RequestParam("dob") Date dob,
+                                               @RequestParam("price") double price,
+                                               @RequestParam("playerStats") PlayerStats playerStats,
+                                               @RequestParam("team") int teamId) {
         Player player = playerService.get(id);
         if (player == null){
             return new ResponseEntity("Please provide a valid player id.",HttpStatus.NOT_FOUND);
@@ -115,6 +122,7 @@ public class PlayersController {
             player.setLastName(lastName);
             player.setDob(dob);
             player.setPrice(price);
+            player.setPlayerStats(playerStats);
             player.setTeam(team);
 
             return ResponseEntity.noContent().build();

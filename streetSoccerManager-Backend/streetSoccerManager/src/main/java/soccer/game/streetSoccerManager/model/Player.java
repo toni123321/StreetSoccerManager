@@ -5,34 +5,25 @@ import lombok.Setter;
 
 import java.util.Date;
 
+@Getter
+@Setter
 public class Player {
-    @Getter
-    @Setter
+
     private int id;
-    @Getter
-    @Setter
     private String firstName;
-    @Getter
-    @Setter
     private String lastName;
-    @Getter
-    @Setter
     private Date dob;
-
-    @Getter
-    @Setter
     private double price;
-
-    @Getter
-    @Setter
+    private PlayerStats playerStats;
     private Team team; // connection with team
 
-    public Player(int id, String firstName, String lastName, Date dob, double price, Team team) {
+    public Player(int id, String firstName, String lastName, Date dob, double price, PlayerStats playerStats,  Team team) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.price = price;
+        this.playerStats = playerStats;
         this.team = team;
     }
 }

@@ -3,6 +3,7 @@ package soccer.game.streetSoccerManager.model;
 import lombok.Getter;
 import lombok.Setter;
 
+
 public class User {
 
     @Getter
