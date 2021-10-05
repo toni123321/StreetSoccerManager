@@ -1,21 +1,55 @@
 import React from 'react';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import TeamService from "../services/TeamService";
 import styles from "../css/CreateTeam.css";
 import CreateTeamForm from './CreateTeamForm';
+import GameNavbar from './GameNavbar';
+
+import FormationService from '../services/FormationService';
 
 function CreateTeam() {
 
     const initialTeamState = {
         id: null,
         name: "",
-        formation: "",
+        formation: {
+            id:null,
+            name: ""
+        },
         manager: null
     }
     const [team, setTeam] = useState(initialTeamState);
 
     const [submitted, setSubmitted] = useState(false);
 
+    useEffect(() => {
+
+        const createdTeam = localStorage.getItem("team");
+        console.log("Created team: ", createTeam);
+        if (createdTeam) {
+          const foundTeam = JSON.parse(createdTeam);
+          setTeam(foundTeam);
+          setSubmitted(true);
+        } 
+        else
+        {
+            const id = 0;
+            TeamService.get(id)
+                .then(response => {
+                    setTeam({
+                        id: response.data.id,
+                        name: response.data.name,
+                        formation: {
+                            id: response.data.formation.id,
+                            name: response.data.formation.name
+                        },
+                        manager: response.data.manager
+                     });
+                    setSubmitted(true);
+                    localStorage.setItem('team', JSON.stringify(response.data));
+            });
+        }
+      }, []);
 
     const createTeam = (teamName) => {
         console.log("Team name:", teamName);
@@ -28,19 +62,27 @@ function CreateTeam() {
                setTeam({
                    id: response.data.id,
                    name: response.data.name,
-                   formation: response.data.formation,
+                   formation: {
+                       id: response.data.formation.id,
+                       name: response.data.formation.name
+                   },
                    manager: response.data.manager
                 });
                setSubmitted(true);
-               console.log(response.data);              
+               console.log(response.data);   
+               localStorage.setItem('team', JSON.stringify(response.data));
+
             })
             .catch(e => { console.log(e)});
         console.log(team.name);
+        console.log("Created team: ", localStorage.getItem("team"));
+        
     };
 
     const newTeam = () => {
         setTeam(initialTeamState);
         setSubmitted(false);
+        localStorage.clear();
     };
 
     return (
@@ -48,8 +90,8 @@ function CreateTeam() {
             {submitted ? 
             (
                 <>
-                <div>Team created</div>
                 <h2>Team name: {team.name}</h2>
+                <GameNavbar team={team}/>
                 <button onClick={newTeam}>
                     Add
                 </button>

@@ -5,7 +5,8 @@ import { Nav, Row, Col, Container } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 
 
-const GameNavbar = () => {
+const GameNavbar = ({team}) => {
+
     return (
         <Container className="game-navbar" >
         <Row id="nav-items-frow">
@@ -27,7 +28,7 @@ const GameNavbar = () => {
                 </LinkContainer>
             </Col>
             <Col className="nav-item" id="teamSquad">
-                <LinkContainer to="#">
+                <LinkContainer to="/teamSquad">
                     <Nav.Link>Team squad</Nav.Link>
                 </LinkContainer>
             </Col>
