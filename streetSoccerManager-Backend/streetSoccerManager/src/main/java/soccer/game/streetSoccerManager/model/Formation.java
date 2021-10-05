@@ -3,13 +3,12 @@ package soccer.game.streetSoccerManager.model;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Formation {
-    @Getter
-    @Setter
+
     private int id;
-    @Getter
-    @Setter
-    private String name;
+    private String name; // 1-2-1
 
     public Formation(int id, String name) {
         this.id = id;

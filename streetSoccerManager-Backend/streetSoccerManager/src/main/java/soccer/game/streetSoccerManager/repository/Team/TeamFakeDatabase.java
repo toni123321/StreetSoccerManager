@@ -13,6 +13,7 @@ import soccer.game.streetSoccerManager.repository.User.UserFakeDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class TeamFakeDatabase implements ITeamRepository {
@@ -28,11 +29,18 @@ public class TeamFakeDatabase implements ITeamRepository {
 
 
     public TeamFakeDatabase() {
-        teams.add(new Team("Real Madrid-Pro", formations.get(0) ,users.get(0)));
-        teams.add(new Team( "newBarca", formations.get(1), users.get(1)));
+        teams.add(new Team(0, "Real Madrid-Pro", formations.get(0) ,users.get(0)));
+        teams.add(new Team(1,  "newBarca", formations.get(1), users.get(1)));
     }
 
 
+
+    @Override
+    public Formation getDefaultFormation() {
+        return formations.stream().
+                filter(formation -> formation.getName() == "1-2-1").
+                collect(Collectors.toList()).get(0);
+    }
     @Override
     public List<Team> getAll() {
         return teams;

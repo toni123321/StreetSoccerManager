@@ -12,4 +12,5 @@ public interface IPlayerService {
     Boolean delete(int id);
     Boolean add(Player player);
     Boolean update(Player player);
+    List<Player> getAllPlayersInTeam(int teamId);
 }

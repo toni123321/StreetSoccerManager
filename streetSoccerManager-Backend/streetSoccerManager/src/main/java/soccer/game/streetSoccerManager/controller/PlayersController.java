@@ -16,6 +16,7 @@ import soccer.game.streetSoccerManager.model.Team;
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
@@ -55,9 +56,15 @@ public class PlayersController {
 
 
     @GetMapping
-    public ResponseEntity<List<Player>> getAllPlayers() {
+    public ResponseEntity<List<Player>> getAllPlayers(@RequestParam(value = "teamId") Optional<Integer> teamId) {
         List<Player> players = null;
-        players = playerService.getAll();
+
+        if(teamId.isPresent()){
+            players = playerService.getAllPlayersInTeam(teamId.get());
+        }
+        else{
+            players = playerService.getAll();
+        }
 
         if(players != null) {
             return ResponseEntity.ok().body(players);
@@ -104,6 +111,10 @@ public class PlayersController {
                                                @RequestParam("lastName") String lastName,
                                                @RequestParam("dob") Date dob,
                                                @RequestParam("price") double price,
+                                               @RequestParam("defaultPosition") String defaultPosition,
+                                               @RequestParam("currenPosition") String currentPosition,
+                                               @RequestParam("kitNr") int kitNr,
+                                               @RequestParam("isStarting") boolean isStarting,
                                                @RequestParam("playerStats") PlayerStats playerStats,
                                                @RequestParam("team") int teamId) {
         Player player = playerService.get(id);
@@ -122,6 +133,10 @@ public class PlayersController {
             player.setLastName(lastName);
             player.setDob(dob);
             player.setPrice(price);
+            player.setDefaultPosition(defaultPosition);
+            player.setCurrentPosition(currentPosition);
+            player.setKitNr(kitNr);
+            player.setStarting(isStarting);
             player.setPlayerStats(playerStats);
             player.setTeam(team);
 

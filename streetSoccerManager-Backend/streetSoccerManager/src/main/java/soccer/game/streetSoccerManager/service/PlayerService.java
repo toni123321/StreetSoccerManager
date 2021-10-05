@@ -7,6 +7,7 @@ import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IPlayerServi
 import soccer.game.streetSoccerManager.model.Player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayerService implements IPlayerService {
@@ -36,6 +37,7 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Boolean add(Player player) {
+        player.setId(dataStore.getAll().size());
         return dataStore.add(player);
     }
 
@@ -44,5 +46,12 @@ public class PlayerService implements IPlayerService {
        return dataStore.update(player);
     }
 
-   
+    @Override
+    public List<Player> getAllPlayersInTeam(int teamId) {
+        return getAll().stream().filter(player ->
+                player.getTeam().getId() == teamId).
+                collect(Collectors.toList());
+    }
+
+
 }

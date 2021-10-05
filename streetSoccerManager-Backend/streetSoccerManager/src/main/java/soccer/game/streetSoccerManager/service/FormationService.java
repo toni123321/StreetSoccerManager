@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.FormationPosition;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FormationService implements IFormationService {
@@ -17,7 +19,6 @@ public class FormationService implements IFormationService {
     public FormationService( IFormationRepository dataStore) {
         this.dataStore = dataStore;
     }
-
 
     @Override
     public List<Formation> getAll() {
@@ -37,6 +38,7 @@ public class FormationService implements IFormationService {
 
     @Override
     public Boolean add(Formation formation) {
+        formation.setId(dataStore.getAll().size());
         return dataStore.add(formation);
     }
 
