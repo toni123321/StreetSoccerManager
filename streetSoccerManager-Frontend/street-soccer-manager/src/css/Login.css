@@ -170,3 +170,7 @@ label[for="check"] {
 	text-align:center;
     color:aliceblue;
 }
+
+.nav-link {
+	padding: none !important;
+}
