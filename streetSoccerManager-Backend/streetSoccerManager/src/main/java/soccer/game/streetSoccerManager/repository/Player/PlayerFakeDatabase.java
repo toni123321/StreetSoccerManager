@@ -21,11 +21,28 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     List<Team> teams = teamFakeDatabase.getAll();
 
     public PlayerFakeDatabase() {
-        players.add(new Player(1, "Xavi", "Simons",
-                new Date(2003, 4, 21), 150,
-                new PlayerStats(80),  teams.get(0)));
-    }
+        players.add(new Player(0,"Javi", "Diaz",
+                new Date(1997, 5, 15), 150,
+                "GK", "GK", 1, true,
+                new PlayerStats(65),  teams.get(0)));
 
+        players.add(new Player(1,"Andres", "Dumitrescu",
+                new Date(2001, 3, 11), 150,
+                "DEF", "DEF", 2, true,
+                new PlayerStats(60),  teams.get(0)));
+        players.add(new Player(2,"Ross", "Callachan",
+                new Date(1993, 9, 4), 150,
+                "MID", "MID", 6, true,
+                new PlayerStats(64),  teams.get(0)));
+        players.add(new Player(3,"Xavi", "Simons",
+                new Date(2003, 4, 21), 150,
+                "MID", "MID", 10, true,
+                new PlayerStats(65),  teams.get(0)));
+        players.add(new Player(4,"Florian", "Sotoca",
+                new Date(2000, 1, 1), 150,
+                "ST", "ST", 9, true,
+                new PlayerStats(72),  teams.get(0)));
+    }
 
     @Override
     public List<Player> getAll() {

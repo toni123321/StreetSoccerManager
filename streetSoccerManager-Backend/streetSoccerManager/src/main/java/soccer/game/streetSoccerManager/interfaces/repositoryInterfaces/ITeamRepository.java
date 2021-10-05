@@ -1,5 +1,6 @@
 package soccer.game.streetSoccerManager.interfaces.repositoryInterfaces;
 
+import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.Team;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface ITeamRepository {
     Boolean delete(int id);
     Boolean add(Team team);
     Boolean update(Team team);
+
+    Formation getDefaultFormation();
 }

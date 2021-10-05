@@ -38,6 +38,7 @@ public class UserService implements IUserService {
 
     @Override
     public Boolean add(User user) {
+        user.setId(dataStore.getAll().size());
         return dataStore.add(user);
     }
 

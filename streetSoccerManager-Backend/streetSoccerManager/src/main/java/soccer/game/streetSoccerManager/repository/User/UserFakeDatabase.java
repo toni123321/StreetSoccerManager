@@ -17,12 +17,14 @@ public class UserFakeDatabase implements IUserRepository {
     private List<User> users = new ArrayList<>();
 
     public UserFakeDatabase() {
-        users.add(new FrontendUser(1, "peter@gmail.com", "123", "pete", 100));
-        users.add(new FrontendUser(2, "john@gmail.com", "456", "jo", 10));
+        users.add(new FrontendUser(0, "peter@gmail.com", "123", "pete", 100));
+        users.add(new FrontendUser(1, "john@gmail.com", "456", "jo", 10));
 
-        users.add(new Admin(3, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
+        users.add(new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
 
     }
+
+
 
     @Override
     public List<User> getAll() {
