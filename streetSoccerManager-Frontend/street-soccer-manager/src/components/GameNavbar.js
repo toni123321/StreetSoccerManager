@@ -10,12 +10,12 @@ const GameNavbar = ({team}) => {
     return (
         <Container className="game-navbar" >
         <Row id="nav-items-frow">
-            <Col className="nav-item">
+            <Col className="nav-item" id="playMatch">
                 <LinkContainer to="#">
                     <Nav.Link>Play match</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col className="nav-item">
+            <Col className="nav-item" id="playTournament">
                 <LinkContainer to="#">
                     <Nav.Link>Play tournament</Nav.Link>
                 </LinkContainer>
@@ -32,12 +32,12 @@ const GameNavbar = ({team}) => {
                     <Nav.Link>Team squad</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col className="nav-item">
+            <Col className="nav-item" id="shop">
                 <LinkContainer to="#">
                     <Nav.Link>Shop</Nav.Link>
                 </LinkContainer>   
             </Col>
-            <Col className="nav-item">
+            <Col className="nav-item" id="settings">
                 <LinkContainer to="#">
                     <Nav.Link>Settings</Nav.Link>
                 </LinkContainer>

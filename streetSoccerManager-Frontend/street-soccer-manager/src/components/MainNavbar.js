@@ -11,9 +11,11 @@ function MainNavbar() {
     return (
         <BrowserRouter>
             <div>
-                <>
+                <div>
+                
                 <Navbar className="main-navbar" collapseOnSelect expand="lg" bg="primary" variant="dark">
                     <Container>
+                        
                         <Navbar.Brand id="nav-brand">Street Soccer Manager</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,7 +44,7 @@ function MainNavbar() {
                     
                     </Container>
                 </Navbar>
-                </>
+                </div>
 
                 <div className="container mt-3">
                     <Routers/>
