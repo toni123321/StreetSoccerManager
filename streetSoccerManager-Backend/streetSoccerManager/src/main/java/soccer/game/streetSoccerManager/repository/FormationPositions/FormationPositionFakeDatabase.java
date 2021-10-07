@@ -6,8 +6,10 @@ import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormatio
 import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.FormationPosition;
 import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.Formation.FormationFakeDatabase;
 import soccer.game.streetSoccerManager.repository.Player.PlayerFakeDatabase;
+import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,9 @@ public class FormationPositionFakeDatabase implements IFormationPositionReposito
     private FormationFakeDatabase formationFakeDatabase = new FormationFakeDatabase();
     private List<Formation> formations = formationFakeDatabase.getAll();
 
+    private TeamFakeDatabase teamFakeDatabase = new TeamFakeDatabase();
+    private List<Team> teams = teamFakeDatabase.getAll();
+
     private PlayerFakeDatabase playerFakeDatabase = new PlayerFakeDatabase();
     private List<Player> players = playerFakeDatabase.getAll();
 
@@ -27,21 +32,22 @@ public class FormationPositionFakeDatabase implements IFormationPositionReposito
 
     public FormationPositionFakeDatabase() {
         positions.add(new FormationPosition(0, "GK",
-                formationFakeDatabase.get(1), 1f, 1f, playerFakeDatabase.get(0)));
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(0)));
         positions.add(new FormationPosition(1, "DEF",
-                formationFakeDatabase.get(1), 1f, 1f, playerFakeDatabase.get(1)));
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(1)));
         positions.add(new FormationPosition(2, "MID",
-                formationFakeDatabase.get(1), 1f, 1f, playerFakeDatabase.get(2)));
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(2)));
         positions.add(new FormationPosition(3, "MID",
-                formationFakeDatabase.get(1), 1f, 1f, playerFakeDatabase.get(3)));
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(3)));
         positions.add(new FormationPosition(4, "ST",
-                formationFakeDatabase.get(1), 1f, 1f, playerFakeDatabase.get(4)));
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(4)));
     }
 
 
     @Override
-    public List<FormationPosition> getAllPositionsByFormation(int formationId){
-        return positions.stream().filter(pos -> pos.getFormation().getId() == formationId).
+    public List<FormationPosition> getAllPositionsByTeamAndFormation(int teamId, int formationId){
+        return positions.stream().filter(pos -> pos.getFormation().getId() == formationId &&
+                        pos.getTeam().getId() == teamId).
                 collect(Collectors.toList());
     }
 
@@ -86,8 +92,10 @@ public class FormationPositionFakeDatabase implements IFormationPositionReposito
         }
         oldPosition.setName(position.getName());
         oldPosition.setFormation(position.getFormation());
+        oldPosition.setTeam(position.getTeam());
         oldPosition.setX_cor(position.getX_cor());
         oldPosition.setY_cor(position.getY_cor());
+        oldPosition.setPlayer(position.getPlayer());
 
         return true;
     }

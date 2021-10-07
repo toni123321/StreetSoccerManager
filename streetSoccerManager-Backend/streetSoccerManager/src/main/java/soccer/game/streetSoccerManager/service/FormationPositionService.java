@@ -21,8 +21,8 @@ public class FormationPositionService implements IFormationPositionService {
 
 
     @Override
-    public List<FormationPosition> getAllPositionsByFormation(int formationId){
-        return dataStore.getAllPositionsByFormation(formationId);
+    public List<FormationPosition> getAllPositionsByTeamAndFormation(int teamId, int formationId){
+        return dataStore.getAllPositionsByTeamAndFormation(teamId, formationId);
     }
 
     @Override
