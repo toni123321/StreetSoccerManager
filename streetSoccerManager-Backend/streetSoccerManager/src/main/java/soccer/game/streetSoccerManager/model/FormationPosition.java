@@ -9,6 +9,7 @@ public class FormationPosition {
     private int id;
     private String name; // CM
     private Formation formation; // 1-2-1
+    private Team team;
     private double x_cor;
     private double y_cor;
     private Player player; // Player (id)
@@ -32,10 +33,11 @@ public class FormationPosition {
 //    box1.player = player2
 
 
-    public FormationPosition(int id, String name, Formation formation, double x_cor, double y_cor, Player player) {
+    public FormationPosition(int id, String name, Formation formation, Team team, double x_cor, double y_cor, Player player) {
         this.id = id;
         this.name = name;
         this.formation = formation;
+        this.team = team;
         this.x_cor = x_cor;
         this.y_cor = y_cor;
         this.player = player;

@@ -10,6 +10,7 @@ import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.FormationPosition;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
@@ -37,10 +38,19 @@ public class FormationPositionController {
 
 
     @GetMapping
-    public ResponseEntity<List<FormationPosition>> getAll() {
+    public ResponseEntity<List<FormationPosition>> getAll(
+            @RequestParam(value = "teamId") Optional<Integer> teamId,
+            @RequestParam(value = "formationId") Optional<Integer> formationId)
+    {
         List<FormationPosition> positions = null;
 
-        positions = formationPositionService.getAll();
+        if(formationId.isPresent() && teamId.isPresent())
+        {
+            positions = formationPositionService.getAllPositionsByTeamAndFormation(teamId.get(), formationId.get());
+        }
+        else {
+            positions = formationPositionService.getAll();
+        }
 
         if(positions != null) {
             return ResponseEntity.ok().body(positions);
@@ -48,6 +58,8 @@ public class FormationPositionController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
 
 
     @DeleteMapping("{id}")

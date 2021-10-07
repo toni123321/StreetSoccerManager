@@ -37,7 +37,7 @@ public class FormationsController {
         if(formation != null) {
             return ResponseEntity.ok().body(formation);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();   
         }
     }
 
