@@ -1,29 +1,88 @@
-.starting-players-pitch  {
+
+.team-squad {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kitNr {
+    font-size: 13px;
+    position:absolute;
+    text-align:center;
+    width:26px;
+    padding-top:3px
+}
+.starting-players-pitch  {
+    /* max-width: 42rem;
+    
     margin: 20px;
+    background-image: url("../resources/pitch-half\ \(1\).png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin-left: auto; */
+
+    /* position: absolute; */
+    width: 80%;
+    max-width: 700px;
+
+    display: flex;
+    gap: 20px;
+    
+    height: 25rem;
+    background: center center transparent url("../resources/pitch-half\ \(1\).png") no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.reserves {
+    display: flex;
+    gap: 20px;
+}
+
+.reserves .fas {
+    color:darkgrey;
+    /* font-size: 50px; */
+    text-shadow: 0 0 3px white;
+}
+  
+
+.starting-players-pitch .fas {
+    color:coral;
+    /* font-size: 50px; */
+    text-shadow: 0 0 3px white;
 }
   
 .formationPosBox {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.12);
-    border: 2px solid rgba(0, 0, 0, 0.24);
-    margin-right: 20px;
-    border-radius: 10px;
+    /* border: 3px solid black; */
+    border-radius: 50%;
+    width:130px;
+    height: 100px;
 }
   
 .player {
-    width: 100%;
+    /* width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: palegoldenrod;
-    border-radius: 10px;
+    border-radius: 10px; */
 }
 
+.player hr {
+    height: 4px !important;
+    background-color: black;
+    margin:0;
+}
+
+.player .overallRating {
+    border: 3px solid firebrick;
+    background-color: white;
+    width: 30px;
+    border-radius: 50%;
+    /* padding: 0; */
+    margin-left: auto;
+    margin-right: auto;
+}
 
 

@@ -1,18 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDrag } from "react-dnd";
 
-function Player() {
-
-  const [{ isDragging }, dragRef] = useDrag(() => ({
-    type: "player",
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  }));
-
+function Player({player, position, handleSwap}) {
+  
   return (
-    <div ref={dragRef} style={{ border: isDragging ? "5px solid pink" : "0px" }} className="player">
-        Player
+    <div className="player">
+        {/* <span className="kitNr">{player.kitNr}</span> */}
+        
+        {/* <div className="overallRating">{player.playerStats.overallRating}</div> */}
+        
+        <div>
+          <span className="fa-stack fa-2x">
+            <i className="fas fa-tshirt fa-stack-2x"></i>
+            <strong className="fa-stack-1x shirt-text">{player.kitNr}</strong>
+          </span>
+        </div>
+        <div>{player.firstName[0]}.{player.lastName}</div>
+        <hr/>
+        
+        <div>{position.name} {player.playerStats.overallRating}</div>
+       
+        
+        
     </div>
   );
 }
