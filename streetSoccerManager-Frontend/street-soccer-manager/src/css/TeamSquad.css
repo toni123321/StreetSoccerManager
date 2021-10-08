@@ -85,4 +85,14 @@
     margin-right: auto;
 }
 
+.position {
+    display: flex;
+    flex-direction: column;
+}
+
+.position .swapPlayers {
+    width: 35px;
+    align-self: center;
+}
+
 
