@@ -95,8 +95,9 @@ public class FormationPositionController {
 
     }
 
+
     @PutMapping()
-    public ResponseEntity<Formation> updatePosition(@RequestBody FormationPosition position) {
+    public ResponseEntity<FormationPosition> updatePosition(@RequestBody FormationPosition position) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (formationPositionService.update(position)) {
             return ResponseEntity.noContent().build();

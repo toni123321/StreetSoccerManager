@@ -7,9 +7,11 @@ import lombok.Setter;
 @Setter
 public class PlayerStats {
 
+    private int id;
     private int overallRating;
 
-    public PlayerStats(int overallRating) {
+    public PlayerStats(int id, int overallRating) {
+        this.id = id;
         this.overallRating = overallRating;
     }
 

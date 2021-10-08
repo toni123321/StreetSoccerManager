@@ -3,30 +3,29 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.ITeamRepository;
+import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
+import soccer.game.streetSoccerManager.model.Team;
+import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.service.TeamService;
+
+import java.util.List;
 
 @SpringBootTest
 public class TeamServiceTest {
-//    @Test
-//    void Get()
-//    {
-//        StudentsController controller = new StudentsController(
-//                new StudentServiceFake(),
-//                new CountryServiceFake());
-//
-//        ResponseEntity<Student> result = controller.getStudentPath(1);
-//
-//        Assertions.assertEquals(HttpStatus.OK, result.getStatusCode());
-//    }
-//
-//    @Test
-//    void GetStudentFailsScenarioTest()
-//    {
-//        StudentsController controller = new StudentsController(
-//                new StudentServiceFake(),
-//                new CountryServiceFake());
-//
-//        ResponseEntity<Student> result = controller.getStudentPath(2);
-//
-//        Assertions.assertEquals(HttpStatus.NOT_FOUND, result.getStatusCode());
-//    }
+    
+    @Test
+    void GetTeams() {
+        // Arrange
+        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamService teamService = new TeamService(teamRepository);
+
+        // Act
+        List<Team> teams = teamRepository.getAll();
+        // Assert
+        Assertions.assertEquals(teamRepository.getAll(), teams);
+
+    }
+
 }
