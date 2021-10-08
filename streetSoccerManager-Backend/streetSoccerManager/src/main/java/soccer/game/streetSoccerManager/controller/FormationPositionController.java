@@ -40,13 +40,28 @@ public class FormationPositionController {
     @GetMapping
     public ResponseEntity<List<FormationPosition>> getAll(
             @RequestParam(value = "teamId") Optional<Integer> teamId,
-            @RequestParam(value = "formationId") Optional<Integer> formationId)
+            @RequestParam(value = "formationId") Optional<Integer> formationId,
+            @RequestParam(value = "starting") Optional<Boolean> starting)
     {
         List<FormationPosition> positions = null;
 
         if(formationId.isPresent() && teamId.isPresent())
         {
-            positions = formationPositionService.getAllPositionsByTeamAndFormation(teamId.get(), formationId.get());
+            if(starting.isPresent())
+            {
+                if(starting.get())
+                {
+                    positions = formationPositionService.
+                            getStartingPositionsByTeamAndFormation(teamId.get(), formationId.get());
+                }
+                else{
+                    positions = formationPositionService.
+                            getPositionsForReservesByTeamAndFormation(teamId.get(), formationId.get());
+                }
+            }
+            else {
+                positions = formationPositionService.getAllPositionsByTeamAndFormation(teamId.get(), formationId.get());
+            }
         }
         else {
             positions = formationPositionService.getAll();
@@ -58,9 +73,6 @@ public class FormationPositionController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
 
     @DeleteMapping("{id}")
     public ResponseEntity deletePosition(@PathVariable int id) {

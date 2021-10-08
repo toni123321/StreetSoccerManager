@@ -41,15 +41,22 @@ public class FormationPositionFakeDatabase implements IFormationPositionReposito
                 formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(3)));
         positions.add(new FormationPosition(4, "ST",
                 formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(4)));
-    }
 
 
-    @Override
-    public List<FormationPosition> getAllPositionsByTeamAndFormation(int teamId, int formationId){
-        return positions.stream().filter(pos -> pos.getFormation().getId() == formationId &&
-                        pos.getTeam().getId() == teamId).
-                collect(Collectors.toList());
+        positions.add(new FormationPosition(5, "Sub1",
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(5)));
+        positions.add(new FormationPosition(6, "Sub2",
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(6)));
+        positions.add(new FormationPosition(7, "Sub3",
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(7)));
+        positions.add(new FormationPosition(8, "Sub4",
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(8)));
+        positions.add(new FormationPosition(9, "Sub5",
+                formationFakeDatabase.get(1), teamFakeDatabase.get(0), 1f, 1f, playerFakeDatabase.get(9)));
+
+
     }
+
 
     @Override
     public List<FormationPosition> getAll() {

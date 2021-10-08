@@ -12,4 +12,6 @@ public interface IFormationPositionService {
     Boolean add(FormationPosition position);
     Boolean update(FormationPosition position);
     List<FormationPosition> getAllPositionsByTeamAndFormation(int teamId, int formationId);
+    List<FormationPosition>  getStartingPositionsByTeamAndFormation(int teamId, int formationId);
+    List<FormationPosition>  getPositionsForReservesByTeamAndFormation(int teamId, int formationId);
 }
