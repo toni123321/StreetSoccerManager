@@ -8,6 +8,7 @@ import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationPo
 import soccer.game.streetSoccerManager.model.FormationPosition;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FormationPositionService implements IFormationPositionService {
@@ -22,7 +23,25 @@ public class FormationPositionService implements IFormationPositionService {
 
     @Override
     public List<FormationPosition> getAllPositionsByTeamAndFormation(int teamId, int formationId){
-        return dataStore.getAllPositionsByTeamAndFormation(teamId, formationId);
+        return dataStore.getAll().stream().
+                filter(
+                        position -> position.getTeam().getId() == teamId &&
+                        position.getFormation().getId() == formationId).
+                collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FormationPosition> getStartingPositionsByTeamAndFormation(int teamId, int formationId){
+        return getAllPositionsByTeamAndFormation(teamId, formationId).
+                stream().filter(position -> position.getPlayer().isStarting() == true).
+                collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FormationPosition> getPositionsForReservesByTeamAndFormation(int teamId, int formationId) {
+        return getAllPositionsByTeamAndFormation(teamId, formationId).
+                stream().filter(position -> position.getPlayer().isStarting() == false).
+                collect(Collectors.toList());
     }
 
     @Override
