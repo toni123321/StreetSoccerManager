@@ -27,9 +27,26 @@ const StartingPlayersContainer = () => {
 
     const [formationPosBoxesStarting, setFormationPosBoxesStarting] = useState();
     const [formationPosBoxesReserves, setFormationPosBoxesReserves] = useState();
+
+
+    const initialPositionState = {
+        id: null,
+        name: "",
+        formation:null,
+        team:null,
+        x_cor:null,
+        y_cor:null,
+        player:null
+    }
+    const [swapOrigin, setSwapOrigin] = useState(initialPositionState);
+    const [swapDest, setSwapDest] = useState(initialPositionState);
     
 
+
     
+    // // const [swapStart, setSwapStart] = useState(initialPositionState);
+    // // const [swapDest, setSwapDest] = useState(initialPositionState); 
+
 
     useEffect(() => {
 
@@ -40,6 +57,7 @@ const StartingPlayersContainer = () => {
           setTeam(foundTeam);
           retrieveFormationPositionsStarting(foundTeam.id, foundTeam.formation.id);
           retrieveFormationPositionsReserves(foundTeam.id, foundTeam.formation.id);
+         
         } 
     }, []);
     
@@ -65,41 +83,124 @@ const StartingPlayersContainer = () => {
           });
     };
 
-    const [swapStart, setSwapStart] = useState(null);
-    const [swapDest, setSwapDest] = useState(null); 
 
-    const handleSwap = (positionId) => {
-      console.log(positionId);
-      if(swapStart === null)
-      {
-        setSwapStart(positionId);
-      }
-      else{
-        if(swapStart === positionId){
-          setSwapStart(null);
-          alert("players swapping canceled!");
-        }
-        else{
-          setSwapDest(positionId);
-          
+    const getSwapOrigin = (id) => {
+      FormationPositionService.get(id)
+            .then(response => {
+              setSwapOrigin({
+                id: response.data.id,
+                name: response.data.name,
+                formation:response.data.formation,
+                team:response.data.team,
+                x_cor:response.data.x_cor,
+                y_cor:response.data.y_cor,
+                player:response.data.player
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
+    }
 
-          // act
-
-          //clear
-          setSwapStart(null);
-          setSwapDest(null);
-        }
-      }
-
-      
-
-      
+    const getSwapDest = (id) => {
+      FormationPositionService.get(id)
+            .then(response => {
+              setSwapDest({
+                id: response.data.id,
+                name: response.data.name,
+                formation:response.data.formation,
+                team:response.data.team,
+                x_cor:response.data.x_cor,
+                y_cor:response.data.y_cor,
+                player:response.data.player
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
     }
 
 
+    // const handleClicked = (e) => {
+    //   console.log(e.target.id);
+    //   if(swapOrigin.id === null)
+    //   {
+    //     getSwapOrigin(e.target.id);
+    //   }
+    //   else{
+    //     if(swapOrigin.id !== e.target.id){
+    //       getSwapDest(e.target.id);
+
+    //       // setSwapOrigin({...swapOrigin, player: swapDest.player});
+          
+    //     }
+    //     else{
+    //       setSwapOrigin(initialPositionState);
+    //     }
+    //   }
+    // }
+  
+    
+    const swapPlayers = (currPos) => {
+      
+      setSwapOrigin(currPos);
+      // const data = {
+      //   id: null,
+      //   name: "",
+      //   formation:null,
+      //   team:null,
+      //   x_cor:null,
+      //   y_cor:null,
+      //   player:null
+      // }
+      // FormationPositionService.update(currPos.id, data)
+      //       .then(response => {
+      //         setSwapOrigin({
+      //           id: response.data.id,
+      //           name: response.data.name,
+      //           formation:response.data.formation,
+      //           team:response.data.team,
+      //           x_cor:response.data.x_cor,
+      //           y_cor:response.data.y_cor,
+      //           player:response.data.player
+      //         });
+      //       })
+      //       .catch(e => {
+      //         console.log(e);
+      //       });
+
+      
+      
+
+    }
+    
     return (
         <>
-        <h3>{swapStart} {swapDest}</h3>
+        
+        {/* <h1>Team: {team.name}</h1>
+        <h3>Manager: {team.manager.nickname}</h3>
+        <h3>Formation: {team.formation.name}</h3>
+        <div className="team-squad">
+        <div className="starting-players-pitch">
+            {formationPosBoxesStarting && formationPosBoxesStarting.map((position) => (
+              <div className="position">
+              <button id={position.id} onClick={handleClicked} className="swapPlayers">Swap</button>
+                <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
+                key={position.id} positionId={position.id}/>
+              </div>
+            ))}
+        </div>
+        <div className="reserves">
+            {formationPosBoxesReserves && formationPosBoxesReserves.map((position) => (
+              <div className="position">
+                <button  id={position.id} onClick={handleClicked} className="swapPlayers">Swap</button>
+                <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
+                key={position.id} positionId={position.id} />
+              </div>
+            ))} 
+        </div>
+        </div> */}
+
         <h1>Team: {team.name}</h1>
         <h3>Manager: {team.manager.nickname}</h3>
         <h3>Formation: {team.formation.name}</h3>
@@ -107,13 +208,14 @@ const StartingPlayersContainer = () => {
         <div className="starting-players-pitch">
             {formationPosBoxesStarting && formationPosBoxesStarting.map((position) => (
                 <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
-                key={position.id} positionId={position.id} handleSwap={handleSwap}/>
+                key={position.id} positionId={position.id} swapPlayers={swapPlayers}/>
             ))}
         </div>
         <div className="reserves">
             {formationPosBoxesReserves && formationPosBoxesReserves.map((position) => (
-                <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
-                key={position.id} positionId={position.id} handleSwap={handleSwap} />
+              <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
+                key={position.id} positionId={position.id} swapPlayers={swapPlayers}/>
+              
             ))} 
         </div>
         {/* <ReservesPanel/> */}

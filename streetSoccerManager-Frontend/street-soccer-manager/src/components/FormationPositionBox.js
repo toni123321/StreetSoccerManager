@@ -4,7 +4,7 @@ import Player from "./Player";
 import FormationPositionService from "../services/FormationPositionService";
 import PlayerService from "../services/PlayerService";
 
-function FormationPositionBox({ playerId, positionId, handleSwap }) {
+function FormationPositionBox({ playerId, positionId, swapPlayers}) {
 
     const initialPlayerState = {
       id: null,
@@ -91,45 +91,18 @@ function FormationPositionBox({ playerId, positionId, handleSwap }) {
             console.log(e);
       });
     }
-
-
-    function movePlayer(id) {
-      //getNewPlayer(id);
+    
+    // const handleClicked = () => {
+    //   console.log(currPos.id);
       
-      //setCurrPlayer(newPlayer);
-      
-      // const data = {
-      //   id: currPos.id,
-      //   name: currPos.name,
-      //   formation: currPos.formation,
-      //   team: currPos.team,
-      //   x_cor: currPos.x_cor,
-      //   y_cor: currPos.y_cor,
-      //   player: newPlayer
-      // }
-      // FormationPositionService.update(id, data)
-      //     .then(response => {
-      //       setCurrPos({
-      //         id: response.data.id,
-      //         name: response.data.name,
-      //         formation: response.data.formation,
-      //         team: response.data.team,
-      //         x_cor: response.data.x_cor,
-      //         y_cor: response.data.y_cor,
-      //         player: response.data.player
-      //       });
-      //     })
-      //     .catch(e => {
-      //       console.log(e);
-      //     });
-
-      
-    }
+    // }
 
     
-    const handleClicked = () => {
-      //console.log(position.id);
-      handleSwap(currPos.id);
+
+    const handleClick = () => {
+      //console.log(currPos.id);
+      swapPlayers(currPos);
+
     }
 
     return (
@@ -138,7 +111,7 @@ function FormationPositionBox({ playerId, positionId, handleSwap }) {
         className="formationPosBox"
         
       >
-        <button onClick={handleClicked}><i class="fas fa-exchange-alt"></i></button>
+        <button onClick={handleClick}><i class="fas fa-exchange-alt"></i></button>
         {currPlayer.id !== null ? <Player player={currPlayer} position={currPos}/> : "No player"}
       </div>
     );

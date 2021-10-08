@@ -24,8 +24,8 @@ const create = data => {
   return http.post("/formationPositions", data);
 };
 
-const update = (id, data) => {
-  return http.put(`/formationPositions/${id}`, data);
+const update = (data) => {
+  return http.put("/formationPositions", data);
 };
 
 const remove = id => {

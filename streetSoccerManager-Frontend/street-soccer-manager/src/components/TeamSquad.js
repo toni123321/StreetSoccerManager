@@ -19,9 +19,8 @@ const TeamSquad = () => {
 
     return (
         <div>
-            <DndProvider backend={HTML5Backend}>
             <StartingPlayersContainer/>
-            </DndProvider>
+            
         </div>
     );
 }

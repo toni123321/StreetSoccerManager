@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useDrag } from "react-dnd";
 
-function Player({player, position, handleSwap}) {
+function Player({player, position}) {
   
   return (
     <div className="player">
