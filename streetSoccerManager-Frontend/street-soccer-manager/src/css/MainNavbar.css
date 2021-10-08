@@ -11,11 +11,13 @@
         flex-basis: auto;
         margin-right: 5%;
     }
+
+    #nav-brand {
+        margin-left: 5rem;
+    }
 }
 
-#nav-brand {
-    margin-left: 5rem;
-}
+
 
 .main-navbar .nav-link.active {
     color: floralwhite !important;
