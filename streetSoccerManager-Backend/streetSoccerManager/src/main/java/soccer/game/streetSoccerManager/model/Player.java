@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class Player {
+public class Player implements Comparable<Player>{
 
     private static int idCounter = 0;
     private int id;
@@ -39,5 +39,10 @@ public class Player {
         this.isStarting = isStarting;
         this.playerStats = playerStats;
         this.team = team;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return Integer.compare(getPositionIndex(), o.getPositionIndex());
     }
 }

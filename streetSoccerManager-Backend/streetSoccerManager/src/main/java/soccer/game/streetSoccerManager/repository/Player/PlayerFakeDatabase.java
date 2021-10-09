@@ -9,6 +9,7 @@ import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -47,30 +48,33 @@ public class PlayerFakeDatabase implements IPlayerRepository {
         // RESERVES
         players.add(new Player(5, 5,"Ilias", "Karargyris",
                 new Date(1997, 5, 15), 150,
-                "GK", "SUB", 20, false,
+                "GK", "SUB1", 20, false,
                 new PlayerStats(5,65),  teams.get(0)));
 
         players.add(new Player(6, 6,"Mateo", "Gabbia",
                 new Date(2001, 3, 11), 150,
-                "DEF", "SUB", 2, false,
+                "DEF", "SUB2", 2, false,
                 new PlayerStats(6,60),  teams.get(0)));
 
         players.add(new Player(7,7,"Arthur", "Read",
                 new Date(1993, 9, 4), 150,
-                "MID", "SUB", 6, false,
+                "MID", "SUB3", 6, false,
                 new PlayerStats(7,64),  teams.get(0)));
 
 
         players.add(new Player(8, 8,"Leonardo", "Colucci",
                 new Date(2003, 4, 21), 150,
-                "MID", "SUB", 10, false,
+                "MID", "SUB4", 10, false,
                 new PlayerStats(8,65),  teams.get(0)));
 
         players.add(new Player(9, 9,"Liam", "Cullen",
                 new Date(2000, 1, 1), 150,
-                "ST", "SUB", 9, false,
+                "ST", "SUB5", 9, false,
                 new PlayerStats(9,64),  teams.get(0)));
+
+        Collections.sort(players);
     }
+
 
     @Override
     public List<Player> getAll() {

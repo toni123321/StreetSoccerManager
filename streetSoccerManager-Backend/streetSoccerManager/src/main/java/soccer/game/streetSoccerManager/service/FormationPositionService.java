@@ -3,7 +3,7 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationPositionRepository;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationRepository;
+
 import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationPositionService;
 import soccer.game.streetSoccerManager.model.FormationPosition;
 
