@@ -11,6 +11,7 @@ public class Player {
 
     private static int idCounter = 0;
     private int id;
+    private int positionIndex;
     private String firstName;
     private String lastName;
     private Date dob;
@@ -22,10 +23,11 @@ public class Player {
     private PlayerStats playerStats;
     private Team team; // connection with team
 
-    public Player(int id, String firstName, String lastName, Date dob, double price,
+    public Player(int id, int positionIndex, String firstName, String lastName, Date dob, double price,
                   String defaultPosition, String currentPosition, int kitNr,
                   boolean isStarting, PlayerStats playerStats,  Team team) {
         this.id = id;
+        this.positionIndex = positionIndex;
         //idCounter++;
         this.firstName = firstName;
         this.lastName = lastName;

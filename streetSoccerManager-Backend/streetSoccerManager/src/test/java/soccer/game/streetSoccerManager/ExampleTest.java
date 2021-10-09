@@ -16,7 +16,7 @@ public class ExampleTest {
         UserService userService = new UserService(new UserFakeDatabase());
 
         // Act - Execute the method to be tested
-        String userEmail = userService.get(1).getEmail();
+        String userEmail = userService.get(0).getEmail();
 
         // Assert - Check if the method postconditions is as expected
         assertEquals("peter@gmail.com", userEmail);

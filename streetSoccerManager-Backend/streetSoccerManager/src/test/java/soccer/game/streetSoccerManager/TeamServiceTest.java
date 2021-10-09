@@ -14,7 +14,7 @@ import java.util.List;
 
 @SpringBootTest
 public class TeamServiceTest {
-    
+
     @Test
     void GetTeams() {
         // Arrange
