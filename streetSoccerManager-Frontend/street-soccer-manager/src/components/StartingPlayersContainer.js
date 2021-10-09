@@ -176,31 +176,6 @@ const StartingPlayersContainer = () => {
     
     return (
         <>
-        
-        {/* <h1>Team: {team.name}</h1>
-        <h3>Manager: {team.manager.nickname}</h3>
-        <h3>Formation: {team.formation.name}</h3>
-        <div className="team-squad">
-        <div className="starting-players-pitch">
-            {formationPosBoxesStarting && formationPosBoxesStarting.map((position) => (
-              <div className="position">
-              <button id={position.id} onClick={handleClicked} className="swapPlayers">Swap</button>
-                <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
-                key={position.id} positionId={position.id}/>
-              </div>
-            ))}
-        </div>
-        <div className="reserves">
-            {formationPosBoxesReserves && formationPosBoxesReserves.map((position) => (
-              <div className="position">
-                <button  id={position.id} onClick={handleClicked} className="swapPlayers">Swap</button>
-                <FormationPositionBox playerId={position.player!== null? position.player.id: null} 
-                key={position.id} positionId={position.id} />
-              </div>
-            ))} 
-        </div>
-        </div> */}
-
         <h1>Team: {team.name}</h1>
         <h3>Manager: {team.manager.nickname}</h3>
         <h3>Formation: {team.formation.name}</h3>
