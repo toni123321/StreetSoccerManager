@@ -3,17 +3,16 @@ package soccer.game.streetSoccerManager.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
 
+@Getter
+@Setter
 public class User {
 
-    @Getter
-    @Setter
     protected int id;
-    @Getter
-    @Setter
+
     protected String email;
-    @Getter
-    @Setter
+
     protected String password;
 
     public User(int id, String email, String password) {
@@ -22,4 +21,16 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getId() == user.getId() && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getEmail(), getPassword());
+    }
 }

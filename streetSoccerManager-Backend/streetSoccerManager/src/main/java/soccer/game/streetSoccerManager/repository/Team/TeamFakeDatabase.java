@@ -20,7 +20,7 @@ public class TeamFakeDatabase implements ITeamRepository {
     @Getter
     private List<Team> teams = new ArrayList<>();
 
-    private FormationFakeDatabase formationFakeDatabase = new FormationFakeDatabase();
+    private IFormationRepository formationFakeDatabase = new FormationFakeDatabase();
     private List<Formation> formations = formationFakeDatabase.getAll();
 
     private UserFakeDatabase userFakeDatabase = new UserFakeDatabase();

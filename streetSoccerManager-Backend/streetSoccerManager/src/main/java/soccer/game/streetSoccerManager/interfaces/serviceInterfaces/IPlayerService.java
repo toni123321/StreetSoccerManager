@@ -13,4 +13,7 @@ public interface IPlayerService {
     Boolean add(Player player);
     Boolean update(Player player);
     List<Player> getAllPlayersInTeam(int teamId);
+
+    List<Player> getStartingPlayers(int teamId);
+    List<Player> getReserves(int teamId);
 }
