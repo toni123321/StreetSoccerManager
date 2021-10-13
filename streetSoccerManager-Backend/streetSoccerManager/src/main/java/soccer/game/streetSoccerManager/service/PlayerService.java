@@ -25,6 +25,8 @@ public class PlayerService implements IPlayerService {
         return dataStore.getAll();
     }
 
+
+
     @Override
     public Player get(int id) {
         return dataStore.get(id);
@@ -50,6 +52,22 @@ public class PlayerService implements IPlayerService {
     public List<Player> getAllPlayersInTeam(int teamId) {
         return getAll().stream().filter(player ->
                 player.getTeam().getId() == teamId).
+                collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Player> getStartingPlayers(int teamId) {
+        return getAllPlayersInTeam(teamId).
+                stream().
+                filter(player -> player.isStarting() == true).
+                collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Player> getReserves(int teamId) {
+        return getAllPlayersInTeam(teamId).
+                stream().
+                filter(player -> player.isStarting() == false).
                 collect(Collectors.toList());
     }
 

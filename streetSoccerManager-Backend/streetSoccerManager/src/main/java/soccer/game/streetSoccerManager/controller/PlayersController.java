@@ -56,11 +56,21 @@ public class PlayersController {
 
 
     @GetMapping
-    public ResponseEntity<List<Player>> getAllPlayers(@RequestParam(value = "teamId") Optional<Integer> teamId) {
+    public ResponseEntity<List<Player>> getAllPlayers(
+            @RequestParam(value = "teamId") Optional<Integer> teamId,
+            @RequestParam(value = "starting") Optional<Boolean> starting) {
         List<Player> players = null;
 
         if(teamId.isPresent()){
-            players = playerService.getAllPlayersInTeam(teamId.get());
+            if(starting.isPresent())
+            {
+                players = (starting.get()) ?
+                        playerService.getStartingPlayers(teamId.get())
+                        : playerService.getReserves(teamId.get());
+            }
+            else {
+                players = playerService.getAllPlayersInTeam(teamId.get());
+            }
         }
         else{
             players = playerService.getAll();
