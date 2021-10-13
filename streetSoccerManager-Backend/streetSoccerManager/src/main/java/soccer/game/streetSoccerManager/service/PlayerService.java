@@ -56,6 +56,27 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
+    public List<Player> getAllPlayersInTeamAvailableForSwapping(int teamId, int playerToSwapId) {
+        List<Player> playersAvailableForSwap = getAllPlayersInTeam(teamId);
+        Player playerToSwap = get(playerToSwapId);
+        if(playerToSwap.getDefaultPosition() == "GK") {
+            playersAvailableForSwap = playersAvailableForSwap.
+                    stream().filter(player ->
+                            player.getDefaultPosition() == "GK").
+                    collect(Collectors.toList());
+        }
+        else{
+            playersAvailableForSwap = playersAvailableForSwap.
+                    stream().filter(player ->
+                            player.getDefaultPosition() != "GK").
+                    collect(Collectors.toList());
+        }
+        return playersAvailableForSwap.stream().
+                filter(player -> player.getId() != playerToSwapId).collect(Collectors.toList());
+    }
+
+
+    @Override
     public List<Player> getStartingPlayers(int teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().

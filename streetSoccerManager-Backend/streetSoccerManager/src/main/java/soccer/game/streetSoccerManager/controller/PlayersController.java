@@ -83,6 +83,23 @@ public class PlayersController {
         }
     }
 
+    @GetMapping("/availableForSwapping")
+    public ResponseEntity<List<Player>> getPlayersAvailableForSwapping(
+            @RequestParam(value = "teamId") Optional<Integer> teamId,
+            @RequestParam(value = "playerToSwapId") Optional<Integer> playerToSwapId) {
+        List<Player> players = null;
+
+        if(teamId.isPresent() && playerToSwapId.isPresent()){
+            players = playerService.getAllPlayersInTeamAvailableForSwapping(teamId.get(), playerToSwapId.get());
+        }
+
+        if(players != null) {
+            return ResponseEntity.ok().body(players);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @DeleteMapping("{id}")
     public ResponseEntity deletePlayer(@PathVariable int id) {
