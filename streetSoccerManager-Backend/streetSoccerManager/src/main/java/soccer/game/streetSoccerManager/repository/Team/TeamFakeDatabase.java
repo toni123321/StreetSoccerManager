@@ -23,7 +23,7 @@ public class TeamFakeDatabase implements ITeamRepository {
     private IFormationRepository formationFakeDatabase = new FormationFakeDatabase();
     private List<Formation> formations = formationFakeDatabase.getAll();
 
-    private UserFakeDatabase userFakeDatabase = new UserFakeDatabase();
+    private IUserRepository userFakeDatabase = new UserFakeDatabase();
     private List<User> users = userFakeDatabase.getAll();
 
 

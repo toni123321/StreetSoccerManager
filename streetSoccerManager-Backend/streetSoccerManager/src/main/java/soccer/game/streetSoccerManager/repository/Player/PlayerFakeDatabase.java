@@ -3,6 +3,7 @@ package soccer.game.streetSoccerManager.repository.Player;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IPlayerRepository;
+import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.model.Player;
 import soccer.game.streetSoccerManager.model.PlayerStats;
 import soccer.game.streetSoccerManager.model.Team;
@@ -18,7 +19,7 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     @Getter
     private List<Player> players = new ArrayList<>();
 
-    private TeamFakeDatabase teamFakeDatabase = new TeamFakeDatabase();
+    private ITeamRepository teamFakeDatabase = new TeamFakeDatabase();
     List<Team> teams = teamFakeDatabase.getAll();
 
     public PlayerFakeDatabase() {
