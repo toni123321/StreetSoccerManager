@@ -73,7 +73,7 @@ public class PlayerFakeDatabase implements IPlayerRepository {
                 "ST", "SUB5", 9, false,
                 new PlayerStats(9,64),  teams.get(0)));
 
-        Collections.sort(players);
+
     }
 
 
