@@ -10,6 +10,7 @@ import GameNavbar from './GameNavbar';
 import Login from './Login';
 import SignUp from './SignUp';
 import TeamSquad from './TeamSquad';
+import ChooseOpponent from './ChooseOpponent';
 
 const Routers = () => {
     return (
@@ -24,6 +25,7 @@ const Routers = () => {
 
             <Route exact path="/teamSquad" component={TeamSquad} />
             
+            <Route exact path="/chooseOpponent" component={ChooseOpponent} />
             
             {/* <Route path="/createTeam" component={CreateTeam} /> */}
         </Switch>

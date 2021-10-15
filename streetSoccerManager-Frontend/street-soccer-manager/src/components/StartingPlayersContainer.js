@@ -16,7 +16,8 @@ const StartingPlayersContainer = () => {
             id:null,
             name: ""
         },
-        manager: {
+        manager:"",
+        user: {
             "id": null,
             "email": "",
             "password": "",
@@ -195,14 +196,14 @@ const StartingPlayersContainer = () => {
       
     }
 
-  
     return (
         <>
         {!displaySwapContainer ? 
         (<>
         <h1>Team: {team.name}</h1>
-        <h3>Manager: {team.manager.nickname}</h3>
+        <h3>Manager: {team.manager}</h3>
         <h3>Formation: {team.formation.name}</h3>
+        
         <div className="team-squad">
         <div className="starting-players-pitch">
             {startingPlayers && startingPlayers.sort((a, b) => a.positionIndex - b.positionIndex).map((player) => (
