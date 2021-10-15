@@ -10,4 +10,6 @@ public interface ITeamService {
     Boolean delete(int id);
     Boolean add(Team team);
     Boolean update(Team team);
+
+    //List<Team> getOpponentsForFriendlyMatch();
 }
