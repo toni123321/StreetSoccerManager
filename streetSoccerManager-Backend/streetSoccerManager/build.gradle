@@ -4,7 +4,12 @@ plugins {
 	id 'java'
 	id "org.sonarqube" version "3.3"
 }
-
+sonarqube {
+	properties {
+		property "sonar.projectKey", "soccer.game:streetSoccerManager"
+		property "sonar.qualitygate.wait", true
+	}
+}
 group = 'soccer.game'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
