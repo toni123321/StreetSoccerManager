@@ -11,7 +11,7 @@ const GameNavbar = ({team}) => {
         <Container className="game-navbar" >
         <Row id="nav-items-frow">
             <Col className="nav-item" id="playMatch">
-                <LinkContainer to="#">
+                <LinkContainer to="/chooseOpponent">
                     <Nav.Link>Play match</Nav.Link>
                 </LinkContainer>
             </Col>
