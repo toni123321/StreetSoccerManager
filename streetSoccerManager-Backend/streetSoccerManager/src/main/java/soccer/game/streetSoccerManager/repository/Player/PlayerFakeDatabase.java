@@ -9,10 +9,7 @@ import soccer.game.streetSoccerManager.model.PlayerStats;
 import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class PlayerFakeDatabase implements IPlayerRepository {
@@ -79,7 +76,9 @@ public class PlayerFakeDatabase implements IPlayerRepository {
 
     @Override
     public List<Player> getAll() {
+        Collections.sort(players);
         return players;
+
     }
 
     @Override

@@ -60,6 +60,18 @@ public class TeamsController {
         }
     }
 
+//    @GetMapping("/opponentsFriendlyMatch")
+//    public ResponseEntity<List<Team>> getOpponentsForFriendlyMatch() {
+//        List<Team> teams = null;
+//        teams = teamService.getAll();
+//
+//        if(teams != null) {
+//            return ResponseEntity.ok().body(teams);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteTeam(@PathVariable int id) {
@@ -93,17 +105,22 @@ public class TeamsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Team> updateTeam(@PathVariable("id") int id,  @RequestParam("name") String name, @RequestParam("formation") int formationId, @RequestParam("manager") int managerId) {
+    public ResponseEntity<Team> updateTeam(@PathVariable("id") int id,
+                                           @RequestParam("name") String name,
+                                           @RequestParam("formation") int formationId,
+                                           @RequestParam("manager") String manager,
+                                           @RequestParam("user") int userId)
+    {
         Team team = teamService.get(id);
         if (team == null){
             return new ResponseEntity("Please provide a valid team id.",HttpStatus.NOT_FOUND);
         }
 
-        User manager = userService.get(managerId);
+        User user = userService.get(userId);
         Formation formation = formationService.get(formationId);
 
-        if (manager == null){
-            return new ResponseEntity("Please provide a valid manager id.",HttpStatus.BAD_REQUEST);
+        if (user == null){
+            return new ResponseEntity("Please provide a valid user id.",HttpStatus.BAD_REQUEST);
         }
         else if(formation == null){
             return new ResponseEntity("Please provide a valid formation id.",HttpStatus.BAD_REQUEST);
@@ -113,6 +130,7 @@ public class TeamsController {
             team.setName(name);
             team.setFormation(formation);
             team.setManager(manager);
+            team.setUser(user);
             return ResponseEntity.noContent().build();
         }
     }

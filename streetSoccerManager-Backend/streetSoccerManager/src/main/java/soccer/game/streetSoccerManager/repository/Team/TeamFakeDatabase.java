@@ -6,6 +6,7 @@ import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormatio
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IUserRepository;
 import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.FrontendUser;
 import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.model.User;
 import soccer.game.streetSoccerManager.repository.Formation.FormationFakeDatabase;
@@ -29,8 +30,11 @@ public class TeamFakeDatabase implements ITeamRepository {
 
 
     public TeamFakeDatabase() {
-        teams.add(new Team(0, "Real Madrid-Pro", formations.get(0) ,users.get(0)));
-        teams.add(new Team(1,  "newBarca", formations.get(1), users.get(1)));
+        teams.add(new Team(0, "Real Madrid-Pro", formations.get(0), ((FrontendUser) users.get(0)).getNickname(),users.get(0)));
+        teams.add(new Team(1,  "Barcelona", formations.get(1), "Test", users.get(2)));
+        teams.add(new Team(2,  "Sevilla", formations.get(1), "Test", users.get(2)));
+        teams.add(new Team(3,  "Juventus", formations.get(1), "Test", users.get(2)));
+
     }
 
 
@@ -82,6 +86,7 @@ public class TeamFakeDatabase implements ITeamRepository {
         }
         oldTeam.setName(team.getName());
         oldTeam.setManager(team.getManager());
+        oldTeam.setUser(team.getUser());
         return true;
     }
 }
