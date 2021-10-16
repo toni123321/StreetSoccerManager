@@ -127,9 +127,7 @@ public class TeamServiceTest {
         User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
         // Act
-
-        teamService.add(new Team(4, "Test", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamService.update(new Team(4, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
+        teamService.update(new Team(3, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), admin));
         List<Team> teams = teamService.getAll();
 
         List<Team> teamsExpected = new ArrayList<>();
@@ -138,9 +136,7 @@ public class TeamServiceTest {
         teamsExpected.add(new Team(2, "Sevilla", formationTwo, "Test", admin));
         teamsExpected.add(new Team(3, "Juventus", formationTwo, "Test", admin));
 
-
-        teamsExpected.add(4, new Team(4, "Test", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamsExpected.set(4, new Team(4, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
+        teamsExpected.set(3, new Team(3, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), admin));
 
         // Assert
         Assertions.assertEquals(teamsExpected, teams);
