@@ -30,11 +30,15 @@ public class Team {
         if (this == o) return true;
         if (!(o instanceof Team)) return false;
         Team team = (Team) o;
-        return getId() == team.getId() && Objects.equals(getName(), team.getName()) && Objects.equals(getFormation(), team.getFormation()) && Objects.equals(getManager(), team.getManager()) && Objects.equals(getUser(), team.getUser());
+        return getId() == team.getId() && Objects.equals(getName(),
+                team.getName()) && Objects.equals(getFormation(),
+                team.getFormation()) && Objects.equals(getManager(),
+                team.getManager()) && Objects.equals(getUser(), team.getUser());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getFormation(), getManager(), getUser());
+        return Objects.hash(getId(), getName(),
+                getFormation(), getManager(), getUser());
     }
 }

@@ -85,6 +85,7 @@ public class TeamFakeDatabase implements ITeamRepository {
             return false;
         }
         oldTeam.setName(team.getName());
+        oldTeam.setFormation(team.getFormation());
         oldTeam.setManager(team.getManager());
         oldTeam.setUser(team.getUser());
         return true;
