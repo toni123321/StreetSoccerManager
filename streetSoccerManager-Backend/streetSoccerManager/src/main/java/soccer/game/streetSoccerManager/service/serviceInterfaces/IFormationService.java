@@ -1,9 +1,8 @@
-package soccer.game.streetSoccerManager.interfaces.serviceInterfaces;
+package soccer.game.streetSoccerManager.service.serviceInterfaces;
 
 
 
 import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.FormationPosition;
 
 import java.util.List;
 

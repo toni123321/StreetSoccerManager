@@ -1,8 +1,6 @@
-package soccer.game.streetSoccerManager.interfaces.repositoryInterfaces;
+package soccer.game.streetSoccerManager.repository.repositoryInterfaces;
 
 import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.FormationPosition;
-import soccer.game.streetSoccerManager.model.User;
 
 import java.util.List;
 
