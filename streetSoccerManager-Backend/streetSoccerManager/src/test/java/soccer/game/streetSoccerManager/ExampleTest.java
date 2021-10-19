@@ -1,7 +1,7 @@
 package soccer.game.streetSoccerManager;
 
 import org.junit.jupiter.api.Test;
-import soccer.game.streetSoccerManager.repository.User.UserFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.User.UserFakeDatabase;
 import soccer.game.streetSoccerManager.service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

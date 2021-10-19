@@ -2,10 +2,8 @@ package soccer.game.streetSoccerManager.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IUserRepository;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
-import soccer.game.streetSoccerManager.model.Admin;
-import soccer.game.streetSoccerManager.model.FrontendUser;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.User;
 
 import java.util.List;
