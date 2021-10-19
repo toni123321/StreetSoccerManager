@@ -16,6 +16,7 @@ public class Team {
     private String manager;
     private User user;
 
+
     public Team(int id, String name, Formation formation, String manager, User user) {
         this.id = id;
         //idCounter++;

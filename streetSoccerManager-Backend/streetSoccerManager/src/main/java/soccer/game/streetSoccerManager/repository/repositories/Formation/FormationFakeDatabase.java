@@ -1,14 +1,12 @@
-package soccer.game.streetSoccerManager.repository.Formation;
+package soccer.game.streetSoccerManager.repository.repositories.Formation;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IFormationRepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.FormationPosition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 @Getter

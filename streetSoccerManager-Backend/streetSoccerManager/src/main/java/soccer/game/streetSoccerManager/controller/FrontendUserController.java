@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.*;
 
 import java.net.URI;
