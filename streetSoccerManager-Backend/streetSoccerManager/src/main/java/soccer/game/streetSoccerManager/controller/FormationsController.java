@@ -4,17 +4,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IUserService;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.FormationPosition;
-import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.model.User;
 
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")

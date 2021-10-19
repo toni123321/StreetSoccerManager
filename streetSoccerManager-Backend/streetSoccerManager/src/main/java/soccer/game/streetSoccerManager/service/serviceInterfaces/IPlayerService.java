@@ -1,4 +1,4 @@
-package soccer.game.streetSoccerManager.interfaces.serviceInterfaces;
+package soccer.game.streetSoccerManager.service.serviceInterfaces;
 
 
 
