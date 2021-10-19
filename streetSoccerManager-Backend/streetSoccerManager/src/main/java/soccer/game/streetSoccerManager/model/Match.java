@@ -17,9 +17,6 @@ public class Match {
     protected List<Player> homeTeamPlayers;
     protected List<Player> awayTeamPlayers;
 
-//    protected Kit homeTeamKit;
-//    protected Kit awayTeamKit;
-//    protected Stadium stadium;
 
     // result
     protected int homeTeamGoals;
