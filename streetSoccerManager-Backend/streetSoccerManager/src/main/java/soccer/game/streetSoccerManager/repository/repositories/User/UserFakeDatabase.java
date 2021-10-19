@@ -1,8 +1,8 @@
-package soccer.game.streetSoccerManager.repository.User;
+package soccer.game.streetSoccerManager.repository.repositories.User;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IUserRepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
 import soccer.game.streetSoccerManager.model.Admin;
 import soccer.game.streetSoccerManager.model.FrontendUser;
 import soccer.game.streetSoccerManager.model.User;

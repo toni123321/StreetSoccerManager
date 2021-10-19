@@ -2,8 +2,8 @@ package soccer.game.streetSoccerManager.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IPlayerRepository;
-import soccer.game.streetSoccerManager.interfaces.serviceInterfaces.IPlayerService;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
+import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
 import soccer.game.streetSoccerManager.model.Player;
 
 import java.util.List;
@@ -59,16 +59,16 @@ public class PlayerService implements IPlayerService {
     public List<Player> getAllPlayersInTeamAvailableForSwapping(int teamId, int playerToSwapId) {
         List<Player> playersAvailableForSwap = getAllPlayersInTeam(teamId);
         Player playerToSwap = get(playerToSwapId);
-        if(playerToSwap.getDefaultPosition() == "GK") {
+        if(playerToSwap.getDefaultPosition().equals("GK")) {
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            player.getDefaultPosition() == "GK").
+                            player.getDefaultPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         else{
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            player.getDefaultPosition() != "GK").
+                            !player.getDefaultPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         return playersAvailableForSwap.stream().

@@ -1,13 +1,13 @@
-package soccer.game.streetSoccerManager.repository.Player;
+package soccer.game.streetSoccerManager.repository.repositories.Player;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.IPlayerRepository;
-import soccer.game.streetSoccerManager.interfaces.repositoryInterfaces.ITeamRepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.model.Player;
 import soccer.game.streetSoccerManager.model.PlayerStats;
 import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.repository.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
 
 import java.util.*;
 
