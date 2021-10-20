@@ -16,8 +16,8 @@ public class FormationFakeDatabase implements IFormationRepository {
     private List<Formation> formations = new ArrayList<>();
 
     public FormationFakeDatabase() {
-        formations.add(new Formation(1, "1-2-1"));
-        formations.add(new Formation(2, "2-1-1"));
+        formations.add(new Formation(1l, "1-2-1"));
+        formations.add(new Formation(2l, "2-1-1"));
     }
 
 
@@ -27,7 +27,7 @@ public class FormationFakeDatabase implements IFormationRepository {
     }
 
     @Override
-    public Formation get(int id) {
+    public Formation get(Long id) {
         for (Formation formation : formations) {
             if (formation.getId() == id)
                 return formation;
@@ -36,7 +36,7 @@ public class FormationFakeDatabase implements IFormationRepository {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         Formation formation = get(id);
         if (formation == null){
             return false;

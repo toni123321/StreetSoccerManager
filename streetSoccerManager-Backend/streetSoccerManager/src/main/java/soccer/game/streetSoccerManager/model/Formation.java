@@ -9,10 +9,10 @@ import java.util.Objects;
 @Setter
 public class Formation {
 
-    private int id;
+    private Long id;
     private String name; // 1-2-1
 
-    public Formation(int id, String name) {
+    public Formation(Long id, String name) {
         this.id = id;
         this.name = name;
     }

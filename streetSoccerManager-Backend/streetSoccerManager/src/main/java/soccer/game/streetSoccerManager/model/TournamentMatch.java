@@ -3,13 +3,17 @@ package soccer.game.streetSoccerManager.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Hashtable;
+
+@Getter
+@Setter
 public class TournamentMatch extends Match {
-    @Getter
-    @Setter
+
     private Tournament tournament;
 
-    public TournamentMatch(int id, Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String matchStatistic, Tournament tournament) {
-        super(id, homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, matchStatistic);
+    public TournamentMatch(Long id, Team homeTeam, Team awayTeam, Hashtable<Player, Position> homeTeamPositions, Hashtable<Player, Position> awayTeamPositions, int homeTeamGoals, int awayTeamGoals, String matchStatistic, Tournament tournament) {
+        super(id, homeTeam, awayTeam, homeTeamPositions, awayTeamPositions, homeTeamGoals, awayTeamGoals, matchStatistic);
         this.tournament = tournament;
     }
+
 }

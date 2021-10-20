@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IFormationService {
     List<Formation> getAll();
-    Formation get(int id);
-    Boolean delete(int id);
+    Formation get(Long id);
+    Boolean delete(Long id);
     Boolean add(Formation formation);
     Boolean update(Formation formation);
 }

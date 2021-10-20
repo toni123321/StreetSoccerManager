@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
-@RequestMapping("/frontendUsers")
-public class FrontendUserController {
+@RequestMapping("/endUsers")
+public class EndUserController {
     @Qualifier("teamService")
     private ITeamService teamService;
 
@@ -26,21 +26,21 @@ public class FrontendUserController {
     @Qualifier("formationService")
     private IFormationService formationService;
 
-    public FrontendUserController(ITeamService teamService, IUserService userService, IFormationService formationService) {
+    public EndUserController(ITeamService teamService, IUserService userService, IFormationService formationService) {
         this.teamService = teamService;
         this.userService = userService;
         this.formationService = formationService;
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getFrontendUser(@PathVariable(value = "id") int id) {
+    public ResponseEntity<User> getEndUser(@PathVariable(value = "id") Long id) {
 
-        FrontendUser user;
+        EndUser user;
         if(userService.get(id) instanceof Admin){
             user = null;
         }
         else{
-            user = (FrontendUser) userService.get(id);
+            user = (EndUser) userService.get(id);
         }
 
 
@@ -53,9 +53,9 @@ public class FrontendUserController {
 
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllFrontendUsers() {
+    public ResponseEntity<List<User>> getAllEndUsers() {
         List<User> users = null;
-        users = userService.getAll().stream().filter(user -> user instanceof FrontendUser).collect(Collectors.toList());
+        users = userService.getAll().stream().filter(user -> user instanceof EndUser).collect(Collectors.toList());
 
         if(users != null) {
             return ResponseEntity.ok().body(users);
@@ -66,7 +66,7 @@ public class FrontendUserController {
 
 
     @PostMapping()
-    public ResponseEntity<FrontendUser> createFrontendUser(@RequestBody FrontendUser user) {
+    public ResponseEntity<EndUser> createEndUser(@RequestBody EndUser user) {
         if (!userService.add(user)){
             String entity =  "user with id " + user.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
@@ -79,7 +79,7 @@ public class FrontendUserController {
     }
 
     @PutMapping()
-    public ResponseEntity<FrontendUser> updateFrontendUser(@RequestBody FrontendUser user) {
+    public ResponseEntity<EndUser> updateEndUser(@RequestBody EndUser user) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (userService.update(user)) {
             return ResponseEntity.noContent().build();
@@ -91,8 +91,8 @@ public class FrontendUserController {
 
 
     @PutMapping("{id}")
-    public ResponseEntity<FrontendUser> updateFrontendUser(@PathVariable("id") int id,  @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("nickname") String nickname, @RequestParam("points") double points) {
-        FrontendUser user = (FrontendUser) userService.get(id);
+    public ResponseEntity<EndUser> updateEndUser(@PathVariable("id") Long id, @RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("nickname") String nickname, @RequestParam("points") double points) {
+        EndUser user = (EndUser) userService.get(id);
         if (user == null){
             return new ResponseEntity("Please provide a valid user id.",HttpStatus.NOT_FOUND);
         }

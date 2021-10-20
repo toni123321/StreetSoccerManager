@@ -2,13 +2,10 @@ package soccer.game.streetSoccerManager.repository.repositories.Team;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
+import soccer.game.streetSoccerManager.model.*;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
-import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.FrontendUser;
-import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.model.User;
 import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationFakeDatabase;
 import soccer.game.streetSoccerManager.repository.repositories.User.UserFakeDatabase;
 
@@ -28,16 +25,12 @@ public class TeamFakeDatabase implements ITeamRepository {
     private List<User> users = userFakeDatabase.getAll();
 
 
-
     public TeamFakeDatabase() {
-        teams.add(new Team(0, "Real Madrid-Pro", formations.get(0), ((FrontendUser) users.get(0)).getNickname(),users.get(0)));
-        teams.add(new Team(1,  "Barcelona", formations.get(1), "Test", users.get(2)));
-        teams.add(new Team(2,  "Sevilla", formations.get(1), "Test", users.get(2)));
-        teams.add(new Team(3,  "Juventus", formations.get(1), "Test", users.get(2)));
-
+        teams.add(new CustomTeam(0l, "Real Madrid-Pro", formations.get(0), users.get(0)));
+        teams.add(new OfficialTeam(1l,  "Barcelona", formations.get(1), "Manager1"));
+        teams.add(new OfficialTeam(2l,  "Sevilla", formations.get(1), "Manager2"));
+        teams.add(new OfficialTeam(3l,  "Juventus", formations.get(1), "Manager3"));
     }
-
-
 
     @Override
     public Formation getDefaultFormation() {
@@ -51,7 +44,7 @@ public class TeamFakeDatabase implements ITeamRepository {
     }
 
     @Override
-    public Team get(int id) {
+    public Team get(Long id) {
         for (Team team : teams) {
             if (team.getId() == id)
                 return team;
@@ -60,7 +53,7 @@ public class TeamFakeDatabase implements ITeamRepository {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         Team team = get(id);
         if (team == null){
             return false;
@@ -86,8 +79,12 @@ public class TeamFakeDatabase implements ITeamRepository {
         }
         oldTeam.setName(team.getName());
         oldTeam.setFormation(team.getFormation());
-        oldTeam.setManager(team.getManager());
-        oldTeam.setUser(team.getUser());
+        if(oldTeam instanceof CustomTeam) {
+            ((CustomTeam) oldTeam).setManager(((CustomTeam) team).getManager());
+        }
+        if(oldTeam instanceof OfficialTeam){
+            ((OfficialTeam) oldTeam).setManager(((OfficialTeam) team).getManager());
+        }
         return true;
     }
 }

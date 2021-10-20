@@ -14,6 +14,7 @@ import soccer.game.streetSoccerManager.model.User;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
@@ -37,7 +38,7 @@ public class TeamsController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<Team> getTeam(@PathVariable(value = "id") int id) {
+    public ResponseEntity<Team> getTeam(@PathVariable(value = "id") Long id) {
         Team team = teamService.get(id);
 
         if(team != null) {
@@ -49,9 +50,22 @@ public class TeamsController {
 
 
     @GetMapping
-    public ResponseEntity<List<Team>> getAllTeams() {
+    public ResponseEntity<List<Team>> getAllTeams(
+            @RequestParam(value = "isCustom") Optional<Boolean> isCustom)
+    {
         List<Team> teams = null;
-        teams = teamService.getAll();
+        if(isCustom.isPresent())
+        {
+            if(isCustom.get()){
+                teams = teamService.getCustomTeams();
+            }
+            else{
+                teams = teamService.getOfficialTeams();
+            }
+        }
+        else {
+            teams = teamService.getAll();
+        }
 
         if(teams != null) {
             return ResponseEntity.ok().body(teams);
@@ -74,7 +88,7 @@ public class TeamsController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteTeam(@PathVariable int id) {
+    public ResponseEntity deleteTeam(@PathVariable Long id) {
         teamService.delete(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return ResponseEntity.ok().build();
@@ -103,37 +117,4 @@ public class TeamsController {
             return new ResponseEntity("Please provide a valid team id",HttpStatus.NOT_FOUND);
         }
     }
-
-    @PutMapping("{id}")
-    public ResponseEntity<Team> updateTeam(@PathVariable("id") int id,
-                                           @RequestParam("name") String name,
-                                           @RequestParam("formation") int formationId,
-                                           @RequestParam("manager") String manager,
-                                           @RequestParam("user") int userId)
-    {
-        Team team = teamService.get(id);
-        if (team == null){
-            return new ResponseEntity("Please provide a valid team id.",HttpStatus.NOT_FOUND);
-        }
-
-        User user = userService.get(userId);
-        Formation formation = formationService.get(formationId);
-
-        if (user == null){
-            return new ResponseEntity("Please provide a valid user id.",HttpStatus.BAD_REQUEST);
-        }
-        else if(formation == null){
-            return new ResponseEntity("Please provide a valid formation id.",HttpStatus.BAD_REQUEST);
-        }
-        else {
-
-            team.setName(name);
-            team.setFormation(formation);
-            team.setManager(manager);
-            team.setUser(user);
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-
 }

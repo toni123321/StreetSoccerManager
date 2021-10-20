@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
 import soccer.game.streetSoccerManager.model.Admin;
-import soccer.game.streetSoccerManager.model.FrontendUser;
+import soccer.game.streetSoccerManager.model.EndUser;
 import soccer.game.streetSoccerManager.model.User;
 
 import java.util.ArrayList;
@@ -17,14 +17,12 @@ public class UserFakeDatabase implements IUserRepository {
     private List<User> users = new ArrayList<>();
 
     public UserFakeDatabase() {
-        users.add(new FrontendUser(0, "peter@gmail.com", "123", "pete", 100));
-        users.add(new FrontendUser(1, "john@gmail.com", "456", "jo", 10));
+        users.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
+        users.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 
-        users.add(new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
+        users.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
 
     }
-
-
 
     @Override
     public List<User> getAll() {
@@ -32,7 +30,7 @@ public class UserFakeDatabase implements IUserRepository {
     }
 
     @Override
-    public User get(int id) {
+    public User get(Long id) {
         for (User user : users) {
             if (user.getId() == id)
                 return user;
@@ -41,7 +39,7 @@ public class UserFakeDatabase implements IUserRepository {
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         User user = get(id);
         if (user == null){
             return false;
@@ -69,9 +67,9 @@ public class UserFakeDatabase implements IUserRepository {
         oldUser.setEmail(user.getEmail());
         oldUser.setPassword(user.getPassword());
 
-        if(user instanceof FrontendUser){
-            ((FrontendUser)oldUser).setNickname(((FrontendUser) user).getNickname());
-            ((FrontendUser)oldUser).setPoints(((FrontendUser) user).getPoints());
+        if(user instanceof EndUser){
+            ((EndUser)oldUser).setNickname(((EndUser) user).getNickname());
+            ((EndUser)oldUser).setPoints(((EndUser) user).getPoints());
 
         }
         else{

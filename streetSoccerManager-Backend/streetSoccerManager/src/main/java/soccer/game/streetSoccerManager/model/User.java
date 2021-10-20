@@ -8,14 +8,12 @@ import java.util.Objects;
 @Getter
 @Setter
 public class User {
-
-    protected int id;
-
+    private Long id;
     protected String email;
-
     protected String password;
 
-    public User(int id, String email, String password) {
+
+    public User(Long id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -26,8 +24,7 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getId() == user.getId() && Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getPassword(), user.getPassword());
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override

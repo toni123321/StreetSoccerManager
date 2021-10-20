@@ -44,7 +44,7 @@ public class PlayersController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<Player> getPlayer(@PathVariable(value = "id") int id) {
+    public ResponseEntity<Player> getPlayer(@PathVariable(value = "id") Long id) {
         Player player = playerService.get(id);
 
         if(player != null) {
@@ -57,7 +57,7 @@ public class PlayersController {
 
     @GetMapping
     public ResponseEntity<List<Player>> getAllPlayers(
-            @RequestParam(value = "teamId") Optional<Integer> teamId,
+            @RequestParam(value = "teamId") Optional<Long> teamId,
             @RequestParam(value = "starting") Optional<Boolean> starting) {
         List<Player> players = null;
 
@@ -85,8 +85,8 @@ public class PlayersController {
 
     @GetMapping("/availableForSwapping")
     public ResponseEntity<List<Player>> getPlayersAvailableForSwapping(
-            @RequestParam(value = "teamId") Optional<Integer> teamId,
-            @RequestParam(value = "playerToSwapId") Optional<Integer> playerToSwapId) {
+            @RequestParam(value = "teamId") Optional<Long> teamId,
+            @RequestParam(value = "playerToSwapId") Optional<Long> playerToSwapId) {
         List<Player> players = null;
 
         if(teamId.isPresent() && playerToSwapId.isPresent()){
@@ -102,7 +102,7 @@ public class PlayersController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deletePlayer(@PathVariable int id) {
+    public ResponseEntity deletePlayer(@PathVariable Long id) {
         playerService.delete(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return ResponseEntity.ok().build();
@@ -132,42 +132,4 @@ public class PlayersController {
         }
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Player> updatePlayer(@PathVariable("id") int id,
-                                               @RequestParam("firstName") String firstName,
-                                               @RequestParam("lastName") String lastName,
-                                               @RequestParam("dob") Date dob,
-                                               @RequestParam("price") double price,
-                                               @RequestParam("defaultPosition") String defaultPosition,
-                                               @RequestParam("currenPosition") String currentPosition,
-                                               @RequestParam("kitNr") int kitNr,
-                                               @RequestParam("isStarting") boolean isStarting,
-                                               @RequestParam("playerStats") PlayerStats playerStats,
-                                               @RequestParam("team") int teamId) {
-        Player player = playerService.get(id);
-        if (player == null){
-            return new ResponseEntity("Please provide a valid player id.",HttpStatus.NOT_FOUND);
-        }
-
-        Team team = teamService.get(teamId);
-
-        if (team == null){
-            return new ResponseEntity("Please provide a valid team id.",HttpStatus.BAD_REQUEST);
-        }
-        else {
-
-            player.setFirstName(firstName);
-            player.setLastName(lastName);
-            player.setDob(dob);
-            player.setPrice(price);
-            player.setDefaultPosition(defaultPosition);
-            player.setCurrentPosition(currentPosition);
-            player.setKitNr(kitNr);
-            player.setStarting(isStarting);
-            player.setPlayerStats(playerStats);
-            player.setTeam(team);
-
-            return ResponseEntity.noContent().build();
-        }
-    }
 }
