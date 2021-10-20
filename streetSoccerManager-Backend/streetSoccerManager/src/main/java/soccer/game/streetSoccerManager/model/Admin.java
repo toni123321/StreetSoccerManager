@@ -1,18 +1,32 @@
 package soccer.game.streetSoccerManager.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Entity
+@NoArgsConstructor
 public class Admin extends User {
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
 
     public Admin(Long id, String email, String password, String firstName, String lastName) {
         super(id, email, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Admin(String email, String password, String firstName, String lastName) {
+        super(email, password);
         this.firstName = firstName;
         this.lastName = lastName;
     }
