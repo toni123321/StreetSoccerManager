@@ -35,7 +35,7 @@ function Player({player, handleSwap, getPlayersForRotation}) {
         <div>{player.firstName[0]}.{player.lastName}</div>
         <hr/>
         <div>{player.positionIndex}</div>
-        <div>{player.currentPosition} {player.playerStats.overallRating}</div>
+        <div>{player.currentPosition.position} {player.playerStats.overallRating}</div>
        
         
         

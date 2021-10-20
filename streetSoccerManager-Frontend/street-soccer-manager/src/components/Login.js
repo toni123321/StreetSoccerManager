@@ -50,7 +50,7 @@ const Login = () => {
     
     const handleLogin = (details) => {
         const currentUser = checkCredentials(details.email, details.password);
-        console.log(currentUser.id, currentUser.email);
+        //console.log(currentUser.id, currentUser.email);
         if(currentUser !== undefined){
             setLoggedUser({
                 id: currentUser.id,
@@ -61,6 +61,7 @@ const Login = () => {
         }
         else{
             setError("Details do not match!");
+            alert("Details do not match!");
         }
         //console.log(loggedUser.id, loggedUser.email);   
     };

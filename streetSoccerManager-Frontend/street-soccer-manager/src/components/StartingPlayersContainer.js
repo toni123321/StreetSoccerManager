@@ -16,8 +16,7 @@ const StartingPlayersContainer = () => {
             id:null,
             name: ""
         },
-        manager:"",
-        user: {
+        manager: {
             "id": null,
             "email": "",
             "password": "",
@@ -38,13 +37,15 @@ const StartingPlayersContainer = () => {
       lastName: "",
       dob: null,
       price: null,
-      defaultPosition: "",
-      currentPosition: "",
+      defaultPosition: null,
+      currentPosition: null,
       kitNr: null,
       playerStats: null,
       team: null,
       starting: true
     }
+
+    
     const [playerToSwap, setPlayerToSwap] = useState(playerInitialState);
     const [swapDest, setSwapDest] = useState(playerInitialState);
 
@@ -201,7 +202,7 @@ const StartingPlayersContainer = () => {
         {!displaySwapContainer ? 
         (<>
         <h1>Team: {team.name}</h1>
-        <h3>Manager: {team.manager}</h3>
+        <h3>Manager: {team.manager.nickname}</h3>
         <h3>Formation: {team.formation.name}</h3>
         
         <div className="team-squad">
