@@ -4,6 +4,14 @@ const getAll = () => {
   return http.get("/teams");
 };
 
+const getCustomTeams = () => {
+  return http.get(`/teams?isCustom=${true}`);
+};
+
+const getOfficialTeams = () => {
+  return http.get(`/teams?isCustom=${false}`);
+};
+
 const get = id => {
   return http.get(`/teams/${id}`);
 };
@@ -31,4 +39,6 @@ export default {
   create,
   update,
   remove,
+  getCustomTeams,
+  getOfficialTeams
 };

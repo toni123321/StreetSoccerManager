@@ -16,8 +16,7 @@ function CreateTeam() {
             id:null,
             name: ""
         },
-        manager: "",
-        user: null
+        manager: null
     }
     const [team, setTeam] = useState(initialTeamState);
 
@@ -44,8 +43,7 @@ function CreateTeam() {
                             id: response.data.formation.id,
                             name: response.data.formation.name
                         },
-                        manager: response.data.manager,
-                        user: response.data.user
+                        manager: response.data.manager
                      });
                     setSubmitted(true);
                     localStorage.setItem('team', JSON.stringify(response.data));
@@ -68,8 +66,7 @@ function CreateTeam() {
                        id: response.data.formation.id,
                        name: response.data.formation.name
                    },
-                   manager: response.data.manager,
-                   user: response.data.user
+                   manager: response.data.manager
                 });
                setSubmitted(true);
                console.log(response.data);   
