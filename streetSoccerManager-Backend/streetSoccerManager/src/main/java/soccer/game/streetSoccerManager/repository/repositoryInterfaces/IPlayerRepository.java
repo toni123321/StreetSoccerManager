@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IPlayerRepository {
     List<Player> getAll();
-    Player get(int id);
-    Boolean delete(int id);
+    Player get(Long id);
+    Boolean delete(Long id);
     Boolean add(Player player);
     Boolean update(Player player);
 }

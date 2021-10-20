@@ -24,19 +24,19 @@ public class FormationService implements IFormationService {
     }
 
     @Override
-    public Formation get(int id) {
+    public Formation get(Long id) {
         return dataStore.get(id);
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         return dataStore.delete(id);
     }
 
 
     @Override
     public Boolean add(Formation formation) {
-        formation.setId(dataStore.getAll().size());
+        formation.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(formation);
     }
 

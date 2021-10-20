@@ -19,20 +19,20 @@ public class TeamServiceTest {
         // Arrange
         ITeamRepository teamRepository = new TeamFakeDatabase();
         ITeamService teamService = new TeamService(teamRepository);
-        Formation formationOne = new Formation(1, "1-2-1");
-        Formation formationTwo = new Formation(2, "2-1-1");
-        User userOne = new FrontendUser(0, "peter@gmail.com", "123", "pete", 100);
-        User userTwo = new FrontendUser(1, "john@gmail.com", "456", "jo", 10);
-        User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+        Formation formationOne = new Formation(1l, "1-2-1");
+        Formation formationTwo = new Formation(2l, "2-1-1");
+        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
         // Act
         List<Team> teams = teamService.getAll();
 
         List<Team> teamsExpected = new ArrayList<>();
-        teamsExpected.add(new Team(0, "Real Madrid-Pro", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamsExpected.add(new Team(1, "Barcelona", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(2, "Sevilla", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(3, "Juventus", formationTwo, "Test", admin));
+        teamsExpected.add(new CustomTeam(0l, "Real Madrid-Pro", formationOne, userOne));
+        teamsExpected.add(new OfficialTeam(1l,  "Barcelona", formationTwo, "Manager1"));
+        teamsExpected.add(new OfficialTeam(2l,  "Sevilla", formationTwo, "Manager2"));
+        teamsExpected.add(new OfficialTeam(3l,  "Juventus", formationTwo, "Manager3"));
 
         // Assert
         Assertions.assertEquals(teamsExpected, teams);
@@ -44,18 +44,18 @@ public class TeamServiceTest {
         // Arrange
         ITeamRepository teamRepository = new TeamFakeDatabase();
         ITeamService teamService = new TeamService(teamRepository);
-        Formation formationOne = new Formation(1, "1-2-1");
-        Formation formationTwo = new Formation(2, "2-1-1");
-        User userOne = new FrontendUser(0, "peter@gmail.com", "123", "pete", 100);
-        User userTwo = new FrontendUser(1, "john@gmail.com", "456", "jo", 10);
-        User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+        Formation formationOne = new Formation(1l, "1-2-1");
+        Formation formationTwo = new Formation(2l, "2-1-1");
+        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
 
         // Act
-        Team team = teamService.get(1);
+        Team team = teamService.get(1l);
 
         // Assert
-        Assertions.assertEquals(new Team(1, "Barcelona", formationTwo, "Test", admin), team);
+        Assertions.assertEquals(new OfficialTeam(1l,  "Barcelona", formationTwo, "Manager1"), team);
     }
 
     @Test
@@ -63,20 +63,20 @@ public class TeamServiceTest {
         // Arrange
         ITeamRepository teamRepository = new TeamFakeDatabase();
         ITeamService teamService = new TeamService(teamRepository);
-        Formation formationOne = new Formation(1, "1-2-1");
-        Formation formationTwo = new Formation(2, "2-1-1");
-        User userOne = new FrontendUser(0, "peter@gmail.com", "123", "pete", 100);
-        User userTwo = new FrontendUser(1, "john@gmail.com", "456", "jo", 10);
-        User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+        Formation formationOne = new Formation(1l, "1-2-1");
+        Formation formationTwo = new Formation(2l, "2-1-1");
+        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
         // Act
-        teamService.delete(1);
+        teamService.delete(1l);
         List<Team> teams = teamService.getAll();
         List<Team> teamsExpected = new ArrayList<>();
-        teamsExpected.add(new Team(0, "Real Madrid-Pro", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamsExpected.add(new Team(1, "Barcelona", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(2, "Sevilla", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(3, "Juventus", formationTwo, "Test", admin));
+        teamsExpected.add(new CustomTeam(0l, "Real Madrid-Pro", formationOne, userOne));
+        teamsExpected.add(new OfficialTeam(1l,  "Barcelona", formationTwo, "Manager1"));
+        teamsExpected.add(new OfficialTeam(2l,  "Sevilla", formationTwo, "Manager2"));
+        teamsExpected.add(new OfficialTeam(3l,  "Juventus", formationTwo, "Manager3"));
         teamsExpected.remove(1);
 
         // Assert
@@ -88,23 +88,24 @@ public class TeamServiceTest {
         // Arrange
         ITeamRepository teamRepository = new TeamFakeDatabase();
         ITeamService teamService = new TeamService(teamRepository);
-        Formation formationOne = new Formation(1, "1-2-1");
-        Formation formationTwo = new Formation(2, "2-1-1");
-        User userOne = new FrontendUser(0, "peter@gmail.com", "123", "pete", 100);
-        User userTwo = new FrontendUser(1, "john@gmail.com", "456", "jo", 10);
-        User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+        Formation formationOne = new Formation(1l, "1-2-1");
+        Formation formationTwo = new Formation(2l, "2-1-1");
+        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
         // Act
 
-        teamService.add(new Team(4, "Test123", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
+        teamService.add(new CustomTeam(4l, "Test123", formationOne, userTwo));
         List<Team> teams = teamService.getAll();
 
         List<Team> teamsExpected = new ArrayList<>();
-        teamsExpected.add(new Team(0, "Real Madrid-Pro", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamsExpected.add(new Team(1, "Barcelona", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(2, "Sevilla", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(3, "Juventus", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(4, "Test123", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
+        teamsExpected.add(new CustomTeam(0l, "Real Madrid-Pro", formationOne, userOne));
+        teamsExpected.add(new OfficialTeam(1l,  "Barcelona", formationTwo, "Manager1"));
+        teamsExpected.add(new OfficialTeam(2l,  "Sevilla", formationTwo, "Manager2"));
+        teamsExpected.add(new OfficialTeam(3l,  "Juventus", formationTwo, "Manager3"));
+
+        teamsExpected.add(new CustomTeam(4l, "Test123", formationOne, userTwo));
 
         // Assert
         Assertions.assertEquals(teamsExpected, teams);
@@ -115,23 +116,23 @@ public class TeamServiceTest {
         // Arrange
         ITeamRepository teamRepository = new TeamFakeDatabase();
         ITeamService teamService = new TeamService(teamRepository);
-        Formation formationOne = new Formation(1, "1-2-1");
-        Formation formationTwo = new Formation(2, "2-1-1");
-        User userOne = new FrontendUser(0, "peter@gmail.com", "123", "pete", 100);
-        User userTwo = new FrontendUser(1, "john@gmail.com", "456", "jo", 10);
-        User admin = new Admin(2, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+        Formation formationOne = new Formation(1l, "1-2-1");
+        Formation formationTwo = new Formation(2l, "2-1-1");
+        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
         // Act
-        teamService.update(new Team(3, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), admin));
+        teamService.update(new OfficialTeam(3l,  "Parma", formationTwo, "Manager3"));
         List<Team> teams = teamService.getAll();
 
         List<Team> teamsExpected = new ArrayList<>();
-        teamsExpected.add(new Team(0, "Real Madrid-Pro", formationOne, ((FrontendUser) userOne).getNickname(), userOne));
-        teamsExpected.add(new Team(1, "Barcelona", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(2, "Sevilla", formationTwo, "Test", admin));
-        teamsExpected.add(new Team(3, "Juventus", formationTwo, "Test", admin));
+        teamsExpected.add(new CustomTeam(0l, "Real Madrid-Pro", formationOne, userOne));
+        teamsExpected.add(new OfficialTeam(1l,  "Barcelona", formationTwo, "Manager1"));
+        teamsExpected.add(new OfficialTeam(2l,  "Sevilla", formationTwo, "Manager2"));
+        teamsExpected.add(new OfficialTeam(3l,  "Juventus", formationTwo, "Manager3"));
 
-        teamsExpected.set(3, new Team(3, "TestChange", formationOne, ((FrontendUser) userOne).getNickname(), admin));
+        teamsExpected.set(3, new OfficialTeam(3l,  "Parma", formationTwo, "Manager3"));
 
         // Assert
         Assertions.assertEquals(teamsExpected, teams);

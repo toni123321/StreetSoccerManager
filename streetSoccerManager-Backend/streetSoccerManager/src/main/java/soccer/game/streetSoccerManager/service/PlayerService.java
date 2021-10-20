@@ -28,18 +28,18 @@ public class PlayerService implements IPlayerService {
 
 
     @Override
-    public Player get(int id) {
+    public Player get(Long id) {
         return dataStore.get(id);
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         return dataStore.delete(id);
     }
 
     @Override
     public Boolean add(Player player) {
-        player.setId(dataStore.getAll().size());
+        player.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(player);
     }
 
@@ -49,26 +49,26 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
-    public List<Player> getAllPlayersInTeam(int teamId) {
+    public List<Player> getAllPlayersInTeam(Long teamId) {
         return getAll().stream().filter(player ->
                 player.getTeam().getId() == teamId).
                 collect(Collectors.toList());
     }
 
     @Override
-    public List<Player> getAllPlayersInTeamAvailableForSwapping(int teamId, int playerToSwapId) {
+    public List<Player> getAllPlayersInTeamAvailableForSwapping(Long teamId, Long playerToSwapId) {
         List<Player> playersAvailableForSwap = getAllPlayersInTeam(teamId);
         Player playerToSwap = get(playerToSwapId);
-        if(playerToSwap.getDefaultPosition().equals("GK")) {
+        if(playerToSwap.getDefaultPosition().getPosition().equals("GK")) {
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            player.getDefaultPosition().equals("GK")).
+                            player.getDefaultPosition().getPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         else{
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            !player.getDefaultPosition().equals("GK")).
+                            !player.getDefaultPosition().getPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         return playersAvailableForSwap.stream().
@@ -77,7 +77,7 @@ public class PlayerService implements IPlayerService {
 
 
     @Override
-    public List<Player> getStartingPlayers(int teamId) {
+    public List<Player> getStartingPlayers(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
                 filter(player -> player.isStarting() == true).
@@ -85,7 +85,7 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
-    public List<Player> getReserves(int teamId) {
+    public List<Player> getReserves(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
                 filter(player -> player.isStarting() == false).

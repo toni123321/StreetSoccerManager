@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface IPlayerService {
     List<Player> getAll();
-    Player get(int id);
-    Boolean delete(int id);
+    Player get(Long id);
+    Boolean delete(Long id);
     Boolean add(Player player);
     Boolean update(Player player);
-    List<Player> getAllPlayersInTeam(int teamId);
-    List<Player> getAllPlayersInTeamAvailableForSwapping(int teamId, int playerToSwapId);
+    List<Player> getAllPlayersInTeam(Long teamId);
+    List<Player> getAllPlayersInTeamAvailableForSwapping(Long teamId, Long playerToSwapId);
 
-    List<Player> getStartingPlayers(int teamId);
-    List<Player> getReserves(int teamId);
+    List<Player> getStartingPlayers(Long teamId);
+    List<Player> getReserves(Long teamId);
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IUserRepository {
     List<User> getAll();
-    User get(int id);
-    Boolean delete(int id);
+    User get(Long id);
+    Boolean delete(Long id);
     Boolean add(User user);
     Boolean update(User user);
 }

@@ -32,7 +32,7 @@ public class UserController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") int id) {
+    public ResponseEntity<User> getUser(@PathVariable(value = "id") Long id) {
         User user = userService.get(id);
 
         if(user != null) {
@@ -57,7 +57,7 @@ public class UserController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteUser(@PathVariable int id) {
+    public ResponseEntity deleteUser(@PathVariable Long id) {
         userService.delete(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return ResponseEntity.ok().build();

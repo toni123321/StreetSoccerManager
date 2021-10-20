@@ -24,19 +24,19 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User get(int id) {
+    public User get(Long id) {
         return dataStore.get(id);
     }
 
     @Override
-    public Boolean delete(int id) {
+    public Boolean delete(Long id) {
         return dataStore.delete(id);
     }
 
 
     @Override
     public Boolean add(User user) {
-        user.setId(dataStore.getAll().size());
+        user.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(user);
     }
 

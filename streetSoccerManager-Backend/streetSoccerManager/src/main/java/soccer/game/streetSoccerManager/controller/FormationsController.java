@@ -24,7 +24,7 @@ public class FormationsController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<Formation> getFormation(@PathVariable(value = "id") int id) {
+    public ResponseEntity<Formation> getFormation(@PathVariable(value = "id") Long id) {
         Formation formation = formationService.get(id);
 
         if(formation != null) {
@@ -50,7 +50,7 @@ public class FormationsController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteFormation(@PathVariable int id) {
+    public ResponseEntity deleteFormation(@PathVariable Long id) {
         formationService.delete(id);
         // Idempotent method. Always return the same response (even if the resource has already been deleted before).
         return ResponseEntity.ok().build();
