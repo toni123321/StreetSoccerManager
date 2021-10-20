@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public class UserFakeDatabase implements IUserRepository {
-
     @Getter
     private List<User> users = new ArrayList<>();
 
@@ -21,7 +20,6 @@ public class UserFakeDatabase implements IUserRepository {
         users.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 
         users.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
-
     }
 
     @Override

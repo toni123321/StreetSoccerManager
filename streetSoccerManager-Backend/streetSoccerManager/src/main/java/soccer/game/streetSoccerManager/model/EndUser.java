@@ -1,14 +1,23 @@
 package soccer.game.streetSoccerManager.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Entity
+@NoArgsConstructor
+
 public class EndUser extends User {
+    @Column(name = "nickname")
     private String nickname;
+    @Column(name = "points")
     private double points;
 
     public EndUser(Long id, String email, String password, String nickname, double points) {
@@ -16,6 +25,12 @@ public class EndUser extends User {
         this.nickname = nickname;
         this.points = points;
     }
+    public EndUser(String email, String password, String nickname, double points) {
+        super(email, password);
+        this.nickname = nickname;
+        this.points = points;
+    }
+
 
     @Override
     public boolean equals(Object o) {

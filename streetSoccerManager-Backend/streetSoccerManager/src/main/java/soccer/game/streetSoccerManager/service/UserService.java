@@ -13,10 +13,9 @@ public class UserService implements IUserService {
 
     private IUserRepository dataStore;
 
-    public UserService(@Qualifier("userFakeDatabase") IUserRepository dataStore) {
+    public UserService(@Qualifier("userDatabase") IUserRepository dataStore) {
         this.dataStore = dataStore;
     }
-
 
     @Override
     public List<User> getAll() {
@@ -36,7 +35,7 @@ public class UserService implements IUserService {
 
     @Override
     public Boolean add(User user) {
-        user.setId(Long.valueOf(dataStore.getAll().size()));
+        //user.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(user);
     }
 
