@@ -1,27 +1,45 @@
 package soccer.game.streetSoccerManager.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Entity
+@Table(name ="player")
+@NoArgsConstructor
 public class Player implements Comparable<Player>{
-
-    private static int idCounter = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int positionIndex;
     private String firstName;
     private String lastName;
     private Date dob;
     private double price;
+
+    @OneToOne
+    @JoinColumn(name="defaultPositionId")
     private Position defaultPosition;
+
+    @ManyToOne
+    @JoinColumn(name="currentPositionId", nullable = false)
     private Position currentPosition;
+
     private int kitNr;
     private boolean isStarting;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "playerStatsId")
     private PlayerStats playerStats;
+
+    @ManyToOne
+    @JoinColumn(name="teamId", nullable=false)
     private Team team; // connection with team
 
     public Player(Long id, int positionIndex, String firstName, String lastName, Date dob, double price,
@@ -41,6 +59,24 @@ public class Player implements Comparable<Player>{
         this.playerStats = playerStats;
         this.team = team;
     }
+
+    public Player(int positionIndex, String firstName, String lastName, Date dob, double price,
+                  Position defaultPosition, Position currentPosition, int kitNr,
+                  boolean isStarting, PlayerStats playerStats, Team team) {
+        this.positionIndex = positionIndex;
+        //idCounter++;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.price = price;
+        this.defaultPosition = defaultPosition;
+        this.currentPosition = currentPosition;
+        this.kitNr = kitNr;
+        this.isStarting = isStarting;
+        this.playerStats = playerStats;
+        this.team = team;
+    }
+
 
     @Override
     public int compareTo(Player o) {

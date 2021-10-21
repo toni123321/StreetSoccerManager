@@ -22,6 +22,7 @@ public class User {
     @Column(name = "password")
     protected String password;
 
+
     public User(Long id, String email, String password) {
         this.id = id;
         this.email = email;

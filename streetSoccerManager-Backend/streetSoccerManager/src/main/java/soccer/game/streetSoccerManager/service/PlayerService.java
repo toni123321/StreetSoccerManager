@@ -12,10 +12,9 @@ import java.util.stream.Collectors;
 @Service
 public class PlayerService implements IPlayerService {
 
-    @Qualifier("playerFakeDatabase")
     private IPlayerRepository dataStore;
 
-    public PlayerService(IPlayerRepository dataStore) {
+    public PlayerService(@Qualifier("playerDatabase") IPlayerRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -39,7 +38,7 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Boolean add(Player player) {
-        player.setId(Long.valueOf(dataStore.getAll().size()));
+        //player.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(player);
     }
 

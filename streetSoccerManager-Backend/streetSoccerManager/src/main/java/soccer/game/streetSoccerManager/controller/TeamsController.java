@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.CustomTeam;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
@@ -96,7 +97,7 @@ public class TeamsController {
     }
 
     @PostMapping()
-    public ResponseEntity<Team> createTeam(@RequestBody Team team) {
+    public ResponseEntity<CustomTeam> createTeam(@RequestBody CustomTeam team) {
         if (!teamService.add(team)){
             String entity =  "Team with id " + team.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
