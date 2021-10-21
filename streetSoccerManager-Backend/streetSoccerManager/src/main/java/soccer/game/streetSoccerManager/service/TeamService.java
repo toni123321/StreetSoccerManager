@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class TeamService implements ITeamService {
 
-    @Qualifier("teamFakeDatabase")
+
     private ITeamRepository dataStore;
 
 
-    public TeamService(ITeamRepository dataStore) {
+    public TeamService(@Qualifier("teamDatabase") ITeamRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -54,8 +54,8 @@ public class TeamService implements ITeamService {
 
     @Override
     public Boolean add(Team team) {
-        team.setId(Long.valueOf(dataStore.getAll().size()));
-        team.setFormation(dataStore.getDefaultFormation());
+        //team.setId(Long.valueOf(dataStore.getAll().size()));
+        //team.setFormation(dataStore.getDefaultFormation());
         return dataStore.add(team);
     }
 

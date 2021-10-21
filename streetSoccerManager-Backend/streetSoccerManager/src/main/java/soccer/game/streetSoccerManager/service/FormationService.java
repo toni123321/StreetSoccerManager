@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class FormationService implements IFormationService {
 
-    @Qualifier("formationFakeDatabase")
+
     private IFormationRepository dataStore;
 
-    public FormationService( IFormationRepository dataStore) {
+    public FormationService(@Qualifier("formationDatabase") IFormationRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -36,7 +36,7 @@ public class FormationService implements IFormationService {
 
     @Override
     public Boolean add(Formation formation) {
-        formation.setId(Long.valueOf(dataStore.getAll().size()));
+        //formation.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(formation);
     }
 

@@ -1,11 +1,13 @@
 package soccer.game.streetSoccerManager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Objects;
 
@@ -19,6 +21,9 @@ public class EndUser extends User {
     private String nickname;
     @Column(name = "points")
     private double points;
+    @OneToOne(mappedBy = "manager")
+    @JsonIgnore
+    protected CustomTeam team;
 
     public EndUser(Long id, String email, String password, String nickname, double points) {
         super(id, email, password);

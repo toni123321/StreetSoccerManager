@@ -83,7 +83,7 @@ public class TeamFakeDatabase implements ITeamRepository {
             ((CustomTeam) oldTeam).setManager(((CustomTeam) team).getManager());
         }
         if(oldTeam instanceof OfficialTeam){
-            ((OfficialTeam) oldTeam).setManager(((OfficialTeam) team).getManager());
+            ((OfficialTeam) oldTeam).setManagerName(((OfficialTeam) team).getManagerName());
         }
         return true;
     }

@@ -48,7 +48,10 @@ public class UserFakeDatabase implements IUserRepository {
 
     @Override
     public Boolean add(User user) {
-        if (this.get(user.getId()) != null){
+        if(user.getId() == null) {
+            user.setId(Long.valueOf(users.size()));
+        }
+        else if (this.get(user.getId()) != null){
             return false;
         }
         users.add(user);

@@ -3,7 +3,7 @@ package soccer.game.streetSoccerManager.repository.repositories.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.model.User;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserJPARepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IUserJPARepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
 
 import java.util.List;
@@ -34,18 +34,16 @@ public class UserDatabase implements IUserRepository {
 
     @Override
     public Boolean add(User user) {
-//        if(get(user.getId()) != null) {
-//            repo.save(user);
-//            return true;
-//        }
-//        return false;
-        repo.save(user);
-        return true;
+        if(user.getId() == null) {
+            repo.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Boolean update(User user) {
-        if(get(user.getId()) != null) {
+        if(user.getId() != null) {
             repo.save(user);
             return true;
         }
