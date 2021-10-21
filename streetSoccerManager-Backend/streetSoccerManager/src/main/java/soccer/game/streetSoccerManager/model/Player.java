@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,7 +21,8 @@ public class Player implements Comparable<Player>{
     private int positionIndex;
     private String firstName;
     private String lastName;
-    private Date dob;
+    @Temporal(TemporalType.DATE)
+    private Calendar dob;
     private double price;
 
     @OneToOne
@@ -42,7 +44,7 @@ public class Player implements Comparable<Player>{
     @JoinColumn(name="teamId", nullable=false)
     private Team team; // connection with team
 
-    public Player(Long id, int positionIndex, String firstName, String lastName, Date dob, double price,
+    public Player(Long id, int positionIndex, String firstName, String lastName, Calendar dob, double price,
                   Position defaultPosition, Position currentPosition, int kitNr,
                   boolean isStarting, PlayerStats playerStats, Team team) {
         this.id = id;
@@ -60,7 +62,7 @@ public class Player implements Comparable<Player>{
         this.team = team;
     }
 
-    public Player(int positionIndex, String firstName, String lastName, Date dob, double price,
+    public Player(int positionIndex, String firstName, String lastName, Calendar dob, double price,
                   Position defaultPosition, Position currentPosition, int kitNr,
                   boolean isStarting, PlayerStats playerStats, Team team) {
         this.positionIndex = positionIndex;
