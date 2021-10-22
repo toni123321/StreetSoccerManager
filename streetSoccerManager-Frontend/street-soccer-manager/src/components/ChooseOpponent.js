@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import TeamService from '../services/TeamService';
 import ChoosePlayersForFriendlyMatch from './ChoosePlayersForFriendlyMatch';
+import Carousel from 'react-bootstrap/Carousel'
 
 function ChooseOpponent() {
     
@@ -17,40 +19,34 @@ function ChooseOpponent() {
 
     const [chosenOpponent, setChosenOpponent] = useState({
         id: null,
-        name: ""
+        name: "",
+        formation: null,
+        managerName: ""
     });
 
-    const [opponents, setOpponents] = useState([
-        {
-            id: 1,
-            name: "Barcelona"
-        },
-        {
-            id: 2,
-            name: "Juventus"
-        },
-        {
-            id:3,
-            name: "Napoli"
-        },
-        {
-            id:4,
-            name: "Arsenal"
-        }
-    ]);
+    const [opponents, setOpponents] = useState([]);
+
+    useEffect(() => {
+        retrieveOpponents();
+    }, [])
+
+    async function retrieveOpponents() {
+        const response = await TeamService.getOfficialTeams();
+        setOpponents(response.data);
+    }
+
 
     const [goNext, setGoNext] = useState(false);
 
     
 
-    const getOpponent = (index) => {
+    const getOpponent = (currIndex) => {
         
-        const opponentsList = opponents.map((opponent) => {
-          return opponent;
-        });
-  
-        //console.log(opponentsList.length);
-        return opponents[index];
+        let content = [];
+        for (var i = 0; i < opponents.length; i++) {
+            content.push(opponents[i]);
+        }
+        console.log(opponents);
     }
     
     const handleGoBack = () => {
@@ -72,9 +68,9 @@ function ChooseOpponent() {
         
     }
 
-    const handleSelectOpponent = () => {
-        console.log(getOpponent(index).name);
-        setChosenOpponent(getOpponent(index));
+    const handleSelectOpponent = (opponent) => {
+        //console.log(getOpponent(index).name);
+        setChosenOpponent(opponent);
     }
 
     const handleSaveData = () => {
@@ -92,6 +88,14 @@ function ChooseOpponent() {
     const chooseNewOpponent = () => {
         setGoNext(false);
     }
+
+    const click1 = () => {
+        const opponentsList = opponents.map((player) => {
+          return player;
+        
+        });
+        console.log(opponentsList[index]);
+    }
     return (
         <>
         {/* {opponents.map((o) => (
@@ -102,13 +106,25 @@ function ChooseOpponent() {
         {!goNext ? 
         (
             <>
-            <button onClick={handleGoBack} className="search-left-opponents"><i class="fas fa-chevron-left"></i></button>
-            {/* <span>{getOpponent(index)}</span> */}
+            {/* {opponents.map((o) => 
+                <div>{o.name}</div>
+            )}
+
+            <button onClick={click1}>Here</button>
+            
+            <button onClick={handleGoBack} className="search-left-opponents"><i class="fas fa-chevron-left"></i></button> */}
             {/* <span>{index}</span> */}
-            <span onClick={handleSelectOpponent}>{getOpponent(index).name}</span>
-            <button onClick={handleGoAhead} className="search-right-opponents"><i class="fas fa-chevron-right"></i></button>
+            {/* <span onClick={handleSelectOpponent}>{getOpponent(index)}</span>
+            <button onClick={handleGoAhead} className="search-right-opponents"><i class="fas fa-chevron-right"></i></button> */}
+
+
+            <Carousel interval={null}>
+                {opponents.map((opponent) => 
+                    <Carousel.Item key={opponent.id} onClick={() => handleSelectOpponent(opponent)}>{opponent.name}</Carousel.Item>
+                )}
+            </Carousel>
             <div>Chosen opponent: {chosenOpponent.name}</div>
-            <button onClick={handleSaveData}>Next <i class="fas fa-angle-double-right"></i></button>
+            <button onClick={handleSaveData}>Next <i className="fas fa-angle-double-right"></i></button>
             </>
         ) : 
         (

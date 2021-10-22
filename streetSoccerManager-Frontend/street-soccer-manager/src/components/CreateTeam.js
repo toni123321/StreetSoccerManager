@@ -16,7 +16,11 @@ function CreateTeam() {
             id:null,
             name: ""
         },
-        manager: null
+        manager: {
+            id: 1,
+            email: "peter@gmail.com",
+            password: "123"
+        }
     }
     const [team, setTeam] = useState(initialTeamState);
 
@@ -33,7 +37,7 @@ function CreateTeam() {
         } 
         else
         {
-            const id = 0;
+            const id = 1;
             TeamService.get(id)
                 .then(response => {
                     setTeam({
@@ -55,6 +59,7 @@ function CreateTeam() {
         console.log("Team name:", teamName);
         const data = {
             name: teamName,
+            manager: team.manager
         }
 
         TeamService.create(data)
