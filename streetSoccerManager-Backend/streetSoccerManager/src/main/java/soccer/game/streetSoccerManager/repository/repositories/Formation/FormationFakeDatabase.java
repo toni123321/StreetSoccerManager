@@ -46,7 +46,10 @@ public class FormationFakeDatabase implements IFormationRepository {
 
     @Override
     public Boolean add(Formation formation) {
-        if (this.get(formation.getId()) != null){
+        if(formation.getId() == null) {
+            formation.setId(Long.valueOf(formations.size()));
+        }
+        else if (this.get(formation.getId()) != null){
             return false;
         }
         formations.add(formation);

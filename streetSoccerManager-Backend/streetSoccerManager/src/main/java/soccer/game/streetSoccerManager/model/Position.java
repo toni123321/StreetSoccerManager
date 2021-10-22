@@ -21,13 +21,13 @@ public class Position {
     private String category;
     private String position;
 
-    @OneToOne(mappedBy = "defaultPosition")
+    @OneToMany(mappedBy = "defaultPosition")
     @JsonIgnore
-    protected Player player;
+    protected Set<Player> playersDefaultPositions;
 
     @OneToMany(mappedBy="currentPosition")
     @JsonIgnore
-    private Set<Player> players;
+    private Set<Player> playersCurrentPosition;
 
     public Position(Long id, String category, String position) {
         this.id = id;

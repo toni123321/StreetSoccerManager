@@ -64,7 +64,10 @@ public class TeamFakeDatabase implements ITeamRepository {
 
     @Override
     public Boolean add(Team team) {
-        if (this.get(team.getId() )!= null){
+        if(team.getId() == null) {
+            team.setId(Long.valueOf(teams.size()));
+        }
+        else if (this.get(team.getId() )!= null){
             return false;
         }
         teams.add(team);
