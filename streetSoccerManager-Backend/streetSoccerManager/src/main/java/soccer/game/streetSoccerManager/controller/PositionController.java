@@ -3,9 +3,7 @@ package soccer.game.streetSoccerManager.controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.Position;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
 
 import java.util.List;
