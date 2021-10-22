@@ -1,13 +1,11 @@
 import React, {useState} from "react";
 import { useDrag } from "react-dnd";
 
-function Player({player, handleSwap, getPlayersForRotation}) {
+function Player({player, openRotationMode, getPlayersForRotation}) {
   
 
   const handleClick = () => {
-
-    handleSwap(player);
-    
+    openRotationMode(player);
   }
 
   const handleChosenPlayerForRotation = () => {
@@ -16,12 +14,12 @@ function Player({player, handleSwap, getPlayersForRotation}) {
   }
 
   return (
-    <div className="player" onClick={handleSwap == null ? handleChosenPlayerForRotation : undefined}>
+    <div className="player" onClick={openRotationMode == null ? handleChosenPlayerForRotation : undefined}>
         {/* <span className="kitNr">{player.kitNr}</span> */}
         
         {/* <div className="overallRating">{player.playerStats.overallRating}</div> */}
         
-        {handleSwap != null ?
+        {openRotationMode != null ?
         (<button onClick={handleClick}><i className="fas fa-exchange-alt"></i></button>)
         :
         (<></>)

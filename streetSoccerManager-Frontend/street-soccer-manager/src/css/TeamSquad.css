@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.startingTeam {
+    background: center center transparent url("../resources/pitch-half\ \(1\).png") no-repeat;
+    background-size: 100% 100%;
+}
+
 .kitNr {
     font-size: 13px;
     position:absolute;
@@ -46,7 +51,7 @@
 }
   
 
-.starting-players-pitch .fas {
+.starting-players-pitch .fas, .startingTeam .fas {
     color:coral;
     /* font-size: 50px; */
     text-shadow: 0 0 3px white;
@@ -67,7 +72,9 @@
     align-items: center;
     background-color: palegoldenrod;
     border-radius: 10px; */
+    display: inline-block;
 }
+
 
 .player hr {
     height: 4px !important;
