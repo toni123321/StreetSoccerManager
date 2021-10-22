@@ -10,11 +10,9 @@ import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
 import soccer.game.streetSoccerManager.model.Player;
-import soccer.game.streetSoccerManager.model.PlayerStats;
-import soccer.game.streetSoccerManager.model.Team;
+
 
 import java.net.URI;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

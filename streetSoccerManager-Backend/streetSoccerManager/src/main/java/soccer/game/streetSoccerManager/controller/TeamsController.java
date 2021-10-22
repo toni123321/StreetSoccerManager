@@ -9,9 +9,7 @@ import soccer.game.streetSoccerManager.model.CustomTeam;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
-import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.model.User;
 
 import java.net.URI;
 import java.util.List;
@@ -57,7 +55,7 @@ public class TeamsController {
         List<Team> teams = null;
         if(isCustom.isPresent())
         {
-            if(isCustom.get()){
+            if(Boolean.TRUE.equals(isCustom.get())){
                 teams = teamService.getCustomTeams();
             }
             else{
@@ -88,14 +86,16 @@ public class TeamsController {
 //    }
 
 
-    
-    @DeleteMapping("{id}")
-    public ResponseEntity deleteTeam(@PathVariable Long id) {
-        teamService.delete(id);
-        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
-        return ResponseEntity.ok().build();
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
+        if(teamService.delete(id)) {
+            // Idempotent method. Always return the same response (even if the resource has already been deleted before).
+            return ResponseEntity.ok().body("Successfully deleted!");
+        }
+        return ResponseEntity.notFound().build();
     }
+
 
     @PostMapping()
     public ResponseEntity<CustomTeam> createTeam(@RequestBody CustomTeam team) {
