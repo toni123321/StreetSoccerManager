@@ -55,7 +55,7 @@ public class TeamService implements ITeamService {
     @Override
     public Boolean add(Team team) {
         //team.setId(Long.valueOf(dataStore.getAll().size()));
-        //team.setFormation(dataStore.getDefaultFormation());
+        team.setFormation(dataStore.getDefaultFormation());
         return dataStore.add(team);
     }
 

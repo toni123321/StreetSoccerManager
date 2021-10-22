@@ -25,7 +25,7 @@ public class Player implements Comparable<Player>{
     private Calendar dob;
     private double price;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="defaultPositionId")
     private Position defaultPosition;
 
@@ -36,7 +36,7 @@ public class Player implements Comparable<Player>{
     private int kitNr;
     private boolean isStarting;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "playerStatsId")
     private PlayerStats playerStats;
 
