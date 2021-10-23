@@ -2,7 +2,6 @@ package soccer.game.streetSoccerManager.repository.repositories.Position;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.Player;
 import soccer.game.streetSoccerManager.model.Position;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
 
@@ -49,7 +48,7 @@ public class PositionFakeDatabase implements IPositionRepository {
     @Override
     public Position get(Long id) {
         for (Position position : positions) {
-            if (position.getId() == id)
+            if (position.getId().equals(id))
                 return position;
         }
         return null;
@@ -59,7 +58,7 @@ public class PositionFakeDatabase implements IPositionRepository {
     public Position get(String searchedPosition)
     {
         for (Position position : positions) {
-            if (position.getPosition() == searchedPosition)
+            if (position.getPosition().equals(searchedPosition))
                 return position;
         }
         return null;

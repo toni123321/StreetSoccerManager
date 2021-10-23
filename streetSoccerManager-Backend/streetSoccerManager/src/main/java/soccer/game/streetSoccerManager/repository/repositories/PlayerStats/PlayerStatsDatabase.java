@@ -20,7 +20,10 @@ public class PlayerStatsDatabase implements IPlayerStatsRepository {
 
     @Override
     public PlayerStats get(Long id) {
-        return repo.findById(id).get();
+        if(repo.findById(id).isPresent()){
+            return repo.findById(id).get();
+        }
+        return null;
     }
 
     @Override
@@ -33,18 +36,18 @@ public class PlayerStatsDatabase implements IPlayerStatsRepository {
     }
 
     @Override
-    public Boolean add(PlayerStats playerStats) {
-        if(playerStats.getId() == null) {
-            repo.save(playerStats);
+    public Boolean add(PlayerStats stat) {
+        if(stat.getId() == null) {
+            repo.save(stat);
             return true;
         }
         return false;
     }
 
     @Override
-    public Boolean update(PlayerStats playerStats) {
-        if(playerStats.getId() != null) {
-            repo.save(playerStats);
+    public Boolean update(PlayerStats stat) {
+        if(stat.getId() != null) {
+            repo.save(stat);
             return true;
         }
         return false;

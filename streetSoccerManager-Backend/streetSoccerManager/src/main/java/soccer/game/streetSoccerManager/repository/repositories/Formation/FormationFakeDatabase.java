@@ -29,7 +29,7 @@ public class FormationFakeDatabase implements IFormationRepository {
     @Override
     public Formation get(Long id) {
         for (Formation formation : formations) {
-            if (formation.getId() == id)
+            if (formation.getId().equals(id))
                 return formation;
         }
         return null;

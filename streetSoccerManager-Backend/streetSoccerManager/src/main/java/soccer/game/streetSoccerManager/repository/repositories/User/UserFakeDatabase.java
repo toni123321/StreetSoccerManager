@@ -30,7 +30,7 @@ public class UserFakeDatabase implements IUserRepository {
     @Override
     public User get(Long id) {
         for (User user : users) {
-            if (user.getId() == id)
+            if (user.getId().equals(id))
                 return user;
         }
         return null;

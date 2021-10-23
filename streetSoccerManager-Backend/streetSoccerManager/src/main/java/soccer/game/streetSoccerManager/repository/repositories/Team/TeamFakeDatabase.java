@@ -46,8 +46,9 @@ public class TeamFakeDatabase implements ITeamRepository {
     @Override
     public Team get(Long id) {
         for (Team team : teams) {
-            if (team.getId() == id)
+            if (team.getId().equals(id)) {
                 return team;
+            }
         }
         return null;
     }

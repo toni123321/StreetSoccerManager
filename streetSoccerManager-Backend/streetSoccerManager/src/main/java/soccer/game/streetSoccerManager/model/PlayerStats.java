@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -29,5 +30,18 @@ public class PlayerStats {
 
     public PlayerStats(int overallRating) {
         this.overallRating = overallRating;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerStats)) return false;
+        PlayerStats stats = (PlayerStats) o;
+        return getOverallRating() == stats.getOverallRating() && Objects.equals(getId(), stats.getId()) && Objects.equals(getPlayer(), stats.getPlayer());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getOverallRating(), getPlayer());
     }
 }

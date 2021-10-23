@@ -7,7 +7,6 @@ import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IFormationJPARepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.ITeamJPARepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IUserJPARepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +26,10 @@ public class TeamDatabase implements ITeamRepository {
 
     @Override
     public Team get(Long id) {
-        return repo.findById(id).get();
+        if(repo.findById(id).isPresent()){
+            return repo.findById(id).get();
+        }
+        return null;
     }
 
     @Override

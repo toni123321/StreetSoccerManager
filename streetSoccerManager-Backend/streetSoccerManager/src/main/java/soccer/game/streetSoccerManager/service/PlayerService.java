@@ -38,7 +38,6 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Boolean add(Player player) {
-        //player.setId(Long.valueOf(dataStore.getAll().size()));
         return dataStore.add(player);
     }
 
@@ -50,7 +49,7 @@ public class PlayerService implements IPlayerService {
     @Override
     public List<Player> getAllPlayersInTeam(Long teamId) {
         return getAll().stream().filter(player ->
-                player.getTeam().getId() == teamId).
+                player.getTeam().getId().equals(teamId)).
                 collect(Collectors.toList());
     }
 
@@ -71,7 +70,7 @@ public class PlayerService implements IPlayerService {
                     collect(Collectors.toList());
         }
         return playersAvailableForSwap.stream().
-                filter(player -> player.getId() != playerToSwapId).collect(Collectors.toList());
+                filter(player -> !player.getId().equals(playerToSwapId)).collect(Collectors.toList());
     }
 
 

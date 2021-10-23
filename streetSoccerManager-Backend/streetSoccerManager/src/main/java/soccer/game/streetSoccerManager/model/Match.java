@@ -3,22 +3,19 @@ package soccer.game.streetSoccerManager.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Getter
 @Setter
-public class Match {
+public class    Match {
 
     protected Long id;
     protected Team homeTeam;
     protected Team awayTeam;
 
-    private Hashtable<Player, Position> homeTeamPositions;
-    private Hashtable<Player, Position> awayTeamPositions;
+    private HashMap<Player, Position> homeTeamPositions;
+    private HashMap<Player, Position> awayTeamPositions;
 
     // result
     protected int homeTeamGoals;
@@ -29,8 +26,8 @@ public class Match {
 
 
     public Match(Long id, Team homeTeam, Team awayTeam,
-                 Hashtable<Player, Position> homeTeamPositions,
-                 Hashtable<Player, Position> awayTeamPositions,
+                 HashMap<Player, Position> homeTeamPositions,
+                 HashMap<Player, Position> awayTeamPositions,
                  int homeTeamGoals, int awayTeamGoals, String matchStatistic) {
         this.id = id;
         this.homeTeam = homeTeam;
