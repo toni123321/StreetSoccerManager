@@ -20,7 +20,10 @@ public class PlayerDatabase implements IPlayerRepository {
 
     @Override
     public Player get(Long id) {
-        return repo.findById(id).get();
+        if(repo.findById(id).isPresent()){
+            return repo.findById(id).get();
+        }
+        return null;
     }
 
     @Override

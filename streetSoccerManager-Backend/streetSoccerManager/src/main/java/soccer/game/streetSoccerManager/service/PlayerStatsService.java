@@ -3,7 +3,6 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.PlayerStats;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
 
@@ -33,12 +32,12 @@ public class PlayerStatsService implements IPlayerStatsService {
     }
 
     @Override
-    public Boolean add(PlayerStats playerStats) {
-        return dataStore.add(playerStats);
+    public Boolean add(PlayerStats stat) {
+        return dataStore.add(stat);
     }
 
     @Override
-    public Boolean update(PlayerStats playerStats) {
-        return dataStore.update(playerStats);
+    public Boolean update(PlayerStats stat) {
+        return dataStore.update(stat);
     }
 }

@@ -31,14 +31,14 @@ public class TeamService implements ITeamService {
     @Override
     public List<Team> getCustomTeams(){
         return getAll().stream().
-                filter(team -> team instanceof CustomTeam).
+                filter(CustomTeam.class::isInstance).
                 collect(Collectors.toList());
     }
 
     @Override
     public List<Team> getOfficialTeams() {
         return getAll().stream().
-                filter(team -> team instanceof OfficialTeam).
+                filter(OfficialTeam.class::isInstance).
                 collect(Collectors.toList());
     }
 
@@ -54,7 +54,6 @@ public class TeamService implements ITeamService {
 
     @Override
     public Boolean add(Team team) {
-        //team.setId(Long.valueOf(dataStore.getAll().size()));
         team.setFormation(dataStore.getDefaultFormation());
         return dataStore.add(team);
     }

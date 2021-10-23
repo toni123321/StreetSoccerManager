@@ -93,7 +93,7 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     @Override
     public Player get(Long id) {
         for (Player player : players) {
-            if (player.getId() == id)
+            if (player.getId().equals(id))
                 return player;
         }
         return null;
