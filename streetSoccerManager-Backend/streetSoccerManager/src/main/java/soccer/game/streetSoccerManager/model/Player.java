@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Player implements Comparable<Player>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private  Long id;
     private int positionIndex;
     private String firstName;
     private String lastName;

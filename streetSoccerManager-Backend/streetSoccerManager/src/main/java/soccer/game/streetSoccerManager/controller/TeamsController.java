@@ -89,7 +89,7 @@ public class TeamsController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
-        if(teamService.delete(id)) {
+        if(Boolean.TRUE.equals(teamService.delete(id))) {
             // Idempotent method. Always return the same response (even if the resource has already been deleted before).
             return ResponseEntity.ok().body("Successfully deleted!");
         }

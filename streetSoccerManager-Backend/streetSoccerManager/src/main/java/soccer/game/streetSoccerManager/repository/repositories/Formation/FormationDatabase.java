@@ -13,25 +13,23 @@ import java.util.List;
 public class FormationDatabase implements IFormationRepository {
 
     @Autowired
-    IFormationJPARepository repo;
+    IFormationJPARepository formationRepo;
 
     @Override
     public List<Formation> getAll() {
-        return repo.findAll();
+        return formationRepo.findAll();
     }
 
     @Override
     public Formation get(Long id) {
-        if(repo.findById(id).isPresent()){
-            return repo.findById(id).get();
-        }
-        return null;
+        Formation formation = formationRepo.findById(id).orElse(null);
+        return formation;
     }
 
     @Override
     public Boolean delete(Long id) {
         if(get(id) != null) {
-            repo.deleteById(id);
+            formationRepo.deleteById(id);
             return true;
         }
         return false;
@@ -40,7 +38,7 @@ public class FormationDatabase implements IFormationRepository {
     @Override
     public Boolean add(Formation formation) {
         if(formation.getId() == null) {
-            repo.save(formation);
+            formationRepo.save(formation);
             return true;
         }
         return false;
@@ -49,7 +47,7 @@ public class FormationDatabase implements IFormationRepository {
     @Override
     public Boolean update(Formation formation) {
         if(formation.getId() != null) {
-            repo.save(formation);
+            formationRepo.save(formation);
             return true;
         }
         return false;
