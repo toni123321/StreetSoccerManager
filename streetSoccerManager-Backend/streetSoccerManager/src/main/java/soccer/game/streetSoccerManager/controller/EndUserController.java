@@ -55,7 +55,7 @@ public class EndUserController {
     @GetMapping
     public ResponseEntity<List<User>> getAllEndUsers() {
         List<User> users = null;
-        users = userService.getAll().stream().filter(user -> user instanceof EndUser).collect(Collectors.toList());
+        users = userService.getAll().stream().filter(EndUser.class::isInstance).collect(Collectors.toList());
         if(users != null) {
             return ResponseEntity.ok().body(users);
         } else {

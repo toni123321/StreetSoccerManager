@@ -3,6 +3,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.Position;
 import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IFormationJPARepository;
@@ -14,28 +15,26 @@ import java.util.stream.Collectors;
 @Repository
 public class TeamDatabase implements ITeamRepository {
     @Autowired
-    ITeamJPARepository repo;
+    ITeamJPARepository teamRepo;
 
     @Autowired
     IFormationJPARepository formationsRepo;
 
     @Override
     public List<Team> getAll() {
-        return repo.findAll();
+        return teamRepo.findAll();
     }
 
     @Override
     public Team get(Long id) {
-        if(repo.findById(id).isPresent()){
-            return repo.findById(id).get();
-        }
-        return null;
+        Team team = teamRepo.findById(id).orElse(null);
+        return team;
     }
 
     @Override
     public Boolean delete(Long id) {
         if(get(id) != null) {
-            repo.deleteById(id);
+            teamRepo.deleteById(id);
             return true;
         }
         return false;
@@ -44,7 +43,7 @@ public class TeamDatabase implements ITeamRepository {
     @Override
     public Boolean add(Team team) {
         if(team.getId() == null) {
-            repo.save(team);
+            teamRepo.save(team);
             return true;
         }
         return false;
@@ -53,7 +52,7 @@ public class TeamDatabase implements ITeamRepository {
     @Override
     public Boolean update(Team team) {
         if(team.getId() != null) {
-            repo.save(team);
+            teamRepo.save(team);
             return true;
         }
         return false;

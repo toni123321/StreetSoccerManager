@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import soccer.game.streetSoccerManager.model.Formation;
 import soccer.game.streetSoccerManager.model.Player;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlayerJPARepository;
@@ -11,25 +12,23 @@ import java.util.List;
 @Repository
 public class PlayerDatabase implements IPlayerRepository {
     @Autowired
-    IPlayerJPARepository repo;
+    IPlayerJPARepository playerRepo;
 
     @Override
     public List<Player> getAll() {
-        return repo.findAll();
+        return playerRepo.findAll();
     }
 
     @Override
     public Player get(Long id) {
-        if(repo.findById(id).isPresent()){
-            return repo.findById(id).get();
-        }
-        return null;
+        Player player = playerRepo.findById(id).orElse(null);
+        return player;
     }
 
     @Override
     public Boolean delete(Long id) {
         if(get(id) != null) {
-            repo.deleteById(id);
+            playerRepo.deleteById(id);
             return true;
         }
         return false;
@@ -38,7 +37,7 @@ public class PlayerDatabase implements IPlayerRepository {
     @Override
     public Boolean add(Player player) {
         if(player.getId() == null) {
-            repo.save(player);
+            playerRepo.save(player);
             return true;
         }
         return false;
@@ -47,7 +46,7 @@ public class PlayerDatabase implements IPlayerRepository {
     @Override
     public Boolean update(Player player) {
         if(player.getId() != null) {
-            repo.save(player);
+            playerRepo.save(player);
             return true;
         }
         return false;

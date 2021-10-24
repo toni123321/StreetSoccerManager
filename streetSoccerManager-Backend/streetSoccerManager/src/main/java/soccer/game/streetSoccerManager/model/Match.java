@@ -8,14 +8,14 @@ import java.util.*;
 
 @Getter
 @Setter
-public class    Match {
+public class Match {
 
     protected Long id;
     protected Team homeTeam;
     protected Team awayTeam;
 
-    private HashMap<Player, Position> homeTeamPositions;
-    private HashMap<Player, Position> awayTeamPositions;
+    protected Map<Player, Position> homeTeamPositions;
+    protected Map<Player, Position> awayTeamPositions;
 
     // result
     protected int homeTeamGoals;
@@ -26,8 +26,8 @@ public class    Match {
 
 
     public Match(Long id, Team homeTeam, Team awayTeam,
-                 HashMap<Player, Position> homeTeamPositions,
-                 HashMap<Player, Position> awayTeamPositions,
+                 Map<Player, Position> homeTeamPositions,
+                 Map<Player, Position> awayTeamPositions,
                  int homeTeamGoals, int awayTeamGoals, String matchStatistic) {
         this.id = id;
         this.homeTeam = homeTeam;

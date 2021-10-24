@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import soccer.game.streetSoccerManager.model.Team;
 import soccer.game.streetSoccerManager.model.User;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IUserJPARepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
@@ -11,25 +12,23 @@ import java.util.List;
 @Repository
 public class UserDatabase implements IUserRepository {
     @Autowired
-    IUserJPARepository repo;
+    IUserJPARepository userRepo;
 
     @Override
     public List<User> getAll() {
-        return repo.findAll();
+        return userRepo.findAll();
     }
 
     @Override
     public User get(Long id) {
-        if(repo.findById(id).isPresent()){
-            return repo.findById(id).get();
-        }
-        return null;
+        User user = userRepo.findById(id).orElse(null);
+        return user;
     }
 
     @Override
     public Boolean delete(Long id) {
         if(get(id) != null) {
-            repo.deleteById(id);
+            userRepo.deleteById(id);
             return true;
         }
         return false;
@@ -38,7 +37,7 @@ public class UserDatabase implements IUserRepository {
     @Override
     public Boolean add(User user) {
         if(user.getId() == null) {
-            repo.save(user);
+            userRepo.save(user);
             return true;
         }
         return false;
@@ -47,7 +46,7 @@ public class UserDatabase implements IUserRepository {
     @Override
     public Boolean update(User user) {
         if(user.getId() != null) {
-            repo.save(user);
+            userRepo.save(user);
             return true;
         }
         return false;
