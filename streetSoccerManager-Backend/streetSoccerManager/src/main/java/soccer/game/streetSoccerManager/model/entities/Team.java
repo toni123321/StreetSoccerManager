@@ -1,8 +1,7 @@
-package soccer.game.streetSoccerManager.model;
+package soccer.game.streetSoccerManager.model.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +29,7 @@ public class Team {
 
     @OneToMany(mappedBy="team")
     @JsonIgnore
-    private Set<Player> players;
+    private Set<PlayerTeamInfo> playersTeamInfo;
 
     public Team(Long id, String name, Formation formation) {
         this.id = id;

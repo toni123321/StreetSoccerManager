@@ -3,7 +3,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Formation;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.entities.Formation;
 
 import java.util.ArrayList;
 import java.util.List;

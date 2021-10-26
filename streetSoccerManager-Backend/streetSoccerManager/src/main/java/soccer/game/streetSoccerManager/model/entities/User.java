@@ -1,4 +1,4 @@
-package soccer.game.streetSoccerManager.model;
+package soccer.game.streetSoccerManager.model.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

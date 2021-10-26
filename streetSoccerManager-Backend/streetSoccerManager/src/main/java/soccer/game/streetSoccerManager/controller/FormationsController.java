@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.entities.Formation;
 
 import java.util.List;
 

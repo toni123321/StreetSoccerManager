@@ -2,8 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.Team;
-import soccer.game.streetSoccerManager.model.User;
+import soccer.game.streetSoccerManager.model.entities.User;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IUserJPARepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
 

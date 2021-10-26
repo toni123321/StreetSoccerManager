@@ -1,6 +1,6 @@
 package soccer.game.streetSoccerManager.repository.repositoryInterfaces;
 
-import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.entities.Player;
 
 import java.util.List;
 

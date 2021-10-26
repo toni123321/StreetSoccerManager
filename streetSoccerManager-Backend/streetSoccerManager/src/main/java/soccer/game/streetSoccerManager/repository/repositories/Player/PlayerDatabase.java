@@ -2,8 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Player;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.entities.Player;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlayerJPARepository;
 

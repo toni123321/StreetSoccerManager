@@ -2,9 +2,8 @@ package soccer.game.streetSoccerManager.repository.repositories.Team;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.Position;
-import soccer.game.streetSoccerManager.model.Team;
+import soccer.game.streetSoccerManager.model.entities.Formation;
+import soccer.game.streetSoccerManager.model.entities.Team;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IFormationJPARepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.ITeamJPARepository;

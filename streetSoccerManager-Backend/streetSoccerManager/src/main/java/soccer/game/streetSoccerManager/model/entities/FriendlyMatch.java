@@ -1,6 +1,5 @@
-package soccer.game.streetSoccerManager.model;
+package soccer.game.streetSoccerManager.model.entities;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class FriendlyMatch extends Match {

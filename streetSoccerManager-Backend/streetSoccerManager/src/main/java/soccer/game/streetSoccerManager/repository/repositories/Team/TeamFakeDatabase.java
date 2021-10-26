@@ -2,7 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Team;
 
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.*;
+import soccer.game.streetSoccerManager.model.entities.*;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;

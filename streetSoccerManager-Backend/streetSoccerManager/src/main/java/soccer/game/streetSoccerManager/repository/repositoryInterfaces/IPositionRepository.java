@@ -1,7 +1,7 @@
 package soccer.game.streetSoccerManager.repository.repositoryInterfaces;
 
 
-import soccer.game.streetSoccerManager.model.Position;
+import soccer.game.streetSoccerManager.model.entities.Position;
 
 import java.util.List;
 

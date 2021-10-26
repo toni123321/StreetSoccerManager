@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
-import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.entities.Player;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,7 +49,7 @@ public class PlayerService implements IPlayerService {
     @Override
     public List<Player> getAllPlayersInTeam(Long teamId) {
         return getAll().stream().filter(player ->
-                player.getTeam().getId().equals(teamId)).
+                player.getPlayerTeamInfo().getTeam().getId().equals(teamId)).
                 collect(Collectors.toList());
     }
 
@@ -57,16 +57,16 @@ public class PlayerService implements IPlayerService {
     public List<Player> getAllPlayersInTeamAvailableForSwapping(Long teamId, Long playerToSwapId) {
         List<Player> playersAvailableForSwap = getAllPlayersInTeam(teamId);
         Player playerToSwap = get(playerToSwapId);
-        if(playerToSwap.getDefaultPosition().getPosition().equals("GK")) {
+        if(playerToSwap.getPlayerPositionInfo().getDefaultPosition().getPosition().equals("GK")) {
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            player.getDefaultPosition().getPosition().equals("GK")).
+                            player.getPlayerPositionInfo().getDefaultPosition().getPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         else{
             playersAvailableForSwap = playersAvailableForSwap.
                     stream().filter(player ->
-                            !player.getDefaultPosition().getPosition().equals("GK")).
+                            !player.getPlayerPositionInfo().getDefaultPosition().getPosition().equals("GK")).
                     collect(Collectors.toList());
         }
         return playersAvailableForSwap.stream().
@@ -78,7 +78,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getStartingPlayers(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.isStarting() == true).
+                filter(player -> player.getPlayerPositionInfo().isStarting() == true).
                 collect(Collectors.toList());
     }
 
@@ -86,7 +86,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getReserves(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.isStarting() == false).
+                filter(player -> player.getPlayerPositionInfo().isStarting() == false).
                 collect(Collectors.toList());
     }
 

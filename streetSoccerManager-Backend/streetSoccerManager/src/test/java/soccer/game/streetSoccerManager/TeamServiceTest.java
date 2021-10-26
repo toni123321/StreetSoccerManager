@@ -2,9 +2,9 @@ package soccer.game.streetSoccerManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import soccer.game.streetSoccerManager.model.entities.*;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.model.*;
 import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
 import soccer.game.streetSoccerManager.service.TeamService;
 

@@ -1,7 +1,6 @@
 package soccer.game.streetSoccerManager.repository.repositories.PlayerStats;
 
-import soccer.game.streetSoccerManager.model.PlayerStats;
-import soccer.game.streetSoccerManager.model.Position;
+import soccer.game.streetSoccerManager.model.entities.PlayerStats;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 
 import java.util.ArrayList;
@@ -11,29 +10,29 @@ public class PlayerStatsFakeDatabase implements IPlayerStatsRepository {
 
     // todo: Implement methods, add constructor with faked objects
 
-    private List<PlayerStats> playerStats = new ArrayList<>();
+    private List<PlayerStats> playersStats = new ArrayList<>();
 
     public PlayerStatsFakeDatabase() {
-        playerStats.add(new PlayerStats(0l, 65));
-        playerStats.add(new PlayerStats(1l, 60));
-        playerStats.add(new PlayerStats(2l, 64));
-        playerStats.add(new PlayerStats(3l, 65));
-        playerStats.add(new PlayerStats(4l, 72));
-        playerStats.add(new PlayerStats(5l, 65));
-        playerStats.add(new PlayerStats(6l, 60));
-        playerStats.add(new PlayerStats(7l, 64));
-        playerStats.add(new PlayerStats(8l, 65));
-        playerStats.add(new PlayerStats(9l, 64));
+        playersStats.add(new PlayerStats(0l, 65));
+        playersStats.add(new PlayerStats(1l, 60));
+        playersStats.add(new PlayerStats(2l, 64));
+        playersStats.add(new PlayerStats(3l, 65));
+        playersStats.add(new PlayerStats(4l, 72));
+        playersStats.add(new PlayerStats(5l, 65));
+        playersStats.add(new PlayerStats(6l, 60));
+        playersStats.add(new PlayerStats(7l, 64));
+        playersStats.add(new PlayerStats(8l, 65));
+        playersStats.add(new PlayerStats(9l, 64));
     }
 
     @Override
     public List<PlayerStats> getAll() {
-        return playerStats;
+        return playersStats;
     }
 
     @Override
     public PlayerStats get(Long id) {
-        for (PlayerStats  stat: playerStats) {
+        for (PlayerStats  stat: playersStats) {
             if (stat.getId().equals(id))
                 return stat;
         }
@@ -46,7 +45,7 @@ public class PlayerStatsFakeDatabase implements IPlayerStatsRepository {
         if (stat == null){
             return false;
         }
-        return playerStats.remove(stat);
+        return playersStats.remove(stat);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class PlayerStatsFakeDatabase implements IPlayerStatsRepository {
         if (this.get(stat.getId()) != null){
             return false;
         }
-        playerStats.add(stat);
+        playersStats.add(stat);
         return true;
     }
 

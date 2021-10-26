@@ -9,7 +9,7 @@ import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationServi
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
-import soccer.game.streetSoccerManager.model.Player;
+import soccer.game.streetSoccerManager.model.entities.Player;
 
 
 import java.net.URI;
@@ -24,20 +24,10 @@ public class PlayersController {
     @Qualifier("playerService")
     private IPlayerService playerService;
 
-    @Qualifier("teamService")
-    private ITeamService teamService;
 
-    @Qualifier("userService")
-    private IUserService userService;
-
-    @Qualifier("formationService")
-    private IFormationService formationService;
-
-    public PlayersController(IPlayerService playerService, ITeamService teamService, IUserService userService, IFormationService formationService) {
+    public PlayersController(IPlayerService playerService) {
         this.playerService = playerService;
-        this.teamService = teamService;
-        this.userService = userService;
-        this.formationService = formationService;
+
     }
 
 
