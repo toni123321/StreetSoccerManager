@@ -2,8 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.Position;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.PlayerStats;
-import soccer.game.streetSoccerManager.model.Position;
+import soccer.game.streetSoccerManager.model.entities.Position;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPositionJPARepository;
 

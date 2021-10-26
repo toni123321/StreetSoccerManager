@@ -2,7 +2,7 @@ package soccer.game.streetSoccerManager.service.serviceInterfaces;
 
 
 
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.entities.Formation;
 
 import java.util.List;
 

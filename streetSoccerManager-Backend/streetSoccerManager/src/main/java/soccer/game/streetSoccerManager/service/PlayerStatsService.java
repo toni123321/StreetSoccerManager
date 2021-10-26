@@ -2,7 +2,7 @@ package soccer.game.streetSoccerManager.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.model.PlayerStats;
+import soccer.game.streetSoccerManager.model.entities.PlayerStats;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
 

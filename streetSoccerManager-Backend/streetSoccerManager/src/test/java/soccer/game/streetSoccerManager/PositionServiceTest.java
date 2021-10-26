@@ -3,15 +3,11 @@ package soccer.game.streetSoccerManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import soccer.game.streetSoccerManager.model.*;
+import soccer.game.streetSoccerManager.model.entities.Position;
 import soccer.game.streetSoccerManager.repository.repositories.Position.PositionFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.PositionService;
-import soccer.game.streetSoccerManager.service.TeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 
 import java.util.ArrayList;
 import java.util.List;

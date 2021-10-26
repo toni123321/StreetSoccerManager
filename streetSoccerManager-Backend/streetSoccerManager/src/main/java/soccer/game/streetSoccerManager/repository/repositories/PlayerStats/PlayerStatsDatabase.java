@@ -2,8 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.PlayerStats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.Formation;
-import soccer.game.streetSoccerManager.model.PlayerStats;
+import soccer.game.streetSoccerManager.model.entities.PlayerStats;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlayerStatsJPARepository;
 

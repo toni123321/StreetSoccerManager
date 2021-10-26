@@ -1,6 +1,6 @@
 package soccer.game.streetSoccerManager.service.serviceInterfaces;
 
-import soccer.game.streetSoccerManager.model.PlayerStats;
+import soccer.game.streetSoccerManager.model.entities.PlayerStats;
 
 
 import java.util.List;

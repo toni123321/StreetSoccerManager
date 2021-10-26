@@ -1,4 +1,4 @@
-package soccer.game.streetSoccerManager.model;
+package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -23,18 +23,14 @@ public class Position {
 
     @OneToMany(mappedBy = "defaultPosition")
     @JsonIgnore
-    protected Set<Player> playersDefaultPositions;
+    protected Set<PlayerPositionInfo> playersDefaultPositions;
 
     @OneToMany(mappedBy="currentPosition")
     @JsonIgnore
-    private Set<Player> playersCurrentPosition;
+    private Set<PlayerPositionInfo> playersCurrentPosition;
 
     public Position(Long id, String category, String position) {
         this.id = id;
-        this.category = category;
-        this.position = position;
-    }
-    public Position(String category, String position) {
         this.category = category;
         this.position = position;
     }
@@ -44,11 +40,11 @@ public class Position {
         if (this == o) return true;
         if (!(o instanceof Position)) return false;
         Position position1 = (Position) o;
-        return Objects.equals(getId(), position1.getId()) && Objects.equals(getCategory(), position1.getCategory()) && Objects.equals(getPosition(), position1.getPosition());
+        return Objects.equals(getId(), position1.getId()) && Objects.equals(getCategory(), position1.getCategory()) && Objects.equals(getPosition(), position1.getPosition()) && Objects.equals(getPlayersDefaultPositions(), position1.getPlayersDefaultPositions()) && Objects.equals(getPlayersCurrentPosition(), position1.getPlayersCurrentPosition());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCategory(), getPosition());
+        return Objects.hash(getId(), getCategory(), getPosition(), getPlayersDefaultPositions(), getPlayersCurrentPosition());
     }
 }

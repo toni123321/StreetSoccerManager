@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.CustomTeam;
+import soccer.game.streetSoccerManager.model.entities.CustomTeam;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
-import soccer.game.streetSoccerManager.model.Team;
+import soccer.game.streetSoccerManager.model.entities.Team;
 
 import java.net.URI;
 import java.util.List;
@@ -22,16 +22,9 @@ public class TeamsController {
     @Qualifier("teamService")
     private ITeamService teamService;
 
-    @Qualifier("userService")
-    private IUserService userService;
 
-    @Qualifier("formationService")
-    private IFormationService formationService;
-
-    public TeamsController(ITeamService teamService, IUserService userService, IFormationService formationService) {
+    public TeamsController(ITeamService teamService) {
         this.teamService = teamService;
-        this.userService = userService;
-        this.formationService = formationService;
     }
 
 
@@ -96,19 +89,6 @@ public class TeamsController {
         return ResponseEntity.notFound().build();
     }
 
-
-    @PostMapping()
-    public ResponseEntity<CustomTeam> createTeam(@RequestBody CustomTeam team) {
-        if (!teamService.add(team)){
-            String entity =  "Team with id " + team.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        } else {
-            String url = "team" + "/" + team.getId(); // url of the created student
-            URI uri = URI.create(url);
-            return new ResponseEntity(team,HttpStatus.CREATED);
-        }
-
-    }
 
     @PutMapping()
     public ResponseEntity<Team> updateTeam(@RequestBody Team team) {

@@ -1,7 +1,7 @@
 package soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.entities.Formation;
 
 public interface IFormationJPARepository extends JpaRepository<Formation, Long> {
 }

@@ -2,11 +2,11 @@ package soccer.game.streetSoccerManager.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import soccer.game.streetSoccerManager.model.CustomTeam;
-import soccer.game.streetSoccerManager.model.OfficialTeam;
+import soccer.game.streetSoccerManager.model.entities.CustomTeam;
+import soccer.game.streetSoccerManager.model.entities.OfficialTeam;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.model.Team;
+import soccer.game.streetSoccerManager.model.entities.Team;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.model.Formation;
+import soccer.game.streetSoccerManager.model.entities.Formation;
 
 import java.util.List;
 
