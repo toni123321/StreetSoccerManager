@@ -85,7 +85,7 @@ public class PositionFakeDatabase implements IPositionRepository {
 
     @Override
     public Boolean update(Position position) {
-        Position oldPosition = this.get(position.getPosition());
+        Position oldPosition = this.get(position.getId());
         if (oldPosition == null) {
             return false;
         }

@@ -1,10 +1,13 @@
 package soccer.game.streetSoccerManager.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.converters.PlayerConverter;
+import soccer.game.streetSoccerManager.model.dtos.PlayerDTO;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
@@ -21,6 +24,7 @@ import java.util.Optional;
 @RequestMapping("/players")
 public class PlayersController {
 
+    private PlayerConverter playerConverter = new PlayerConverter();
     @Qualifier("playerService")
     private IPlayerService playerService;
 
@@ -98,21 +102,24 @@ public class PlayersController {
     }
 
     @PostMapping()
-    public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+    public ResponseEntity<PlayerDTO> createPlayer(@RequestBody PlayerDTO playerDTO) {
+        Player player = playerConverter.convertPlayerDtoToPlayer(playerDTO);
         if (!playerService.add(player)){
             String entity =  "Player with id " + player.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
             String url = "player" + "/" + player.getId();
-            URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+            //URI uri = URI.create(url);
+            PlayerDTO playerDTOtoReturn = playerConverter.convertPlayerToPlayerDto(player);
+            return new ResponseEntity(playerDTOtoReturn,HttpStatus.CREATED);
         }
 
     }
 
     @PutMapping()
-    public ResponseEntity<Player> updatePlayer(@RequestBody Player player) {
+    public ResponseEntity<PlayerDTO> updatePlayer(@RequestBody PlayerDTO playerDTO) {
         // Idempotent method. Always update (even if the resource has already been updated before).
+        Player player = playerConverter.convertPlayerDtoToPlayer(playerDTO);
         if (playerService.update(player)) {
             return ResponseEntity.noContent().build();
         } else {
