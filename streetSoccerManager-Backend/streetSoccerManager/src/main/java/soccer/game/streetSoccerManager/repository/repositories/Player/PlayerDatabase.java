@@ -6,6 +6,7 @@ import soccer.game.streetSoccerManager.model.entities.Player;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlayerJPARepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -43,6 +44,7 @@ public class PlayerDatabase implements IPlayerRepository {
     }
 
     @Override
+    @Transactional
     public Boolean update(Player player) {
         if(player.getId() != null) {
             playerRepo.save(player);

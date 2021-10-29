@@ -1,6 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name ="position")
 @NoArgsConstructor
+@Data
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,16 +37,5 @@ public class Position {
         this.position = position;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Position)) return false;
-        Position position1 = (Position) o;
-        return Objects.equals(getId(), position1.getId()) && Objects.equals(getCategory(), position1.getCategory()) && Objects.equals(getPosition(), position1.getPosition()) && Objects.equals(getPlayersDefaultPositions(), position1.getPlayersDefaultPositions()) && Objects.equals(getPlayersCurrentPosition(), position1.getPlayersCurrentPosition());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCategory(), getPosition(), getPlayersDefaultPositions(), getPlayersCurrentPosition());
-    }
 }

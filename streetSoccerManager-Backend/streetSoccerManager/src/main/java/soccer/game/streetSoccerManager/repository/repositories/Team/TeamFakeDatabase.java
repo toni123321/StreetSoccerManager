@@ -59,7 +59,6 @@ public class TeamFakeDatabase implements ITeamRepository {
         if (team == null){
             return false;
         }
-
         return teams.remove(team);
     }
 
