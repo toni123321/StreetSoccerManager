@@ -8,8 +8,6 @@ import java.util.List;
 
 public class PlayerStatsFakeDatabase implements IPlayerStatsRepository {
 
-    // todo: Implement methods, add constructor with faked objects
-
     private List<PlayerStats> playersStats = new ArrayList<>();
 
     public PlayerStatsFakeDatabase() {

@@ -3,10 +3,13 @@ package soccer.game.streetSoccerManager.repository.repositories.Player;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.model.entities.*;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerAdditionalInfo.PlayerAdditionalInfoFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPositionInfo.PlayerPositionInfoDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPositionInfo.PlayerPositionInfoFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoFakeDatabase;
 import soccer.game.streetSoccerManager.repository.repositories.Position.PositionFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
+import soccer.game.streetSoccerManager.repository.repositoryInterfaces.*;
 import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
 
 import java.util.*;
@@ -19,13 +22,20 @@ public class PlayerFakeDatabase implements IPlayerRepository {
     private ITeamRepository teamFakeDatabase = new TeamFakeDatabase();
     List<Team> teams = teamFakeDatabase.getAll();
 
-    private IPositionRepository positionFakeDatabase = new PositionFakeDatabase();
-    //List<Position> positions = positionFakeDatabase.getAll();
+    private IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+    private IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
+    private IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+    private IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+
 
     public PlayerFakeDatabase() {
         //STARTING
-        players.add(new Player(1l, new PlayerPersonalInfo(), new PlayerPositionInfo(), new PlayerTeamInfo(), new PlayerAdditionalInfo()));
-//        players.add(new Player(0l, 4,"Javi", "Diaz",
+        players.add(new Player(1l, playerPersonalInfoRepository.get(1l), playerPositionInfoRepository.get(1l), playerTeamInfoRepository.get(1l), playerAdditionalInfoRepository.get(1l)));
+        players.add(new Player(2l, playerPersonalInfoRepository.get(2l), playerPositionInfoRepository.get(2l), playerTeamInfoRepository.get(2l), playerAdditionalInfoRepository.get(2l)));
+
+
+
+        //        players.add(new Player(0l, 4,"Javi", "Diaz",
 //                new GregorianCalendar(1997, 5, 15), 150,
 //                positionFakeDatabase.get("GK"), positionFakeDatabase.get("GK"), 1, true,
 //                new PlayerStats(0l,65),  teams.get(0)));

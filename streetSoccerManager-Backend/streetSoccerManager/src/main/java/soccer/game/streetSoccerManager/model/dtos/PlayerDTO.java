@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 
 @Getter
 @Setter
-@Data
 public class PlayerDTO {
     private Long id;
     private PlayerPersonalInfo playerPersonalInfo;

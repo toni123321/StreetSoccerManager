@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.converters.EndUserConverter;
+import soccer.game.streetSoccerManager.model.dtos.EndUserDTO;
 import soccer.game.streetSoccerManager.model.entities.Admin;
 import soccer.game.streetSoccerManager.model.entities.EndUser;
 import soccer.game.streetSoccerManager.model.entities.User;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class EndUserController {
     @Qualifier("userService")
     private IUserService userService;
+    private EndUserConverter endUserConverter = new EndUserConverter();
 
     public EndUserController(IUserService userService) {
         this.userService = userService;
@@ -59,22 +62,23 @@ public class EndUserController {
 
 
     @PostMapping()
-    public ResponseEntity<EndUser> createEndUser(@RequestBody EndUser user) {
-        if (!userService.add(user)){
-            String entity =  "user with id " + user.getId() + " already exists.";
+    public ResponseEntity<EndUserDTO> createEndUser(@RequestBody EndUserDTO endUserDTO) {
+        EndUser endUser = endUserConverter.convertEndUserDtoToEndUser(endUserDTO);
+        if (!userService.add(endUser)){
+            String entity =  "user with id " + endUser.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            String url = "user" + "/" + user.getId(); // url of the created student
-            URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+            EndUserDTO endUserDTOtoReturn = endUserConverter.convertEndUserToEndUserDto(((EndUser) userService.get(endUser.getId())));
+            return new ResponseEntity(endUserDTOtoReturn,HttpStatus.CREATED);
         }
 
     }
 
     @PutMapping()
-    public ResponseEntity<EndUser> updateEndUser(@RequestBody EndUser user) {
+    public ResponseEntity<EndUserDTO> updateEndUser(@RequestBody EndUserDTO endUserDTO) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (userService.update(user)) {
+        EndUser endUser = endUserConverter.convertEndUserDtoToEndUser(endUserDTO);
+        if (userService.update(endUser)) {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);

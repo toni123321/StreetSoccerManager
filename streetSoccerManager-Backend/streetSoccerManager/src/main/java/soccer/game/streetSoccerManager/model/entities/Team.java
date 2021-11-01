@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.model.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Table(name ="team")
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Data
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,26 +33,18 @@ public class Team {
     @JsonIgnore
     private Set<PlayerTeamInfo> playersTeamInfo;
 
+    @OneToOne(mappedBy = "homeTeam")
+    @JsonIgnore
+    protected MatchInfo matchInfoHomeTeam;
+
+    @OneToOne(mappedBy = "awayTeam")
+    @JsonIgnore
+    protected MatchInfo matchInfoAwayTeam;
+
+
     public Team(Long id, String name, Formation formation) {
         this.id = id;
         this.name = name;
         this.formation = formation;
-    }
-
-    public Team(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Team)) return false;
-        Team team = (Team) o;
-        return getId() == team.getId() && Objects.equals(getName(), team.getName()) && Objects.equals(getFormation(), team.getFormation());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getFormation());
     }
 }

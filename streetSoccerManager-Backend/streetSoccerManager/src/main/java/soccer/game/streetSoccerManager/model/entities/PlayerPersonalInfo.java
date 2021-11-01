@@ -1,6 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Calendar;
 @Entity
 @Table(name ="player_personal_info")
 @NoArgsConstructor
+@Data
 public class PlayerPersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

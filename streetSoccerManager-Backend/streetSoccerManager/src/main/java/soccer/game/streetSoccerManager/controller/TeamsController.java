@@ -90,13 +90,13 @@ public class TeamsController {
     }
 
 
-    @PutMapping()
-    public ResponseEntity<Team> updateTeam(@RequestBody Team team) {
-        // Idempotent method. Always update (even if the resource has already been updated before).
-        if (teamService.update(team)) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return new ResponseEntity("Please provide a valid team id",HttpStatus.NOT_FOUND);
-        }
-    }
+//    @PutMapping()
+//    public ResponseEntity<Team> updateTeam(@RequestBody Team team) {
+//        // Idempotent method. Always update (even if the resource has already been updated before).
+//        if (teamService.update(team)) {
+//            return ResponseEntity.noContent().build();
+//        } else {
+//            return new ResponseEntity("Please provide a valid team id",HttpStatus.NOT_FOUND);
+//        }
+//    }
 }

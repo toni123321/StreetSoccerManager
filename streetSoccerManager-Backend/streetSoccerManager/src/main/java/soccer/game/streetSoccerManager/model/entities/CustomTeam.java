@@ -1,5 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @NoArgsConstructor
+@Data
 public class CustomTeam extends Team{
     @OneToOne
     @JoinColumn(name = "userId")
@@ -23,17 +25,4 @@ public class CustomTeam extends Team{
         this.manager = manager;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CustomTeam)) return false;
-        if (!super.equals(o)) return false;
-        CustomTeam that = (CustomTeam) o;
-        return Objects.equals(manager, that.manager);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), manager);
-    }
 }
