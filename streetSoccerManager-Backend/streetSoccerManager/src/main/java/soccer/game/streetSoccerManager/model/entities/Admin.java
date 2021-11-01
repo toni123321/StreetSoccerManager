@@ -6,8 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Objects;
 
-@Getter
-@Setter
+
 @Entity
 @NoArgsConstructor
 @Data

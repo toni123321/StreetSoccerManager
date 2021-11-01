@@ -8,8 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="player_position_info")
 @NoArgsConstructor
