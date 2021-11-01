@@ -4,21 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Player;
-import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
-import soccer.game.streetSoccerManager.repository.repositories.Player.PlayerFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerAdditionalInfo.PlayerAdditionalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPositionInfo.PlayerPositionInfoDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPositionInfo.PlayerPositionInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Player.PlayerStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerAdditionalInfo.PlayerAdditionalInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPositionInfo.PlayerPositionInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.*;
-import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.PlayerService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @SpringBootTest
@@ -26,13 +21,13 @@ public class PlayerServiceTest {
     @Test
     void GetAllPlayersSuccessScenario() {
         // Arrange
-        IPlayerRepository playerRepository = new PlayerFakeDatabase();
+        IPlayerRepository playerRepository = new PlayerStubDatabase();
         IPlayerService playerService = new PlayerService(playerRepository);
 
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
-        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
+        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoStubDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
 
         // Act
         List<Player> players = playerService.getAll();
@@ -49,13 +44,13 @@ public class PlayerServiceTest {
     @Test
     void GetPlayerSuccessScenario() {
         // Arrange
-        IPlayerRepository playerRepository = new PlayerFakeDatabase();
+        IPlayerRepository playerRepository = new PlayerStubDatabase();
         IPlayerService playerService = new PlayerService(playerRepository);
 
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
-        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
+        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoStubDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
 
         // Act
         Player player = playerService.get(1l);
@@ -66,13 +61,13 @@ public class PlayerServiceTest {
 
     @Test
     void DeletePlayerSuccessScenario() {
-        IPlayerRepository playerRepository = new PlayerFakeDatabase();
+        IPlayerRepository playerRepository = new PlayerStubDatabase();
         IPlayerService playerService = new PlayerService(playerRepository);
 
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
-        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
+        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoStubDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
 
         // Act
         playerService.delete(1l);
@@ -89,13 +84,13 @@ public class PlayerServiceTest {
 
     @Test
     void AddPlayerSuccessScenario() {
-        IPlayerRepository playerRepository = new PlayerFakeDatabase();
+        IPlayerRepository playerRepository = new PlayerStubDatabase();
         IPlayerService playerService = new PlayerService(playerRepository);
 
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
-        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
+        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoStubDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
 
         // Act
         playerService.add(new Player(3l, playerPersonalInfoRepository.get(1l), playerPositionInfoRepository.get(2l), playerTeamInfoRepository.get(1l), playerAdditionalInfoRepository.get(1l)));
@@ -112,13 +107,13 @@ public class PlayerServiceTest {
 
     @Test
     void UpdatePlayerSuccessScenario(){
-        IPlayerRepository playerRepository = new PlayerFakeDatabase();
+        IPlayerRepository playerRepository = new PlayerStubDatabase();
         IPlayerService playerService = new PlayerService(playerRepository);
 
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
-        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoFakeDatabase();
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
+        IPlayerPositionInfoRepository playerPositionInfoRepository = new PlayerPositionInfoStubDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
 
         // Act
         playerService.update(new Player(2l, playerPersonalInfoRepository.get(1l), playerPositionInfoRepository.get(2l), playerTeamInfoRepository.get(1l), playerAdditionalInfoRepository.get(1l)));

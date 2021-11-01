@@ -3,7 +3,6 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerTeamInfoRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerTeamInfoService;
 
@@ -14,7 +13,7 @@ public class PlayerTeamInfoService implements IPlayerTeamInfoService {
     private IPlayerTeamInfoRepository dataStore;
 
     // todo change datastore
-    public PlayerTeamInfoService(@Qualifier("playerTeamInfoFakeDatabase") IPlayerTeamInfoRepository dataStore) {
+    public PlayerTeamInfoService(@Qualifier("playerTeamInfoStubDatabase") IPlayerTeamInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 

@@ -13,7 +13,7 @@ public class UserService implements IUserService {
 
     private IUserRepository dataStore;
 
-    public UserService(@Qualifier("userDatabase") IUserRepository dataStore) {
+    public UserService(@Qualifier("userJPADatabase") IUserRepository dataStore) {
         this.dataStore = dataStore;
     }
 

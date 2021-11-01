@@ -9,7 +9,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepo
 import java.util.List;
 
 @Repository
-public class UserDatabase implements IUserRepository {
+public class UserJPADatabase implements IUserRepository {
     @Autowired
     IUserJPARepository userRepo;
 

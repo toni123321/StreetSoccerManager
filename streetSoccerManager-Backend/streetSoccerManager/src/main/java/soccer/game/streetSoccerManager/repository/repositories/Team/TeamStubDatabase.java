@@ -6,26 +6,26 @@ import soccer.game.streetSoccerManager.model.entities.*;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
-import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.User.UserFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.User.UserStubDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class TeamFakeDatabase implements ITeamRepository {
+public class TeamStubDatabase implements ITeamRepository {
     @Getter
     private List<Team> teams = new ArrayList<>();
 
-    private IFormationRepository formationFakeDatabase = new FormationFakeDatabase();
+    private IFormationRepository formationFakeDatabase = new FormationStubDatabase();
     private List<Formation> formations = formationFakeDatabase.getAll();
 
-    private IUserRepository userFakeDatabase = new UserFakeDatabase();
+    private IUserRepository userFakeDatabase = new UserStubDatabase();
     private List<User> users = userFakeDatabase.getAll();
 
 
-    public TeamFakeDatabase() {
+    public TeamStubDatabase() {
         teams.add(new CustomTeam(0l, "Real Madrid-Pro", formations.get(0), users.get(0)));
         teams.add(new OfficialTeam(1l,  "Barcelona", formations.get(1), "Manager1"));
         teams.add(new OfficialTeam(2l,  "Sevilla", formations.get(1), "Manager2"));

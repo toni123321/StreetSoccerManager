@@ -18,7 +18,7 @@ public class TeamService implements ITeamService {
     private ITeamRepository dataStore;
 
 
-    public TeamService(@Qualifier("teamDatabase") ITeamRepository dataStore) {
+    public TeamService(@Qualifier("teamJPADatabase") ITeamRepository dataStore) {
         this.dataStore = dataStore;
     }
 

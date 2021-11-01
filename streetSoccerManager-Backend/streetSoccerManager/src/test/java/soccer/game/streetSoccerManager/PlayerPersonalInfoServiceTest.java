@@ -3,17 +3,10 @@ package soccer.game.streetSoccerManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import soccer.game.streetSoccerManager.model.entities.MatchInfo;
 import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
-import soccer.game.streetSoccerManager.repository.repositories.MatchInfo.MatchInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
-import soccer.game.streetSoccerManager.service.MatchInfoService;
 import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
 
 import java.util.ArrayList;
@@ -25,7 +18,7 @@ public class PlayerPersonalInfoServiceTest {
     @Test
     void GetAllPlayersPersonalInfoSuccessScenario() {
         // Arrange
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
         IPlayerPersonalInfoService playerPersonalInfoService = new PlayerPersonalInfoService(playerPersonalInfoRepository);
 
         // Act
@@ -44,7 +37,7 @@ public class PlayerPersonalInfoServiceTest {
     @Test
     void GetPlayerPersonalInfoSuccessScenario() {
         // Arrange
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
         IPlayerPersonalInfoService playerPersonalInfoService = new PlayerPersonalInfoService(playerPersonalInfoRepository);
 
         // Act
@@ -56,7 +49,7 @@ public class PlayerPersonalInfoServiceTest {
     @Test
     void DeletePlayerPersonalInfoSuccessScenario() {
         // Arrange
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
         IPlayerPersonalInfoService playerPersonalInfoService = new PlayerPersonalInfoService(playerPersonalInfoRepository);
 
         // Act
@@ -75,7 +68,7 @@ public class PlayerPersonalInfoServiceTest {
     @Test
     void AddPlayerPersonalInfoSuccessScenario() {
         // Arrange
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
         IPlayerPersonalInfoService playerPersonalInfoService = new PlayerPersonalInfoService(playerPersonalInfoRepository);
 
         // Act
@@ -95,7 +88,7 @@ public class PlayerPersonalInfoServiceTest {
     @Test
     void UpdatePlayerPersonalInfoSuccessScenario(){
         // Arrange
-        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoFakeDatabase();
+        IPlayerPersonalInfoRepository playerPersonalInfoRepository = new PlayerPersonalInfoStubDatabase();
         IPlayerPersonalInfoService playerPersonalInfoService = new PlayerPersonalInfoService(playerPersonalInfoRepository);
 
         // Act

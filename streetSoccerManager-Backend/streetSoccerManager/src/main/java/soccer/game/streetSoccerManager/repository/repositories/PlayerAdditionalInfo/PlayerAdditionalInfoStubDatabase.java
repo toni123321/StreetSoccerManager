@@ -2,8 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.PlayerAdditional
 
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.model.entities.PlayerAdditionalInfo;
-import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerAdditionalInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 
@@ -11,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PlayerAdditionalInfoFakeDatabase implements IPlayerAdditionalInfoRepository {
+public class PlayerAdditionalInfoStubDatabase implements IPlayerAdditionalInfoRepository {
     private List<PlayerAdditionalInfo> playersAdditionalInfo = new ArrayList<>();
-    private IPlayerStatsRepository playerStatsFakeDatabase = new PlayerStatsFakeDatabase();
+    private IPlayerStatsRepository playerStatsFakeDatabase = new PlayerStatsStubDatabase();
 
-    public PlayerAdditionalInfoFakeDatabase() {
+    public PlayerAdditionalInfoStubDatabase() {
         playersAdditionalInfo.add(new PlayerAdditionalInfo(1l, 150, playerStatsFakeDatabase.get(0l)));
         playersAdditionalInfo.add(new PlayerAdditionalInfo(2l, 120, playerStatsFakeDatabase.get(1l)));
     }

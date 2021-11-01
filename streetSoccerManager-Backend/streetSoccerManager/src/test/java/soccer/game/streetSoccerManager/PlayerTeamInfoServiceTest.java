@@ -3,21 +3,15 @@ package soccer.game.streetSoccerManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerTeamInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
-import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.PlayerTeamInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerTeamInfoService;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @SpringBootTest
@@ -25,9 +19,9 @@ public class PlayerTeamInfoServiceTest {
     @Test
     void GetAllPlayersTeamInfoSuccessScenario() {
         // Arrange
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
         IPlayerTeamInfoService playerTeamInfoService = new PlayerTeamInfoService(playerTeamInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         List<PlayerTeamInfo> playersTeamInfo = playerTeamInfoService.getAll();
@@ -45,9 +39,9 @@ public class PlayerTeamInfoServiceTest {
     @Test
     void GetPlayerTeamInfoSuccessScenario() {
         // Arrange
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
         IPlayerTeamInfoService playerTeamInfoService = new PlayerTeamInfoService(playerTeamInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         PlayerTeamInfo playerTeamInfo = playerTeamInfoService.get(1l);
@@ -59,9 +53,9 @@ public class PlayerTeamInfoServiceTest {
     @Test
     void DeletePlayerTeamInfoSuccessScenario() {
         // Arrange
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
         IPlayerTeamInfoService playerTeamInfoService = new PlayerTeamInfoService(playerTeamInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         playerTeamInfoService.delete(1l);
@@ -79,9 +73,9 @@ public class PlayerTeamInfoServiceTest {
     @Test
     void AddPlayerTeamInfoSuccessScenario() {
         // Arrange
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
         IPlayerTeamInfoService playerTeamInfoService = new PlayerTeamInfoService(playerTeamInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         playerTeamInfoService.add(new PlayerTeamInfo(3l, 10, teamRepository.get(0l)));
@@ -100,9 +94,9 @@ public class PlayerTeamInfoServiceTest {
     @Test
     void UpdatePlayerTeamInfoSuccessScenario(){
         // Arrange
-        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoFakeDatabase();
+        IPlayerTeamInfoRepository playerTeamInfoRepository = new PlayerTeamInfoStubDatabase();
         IPlayerTeamInfoService playerTeamInfoService = new PlayerTeamInfoService(playerTeamInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         playerTeamInfoService.update(new PlayerTeamInfo(2l, 10, teamRepository.get(0l)));

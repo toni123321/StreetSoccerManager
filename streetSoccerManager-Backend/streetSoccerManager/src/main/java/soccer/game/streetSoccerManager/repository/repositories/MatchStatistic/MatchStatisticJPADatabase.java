@@ -11,7 +11,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPosi
 import java.util.List;
 
 @Repository
-public class MatchStatisticDatabase implements IMatchStatisticRepository {
+public class MatchStatisticJPADatabase implements IMatchStatisticRepository {
 
     @Autowired
     IMatchStatisticJPARepository matchStatisticRepo;

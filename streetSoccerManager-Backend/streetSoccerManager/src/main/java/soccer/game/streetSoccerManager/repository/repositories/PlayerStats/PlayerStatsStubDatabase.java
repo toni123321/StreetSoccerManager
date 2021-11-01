@@ -6,11 +6,11 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerSt
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerStatsFakeDatabase implements IPlayerStatsRepository {
+public class PlayerStatsStubDatabase implements IPlayerStatsRepository {
 
     private List<PlayerStats> playersStats = new ArrayList<>();
 
-    public PlayerStatsFakeDatabase() {
+    public PlayerStatsStubDatabase() {
         playersStats.add(new PlayerStats(0l, 65));
         playersStats.add(new PlayerStats(1l, 60));
         playersStats.add(new PlayerStats(2l, 64));

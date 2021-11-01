@@ -10,11 +10,11 @@ import java.util.List;
 
 @Repository
 @Getter
-public class PositionFakeDatabase implements IPositionRepository {
+public class PositionStubDatabase implements IPositionRepository {
 
     private List<Position> positions = new ArrayList<>();
 
-    public PositionFakeDatabase() {
+    public PositionStubDatabase() {
         // add positions here
         positions.add(new Position(0l, "ATACK", "ST"));
         positions.add(new Position(1l, "ATACK", "LW"));

@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerStatsService implements IPlayerStatsService {
     private IPlayerStatsRepository dataStore;
 
-    public PlayerStatsService(@Qualifier("playerStatsDatabase")IPlayerStatsRepository dataStore) {
+    public PlayerStatsService(@Qualifier("playerStatsJPADatabase")IPlayerStatsRepository dataStore) {
         this.dataStore = dataStore;
     }
 

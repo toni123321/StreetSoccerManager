@@ -14,7 +14,7 @@ public class PlayerService implements IPlayerService {
 
     private IPlayerRepository dataStore;
 
-    public PlayerService(@Qualifier("playerDatabase") IPlayerRepository dataStore) {
+    public PlayerService(@Qualifier("playerJPADatabase") IPlayerRepository dataStore) {
         this.dataStore = dataStore;
     }
 

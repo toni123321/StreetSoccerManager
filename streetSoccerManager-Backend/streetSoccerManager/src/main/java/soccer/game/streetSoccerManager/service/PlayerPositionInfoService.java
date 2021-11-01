@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerPositionInfoService implements IPlayerPositionInfoService {
     private IPlayerPositionInfoRepository dataStore;
 
-    public PlayerPositionInfoService(@Qualifier("playerPositionInfoDatabase")IPlayerPositionInfoRepository dataStore) {
+    public PlayerPositionInfoService(@Qualifier("playerPositionInfoJPADatabase")IPlayerPositionInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 

@@ -10,12 +10,12 @@ import java.util.List;
 
 @Repository
 @Getter
-public class FormationFakeDatabase implements IFormationRepository {
+public class FormationStubDatabase implements IFormationRepository {
 
 
     private List<Formation> formations = new ArrayList<>();
 
-    public FormationFakeDatabase() {
+    public FormationStubDatabase() {
         formations.add(new Formation(1l, "1-2-1"));
         formations.add(new Formation(2l, "2-1-1"));
     }

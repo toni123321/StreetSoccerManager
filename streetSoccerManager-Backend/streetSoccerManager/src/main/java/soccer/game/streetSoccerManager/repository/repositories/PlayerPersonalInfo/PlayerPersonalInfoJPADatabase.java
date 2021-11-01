@@ -12,7 +12,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPosi
 import java.util.List;
 
 @Repository
-public class PlayerPersonalInfoDatabase implements IPlayerPersonalInfoRepository {
+public class PlayerPersonalInfoJPADatabase implements IPlayerPersonalInfoRepository {
     @Autowired
     IPlayerPersonalInfoJPARepository playerPersonalInfoJPARepo;
 

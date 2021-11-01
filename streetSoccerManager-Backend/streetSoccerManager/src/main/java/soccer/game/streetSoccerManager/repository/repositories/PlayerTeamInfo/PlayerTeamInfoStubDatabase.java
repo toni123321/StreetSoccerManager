@@ -1,10 +1,8 @@
 package soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo;
 
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.entities.Player;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
-import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerTeamInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 
@@ -12,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PlayerTeamInfoFakeDatabase implements IPlayerTeamInfoRepository {
+public class PlayerTeamInfoStubDatabase implements IPlayerTeamInfoRepository {
     private List<PlayerTeamInfo> playersTeamInfo = new ArrayList<>();
-    private ITeamRepository teamFakeDatabase = new TeamFakeDatabase();
+    private ITeamRepository teamFakeDatabase = new TeamStubDatabase();
 
-    public PlayerTeamInfoFakeDatabase() {
+    public PlayerTeamInfoStubDatabase() {
         playersTeamInfo.add(new PlayerTeamInfo(1l, 1, teamFakeDatabase.get(0l)));
         playersTeamInfo.add(new PlayerTeamInfo(2l, 2, teamFakeDatabase.get(0l)));
 

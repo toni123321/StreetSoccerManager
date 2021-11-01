@@ -3,6 +3,6 @@ package soccer.game.streetSoccerManager.repository.repositories.PlayerAdditional
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PlayerAdditionalInfoDatabase {
+public class PlayerAdditionalInfoJPADatabase {
     // todo
 }

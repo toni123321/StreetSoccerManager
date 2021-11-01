@@ -3,7 +3,6 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.MatchStatistic;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchStatisticRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchStatisticService;
 
@@ -14,7 +13,7 @@ public class MatchStatisticService implements IMatchStatisticService {
     private IMatchStatisticRepository dataStore;
 
     // todo change datastore
-    public MatchStatisticService(@Qualifier("matchStatisticFakeDatabase") IMatchStatisticRepository dataStore) {
+    public MatchStatisticService(@Qualifier("matchStatisticStubDatabase") IMatchStatisticRepository dataStore) {
         this.dataStore = dataStore;
     }
 
