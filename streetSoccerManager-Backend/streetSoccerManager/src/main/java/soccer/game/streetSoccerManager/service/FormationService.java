@@ -12,7 +12,7 @@ import java.util.List;
 public class FormationService implements IFormationService {
     private IFormationRepository dataStore;
 
-    public FormationService(@Qualifier("formationDatabase") IFormationRepository dataStore) {
+    public FormationService(@Qualifier("formationJPADatabase") IFormationRepository dataStore) {
         this.dataStore = dataStore;
     }
 

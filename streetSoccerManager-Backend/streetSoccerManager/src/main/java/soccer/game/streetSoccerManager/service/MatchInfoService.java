@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.MatchInfo;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchInfoService;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class MatchInfoService implements IMatchInfoService {
     private IMatchInfoRepository dataStore;
 
     // todo change datastore
-    public MatchInfoService(@Qualifier("matchInfoFakeDatabase") IMatchInfoRepository dataStore) {
+    public MatchInfoService(@Qualifier("matchInfoStubDatabase") IMatchInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 

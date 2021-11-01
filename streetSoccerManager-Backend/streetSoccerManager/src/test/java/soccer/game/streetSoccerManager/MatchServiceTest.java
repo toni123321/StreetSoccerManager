@@ -5,18 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.FriendlyMatch;
 import soccer.game.streetSoccerManager.model.entities.Match;
-import soccer.game.streetSoccerManager.model.entities.MatchInfo;
-import soccer.game.streetSoccerManager.repository.repositories.Match.MatchFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.MatchInfo.MatchInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.MatchStatistic.MatchStatisticFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Match.MatchStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.MatchInfo.MatchInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.MatchStatistic.MatchStatisticStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchStatisticRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
-import soccer.game.streetSoccerManager.service.MatchInfoService;
 import soccer.game.streetSoccerManager.service.MatchService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchService;
 
 import java.util.ArrayList;
@@ -27,11 +22,11 @@ public class MatchServiceTest {
     @Test
     void GetAllMatchesSuccessScenario() {
         // Arrange
-        IMatchRepository matchRepository = new MatchFakeDatabase();
+        IMatchRepository matchRepository = new MatchStubDatabase();
         IMatchService matchService = new MatchService(matchRepository);
 
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
-        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
+        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticStubDatabase();
 
         // Act
         List<Match> matches = matchService.getAll();
@@ -49,11 +44,11 @@ public class MatchServiceTest {
     @Test
     void GetMatchSuccessScenario() {
         // Arrange
-        IMatchRepository matchRepository = new MatchFakeDatabase();
+        IMatchRepository matchRepository = new MatchStubDatabase();
         IMatchService matchService = new MatchService(matchRepository);
 
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
-        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
+        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticStubDatabase();
 
         // Act
         Match match = matchService.get(1l);
@@ -65,11 +60,11 @@ public class MatchServiceTest {
     @Test
     void DeleteMatchSuccessScenario(){
         // Arrange
-        IMatchRepository matchRepository = new MatchFakeDatabase();
+        IMatchRepository matchRepository = new MatchStubDatabase();
         IMatchService matchService = new MatchService(matchRepository);
 
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
-        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
+        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticStubDatabase();
 
         // Act
         matchService.delete(1l);
@@ -87,11 +82,11 @@ public class MatchServiceTest {
     @Test
     void AddMatchSuccessScenario() {
         // Arrange
-        IMatchRepository matchRepository = new MatchFakeDatabase();
+        IMatchRepository matchRepository = new MatchStubDatabase();
         IMatchService matchService = new MatchService(matchRepository);
 
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
-        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
+        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticStubDatabase();
 
         // Act
         matchService.add(new FriendlyMatch(3l, matchInfoRepository.get(3l), matchStatisticRepository.get(3l)));
@@ -109,11 +104,11 @@ public class MatchServiceTest {
     @Test
     void UpdateMatchSuccessScenario(){
         // Arrange
-        IMatchRepository matchRepository = new MatchFakeDatabase();
+        IMatchRepository matchRepository = new MatchStubDatabase();
         IMatchService matchService = new MatchService(matchRepository);
 
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
-        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
+        IMatchStatisticRepository matchStatisticRepository = new MatchStatisticStubDatabase();
 
         // Act
         matchService.update(new FriendlyMatch(1l, matchInfoRepository.get(1l), matchStatisticRepository.get(2l)));

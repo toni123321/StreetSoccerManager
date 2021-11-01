@@ -9,7 +9,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPosi
 import java.util.List;
 
 @Repository
-public class PositionDatabase implements IPositionRepository {
+public class PositionJPADatabase implements IPositionRepository {
 
     @Autowired
     IPositionJPARepository positionRepo;

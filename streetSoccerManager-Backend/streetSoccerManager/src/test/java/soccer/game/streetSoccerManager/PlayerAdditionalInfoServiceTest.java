@@ -4,20 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.PlayerAdditionalInfo;
-import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerAdditionalInfo.PlayerAdditionalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerAdditionalInfo.PlayerAdditionalInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerAdditionalInfoRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 import soccer.game.streetSoccerManager.service.PlayerAdditionalInfoService;
-import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerAdditionalInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @SpringBootTest
@@ -25,9 +19,9 @@ public class PlayerAdditionalInfoServiceTest {
     @Test
     void GetAllPlayersAdditionalInfoSuccessScenario() {
         // Arrange
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
         IPlayerAdditionalInfoService playerAdditionalInfoService = new PlayerAdditionalInfoService(playerAdditionalInfoRepository);
-        IPlayerStatsRepository playersStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playersStatsRepository = new PlayerStatsStubDatabase();
 
         // Act
         List<PlayerAdditionalInfo> playersAdditionalInfo = playerAdditionalInfoService.getAll();
@@ -45,9 +39,9 @@ public class PlayerAdditionalInfoServiceTest {
     @Test
     void GetPlayerAdditionalInfoSuccessScenario() {
         // Arrange
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
         IPlayerAdditionalInfoService playerAdditionalInfoService = new PlayerAdditionalInfoService(playerAdditionalInfoRepository);
-        IPlayerStatsRepository playersStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playersStatsRepository = new PlayerStatsStubDatabase();
 
         // Act
         PlayerAdditionalInfo playerAdditionalInfo = playerAdditionalInfoService.get(1l);
@@ -59,9 +53,9 @@ public class PlayerAdditionalInfoServiceTest {
     @Test
     void DeletePlayerAdditionalInfoSuccessScenario() {
         // Arrange
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
         IPlayerAdditionalInfoService playerAdditionalInfoService = new PlayerAdditionalInfoService(playerAdditionalInfoRepository);
-        IPlayerStatsRepository playersStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playersStatsRepository = new PlayerStatsStubDatabase();
 
         // Act
         playerAdditionalInfoService.delete(1l);
@@ -80,9 +74,9 @@ public class PlayerAdditionalInfoServiceTest {
     @Test
     void AddPlayerAdditionalInfoSuccessScenario() {
         // Arrange
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
         IPlayerAdditionalInfoService playerAdditionalInfoService = new PlayerAdditionalInfoService(playerAdditionalInfoRepository);
-        IPlayerStatsRepository playersStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playersStatsRepository = new PlayerStatsStubDatabase();
 
         // Act
         playerAdditionalInfoService.add(new PlayerAdditionalInfo(3l, 180, playersStatsRepository.get(0l)));
@@ -102,9 +96,9 @@ public class PlayerAdditionalInfoServiceTest {
     @Test
     void UpdatePlayerAdditionalInfoSuccessScenario(){
         // Arrange
-        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoFakeDatabase();
+        IPlayerAdditionalInfoRepository playerAdditionalInfoRepository = new PlayerAdditionalInfoStubDatabase();
         IPlayerAdditionalInfoService playerAdditionalInfoService = new PlayerAdditionalInfoService(playerAdditionalInfoRepository);
-        IPlayerStatsRepository playersStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playersStatsRepository = new PlayerStatsStubDatabase();
 
         // Act
         playerAdditionalInfoService.update(new PlayerAdditionalInfo(2l, 180, playersStatsRepository.get(0l)));

@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserFakeDatabase implements IUserRepository {
+public class UserStubDatabase implements IUserRepository {
     @Getter
     private List<User> users = new ArrayList<>();
 
-    public UserFakeDatabase() {
+    public UserStubDatabase() {
         users.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
         users.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 

@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class MatchStatisticFakeDatabase implements IMatchStatisticRepository {
+public class MatchStatisticStubDatabase implements IMatchStatisticRepository {
     private List<MatchStatistic> matchStatistics = new ArrayList<>();
 
-    public MatchStatisticFakeDatabase() {
+    public MatchStatisticStubDatabase() {
         matchStatistics.add(new MatchStatistic(1l, 1, 1, "text"));
         matchStatistics.add(new MatchStatistic(2l, 1, 2, "text"));
         matchStatistics.add(new MatchStatistic(3l, 1, 3, "text"));

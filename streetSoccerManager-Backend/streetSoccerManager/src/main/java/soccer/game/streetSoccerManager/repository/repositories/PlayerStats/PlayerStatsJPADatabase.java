@@ -9,7 +9,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlay
 import java.util.List;
 
 @Repository
-public class PlayerStatsDatabase implements IPlayerStatsRepository {
+public class PlayerStatsJPADatabase implements IPlayerStatsRepository {
     @Autowired
     IPlayerStatsJPARepository playerStatsRepo;
 

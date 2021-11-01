@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public class PlayerDatabase implements IPlayerRepository {
+public class PlayerJPADatabase implements IPlayerRepository {
     @Autowired
     IPlayerJPARepository playerRepo;
 

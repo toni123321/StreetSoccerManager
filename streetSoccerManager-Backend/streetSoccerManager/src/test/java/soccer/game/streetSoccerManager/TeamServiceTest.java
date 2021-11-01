@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.*;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
 import soccer.game.streetSoccerManager.service.TeamService;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class TeamServiceTest {
     @Test
     void GetAllTeamsSuccessScenario() {
         // Arrange
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
         ITeamService teamService = new TeamService(teamRepository);
         Formation formationOne = new Formation(1l, "1-2-1");
         Formation formationTwo = new Formation(2l, "2-1-1");
@@ -43,7 +43,7 @@ public class TeamServiceTest {
     @Test
     void GetTeamSuccessScenario() {
         // Arrange
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
         ITeamService teamService = new TeamService(teamRepository);
         Formation formationOne = new Formation(1l, "1-2-1");
         Formation formationTwo = new Formation(2l, "2-1-1");
@@ -62,7 +62,7 @@ public class TeamServiceTest {
     @Test
     void DeleteTeamSuccessScenario(){
         // Arrange
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
         ITeamService teamService = new TeamService(teamRepository);
         Formation formationOne = new Formation(1l, "1-2-1");
         Formation formationTwo = new Formation(2l, "2-1-1");
@@ -87,7 +87,7 @@ public class TeamServiceTest {
     @Test
     void AddTeamSuccessScenario() {
         // Arrange
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
         ITeamService teamService = new TeamService(teamRepository);
         Formation formationOne = new Formation(1l, "1-2-1");
         Formation formationTwo = new Formation(2l, "2-1-1");
@@ -115,7 +115,7 @@ public class TeamServiceTest {
     @Test
     void UpdateTeamSuccessScenario(){
         // Arrange
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
         ITeamService teamService = new TeamService(teamRepository);
         Formation formationOne = new Formation(1l, "1-2-1");
         Formation formationTwo = new Formation(2l, "2-1-1");

@@ -4,31 +4,24 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.MatchInfo;
-import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.model.entities.Team;
-import soccer.game.streetSoccerManager.repository.repositories.MatchInfo.MatchInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Position.PositionFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.MatchInfo.MatchInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.MatchInfoService;
-import soccer.game.streetSoccerManager.service.PositionService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootTest
 public class MatchInfoServiceTest {
     @Test
     void GetAllMatchesInfoSuccessScenario() {
         // Arrange
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
         IMatchInfoService matchInfoService = new MatchInfoService(matchInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         List<MatchInfo> matchesInfo = matchInfoService.getAll();
@@ -47,9 +40,9 @@ public class MatchInfoServiceTest {
     @Test
     void GetMatchInfoSuccessScenario() {
         // Arrange
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
         IMatchInfoService matchInfoService = new MatchInfoService(matchInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         MatchInfo matchInfo = matchInfoService.get(1l);
@@ -61,9 +54,9 @@ public class MatchInfoServiceTest {
     @Test
     void DeleteMatchInfoSuccessScenario(){
         // Arrange
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
         IMatchInfoService matchInfoService = new MatchInfoService(matchInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         matchInfoService.delete(1l);
@@ -82,9 +75,9 @@ public class MatchInfoServiceTest {
     @Test
     void AddMatchInfoSuccessScenario() {
         // Arrange
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
         IMatchInfoService matchInfoService = new MatchInfoService(matchInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         matchInfoService.add(new MatchInfo(4l, teamRepository.get(3l), teamRepository.get(0l)));
@@ -103,9 +96,9 @@ public class MatchInfoServiceTest {
     @Test
     void UpdateMatchInfoSuccessScenario(){
         // Arrange
-        IMatchInfoRepository matchInfoRepository = new MatchInfoFakeDatabase();
+        IMatchInfoRepository matchInfoRepository = new MatchInfoStubDatabase();
         IMatchInfoService matchInfoService = new MatchInfoService(matchInfoRepository);
-        ITeamRepository teamRepository = new TeamFakeDatabase();
+        ITeamRepository teamRepository = new TeamStubDatabase();
 
         // Act
         matchInfoService.update(new MatchInfo(3l, teamRepository.get(3l), teamRepository.get(0l)));

@@ -12,10 +12,10 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 @Repository
-public class PlayerPersonalInfoFakeDatabase implements IPlayerPersonalInfoRepository {
+public class PlayerPersonalInfoStubDatabase implements IPlayerPersonalInfoRepository {
     private List<PlayerPersonalInfo> playersPersonalInfo = new ArrayList<>();
 
-    public PlayerPersonalInfoFakeDatabase() {
+    public PlayerPersonalInfoStubDatabase() {
         playersPersonalInfo.add(new PlayerPersonalInfo(1l, "Javi","Diaz", new GregorianCalendar(1997, 5, 15)));
         playersPersonalInfo.add(new PlayerPersonalInfo(2l, "Andres","Dumitrescu", new GregorianCalendar(2001, 3, 11)));
 

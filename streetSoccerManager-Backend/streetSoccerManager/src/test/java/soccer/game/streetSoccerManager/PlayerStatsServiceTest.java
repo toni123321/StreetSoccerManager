@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.PlayerStats;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.PlayerStats.PlayerStatsStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerStatsRepository;
 import soccer.game.streetSoccerManager.service.PlayerStatsService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
@@ -18,7 +18,7 @@ public class PlayerStatsServiceTest {
     @Test
     void GetAllPLayersStatsSuccessScenario() {
         // Arrange
-        IPlayerStatsRepository playerStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playerStatsRepository = new PlayerStatsStubDatabase();
         IPlayerStatsService playerStatsService = new PlayerStatsService(playerStatsRepository);
 
         // Act
@@ -37,7 +37,7 @@ public class PlayerStatsServiceTest {
     @Test
     void GetPlayerStatsSuccessScenario() {
         // Arrange
-        IPlayerStatsRepository playerStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playerStatsRepository = new PlayerStatsStubDatabase();
         IPlayerStatsService playerStatsService = new PlayerStatsService(playerStatsRepository);
 
         // Act
@@ -49,7 +49,7 @@ public class PlayerStatsServiceTest {
     @Test
     void DeletePlayerStatsSuccessScenario(){
         // Arrange
-        IPlayerStatsRepository playerStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playerStatsRepository = new PlayerStatsStubDatabase();
         IPlayerStatsService playerStatsService = new PlayerStatsService(playerStatsRepository);
 
         // Act
@@ -69,7 +69,7 @@ public class PlayerStatsServiceTest {
     @Test
     void AddPlayerStatsSuccessScenario() {
         // Arrange
-        IPlayerStatsRepository playerStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playerStatsRepository = new PlayerStatsStubDatabase();
         IPlayerStatsService playerStatsService = new PlayerStatsService(playerStatsRepository);
 
         // Act
@@ -90,7 +90,7 @@ public class PlayerStatsServiceTest {
     @Test
     void UpdatePlayerStatsSuccessScenario(){
         // Arrange
-        IPlayerStatsRepository playerStatsRepository = new PlayerStatsFakeDatabase();
+        IPlayerStatsRepository playerStatsRepository = new PlayerStatsStubDatabase();
         IPlayerStatsService playerStatsService = new PlayerStatsService(playerStatsRepository);
 
         // Act

@@ -10,7 +10,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IPlay
 import java.util.List;
 
 @Repository
-public class PlayerPositionInfoDatabase implements IPlayerPositionInfoRepository {
+public class PlayerPositionInfoJPADatabase implements IPlayerPositionInfoRepository {
     @Autowired
     private IPlayerPositionInfoJPARepository playerPositionInfoRepo;
 

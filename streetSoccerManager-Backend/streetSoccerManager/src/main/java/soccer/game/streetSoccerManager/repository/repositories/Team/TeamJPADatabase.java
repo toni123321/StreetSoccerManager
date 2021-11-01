@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class TeamDatabase implements ITeamRepository {
+public class TeamJPADatabase implements ITeamRepository {
     @Autowired
     ITeamJPARepository teamRepo;
 

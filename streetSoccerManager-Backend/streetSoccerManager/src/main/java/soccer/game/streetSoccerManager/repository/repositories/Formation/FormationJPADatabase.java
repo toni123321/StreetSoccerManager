@@ -9,7 +9,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.jpa.IForm
 import java.util.List;
 
 @Repository
-public class FormationDatabase implements IFormationRepository {
+public class FormationJPADatabase implements IFormationRepository {
 
     @Autowired
     IFormationJPARepository formationRepo;

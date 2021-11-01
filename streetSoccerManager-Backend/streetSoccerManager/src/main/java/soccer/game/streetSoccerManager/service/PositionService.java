@@ -13,7 +13,7 @@ public class PositionService implements IPositionService {
 
     private IPositionRepository dataStore;
 
-    public PositionService(@Qualifier("positionDatabase") IPositionRepository dataStore) {
+    public PositionService(@Qualifier("positionJPADatabase") IPositionRepository dataStore) {
         this.dataStore = dataStore;
     }
 

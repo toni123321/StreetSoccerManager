@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.repository.repositories.Position.PositionFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Position.PositionStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
 import soccer.game.streetSoccerManager.service.PositionService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
@@ -18,7 +18,7 @@ public class PositionServiceTest {
     @Test
     void GetAllPositionsSuccessScenario() {
         // Arrange
-        IPositionRepository positionRepository = new PositionFakeDatabase();
+        IPositionRepository positionRepository = new PositionStubDatabase();
         IPositionService positionService = new PositionService(positionRepository);
 
         // Act
@@ -37,7 +37,7 @@ public class PositionServiceTest {
     @Test
     void GetPositionSuccessScenario() {
         // Arrange
-        IPositionRepository positionRepository = new PositionFakeDatabase();
+        IPositionRepository positionRepository = new PositionStubDatabase();
         IPositionService positionService = new PositionService(positionRepository);
 
         // Act
@@ -50,7 +50,7 @@ public class PositionServiceTest {
     @Test
     void DeletePositionSuccessScenario(){
         // Arrange
-        IPositionRepository positionRepository = new PositionFakeDatabase();
+        IPositionRepository positionRepository = new PositionStubDatabase();
         IPositionService positionService = new PositionService(positionRepository);
 
         // Act
@@ -70,7 +70,7 @@ public class PositionServiceTest {
     @Test
     void AddPositionSuccessScenario() {
         // Arrange
-        IPositionRepository positionRepository = new PositionFakeDatabase();
+        IPositionRepository positionRepository = new PositionStubDatabase();
         IPositionService positionService = new PositionService(positionRepository);
 
         // Act
@@ -90,7 +90,7 @@ public class PositionServiceTest {
     @Test
     void UpdatePositionSuccessScenario(){
         // Arrange
-        IPositionRepository positionRepository = new PositionFakeDatabase();
+        IPositionRepository positionRepository = new PositionStubDatabase();
         IPositionService positionService = new PositionService(positionRepository);
 
         // Act

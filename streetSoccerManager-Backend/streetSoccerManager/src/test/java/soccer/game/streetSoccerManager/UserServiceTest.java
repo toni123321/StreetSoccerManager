@@ -5,19 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Admin;
 import soccer.game.streetSoccerManager.model.entities.EndUser;
-import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
 import soccer.game.streetSoccerManager.model.entities.User;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.User.UserFakeDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
+import soccer.game.streetSoccerManager.repository.repositories.User.UserStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
-import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.UserService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @SpringBootTest
@@ -25,7 +19,7 @@ public class UserServiceTest {
     @Test
     void GetAllUsersSuccessScenario() {
         // Arrange
-        IUserRepository userRepository = new UserFakeDatabase();
+        IUserRepository userRepository = new UserStubDatabase();
         IUserService userService = new UserService(userRepository);
 
         // Act
@@ -45,7 +39,7 @@ public class UserServiceTest {
     @Test
     void GetUserSuccessScenario() {
         // Arrange
-        IUserRepository userRepository = new UserFakeDatabase();
+        IUserRepository userRepository = new UserStubDatabase();
         IUserService userService = new UserService(userRepository);
 
         // Act
@@ -58,7 +52,7 @@ public class UserServiceTest {
     @Test
     void DeleteUserSuccessScenario() {
         // Arrange
-        IUserRepository userRepository = new UserFakeDatabase();
+        IUserRepository userRepository = new UserStubDatabase();
         IUserService userService = new UserService(userRepository);
 
         // Act
@@ -78,7 +72,7 @@ public class UserServiceTest {
     @Test
     void AddUserSuccessScenario() {
         // Arrange
-        IUserRepository userRepository = new UserFakeDatabase();
+        IUserRepository userRepository = new UserStubDatabase();
         IUserService userService = new UserService(userRepository);
 
         // Act
@@ -98,7 +92,7 @@ public class UserServiceTest {
     @Test
     void UpdateUserSuccessScenario(){
         // Arrange
-        IUserRepository userRepository = new UserFakeDatabase();
+        IUserRepository userRepository = new UserStubDatabase();
         IUserService userService = new UserService(userRepository);
 
         // Act

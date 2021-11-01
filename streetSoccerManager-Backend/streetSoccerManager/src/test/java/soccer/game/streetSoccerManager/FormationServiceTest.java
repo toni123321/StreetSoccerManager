@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Formation;
-import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.service.FormationService;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
@@ -18,7 +18,7 @@ public class FormationServiceTest {
     @Test
     void GetAllFormationsSuccessScenario() {
         // Arrange
-        IFormationRepository formationRepository = new FormationFakeDatabase();
+        IFormationRepository formationRepository = new FormationStubDatabase();
         IFormationService formationService = new FormationService(formationRepository);
 
         // Act
@@ -35,7 +35,7 @@ public class FormationServiceTest {
     @Test
     void GetFormationSuccessScenario() {
         // Arrange
-        IFormationRepository formationRepository = new FormationFakeDatabase();
+        IFormationRepository formationRepository = new FormationStubDatabase();
         IFormationService formationService = new FormationService(formationRepository);
 
         // Act
@@ -48,7 +48,7 @@ public class FormationServiceTest {
     @Test
     void DeleteFormationSuccessScenario(){
         // Arrange
-        IFormationRepository formationRepository = new FormationFakeDatabase();
+        IFormationRepository formationRepository = new FormationStubDatabase();
         IFormationService formationService = new FormationService(formationRepository);
 
         // Act
@@ -67,7 +67,7 @@ public class FormationServiceTest {
     @Test
     void AddFormationSuccessScenario() {
         // Arrange
-        IFormationRepository formationRepository = new FormationFakeDatabase();
+        IFormationRepository formationRepository = new FormationStubDatabase();
         IFormationService formationService = new FormationService(formationRepository);
 
         // Act
@@ -86,7 +86,7 @@ public class FormationServiceTest {
     @Test
     void UpdateTeamSuccessScenario(){
         // Arrange
-        IFormationRepository formationRepository = new FormationFakeDatabase();
+        IFormationRepository formationRepository = new FormationStubDatabase();
         IFormationService formationService = new FormationService(formationRepository);
 
         // Act

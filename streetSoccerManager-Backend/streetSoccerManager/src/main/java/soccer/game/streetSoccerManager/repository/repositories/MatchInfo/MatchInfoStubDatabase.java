@@ -2,9 +2,7 @@ package soccer.game.streetSoccerManager.repository.repositories.MatchInfo;
 
 import org.springframework.stereotype.Repository;
 import soccer.game.streetSoccerManager.model.entities.MatchInfo;
-import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.model.entities.Team;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamFakeDatabase;
+import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 
@@ -12,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class MatchInfoFakeDatabase implements IMatchInfoRepository {
+public class MatchInfoStubDatabase implements IMatchInfoRepository {
     private List<MatchInfo> matchInfos = new ArrayList<>();
-    private ITeamRepository teamFakeDatabase = new TeamFakeDatabase();
+    private ITeamRepository teamFakeDatabase = new TeamStubDatabase();
 
-    public MatchInfoFakeDatabase() {
+    public MatchInfoStubDatabase() {
         matchInfos.add(new MatchInfo(1l, teamFakeDatabase.get(0l), teamFakeDatabase.get(1l)));
         matchInfos.add(new MatchInfo(2l, teamFakeDatabase.get(0l), teamFakeDatabase.get(2l)));
         matchInfos.add(new MatchInfo(3l, teamFakeDatabase.get(0l), teamFakeDatabase.get(3l)));
