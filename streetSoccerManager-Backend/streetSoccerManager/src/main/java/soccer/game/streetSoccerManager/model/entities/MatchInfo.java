@@ -9,8 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Map;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="matchInfo")
 @NoArgsConstructor

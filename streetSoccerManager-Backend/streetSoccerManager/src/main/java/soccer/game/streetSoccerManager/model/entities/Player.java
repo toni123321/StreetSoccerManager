@@ -9,8 +9,7 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Objects;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="player")
 @NoArgsConstructor

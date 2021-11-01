@@ -9,8 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Calendar;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="player_personal_info")
 @NoArgsConstructor

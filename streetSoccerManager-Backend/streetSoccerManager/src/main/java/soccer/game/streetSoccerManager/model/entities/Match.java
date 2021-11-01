@@ -9,8 +9,7 @@ import javax.persistence.*;
 import java.util.*;
 
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="match")
 @Data

@@ -11,8 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.util.Objects;
 
-@Getter
-@Setter
+
 @Entity
 @NoArgsConstructor
 @Data

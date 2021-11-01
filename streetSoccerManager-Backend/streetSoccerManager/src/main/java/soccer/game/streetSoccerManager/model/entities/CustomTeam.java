@@ -10,8 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.util.Objects;
 
-@Getter
-@Setter
+
 @Entity
 @NoArgsConstructor
 @Data

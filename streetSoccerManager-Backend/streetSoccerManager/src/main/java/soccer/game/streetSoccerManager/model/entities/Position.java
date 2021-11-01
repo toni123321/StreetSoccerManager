@@ -10,8 +10,7 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name ="position")
 @NoArgsConstructor
