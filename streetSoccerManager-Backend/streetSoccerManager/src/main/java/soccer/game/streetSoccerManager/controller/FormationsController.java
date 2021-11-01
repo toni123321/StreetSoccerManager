@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.converters.FormationConverter;
+import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.entities.Formation;
 
@@ -16,6 +18,7 @@ import java.util.List;
 public class FormationsController {
     @Qualifier("formationService")
     private IFormationService formationService;
+    private FormationConverter formationConverter = new FormationConverter();
 
     public FormationsController(IFormationService formationService) {
         this.formationService = formationService;
@@ -58,20 +61,23 @@ public class FormationsController {
     }
 
     @PostMapping()
-    public ResponseEntity<Formation> createFormation(@RequestBody Formation formation) {
+    public ResponseEntity<FormationDTO> createFormation(@RequestBody FormationDTO formationDTO) {
+        Formation formation = formationConverter.convertFormationDtoToFormation(formationDTO);
         if (!formationService.add(formation)){
             String entity =  "Formation with id " + formation.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
            /* String url = "team" + "/" + team.getId(); // url of the created student
             URI uri = URI.create(url);*/
-            return new ResponseEntity(formation,HttpStatus.CREATED);
+            FormationDTO formationDTOtoReturn = formationConverter.convertFormationToFormationDto(formationService.get(formation.getId()));
+            return new ResponseEntity(formationDTOtoReturn,HttpStatus.CREATED);
         }
 
     }
 
     @PutMapping()
-    public ResponseEntity<Formation> updateFormation(@RequestBody Formation formation) {
+    public ResponseEntity<FormationDTO> updateFormation(@RequestBody FormationDTO formationDTO) {
+        Formation formation = formationConverter.convertFormationDtoToFormation(formationDTO);
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (formationService.update(formation)) {
             return ResponseEntity.noContent().build();

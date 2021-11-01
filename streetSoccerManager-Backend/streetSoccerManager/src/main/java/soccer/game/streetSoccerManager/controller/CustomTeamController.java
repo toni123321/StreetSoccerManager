@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.converters.CustomTeamConverter;
+import soccer.game.streetSoccerManager.model.dtos.CustomTeamDTO;
 import soccer.game.streetSoccerManager.model.entities.CustomTeam;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 
@@ -15,21 +17,21 @@ import java.net.URI;
 public class CustomTeamController {
     @Qualifier("teamService")
     private ITeamService teamService;
-
+    private CustomTeamConverter customTeamConverter = new CustomTeamConverter();
 
     public CustomTeamController(ITeamService teamService) {
         this.teamService = teamService;
     }
 
     @PostMapping()
-    public ResponseEntity<CustomTeam> createCustomTeam(@RequestBody CustomTeam team) {
-        if (!teamService.add(team)){
-            String entity =  "Team with id " + team.getId() + " already exists.";
+    public ResponseEntity<CustomTeamDTO> createCustomTeam(@RequestBody CustomTeamDTO customTeamDTO) {
+        CustomTeam customTeam = customTeamConverter.convertCustomTeamDtoToCustomTeam(customTeamDTO);
+        if (!teamService.add(customTeam)){
+            String entity =  "Team with id " + customTeam.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            String url = "team" + "/" + team.getId(); // url of the created student
-            URI uri = URI.create(url);
-            return new ResponseEntity(team,HttpStatus.CREATED);
+            CustomTeamDTO customTeamDTOToReturn = customTeamConverter.convertCustomTeamToCustomTeamDto(((CustomTeam) teamService.get(customTeam.getId())));
+            return new ResponseEntity(customTeamDTOToReturn,HttpStatus.CREATED);
         }
 
     }

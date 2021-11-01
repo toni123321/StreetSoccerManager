@@ -1,6 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="player_additional_info")
 @NoArgsConstructor
+@Data
 public class PlayerAdditionalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,4 +26,10 @@ public class PlayerAdditionalInfo {
     @OneToOne(mappedBy = "playerAdditionalInfo")
     @JsonIgnore
     protected Player player;
+
+    public PlayerAdditionalInfo(Long id, double price, PlayerStats playerStats) {
+        this.id = id;
+        this.price = price;
+        this.playerStats = playerStats;
+    }
 }

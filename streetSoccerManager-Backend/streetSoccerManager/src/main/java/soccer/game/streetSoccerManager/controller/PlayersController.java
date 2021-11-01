@@ -110,7 +110,7 @@ public class PlayersController {
         } else {
             String url = "player" + "/" + player.getId();
             //URI uri = URI.create(url);
-            PlayerDTO playerDTOtoReturn = playerConverter.convertPlayerToPlayerDto(player);
+            PlayerDTO playerDTOtoReturn = playerConverter.convertPlayerToPlayerDto(playerService.get(player.getId()));
             return new ResponseEntity(playerDTOtoReturn,HttpStatus.CREATED);
         }
 

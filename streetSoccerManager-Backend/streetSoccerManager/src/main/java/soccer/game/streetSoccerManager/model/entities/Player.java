@@ -1,5 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name ="player")
 @NoArgsConstructor
+@Data
 public class Player implements Comparable<Player>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,18 +49,5 @@ public class Player implements Comparable<Player>{
     @Override
     public int compareTo(Player o) {
         return 0;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Player)) return false;
-        Player player = (Player) o;
-        return Objects.equals(getId(), player.getId()) && Objects.equals(getPlayerPersonalInfo(), player.getPlayerPersonalInfo()) && Objects.equals(getPlayerPositionInfo(), player.getPlayerPositionInfo()) && Objects.equals(getPlayerTeamInfo(), player.getPlayerTeamInfo()) && Objects.equals(getPlayerAdditionalInfo(), player.getPlayerAdditionalInfo());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getPlayerPersonalInfo(), getPlayerPositionInfo(), getPlayerTeamInfo(), getPlayerAdditionalInfo());
     }
 }

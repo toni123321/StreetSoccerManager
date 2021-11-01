@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.converters.AdminConverter;
+import soccer.game.streetSoccerManager.model.dtos.AdminDTO;
+import soccer.game.streetSoccerManager.model.dtos.EndUserDTO;
 import soccer.game.streetSoccerManager.model.entities.Admin;
 import soccer.game.streetSoccerManager.model.entities.EndUser;
 import soccer.game.streetSoccerManager.model.entities.User;
@@ -19,6 +22,8 @@ import java.util.stream.Collectors;
 public class AdminController {
     @Qualifier("userService")
     private IUserService userService;
+
+    private AdminConverter adminConverter = new AdminConverter();
 
     public AdminController(IUserService userService) {
         this.userService = userService;
@@ -57,22 +62,23 @@ public class AdminController {
 
 
     @PostMapping()
-    public ResponseEntity<Admin> createAdmin(@RequestBody Admin user) {
-        if (Boolean.FALSE.equals(userService.add(user))){
-            String entity =  "user with id " + user.getId() + " already exists.";
+    public ResponseEntity<AdminDTO> createAdmin(@RequestBody AdminDTO adminDTO) {
+        Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
+        if (!userService.add(admin)){
+            String entity =  "user with id " + admin.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            String url = "user" + "/" + user.getId(); // url of the created student
-            URI uri = URI.create(url);
-            return new ResponseEntity(uri,HttpStatus.CREATED);
+            AdminDTO adminDTOtoReturn = adminConverter.convertAdminToAdminDto(((Admin) userService.get(admin.getId())));
+            return new ResponseEntity(adminDTOtoReturn,HttpStatus.CREATED);
         }
 
     }
 
     @PutMapping()
-    public ResponseEntity<Admin> updateAdmin(@RequestBody Admin user) {
+    public ResponseEntity<AdminDTO> updateAdmin(@RequestBody AdminDTO adminDTO) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (Boolean.TRUE.equals(userService.update(user))) {
+        Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
+        if (Boolean.TRUE.equals(userService.update(admin))) {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);

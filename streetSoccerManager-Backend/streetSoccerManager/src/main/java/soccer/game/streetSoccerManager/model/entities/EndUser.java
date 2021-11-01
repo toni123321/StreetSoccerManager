@@ -1,6 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @NoArgsConstructor
-
+@Data
 public class EndUser extends User {
     @Column(name = "nickname")
     private String nickname;
@@ -29,24 +30,5 @@ public class EndUser extends User {
         this.nickname = nickname;
         this.points = points;
     }
-    public EndUser(String email, String password, String nickname, double points) {
-        super(email, password);
-        this.nickname = nickname;
-        this.points = points;
-    }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof EndUser)) return false;
-        if (!super.equals(o)) return false;
-        EndUser that = (EndUser) o;
-        return Double.compare(that.getPoints(), getPoints()) == 0 && Objects.equals(getNickname(), that.getNickname());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getNickname(), getPoints());
-    }
 }

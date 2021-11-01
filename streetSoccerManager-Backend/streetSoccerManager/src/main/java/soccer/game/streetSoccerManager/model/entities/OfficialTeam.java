@@ -1,5 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @NoArgsConstructor
+@Data
 public class OfficialTeam extends Team{
 
     private String managerName; // First and Last name of managers
@@ -19,19 +21,5 @@ public class OfficialTeam extends Team{
     public OfficialTeam(Long id, String name, Formation formation, String managerName) {
         super(id, name, formation);
         this.managerName = managerName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OfficialTeam)) return false;
-        if (!super.equals(o)) return false;
-        OfficialTeam that = (OfficialTeam) o;
-        return Objects.equals(managerName, that.managerName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), managerName);
     }
 }
