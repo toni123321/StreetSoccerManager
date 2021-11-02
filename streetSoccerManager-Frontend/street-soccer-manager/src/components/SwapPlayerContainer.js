@@ -33,7 +33,7 @@ const SwapPlayerContainer = ({playerToSwap, closeSwapContainer, handlePlayersRot
     }
 
     useEffect(() => {
-        retrievePlayersAvailableForSwap(playerToSwap.team.id, playerToSwap.id);
+        retrievePlayersAvailableForSwap(playerToSwap.playerTeamInfo.team.id, playerToSwap.id);
     }, [])
 
 
@@ -54,7 +54,7 @@ const SwapPlayerContainer = ({playerToSwap, closeSwapContainer, handlePlayersRot
     return (
         <>
             <div>
-                {playerToSwap.id} {playerToSwap.firstName[0]}.{playerToSwap.lastName}
+                {playerToSwap.id} {playerToSwap.playerPersonalInfo.firstName[0]}.{playerToSwap.playerPersonalInfo.lastName}
             </div>
             <button onClick={handleClick}><i className="fas fa-times"></i></button>
 

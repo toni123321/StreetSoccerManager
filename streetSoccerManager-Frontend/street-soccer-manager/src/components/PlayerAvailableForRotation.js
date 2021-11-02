@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 
-function Player({player, rotationMode, handleRotation}) {
+function PlayerAvailableForRotation({player, rotationMode, handleRotation}) {
   
 
   const openRotationPlayerContainer = () => {
@@ -48,4 +48,4 @@ function Player({player, rotationMode, handleRotation}) {
   );
 }
 
-export default Player;
+export default PlayerAvailableForRotation;
