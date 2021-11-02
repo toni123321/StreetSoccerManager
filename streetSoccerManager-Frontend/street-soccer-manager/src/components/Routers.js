@@ -12,6 +12,7 @@ import SignUp from './SignUp';
 import TeamSquad from './TeamSquad';
 import ChooseOpponent from './ChooseOpponent';
 import TeamSquadTest from './TeamSquadTest';
+import RotatePlayersContainer from './RotatePlayersContainer';
 
 const Routers = () => {
     return (
@@ -29,6 +30,7 @@ const Routers = () => {
             <Route exact path="/chooseOpponent" component={ChooseOpponent} />
 
             <Route exact path="/teamSquadTest" component={TeamSquadTest} />
+            <Route exact path="/rotatePlayers" component={RotatePlayersContainer} />
 
             
             {/* <Route path="/createTeam" component={CreateTeam} /> */}

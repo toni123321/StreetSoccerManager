@@ -7,6 +7,7 @@ import ReservesPanel from './ReservesPanel';
 import PlayerService from '../services/PlayerService';
 import SwapPlayerContainer from './SwapPlayerContainer';
 import {Container, Col, Row} from 'react-bootstrap';
+import PlayerPositionInfoService from '../services/PlayerPositionInfoService';
 
 
 const StartingPlayersContainer = () => {
@@ -28,17 +29,16 @@ const StartingPlayersContainer = () => {
 
     const playerInitialState = {
       id: null,
-      positionIndex: null,
-      firstName: "",
-      lastName: "",
-      dob: null,
-      price: null,
-      defaultPosition: null,
-      currentPosition: null,
-      kitNr: null,
-      playerStats: null,
-      team: null,
-      starting: true
+      playerPersonalInfo: null,
+      playerPositionInfo: {
+        id: null,
+        positionIndex: null,
+        defaultPosition: null,
+        currentPosition: null,
+        starting: true
+      },
+      playerTeamInfo: null,
+      playerAdditionalInfo: null
     }
   
     const [team, setTeam] = useState(initialTeamState);
@@ -51,9 +51,12 @@ const StartingPlayersContainer = () => {
     const [dest, setDest] = useState(playerInitialState);
     
     const [displaySwapContainer, setDisplaySwapContainer] = useState(false);
+    const [newChange, setNewChange] = useState(true);
     const [value, setValue] = useState();
 
     useEffect(() => {
+      if(newChange === true)
+      {
         const createdTeam = localStorage.getItem("team");
         if (createdTeam) {
           const foundTeam = JSON.parse(createdTeam);
@@ -62,12 +65,20 @@ const StartingPlayersContainer = () => {
           //retrieveStartingPlayers(foundTeam.id);
           //retrieveReserves(foundTeam.id);
           retrievePlayers(foundTeam.id);
+          
         } 
-    }, []);
+      }
+      setNewChange(false);
+    }, [newChange]);
     
     async function retrievePlayers(teamId) {
       const response = await PlayerService.getAllInTeam(teamId);
       setPlayers(response.data);
+    }
+
+    async function retrievePlayer(id) {
+      const response = await PlayerService.get(id);
+      setPlayers([...players], response);
     }
 
     const openRotationMode = (player) => {
@@ -76,17 +87,10 @@ const StartingPlayersContainer = () => {
 
       setPlayerForRotation({
         id: player.id,
-        positionIndex: player.positionIndex,
-        firstName: player.firstName,
-        lastName: player.lastName,
-        dob: player.dob,
-        price: player.price,
-        defaultPosition: player.defaultPosition,
-        currentPosition: player.currentPosition,
-        kitNr: player.kitNr,
-        playerStats: player.playerStats,
-        team: player.team,
-        starting: player.starting
+        playerPersonalInfo: player.playerPersonalInfo,
+        playerPositionInfo: player.playerPositionInfo,
+        playerTeamInfo: player.playerTeamInfo,
+        playerAdditionalInfo: player.playerAdditionalInfo
       });
     }
 
@@ -95,90 +99,61 @@ const StartingPlayersContainer = () => {
     }
 
     const handlePlayersRotation = (playerToSwap, playerToRotateWith) => {
-      const playerForRotationData = {
-        id: playerToSwap.id,
-        positionIndex: playerToRotateWith.positionIndex,
-        firstName: playerToSwap.firstName,
-        lastName: playerToSwap.lastName,
-        dob: playerToSwap.dob,
-        price: playerToSwap.price,
-        defaultPosition: playerToSwap.defaultPosition,
-        currentPosition: playerToRotateWith.currentPosition,
-        kitNr: playerToSwap.kitNr,
-        playerStats: playerToSwap.playerStats,
-        team: playerToSwap.team,
-        starting: playerToSwap.starting
+
+      const playerForRotationPositionData = {
+        id: playerToSwap.playerPositionInfo.id,
+        positionIndex: playerToRotateWith.playerPositionInfo.positionIndex,
+        defaultPosition: playerToSwap.playerPositionInfo.defaultPosition,
+        currentPosition:  playerToSwap.playerPositionInfo.currentPosition,
+        starting: playerToSwap.playerPositionInfo.starting
       }
 
-      const playerToRotateWithData = {
-          id: playerToRotateWith.id,
-          positionIndex: playerToSwap.positionIndex,
-          firstName: playerToRotateWith.firstName,
-          lastName: playerToRotateWith.lastName,
-          dob: playerToRotateWith.dob,
-          price: playerToRotateWith.price,
-          defaultPosition: playerToRotateWith.defaultPosition,
-          currentPosition: playerToSwap.currentPosition,
-          kitNr: playerToRotateWith.kitNr,
-          playerStats: playerToRotateWith.playerStats,
-          team: playerToRotateWith.team,
-          starting: playerToRotateWith.starting
+      console.log(playerForRotationPositionData);
+      const playerToRotateWithPositionData = {
+        id: playerToRotateWith.playerPositionInfo.id,
+        positionIndex: playerToSwap.playerPositionInfo.positionIndex,
+        defaultPosition:playerToRotateWith.playerPositionInfo.defaultPosition ,
+        currentPosition: playerToRotateWith.playerPositionInfo.currentPosition,
+        starting: playerToRotateWith.playerPositionInfo.starting
       }
+      console.log(playerToRotateWithPositionData);
 
-
-      PlayerService.update(playerForRotationData)
+      PlayerPositionInfoService.update(playerForRotationPositionData)
       .then(response => {
-        setOrigin({
-          id: response.data.id,
-          positionIndex: response.data.positionIndex,
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          dob: response.data.dob,
-          price: response.data.price,
-          defaultPosition: response.data.defaultPosition,
-          currentPosition: response.data.currentPosition,
-          kitNr: response.data.kitNr,
-          playerStats: response.data.playerStats,
-          team: response.data.team,
-          starting: response.data.starting
-        })
+        console.log(response.data.positionIndex);
       })
       .catch(e => {
         console.log(e);
       });
 
-      PlayerService.update(playerToRotateWithData)
+      PlayerPositionInfoService.update(playerToRotateWithPositionData)
       .then(response => {
-        setDest({
-          id: response.data.id,
-          positionIndex: response.data.positionIndex,
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          dob: response.data.dob,
-          price: response.data.price,
-          defaultPosition: response.data.defaultPosition,
-          currentPosition: response.data.currentPosition,
-          kitNr: response.data.kitNr,
-          playerStats: response.data.playerStats,
-          team: response.data.team,
-          starting: response.data.starting
-        })
+        console.log(response.data.positionIndex);
       })
       .catch(e => {
         console.log(e);
       });
 
-      const newStartingPlayersState = players.map((p) => {
-        if (p.id === playerToSwap.id) {
-          p.positionIndex = playerToRotateWith.positionIndex;
-        }
-        if (p.id === playerToRotateWith.id) {
-          p.positionIndex = playerToSwap.positionIndex;
-        }
-        return p;
-      });
-      setPlayers(newStartingPlayersState);
+      
+      console.log(playerToSwap.id, playerToRotateWith.id);
+      
+      // const newStartingPlayersState = players.map((p) => {
+      //   if (p.id === playerToSwap.id) {
+      //     p.playerPositionInfo.positionIndex = playerToSwap.playerPositionInfo.positionIndex;
+      //   }
+      //   console.log(playerToRotateWith.id);
+      //   if (p.id === playerToRotateWith.id) {
+      //     p.playerPositionInfo.positionIndex = playerToRotateWith.playerPositionInfo.positionIndex;
+      //   }
+      //   return p;
+      // });
+      // setPlayers(newStartingPlayersState);
+      // retrievePlayers(team.id);
+      //retrievePlayer(playerToSwap.id);
+      //retrievePlayer(playerToRotateWith.id);
 
+      setNewChange(true);
+      
     }
 
     const click1 = () => {
@@ -203,28 +178,28 @@ const StartingPlayersContainer = () => {
         <div className="team-squad">
         <Container className="startingTeam">
           <Row>
-            {players && players.filter(player => player.starting == true && player.positionIndex >= 1 && player.positionIndex <= 3).sort((a, b) => a.positionIndex - b.positionIndex).map((player, index) => (
+            {players && players.filter(player => player.playerPositionInfo.starting == true && player.playerPositionInfo.positionIndex >= 1 && player.playerPositionInfo.positionIndex <= 3).sort((a, b) => a.playerPositionInfo.positionIndex - b.playerPositionInfo.positionIndex).map((player, index) => (
               <Col>
                <Player key={player.id} player={player} openRotationMode={openRotationMode}/>
               </Col>
             ))}
           </Row>
           <Row>
-            {players && players.filter(player => player.starting == true && player.positionIndex >= 4 && player.positionIndex <= 6).sort((a, b) => a.positionIndex - b.positionIndex).map((player, index) => (
+            {players && players.filter(player => player.playerPositionInfo.starting == true && player.playerPositionInfo.positionIndex >= 4 && player.playerPositionInfo.positionIndex <= 6).sort((a, b) => a.playerPositionInfo.positionIndex - b.playerPositionInfo.positionIndex).map((player, index) => (
               <Col>
                <Player key={player.id} player={player} openRotationMode={openRotationMode}/>
               </Col>
             ))}
           </Row>
           <Row>
-            {players && players.filter(player => player.starting == true && player.positionIndex >= 7 && player.positionIndex <= 9).sort((a, b) => a.positionIndex - b.positionIndex).map((player, index) => (
+            {players && players.filter(player => player.playerPositionInfo.starting == true && player.playerPositionInfo.positionIndex >= 7 && player.playerPositionInfo.positionIndex <= 9).sort((a, b) => a.playerPositionInfo.positionIndex - b.playerPositionInfo.positionIndex).map((player, index) => (
               <Col>
                <Player key={player.id} player={player} openRotationMode={openRotationMode}/>
               </Col>
             ))}
           </Row>
           <Row>
-            {players && players.filter(player => player.starting == true && player.positionIndex >= 10 && player.positionIndex <= 12).sort((a, b) => a.positionIndex - b.positionIndex).map((player, index) => (
+            {players && players.filter(player => player.playerPositionInfo.starting == true && player.playerPositionInfo.positionIndex >= 10 && player.playerPositionInfo.positionIndex <= 12).sort((a, b) => a.playerPositionInfo.positionIndex - b.playerPositionInfo.positionIndex).map((player, index) => (
               <Col>
                <Player key={player.id} player={player} openRotationMode={openRotationMode}/>
               </Col>
@@ -239,7 +214,7 @@ const StartingPlayersContainer = () => {
             ))}
         </div> */}
         <div className="reserves">
-            {players && players.filter(player => player.starting == false).map((player) => (
+            {players && players.filter(player => player.playerPositionInfo.starting == false).map((player) => (
               <Player key={player.id} player={player} openRotationMode={openRotationMode}/>
             ))}
         </div>
