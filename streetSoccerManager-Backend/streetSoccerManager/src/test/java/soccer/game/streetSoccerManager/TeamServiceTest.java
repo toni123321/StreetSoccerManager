@@ -106,7 +106,6 @@ public class TeamServiceTest {
         User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
         User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 
-
         // Act
         Team team = teamService.get(1l);
 

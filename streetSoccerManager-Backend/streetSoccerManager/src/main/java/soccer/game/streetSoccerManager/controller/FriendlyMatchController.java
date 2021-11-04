@@ -52,19 +52,18 @@ public class FriendlyMatchController {
         }
     }
 
-    @RequestMapping("/matchesInfo")
-    @GetMapping
-    public ResponseEntity<List<MatchInfo>> getAllMatchesInfo() {
-        List<MatchInfo> matchesInfo = null;
-        matchesInfo = matchInfoService.getAll();
-        if(matchesInfo != null) {
-            return ResponseEntity.ok().body(matchesInfo);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @RequestMapping("/matchesInfo")
+//    @GetMapping
+//    public ResponseEntity<List<MatchInfo>> getAllMatchesInfo() {
+//        List<MatchInfo> matchesInfo = null;
+//        matchesInfo = matchInfoService.getAll();
+//        if(matchesInfo != null) {
+//            return ResponseEntity.ok().body(matchesInfo);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
-    @RequestMapping("/playMatch")
     @PostMapping()
     public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody MatchInfoDTO matchInfoDTO) {
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
