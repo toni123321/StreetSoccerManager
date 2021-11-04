@@ -43,19 +43,22 @@ const TeamSquad = () => {
           const foundTeam = JSON.parse(createdTeam);
           setTeam(foundTeam);
           retrieveStartingPlayers(foundTeam.id);
-          retrieveReserves(foundTeam.id);   
+          retrieveReserves(foundTeam.id);
+          console.log("Reload");
         } 
     }, []);
     
     // retrieve starting players
     async function retrieveStartingPlayers(teamId) {
         const response = await PlayerService.getStartingPlayers(teamId);
+        console.log("Starting players: ", response.data);
         setStartingPlayers(response.data);
     }
 
     // retrieve reserves
     async function retrieveReserves(teamId) {
         const response = await PlayerService.getReserves(teamId);
+        console.log("Reserves: ", response.data);
         setReserves(response.data);
     }
 

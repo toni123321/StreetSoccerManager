@@ -31,6 +31,7 @@ function RotatePlayersContainer() {
     }
 
     const [playerForRotation, setPlayerForRotation] = useState(playerInitialState);
+    const [playerToRotateWith, setPlayerToRotateWith] = useState(playerInitialState);
     const [playersAvailableForRotation, setPlayersAvailableForRotation] = useState(null);
 
     useEffect(() => {
@@ -62,30 +63,68 @@ function RotatePlayersContainer() {
 
     const handleRotation = (player) => {
         console.log(playerForRotation.id, player.id);
+        setPlayerToRotateWith(player);
+        // const playerForRotationPositionData = {
+        //     id: playerForRotation.playerPositionInfo.id,
+        //     positionIndex: player.playerPositionInfo.positionIndex,
+        //     defaultPosition: playerForRotation.playerPositionInfo.defaultPosition,
+        //     currentPosition:  playerForRotation.playerPositionInfo.currentPosition,
+        //     starting: playerForRotation.playerPositionInfo.starting
+        //   }
+        //
+        // const playerToRotateWithPositionData = {
+        //     id: player.playerPositionInfo.id,
+        //     positionIndex: playerForRotation.playerPositionInfo.positionIndex,
+        //     defaultPosition:player.playerPositionInfo.defaultPosition ,
+        //     currentPosition: player.playerPositionInfo.currentPosition,
+        //     starting: player.playerPositionInfo.starting
+        // }
+        // console.log(playerToRotateWithPositionData);
+        //
+        // PlayerPositionInfoService.update(playerForRotationPositionData)
+        // .then(response => {
+        //     console.log(response.data.positionIndex);
+        // })
+        // .catch(e => {
+        //     console.log(e);
+        // });
+        //
+        // PlayerPositionInfoService.update(playerToRotateWithPositionData)
+        // .then(response => {
+        // console.log(response.data.positionIndex);
+        // })
+        // .catch(e => {
+        //     console.log(e);
+        // });
         
+       // history.push('/teamSquad');
+        
+    }
+
+    const handlePostPlayers = () => {
         const playerForRotationPositionData = {
             id: playerForRotation.playerPositionInfo.id,
-            positionIndex: player.playerPositionInfo.positionIndex,
+            positionIndex: playerToRotateWith.playerPositionInfo.positionIndex,
             defaultPosition: playerForRotation.playerPositionInfo.defaultPosition,
             currentPosition:  playerForRotation.playerPositionInfo.currentPosition,
             starting: playerForRotation.playerPositionInfo.starting
           }
 
         const playerToRotateWithPositionData = {
-            id: player.playerPositionInfo.id,
+            id: playerToRotateWith.playerPositionInfo.id,
             positionIndex: playerForRotation.playerPositionInfo.positionIndex,
-            defaultPosition:player.playerPositionInfo.defaultPosition ,
-            currentPosition: player.playerPositionInfo.currentPosition,
-            starting: player.playerPositionInfo.starting
+            defaultPosition:playerToRotateWith.playerPositionInfo.defaultPosition ,
+            currentPosition: playerToRotateWith.playerPositionInfo.currentPosition,
+            starting: playerToRotateWith.playerPositionInfo.starting
         }
         console.log(playerToRotateWithPositionData);
 
         PlayerPositionInfoService.update(playerForRotationPositionData)
         .then(response => {
-        console.log(response.data.positionIndex);
+            console.log(response.data.positionIndex);
         })
         .catch(e => {
-        console.log(e);
+            console.log(e);
         });
 
         PlayerPositionInfoService.update(playerToRotateWithPositionData)
@@ -93,13 +132,12 @@ function RotatePlayersContainer() {
         console.log(response.data.positionIndex);
         })
         .catch(e => {
-        console.log(e);
+            console.log(e);
         });
-        
-       // history.push('/teamSquad');
-        
-    }
 
+        history.push('/teamSquad');
+        console.log("Change players positions")
+    }
 
     return (
         <>
@@ -115,6 +153,15 @@ function RotatePlayersContainer() {
                     />
                 ))}
             </div>
+            {/*{playerToRotateWith !== undefined ?(<Player key={playerToRotateWith.id} player={playerToRotateWith} rotationMode={false}*/}
+            {/*    />): (<></>)}*/}
+
+            {playerToRotateWith.id !== null ?
+                (<Player key={playerToRotateWith.id} player={playerToRotateWith} rotationMode={false}/>):
+                (<></>)}
+
+            <br/>
+            <button onClick={handlePostPlayers}>Submit</button>
 
 
         </>
