@@ -19,7 +19,7 @@ public class PlayerTeamInfo {
     private Long id;
     private int kitNr;
     @ManyToOne
-    @JoinColumn(name="teamId", nullable=false)
+    @JoinColumn(name="teamId")
     private Team team; // connection with team
 
     @OneToOne(mappedBy = "playerTeamInfo")

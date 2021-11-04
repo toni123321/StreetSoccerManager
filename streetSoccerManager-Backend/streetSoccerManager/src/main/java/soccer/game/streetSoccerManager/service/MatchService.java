@@ -13,7 +13,7 @@ public class MatchService implements IMatchService {
     private IMatchRepository dataStore;
 
     // todo change datastore
-    public MatchService(@Qualifier("matchStubDatabase") IMatchRepository dataStore) {
+    public MatchService(@Qualifier("matchJPADatabase") IMatchRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -34,9 +34,21 @@ public class MatchService implements IMatchService {
         return dataStore.delete(id);
     }
 
+
+    // play match - boolean
     @Override
     public Boolean add(Match match) {
+//        if(dataStore.add(match) && playMatch)
+//        {
+//            return true;
+//        }
+//        if(get true)
+//        {
+//            delete
+//        }
+//        return false;
         return dataStore.add(match);
+
     }
 
     @Override

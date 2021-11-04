@@ -1,5 +1,6 @@
 package soccer.game.streetSoccerManager.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ import java.util.stream.Collectors;
 public class AdminController {
     @Qualifier("userService")
     private IUserService userService;
+
+    ModelMapper modelMapper = new ModelMapper();
 
     private AdminConverter adminConverter = new AdminConverter();
 
@@ -63,12 +66,14 @@ public class AdminController {
 
     @PostMapping()
     public ResponseEntity<AdminDTO> createAdmin(@RequestBody AdminDTO adminDTO) {
-        Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
+        //Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
+        Admin admin = modelMapper.map(adminDTO, Admin.class);
         if (!userService.add(admin)){
             String entity =  "user with id " + admin.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            AdminDTO adminDTOtoReturn = adminConverter.convertAdminToAdminDto(((Admin) userService.get(admin.getId())));
+            //AdminDTO adminDTOtoReturn = adminConverter.convertAdminToAdminDto();
+            AdminDTO adminDTOtoReturn = modelMapper.map(userService.get(admin.getId()), AdminDTO.class);
             return new ResponseEntity(adminDTOtoReturn,HttpStatus.CREATED);
         }
 

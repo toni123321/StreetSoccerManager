@@ -13,7 +13,7 @@ public class MatchInfoService implements IMatchInfoService {
     private IMatchInfoRepository dataStore;
 
     // todo change datastore
-    public MatchInfoService(@Qualifier("matchInfoStubDatabase") IMatchInfoRepository dataStore) {
+    public MatchInfoService(@Qualifier("matchInfoJPADatabase") IMatchInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 

@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -25,21 +28,23 @@ public class Team {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="formationId", nullable=false)
+    @JoinColumn(name="formationId")
     private Formation formation;
 
     @OneToMany(mappedBy="team")
     @JsonIgnore
     private Set<PlayerTeamInfo> playersTeamInfo;
 
-    @OneToOne(mappedBy = "homeTeam")
+    @OneToMany(mappedBy = "homeTeam")
     @JsonIgnore
-    protected MatchInfo matchInfoHomeTeam;
+    protected Set<MatchInfo> matchInfoHomeTeam;
 
-    @OneToOne(mappedBy = "awayTeam")
+    @OneToMany(mappedBy = "awayTeam")
     @JsonIgnore
-    protected MatchInfo matchInfoAwayTeam;
+    protected Set<MatchInfo> matchInfoAwayTeam;
 
+    @Column(nullable = true)
+    private int rating;
 
     public Team(Long id, String name, Formation formation) {
         this.id = id;
