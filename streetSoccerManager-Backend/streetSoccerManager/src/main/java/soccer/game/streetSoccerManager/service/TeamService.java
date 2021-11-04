@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.CustomTeam;
 import soccer.game.streetSoccerManager.model.entities.OfficialTeam;
+import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
 import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.model.entities.Team;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,9 +54,23 @@ public class TeamService implements ITeamService {
         return dataStore.delete(id);
     }
 
+    public int calcTeamRating(Team team){
+        int rating = 0;
+        List<PlayerTeamInfo> playersTeamInfo =  team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer().getPlayerPositionInfo().isStarting()).collect(Collectors.toList());
+        for (PlayerTeamInfo playerTeamInfo: playersTeamInfo) {
+            rating += playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats().getOverallRating();
+
+        }
+        if(playersTeamInfo.size() != 0){
+            rating /= playersTeamInfo.size();
+        }
+        return rating;
+    }
+
     @Override
     public Boolean add(Team team) {
         team.setFormation(dataStore.getDefaultFormation());
+        team.setRating(calcTeamRating(team));
         return dataStore.add(team);
     }
 

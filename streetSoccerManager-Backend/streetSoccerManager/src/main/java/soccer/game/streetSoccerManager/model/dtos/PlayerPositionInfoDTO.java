@@ -1,11 +1,13 @@
 package soccer.game.streetSoccerManager.model.dtos;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import soccer.game.streetSoccerManager.model.entities.Position;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class PlayerPositionInfoDTO {
     private Long id;
     private int positionIndex;

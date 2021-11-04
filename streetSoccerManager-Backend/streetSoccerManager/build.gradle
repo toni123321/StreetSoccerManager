@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.modelmapper.extensions:modelmapper-extensions:2.4.4'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -34,7 +35,10 @@ dependencies {
 	// add dependencies to H2 in-memory database and Java Persistency API
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.h2database:h2'
+
+	implementation 'org.modelmapper:modelmapper:2.3.0'
 }
+
 
 test {
 	useJUnitPlatform()

@@ -19,11 +19,11 @@ public class MatchInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="homeTeamId")
     private Team homeTeam;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="awayTeamId")
     private Team awayTeam;
 
