@@ -9,6 +9,7 @@ import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepo
 import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
 import soccer.game.streetSoccerManager.model.entities.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -56,7 +57,10 @@ public class TeamService implements ITeamService {
 
     public int calcTeamRating(Team team){
         int rating = 0;
-        List<PlayerTeamInfo> playersTeamInfo =  team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer().getPlayerPositionInfo().isStarting()).collect(Collectors.toList());
+        List<PlayerTeamInfo> playersTeamInfo = new ArrayList<>();
+        if( team.getPlayersTeamInfo() != null) {
+            playersTeamInfo = team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer().getPlayerPositionInfo().isStarting()).collect(Collectors.toList());
+        }
         for (PlayerTeamInfo playerTeamInfo: playersTeamInfo) {
             rating += playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats().getOverallRating();
 
