@@ -102,4 +102,47 @@
     align-self: center;
 }
 
+.chooseOpponent {
+    margin-block: 10%;
+}
 
+
+.chooseOpponent .col .homeTeamName, .chooseOpponent .col .awayTeamName {
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 30px;
+    background-color: azure;
+}
+.chooseOpponent .homeTeam {
+    margin-right: 10px;
+}
+
+.carousel-control-next,
+.carousel-control-prev, .carousel-indicators  {
+    filter: invert(100%);
+}
+
+.changeSides h3 {
+    display: block;
+}
+
+.teams {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.playMatch, .goBack {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.playMatch {
+    margin-right: 20px;
+}
+
+.playMatch i,    .goBack i {
+    font-size: 20px;
+    color: black;
+}
