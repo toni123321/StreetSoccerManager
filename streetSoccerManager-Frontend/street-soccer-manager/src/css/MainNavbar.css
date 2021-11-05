@@ -29,16 +29,15 @@
 
 .main-navbar {
     /* margin-top: 5%; */
-    border-bottom-left-radius: 45px;
+    /* border-bottom-left-radius: 45px;
     border: 4px dashed black;
-    width: 80%;
+    width: 80%; */
     max-width: 1190px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 40%;
 }
 
 .navbar {
     /* height: 5rem; */
+    padding-block: 1.5rem !important;
 }
 

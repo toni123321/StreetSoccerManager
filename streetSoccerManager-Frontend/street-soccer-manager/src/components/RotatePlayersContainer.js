@@ -141,10 +141,11 @@ function RotatePlayersContainer() {
 
     return (
         <>
-            <div>
+            <button onClick={closeRotationContainer}><i className="fas fa-times"></i></button>
+            <div className="playerForRotation">
                 {playerForRotation.id} {playerForRotation.playerPersonalInfo.firstName[0]}.{playerForRotation.playerPersonalInfo.lastName}
             </div>
-            <button onClick={closeRotationContainer}><i className="fas fa-times"></i></button>
+           
 
             {/* Container with available for swapping players */}
             <div className="availableForSwapping">
@@ -157,11 +158,16 @@ function RotatePlayersContainer() {
             {/*    />): (<></>)}*/}
 
             {playerToRotateWith.id !== null ?
-                (<Player key={playerToRotateWith.id} player={playerToRotateWith} rotationMode={false}/>):
-                (<></>)}
+                (
+                <div className="playerToRotateWith">
+                    <Player key={playerToRotateWith.id} player={playerToRotateWith} rotationMode={false}/>
+                </div>
+                ):
+                (<></>)
+            }
 
             <br/>
-            <button onClick={handlePostPlayers}>Submit</button>
+            <button className="rotatePlayers" onClick={handlePostPlayers}>Confirm</button>
 
 
         </>
