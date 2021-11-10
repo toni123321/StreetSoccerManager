@@ -5,16 +5,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Formation;
-import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationStubDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
+import soccer.game.streetSoccerManager.repository.Formation.FormationStubDatabase;
+import soccer.game.streetSoccerManager.repository_interfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.service.FormationService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
 public class FormationServiceTest {
+
     @Test
     void GetAllFormationsSuccessScenario() {
         // Arrange

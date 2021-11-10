@@ -7,9 +7,9 @@ import soccer.game.streetSoccerManager.model.entities.PlayerPositionInfo;
 
 public class PlayerPositionInfoConverter {
     public PlayerPositionInfo convertPlayerPositionInfoDtoToPlayerPositionInfo(PlayerPositionInfoDTO playerPositionInfoDTO){
-        return new PlayerPositionInfo(playerPositionInfoDTO.getId(), playerPositionInfoDTO.getPositionIndex(), playerPositionInfoDTO.getDefaultPosition(), playerPositionInfoDTO.getCurrentPosition(), playerPositionInfoDTO.isStarting());
+        return new PlayerPositionInfo(playerPositionInfoDTO.getId(), playerPositionInfoDTO.getDefaultPosition(), playerPositionInfoDTO.getCurrentPosition(), playerPositionInfoDTO.isStarting());
     }
     public PlayerPositionInfoDTO convertPlayerPositionInfoToPlayerPositionInfoDto(PlayerPositionInfo playerPositionInfo) {
-        return new PlayerPositionInfoDTO(playerPositionInfo.getId(), playerPositionInfo.getPositionIndex(), playerPositionInfo.getDefaultPosition(), playerPositionInfo.getCurrentPosition(), playerPositionInfo.isStarting());
+        return new PlayerPositionInfoDTO(playerPositionInfo.getId(), playerPositionInfo.getDefaultPosition(), playerPositionInfo.getCurrentPosition(), playerPositionInfo.isStarting());
     }
 }

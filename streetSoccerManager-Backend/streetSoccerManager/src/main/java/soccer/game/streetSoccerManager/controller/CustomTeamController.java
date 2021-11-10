@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.CustomTeamConverter;
 import soccer.game.streetSoccerManager.model.dtos.CustomTeamDTO;
 import soccer.game.streetSoccerManager.model.entities.CustomTeam;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-
-import java.net.URI;
+import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController

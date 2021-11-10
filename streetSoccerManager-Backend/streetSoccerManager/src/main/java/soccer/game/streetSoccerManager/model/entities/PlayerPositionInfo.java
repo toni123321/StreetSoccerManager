@@ -1,10 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,27 +10,27 @@ import javax.persistence.*;
 @Table(name ="player_position_info")
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"id", "player"})
 public class PlayerPositionInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int positionIndex;
+
     @ManyToOne
     @JoinColumn(name="defaultPositionId")
     private Position defaultPosition;
 
     @ManyToOne
-    @JoinColumn(name="currentPositionId", nullable = false)
+    @JoinColumn(name="currentPositionId")
     private Position currentPosition;
     private boolean isStarting;
 
-    @OneToOne(mappedBy = "playerPositionInfo")
+    @OneToOne(mappedBy = "playerPositionInfo", cascade = CascadeType.ALL)
     @JsonIgnore
     protected Player player;
 
-    public PlayerPositionInfo(Long id, int positionIndex, Position defaultPosition, Position currentPosition, boolean isStarting) {
+    public PlayerPositionInfo(Long id, Position defaultPosition, Position currentPosition, boolean isStarting) {
         this.id = id;
-        this.positionIndex = positionIndex;
         this.defaultPosition = defaultPosition;
         this.currentPosition = currentPosition;
         this.isStarting = isStarting;

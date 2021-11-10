@@ -5,14 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.PlayerPositionInfoConverter;
-import soccer.game.streetSoccerManager.model.dtos.PlayerDTO;
 import soccer.game.streetSoccerManager.model.dtos.PlayerPositionInfoDTO;
-import soccer.game.streetSoccerManager.model.entities.Player;
 import soccer.game.streetSoccerManager.model.entities.PlayerPositionInfo;
-import soccer.game.streetSoccerManager.model.entities.PlayerStats;
-import soccer.game.streetSoccerManager.service.PlayerPositionInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPositionInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerPositionInfoService;
 
 import java.net.URI;
 import java.util.List;

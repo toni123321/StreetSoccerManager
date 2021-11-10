@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.PositionConverter;
 import soccer.game.streetSoccerManager.model.dtos.PositionDTO;
-import soccer.game.streetSoccerManager.model.entities.CustomTeam;
 import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
+import soccer.game.streetSoccerManager.service_interfaces.IPositionService;
 
 import java.net.URI;
 import java.util.List;

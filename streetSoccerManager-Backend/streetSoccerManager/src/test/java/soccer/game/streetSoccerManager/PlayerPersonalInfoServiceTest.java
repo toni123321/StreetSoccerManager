@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerPersonalInfo.PlayerPersonalInfoStubDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
+import soccer.game.streetSoccerManager.repository.PlayerPersonalInfo.PlayerPersonalInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository_interfaces.IPlayerPersonalInfoRepository;
 import soccer.game.streetSoccerManager.service.PlayerPersonalInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerPersonalInfoService;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

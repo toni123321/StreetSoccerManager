@@ -3,8 +3,8 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPersonalInfoRepository;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPersonalInfoService;
+import soccer.game.streetSoccerManager.repository_interfaces.IPlayerPersonalInfoRepository;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerPersonalInfoService;
 
 import java.util.List;
 

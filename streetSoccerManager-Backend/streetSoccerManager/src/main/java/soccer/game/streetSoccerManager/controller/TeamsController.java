@@ -2,16 +2,11 @@ package soccer.game.streetSoccerManager.controller;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.entities.CustomTeam;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
+import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 import soccer.game.streetSoccerManager.model.entities.Team;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +77,7 @@ public class TeamsController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
-        if(Boolean.TRUE.equals(teamService.delete(id))) {
+        if(teamService.delete(id)) {
             // Idempotent method. Always return the same response (even if the resource has already been deleted before).
             return ResponseEntity.ok().body("Successfully deleted!");
         }

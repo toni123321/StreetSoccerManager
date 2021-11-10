@@ -7,9 +7,11 @@ import soccer.game.streetSoccerManager.model.entities.Player;
 
 public class CustomTeamConverter {
     public CustomTeam convertCustomTeamDtoToCustomTeam(CustomTeamDTO customTeamDTO){
-        return new CustomTeam(customTeamDTO.getId(), customTeamDTO.getName(), customTeamDTO.getFormation(), customTeamDTO.getManager());
+        //return new CustomTeam(customTeamDTO.getId(), customTeamDTO.getName(), customTeamDTO.getFormation(), customTeamDTO.getManager());
+        return null;
     }
     public CustomTeamDTO convertCustomTeamToCustomTeamDto(CustomTeam customTeam) {
-        return new CustomTeamDTO(customTeam.getId(), customTeam.getName(), customTeam.getFormation(), customTeam.getManager());
+        //return new CustomTeamDTO(customTeam.getId(), customTeam.getName(), customTeam.getFormation(), customTeam.getManager());
+        return null;
     }
 }

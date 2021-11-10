@@ -15,9 +15,8 @@ public class PlayerPositionInfoDTO {
     private Position currentPosition;
     private boolean isStarting;
 
-    public PlayerPositionInfoDTO(Long id, int positionIndex, Position defaultPosition, Position currentPosition, boolean isStarting) {
+    public PlayerPositionInfoDTO(Long id, Position defaultPosition, Position currentPosition, boolean isStarting) {
         this.id = id;
-        this.positionIndex = positionIndex;
         this.defaultPosition = defaultPosition;
         this.currentPosition = currentPosition;
         this.isStarting = isStarting;

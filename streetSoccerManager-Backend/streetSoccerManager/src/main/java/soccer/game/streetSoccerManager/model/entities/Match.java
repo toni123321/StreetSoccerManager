@@ -1,9 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
@@ -13,6 +10,7 @@ import java.util.*;
 @Entity
 @Table(name ="match")
 @Data
+@EqualsAndHashCode(exclude = {"id", "homeTeam", "awayTeam"})
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Match {
@@ -20,18 +18,21 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
-    @OneToOne
-    @JoinColumn(name="matchInfoId")
-    protected MatchInfo matchInfo;
+    @ManyToOne
+    @JoinColumn(name="homeTeamId")
+    protected Team homeTeam;
+    @ManyToOne
+    @JoinColumn(name="awayTeamId")
+    protected Team awayTeam;
 
-    @OneToOne
-    @JoinColumn(name="matchStatisticId")
-    protected MatchStatistic matchStatistic;
+    protected String result;
+    protected String statistic;
 
-    public Match(Long id, MatchInfo matchInfo,
-                 MatchStatistic matchStatistic) {
+    public Match(Long id, Team homeTeam, Team awayTeam, String result, String statistic) {
         this.id = id;
-        this.matchInfo = matchInfo;
-        this.matchStatistic = matchStatistic;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.result = result;
+        this.statistic = statistic;
     }
 }
