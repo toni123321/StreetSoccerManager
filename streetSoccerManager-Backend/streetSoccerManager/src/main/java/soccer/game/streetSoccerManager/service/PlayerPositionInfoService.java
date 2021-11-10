@@ -3,8 +3,8 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.PlayerPositionInfo;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerPositionInfoRepository;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerPositionInfoService;
+import soccer.game.streetSoccerManager.repository_interfaces.IPlayerPositionInfoRepository;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerPositionInfoService;
 
 import java.util.List;
 

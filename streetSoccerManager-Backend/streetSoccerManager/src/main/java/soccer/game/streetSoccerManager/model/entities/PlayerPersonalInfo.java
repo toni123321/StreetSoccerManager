@@ -1,10 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -14,6 +11,7 @@ import java.util.Calendar;
 @Table(name ="player_personal_info")
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"id", "player"})
 public class PlayerPersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +21,7 @@ public class PlayerPersonalInfo {
     @Temporal(TemporalType.DATE)
     private Calendar dob;
 
-    @OneToOne(mappedBy = "playerPersonalInfo")
+    @OneToOne(mappedBy = "playerPersonalInfo", cascade = CascadeType.ALL)
     @JsonIgnore
     protected Player player;
 

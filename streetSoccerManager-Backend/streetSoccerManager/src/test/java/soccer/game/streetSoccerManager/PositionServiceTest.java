@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.repository.repositories.Position.PositionStubDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPositionRepository;
+import soccer.game.streetSoccerManager.repository.Position.PositionStubDatabase;
+import soccer.game.streetSoccerManager.repository_interfaces.IPositionRepository;
 import soccer.game.streetSoccerManager.service.PositionService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPositionService;
+import soccer.game.streetSoccerManager.service_interfaces.IPositionService;
 
 import java.util.ArrayList;
 import java.util.List;

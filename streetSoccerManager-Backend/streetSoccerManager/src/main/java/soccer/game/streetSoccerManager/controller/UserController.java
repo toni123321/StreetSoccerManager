@@ -1,11 +1,13 @@
 package soccer.game.streetSoccerManager.controller;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
+import soccer.game.streetSoccerManager.model.dtos.UserDTO;
+import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
+import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
+import soccer.game.streetSoccerManager.service_interfaces.IUserService;
 import soccer.game.streetSoccerManager.model.entities.User;
 
 import java.util.List;
@@ -14,27 +16,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
-    @Qualifier("teamService")
-    private ITeamService teamService;
-
     @Qualifier("userService")
     private IUserService userService;
 
-    @Qualifier("formationService")
-    private IFormationService formationService;
-
-    public UserController(ITeamService teamService, IUserService userService, IFormationService formationService) {
-        this.teamService = teamService;
+    public UserController(IUserService userService) {
         this.userService = userService;
-        this.formationService = formationService;
     }
 
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable(value = "id") Long id) {
-        User user = userService.get(id);
-
+    public ResponseEntity<UserDTO> getUser(@PathVariable(value = "id") Long id) {
+        UserDTO user = userService.get(id);
         if(user != null) {
             return ResponseEntity.ok().body(user);
         } else {
@@ -44,8 +36,8 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = null;
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> users = null;
         users = userService.getAll();
 
         if(users != null) {
@@ -63,6 +55,27 @@ public class UserController {
         return ResponseEntity.ok().build();
 
     }
+
+    @PostMapping()
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+        if (!userService.add(userDTO)){
+            String entity =  "user with id " + userDTO.getId() + " already exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity(userDTO,HttpStatus.CREATED);
+        }
+    }
+
+//    @PutMapping()
+//    public ResponseEntity<UserDTO> updateUser(@RequestBody AdminDTO adminDTO) {
+//        // Idempotent method. Always update (even if the resource has already been updated before).
+//        Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
+//        if (Boolean.TRUE.equals(userService.update(admin))) {
+//            return ResponseEntity.noContent().build();
+//        } else {
+//            return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 
 

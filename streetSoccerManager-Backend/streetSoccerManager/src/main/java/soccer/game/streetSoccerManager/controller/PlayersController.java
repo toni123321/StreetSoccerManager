@@ -1,21 +1,16 @@
 package soccer.game.streetSoccerManager.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.PlayerConverter;
 import soccer.game.streetSoccerManager.model.dtos.PlayerDTO;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.ITeamService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IUserService;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerService;
 import soccer.game.streetSoccerManager.model.entities.Player;
 
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,9 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -14,6 +11,7 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"manager"})
 public class CustomTeam extends Team{
     @OneToOne
     @JoinColumn(name = "userId")
@@ -21,6 +19,11 @@ public class CustomTeam extends Team{
 
     public CustomTeam(Long id, String name, Formation formation, User manager) {
         super(id, name, formation);
+        this.manager = manager;
+    }
+
+    public CustomTeam(String name, Formation formation, User manager) {
+        super(name, formation);
         this.manager = manager;
     }
 

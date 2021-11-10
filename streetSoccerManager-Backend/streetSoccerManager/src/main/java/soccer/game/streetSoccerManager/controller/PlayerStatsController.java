@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.PlayerStatsConverter;
 import soccer.game.streetSoccerManager.model.dtos.PlayerStatsDTO;
 import soccer.game.streetSoccerManager.model.entities.PlayerStats;
-import soccer.game.streetSoccerManager.model.entities.Position;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerStatsService;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerStatsService;
 
 import java.net.URI;
 import java.util.List;

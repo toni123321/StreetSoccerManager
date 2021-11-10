@@ -7,9 +7,9 @@ import soccer.game.streetSoccerManager.model.entities.PlayerStats;
 
 public class PlayerStatsConverter {
     public PlayerStats convertPlayerStatsDtoToPlayerStats(PlayerStatsDTO playerStatsDTO){
-        return new PlayerStats(playerStatsDTO.getId(), playerStatsDTO.getOverallRating());
+        return null;
     }
     public PlayerStatsDTO convertPlayerStatsToPlayerStatsDto(PlayerStats playerStats) {
-        return new PlayerStatsDTO(playerStats.getId(), playerStats.getOverallRating());
+        return null;
     }
 }

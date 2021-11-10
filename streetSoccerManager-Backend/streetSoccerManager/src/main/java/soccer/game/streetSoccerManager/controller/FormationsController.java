@@ -1,12 +1,13 @@
 package soccer.game.streetSoccerManager.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.converters.FormationConverter;
 import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IFormationService;
+import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.entities.Formation;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class FormationsController {
     @Qualifier("formationService")
     private IFormationService formationService;
     private FormationConverter formationConverter = new FormationConverter();
+    ModelMapper modelMapper = new ModelMapper();
 
     public FormationsController(IFormationService formationService) {
         this.formationService = formationService;

@@ -13,7 +13,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Data
 public class FriendlyMatch extends Match {
-    public FriendlyMatch(Long id, MatchInfo matchInfo, MatchStatistic matchStatistic) {
-        super(id, matchInfo, matchStatistic);
+    public FriendlyMatch(Long id, Team homeTeam, Team awayTeam, String result, String statistic) {
+        super(id, homeTeam, awayTeam, result, statistic);
     }
 }

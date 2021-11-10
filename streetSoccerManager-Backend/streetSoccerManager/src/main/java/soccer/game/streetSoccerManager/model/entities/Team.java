@@ -2,10 +2,7 @@ package soccer.game.streetSoccerManager.model.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.lang.Nullable;
@@ -20,6 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
+@EqualsAndHashCode(exclude = {"playersTeamInfo", "homeTeamsMatches", "awayTeamMatches"})
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,17 +29,17 @@ public class Team {
     @JoinColumn(name="formationId")
     private Formation formation;
 
-    @OneToMany(mappedBy="team")
+    @OneToMany(mappedBy="team", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<PlayerTeamInfo> playersTeamInfo;
 
-    @OneToMany(mappedBy = "homeTeam")
+    @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.ALL)
     @JsonIgnore
-    protected Set<MatchInfo> matchInfoHomeTeam;
+    protected Set<Match> homeTeamsMatches;
 
-    @OneToMany(mappedBy = "awayTeam")
+    @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.ALL)
     @JsonIgnore
-    protected Set<MatchInfo> matchInfoAwayTeam;
+    protected Set<Match> awayTeamMatches;
 
     @Column(nullable = true)
     private int rating;
@@ -51,4 +49,10 @@ public class Team {
         this.name = name;
         this.formation = formation;
     }
+
+    public Team(String name, Formation formation) {
+        this.name = name;
+        this.formation = formation;
+    }
+
 }

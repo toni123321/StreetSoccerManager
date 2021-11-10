@@ -1,9 +1,6 @@
 package soccer.game.streetSoccerManager.model.entities;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 import javax.persistence.Entity;
@@ -21,4 +18,11 @@ public class OfficialTeam extends Team{
         super(id, name, formation);
         this.managerName = managerName;
     }
+
+    public OfficialTeam(String name, Formation formation, String managerName) {
+        super(name, formation);
+        this.managerName = managerName;
+    }
+
+
 }

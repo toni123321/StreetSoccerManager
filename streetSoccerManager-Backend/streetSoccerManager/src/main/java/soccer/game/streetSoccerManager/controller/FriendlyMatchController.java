@@ -1,22 +1,13 @@
 package soccer.game.streetSoccerManager.controller;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.converters.PlayerConverter;
 import soccer.game.streetSoccerManager.model.dtos.FriendlyMatchDTO;
 import soccer.game.streetSoccerManager.model.dtos.MatchInfoDTO;
-import soccer.game.streetSoccerManager.model.dtos.PlayerDTO;
 import soccer.game.streetSoccerManager.model.entities.*;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchInfoRepository;
-import soccer.game.streetSoccerManager.service.MatchStatisticService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchStatisticService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerService;
+import soccer.game.streetSoccerManager.service_interfaces.IMatchService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,17 +19,9 @@ public class FriendlyMatchController {
     private ModelMapper modelMapper = new ModelMapper();
     @Qualifier("matchService")
     private IMatchService matchService;
-    @Qualifier("matchInfoService")
-    private IMatchInfoService matchInfoService;
 
-    @Qualifier("matchStatisticService")
-    private IMatchStatisticService matchStatisticService;
-
-
-    public FriendlyMatchController(IMatchService matchService, IMatchInfoService matchInfoService, IMatchStatisticService matchStatisticService) {
+    public FriendlyMatchController(IMatchService matchService) {
         this.matchService = matchService;
-        this.matchInfoService = matchInfoService;
-        this.matchStatisticService = matchStatisticService;
     }
 
     @GetMapping
@@ -66,33 +49,34 @@ public class FriendlyMatchController {
 
     @PostMapping()
     public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody MatchInfoDTO matchInfoDTO) {
-        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-
-        MatchInfo matchInfo = modelMapper.map(matchInfoDTO, MatchInfo.class);
-
-        //FriendlyMatch friendlyMatch = modelMapper.map(friendlyMatchDTO, FriendlyMatch.class);
-        if (!matchInfoService.add(matchInfo)){
-            String entity =  "MatchInfo with id " + matchInfo.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        }
-//        MatchInfoDTO matchInfoDTOtoReturn = modelMapper.map(matchInfo, MatchInfoDTO.class);
-//        return new ResponseEntity(matchInfoDTOtoReturn,HttpStatus.CREATED);
-        //FriendlyMatchDTO friendlyMatchDTOtoReturn = modelMapper.map(matchService.get(friendlyMatch.getId()), FriendlyMatchDTO.class);
-        // save match statistic
-        if(!matchStatisticService.playMatch(matchInfoDTO.getHomeTeam(), matchInfoDTO.getAwayTeam())){
-            String entity =  "MatchStatistic not created";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        }
-        FriendlyMatch friendlyMatch = new FriendlyMatch(null,
-                matchInfoService.getAll().get(matchInfoService.getAll().size() - 1),
-                matchStatisticService.getAll().get(matchStatisticService.getAll().size() - 1));
-        if(!matchService.add(friendlyMatch)){
-            String entity =  "Match with id " + friendlyMatch.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        }
-        // save match
-        FriendlyMatchDTO friendlyMatchDTOtoReturn = modelMapper.map(matchService.getAll().get(matchService.getAll().size() - 1), FriendlyMatchDTO.class);
-
-        return new ResponseEntity(friendlyMatchDTOtoReturn,HttpStatus.CREATED);
+//        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+//
+//        MatchInfo matchInfo = modelMapper.map(matchInfoDTO, MatchInfo.class);
+//
+//        //FriendlyMatch friendlyMatch = modelMapper.map(friendlyMatchDTO, FriendlyMatch.class);
+//        if (!matchInfoService.add(matchInfo)){
+//            String entity =  "MatchInfo with id " + matchInfo.getId() + " already exists.";
+//            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+//        }
+////        MatchInfoDTO matchInfoDTOtoReturn = modelMapper.map(matchInfo, MatchInfoDTO.class);
+////        return new ResponseEntity(matchInfoDTOtoReturn,HttpStatus.CREATED);
+//        //FriendlyMatchDTO friendlyMatchDTOtoReturn = modelMapper.map(matchService.get(friendlyMatch.getId()), FriendlyMatchDTO.class);
+//        // save match statistic
+//        if(!matchStatisticService.playMatch(matchInfoDTO.getHomeTeam(), matchInfoDTO.getAwayTeam())){
+//            String entity =  "MatchStatistic not created";
+//            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+//        }
+//        FriendlyMatch friendlyMatch = new FriendlyMatch(null,
+//                matchInfoService.getAll().get(matchInfoService.getAll().size() - 1),
+//                matchStatisticService.getAll().get(matchStatisticService.getAll().size() - 1));
+//        if(!matchService.add(friendlyMatch)){
+//            String entity =  "Match with id " + friendlyMatch.getId() + " already exists.";
+//            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+//        }
+//        // save match
+//        FriendlyMatchDTO friendlyMatchDTOtoReturn = modelMapper.map(matchService.getAll().get(matchService.getAll().size() - 1), FriendlyMatchDTO.class);
+//
+//        return new ResponseEntity(friendlyMatchDTOtoReturn,HttpStatus.CREATED);
+        return null;
     }
 }

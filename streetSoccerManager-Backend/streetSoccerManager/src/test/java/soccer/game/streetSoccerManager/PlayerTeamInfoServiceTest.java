@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
-import soccer.game.streetSoccerManager.repository.repositories.PlayerTeamInfo.PlayerTeamInfoStubDatabase;
-import soccer.game.streetSoccerManager.repository.repositories.Team.TeamStubDatabase;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IPlayerTeamInfoRepository;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
+import soccer.game.streetSoccerManager.repository.PlayerTeamInfo.PlayerTeamInfoStubDatabase;
+import soccer.game.streetSoccerManager.repository.Team.TeamStubDatabase;
+import soccer.game.streetSoccerManager.repository_interfaces.IPlayerTeamInfoRepository;
+import soccer.game.streetSoccerManager.repository_interfaces.ITeamRepository;
 import soccer.game.streetSoccerManager.service.PlayerTeamInfoService;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IPlayerTeamInfoService;
+import soccer.game.streetSoccerManager.service_interfaces.IPlayerTeamInfoService;
 
 import java.util.ArrayList;
 import java.util.List;

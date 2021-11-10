@@ -3,8 +3,8 @@ package soccer.game.streetSoccerManager.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.entities.Match;
-import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IMatchRepository;
-import soccer.game.streetSoccerManager.service.serviceInterfaces.IMatchService;
+import soccer.game.streetSoccerManager.repository_interfaces.IMatchRepository;
+import soccer.game.streetSoccerManager.service_interfaces.IMatchService;
 
 import java.util.List;
 

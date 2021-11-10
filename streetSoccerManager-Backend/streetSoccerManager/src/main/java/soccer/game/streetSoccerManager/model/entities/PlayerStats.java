@@ -1,10 +1,7 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -14,18 +11,21 @@ import java.util.Objects;
 @Table(name ="playerStats")
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"id", "playerAdditionalInfo"})
 public class PlayerStats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int overallRating;
+    private int skills;
+    private int physical;
 
-    @OneToOne(mappedBy = "playerStats")
+    @OneToOne(mappedBy = "playerStats", cascade = CascadeType.ALL)
     @JsonIgnore
     protected PlayerAdditionalInfo playerAdditionalInfo;
 
-    public PlayerStats(Long id, int overallRating) {
+    public PlayerStats(Long id, int skills, int physical) {
         this.id = id;
-        this.overallRating = overallRating;
+        this.skills = skills;
+        this.physical = physical;
     }
 }
