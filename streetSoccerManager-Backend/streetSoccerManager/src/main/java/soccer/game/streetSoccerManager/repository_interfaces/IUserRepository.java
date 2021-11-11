@@ -8,7 +8,7 @@ public interface IUserRepository {
     List<User> getAll();
     User get(Long id);
     Boolean delete(Long id);
-    Boolean add(User user);
-    Boolean update(User user);
+    User add(User user);
+    User update(User user);
     void deleteAll();
 }

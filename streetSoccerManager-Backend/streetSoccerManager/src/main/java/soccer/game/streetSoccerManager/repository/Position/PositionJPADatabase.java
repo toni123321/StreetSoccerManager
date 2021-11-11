@@ -40,21 +40,19 @@ public class PositionJPADatabase implements IPositionRepository {
     }
 
     @Override
-    public Boolean add(Position position) {
+    public Position add(Position position) {
         if(position.getId() == null) {
-            positionRepo.save(position);
-            return true;
+            return positionRepo.save(position);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(Position position) {
+    public Position update(Position position) {
         if(position.getId() != null) {
-            positionRepo.save(position);
-            return true;
+            return positionRepo.save(position);
         }
-        return false;
+        return null;
     }
 
     @Override

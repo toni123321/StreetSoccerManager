@@ -35,22 +35,19 @@ public class PlayerJPADatabase implements IPlayerRepository {
     }
 
     @Override
-    public Boolean add(Player player) {
+    public Player add(Player player) {
         if(player.getId() == null) {
-            playerRepo.save(player);
-            return true;
+            return playerRepo.save(player);
         }
-        return false;
+        return null;
     }
 
     @Override
-    @Transactional
-    public Boolean update(Player player) {
+    public Player update(Player player) {
         if(player.getId() != null) {
-            playerRepo.save(player);
-            return true;
+            return playerRepo.save(player);
         }
-        return false;
+        return null;
     }
 
     @Override

@@ -34,21 +34,19 @@ public class MatchJPADatabase implements IMatchRepository {
     }
 
     @Override
-    public Boolean add(Match match) {
+    public Match add(Match match) {
         if(match.getId() == null) {
-            matchRepo.save(match);
-            return true;
+            return matchRepo.save(match);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(Match match) {
+    public Match update(Match match) {
         if(match.getId() != null) {
-            matchRepo.save(match);
-            return true;
+            return matchRepo.save(match);
         }
-        return false;
+        return null;
     }
 
     @Override

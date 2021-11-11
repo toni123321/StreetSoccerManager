@@ -34,21 +34,19 @@ public class PlayerStatsJPADatabase implements IPlayerStatsRepository {
     }
 
     @Override
-    public Boolean add(PlayerStats stat) {
+    public PlayerStats add(PlayerStats stat) {
         if(stat.getId() == null) {
-            playerStatsRepo.save(stat);
-            return true;
+            return playerStatsRepo.save(stat);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(PlayerStats stat) {
+    public PlayerStats update(PlayerStats stat) {
         if(stat.getId() != null) {
-            playerStatsRepo.save(stat);
-            return true;
+            return playerStatsRepo.save(stat);
         }
-        return false;
+        return null;
     }
 
     @Override

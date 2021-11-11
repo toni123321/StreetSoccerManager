@@ -25,39 +25,32 @@ public class PlayerPositionInfoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PlayerPositionInfo>> getAll() {
-        List<PlayerPositionInfo> playersPositionInfo = null;
+    public ResponseEntity<List<PlayerPositionInfoDTO>> getAll() {
+        List<PlayerPositionInfoDTO> playersPositionInfoDTO = playerPositionInfoService.getAll();
 
-        playersPositionInfo = playerPositionInfoService.getAll();
-
-        if(playersPositionInfo != null) {
-            return ResponseEntity.ok().body(playersPositionInfo);
+        if(playersPositionInfoDTO != null) {
+            return ResponseEntity.ok().body(playersPositionInfoDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping()
-    public ResponseEntity<PlayerPositionInfoDTO> createPlayerPositionInfo(@RequestBody PlayerPositionInfoDTO playerPositionInfoDTO) {
-        PlayerPositionInfo playerPositionInfo = playerPositionInfoConverter.convertPlayerPositionInfoDtoToPlayerPositionInfo(playerPositionInfoDTO);
-        if (!playerPositionInfoService.add(playerPositionInfo)){
+    public ResponseEntity<PlayerPositionInfoDTO> createPlayerPositionInfo(@RequestBody PlayerPositionInfoDTO playerPositionInfo) {
+        PlayerPositionInfoDTO createdPlayerPositionInfo = playerPositionInfoService.add(playerPositionInfo);
+        if (createdPlayerPositionInfo == null){
             String entity =  "PlayerPositionInfo with id " + playerPositionInfo.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            String url = "playerPositionInfo" + "/" + playerPositionInfo.getId(); // url of the created student
-            URI uri = URI.create(url);
-            PlayerPositionInfoDTO playerPositionInfoDTOtoReturn = playerPositionInfoConverter.convertPlayerPositionInfoToPlayerPositionInfoDto(playerPositionInfoService.get(playerPositionInfoDTO.getId()));
-            return new ResponseEntity(playerPositionInfoDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(createdPlayerPositionInfo,HttpStatus.CREATED);
         }
     }
 
     @PutMapping()
-    public ResponseEntity<PlayerPositionInfoDTO> updatePlayerPositionInfo(@RequestBody PlayerPositionInfoDTO playerPositionInfoDTO) {
-        PlayerPositionInfo playerPositionInfo = playerPositionInfoConverter.convertPlayerPositionInfoDtoToPlayerPositionInfo(playerPositionInfoDTO);
-        // Idempotent method. Always update (even if the resource has already been updated before).
-        //PlayerPositionInfo player = playerConverter.convertPlayerDtoToPlayer(playerDTO);
-        if (playerPositionInfoService.update(playerPositionInfo)) {
-            return ResponseEntity.ok().body(playerPositionInfoDTO);
+    public ResponseEntity<PlayerPositionInfoDTO> updatePlayerPositionInfo(@RequestBody PlayerPositionInfoDTO playerPositionInfo) {
+        PlayerPositionInfoDTO updatedPlayerPositionInfo = playerPositionInfoService.add(playerPositionInfo);
+        if (updatedPlayerPositionInfo != null) {
+            return ResponseEntity.ok().body(updatedPlayerPositionInfo);
         } else {
             return new ResponseEntity("Please provide a valid playerPositionInfo id",HttpStatus.NOT_FOUND);
         }

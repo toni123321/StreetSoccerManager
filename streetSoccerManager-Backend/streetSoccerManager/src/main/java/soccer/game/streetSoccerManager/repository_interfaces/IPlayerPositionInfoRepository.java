@@ -10,7 +10,7 @@ public interface IPlayerPositionInfoRepository {
     List<PlayerPositionInfo> getAll();
     PlayerPositionInfo get(Long id);
     Boolean delete(Long id);
-    Boolean add(PlayerPositionInfo playerPositionInfo);
-    Boolean update(PlayerPositionInfo playerPositionInfo);
+    PlayerPositionInfo add(PlayerPositionInfo playerPositionInfo);
+    PlayerPositionInfo update(PlayerPositionInfo playerPositionInfo);
     void deleteAll();
 }

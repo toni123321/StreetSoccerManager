@@ -55,21 +55,19 @@ public class TeamJPADatabase implements ITeamRepository {
     }
 
     @Override
-    public Boolean add(Team team) {
+    public Team add(Team team) {
         if(team.getId() == null) {
-            teamRepo.save(team);
-            return true;
+            return teamRepo.save(team);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(Team team) {
+    public Team update(Team team) {
         if(team.getId() != null) {
-            teamRepo.save(team);
-            return true;
+            return teamRepo.save(team);
         }
-        return false;
+        return null;
     }
 
     @Override

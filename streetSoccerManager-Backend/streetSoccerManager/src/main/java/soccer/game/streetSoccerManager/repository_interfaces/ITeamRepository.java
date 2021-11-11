@@ -9,8 +9,8 @@ public interface ITeamRepository {
     List<Team> getAll();
     Team get(Long id);
     Boolean delete(Long id);
-    Boolean add(Team team);
-    Boolean update(Team team);
+    Team add(Team team);
+    Team update(Team team);
 
     Formation getDefaultFormation();
     void deleteAll();

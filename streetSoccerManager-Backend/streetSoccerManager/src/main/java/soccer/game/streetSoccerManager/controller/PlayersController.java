@@ -19,21 +19,17 @@ import java.util.Optional;
 @RequestMapping("/players")
 public class PlayersController {
 
-    private PlayerConverter playerConverter = new PlayerConverter();
     @Qualifier("playerService")
     private IPlayerService playerService;
 
 
     public PlayersController(IPlayerService playerService) {
         this.playerService = playerService;
-
     }
 
-
     @GetMapping("{id}")
-    public ResponseEntity<Player> getPlayer(@PathVariable(value = "id") Long id) {
-        Player player = playerService.get(id);
-
+    public ResponseEntity<PlayerDTO> getPlayer(@PathVariable(value = "id") Long id) {
+        PlayerDTO player = playerService.get(id);
         if(player != null) {
             return ResponseEntity.ok().body(player);
         } else {
@@ -41,13 +37,11 @@ public class PlayersController {
         }
     }
 
-
     @GetMapping
-    public ResponseEntity<List<Player>> getAllPlayers(
+    public ResponseEntity<List<PlayerDTO>> getAllPlayers(
             @RequestParam(value = "teamId") Optional<Long> teamId,
             @RequestParam(value = "starting") Optional<Boolean> starting) {
-        List<Player> players = null;
-
+        List<PlayerDTO> players = null;
         if(teamId.isPresent()){
             if(starting.isPresent())
             {
@@ -71,10 +65,10 @@ public class PlayersController {
     }
 
     @GetMapping("/availableForSwapping")
-    public ResponseEntity<List<Player>> getPlayersAvailableForSwapping(
+    public ResponseEntity<List<PlayerDTO>> getPlayersAvailableForSwapping(
             @RequestParam(value = "teamId") Optional<Long> teamId,
             @RequestParam(value = "playerToSwapId") Optional<Long> playerToSwapId) {
-        List<Player> players = null;
+        List<PlayerDTO> players = null;
 
         if(teamId.isPresent() && playerToSwapId.isPresent()){
             players = playerService.getAllPlayersInTeamAvailableForSwapping(teamId.get(), playerToSwapId.get());
@@ -97,25 +91,20 @@ public class PlayersController {
     }
 
     @PostMapping()
-    public ResponseEntity<PlayerDTO> createPlayer(@RequestBody PlayerDTO playerDTO) {
-        Player player = playerConverter.convertPlayerDtoToPlayer(playerDTO);
-        if (!playerService.add(player)){
-            String entity =  "Player with id " + player.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+    public ResponseEntity<PlayerDTO> createPlayer(@RequestBody PlayerDTO player) {
+        PlayerDTO createdPlayer = playerService.add(player);
+        if (createdPlayer == null){
+            String msg =  "Player with id " + player.getId() + " already exists.";
+            return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            String url = "player" + "/" + player.getId();
-            //URI uri = URI.create(url);
-            PlayerDTO playerDTOtoReturn = playerConverter.convertPlayerToPlayerDto(playerService.get(player.getId()));
-            return new ResponseEntity(playerDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(createdPlayer,HttpStatus.CREATED);
         }
-
     }
 
     @PutMapping()
-    public ResponseEntity<PlayerDTO> updatePlayer(@RequestBody PlayerDTO playerDTO) {
-        // Idempotent method. Always update (even if the resource has already been updated before).
-        Player player = playerConverter.convertPlayerDtoToPlayer(playerDTO);
-        if (playerService.update(player)) {
+    public ResponseEntity<PlayerDTO> updatePlayer(@RequestBody PlayerDTO player) {
+        PlayerDTO updatedPlayer = playerService.update(player);
+        if(updatedPlayer != null) {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Please provide a valid player id",HttpStatus.NOT_FOUND);

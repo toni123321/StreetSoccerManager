@@ -9,7 +9,7 @@ public interface IPlayerStatsRepository {
     List<PlayerStats> getAll();
     PlayerStats get(Long id);
     Boolean delete(Long id);
-    Boolean add(PlayerStats playerStats);
-    Boolean update(PlayerStats playerStats);
+    PlayerStats add(PlayerStats playerStats);
+    PlayerStats update(PlayerStats playerStats);
     void deleteAll();
 }
