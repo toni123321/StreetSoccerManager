@@ -9,6 +9,6 @@ public interface IUserService {
     List<UserDTO> getAll();
     UserDTO get(Long id);
     Boolean delete(Long id);
-    Boolean add(UserDTO user);
-    Boolean update(UserDTO user);
+    UserDTO add(UserDTO user);
+    UserDTO update(UserDTO user);
 }

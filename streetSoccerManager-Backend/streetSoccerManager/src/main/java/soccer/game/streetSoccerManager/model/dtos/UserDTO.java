@@ -1,10 +1,12 @@
 package soccer.game.streetSoccerManager.model.dtos;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 
 @Data
+@NoArgsConstructor
 public class UserDTO {
     private Long id;
     private String email;

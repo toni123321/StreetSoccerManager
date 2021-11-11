@@ -10,7 +10,7 @@ public interface IPositionRepository {
     Position get(Long id);
     Position get(String searchedPosition);
     Boolean delete(Long id);
-    Boolean add(Position position);
-    Boolean update(Position position);
+    Position add(Position position);
+    Position update(Position position);
     void deleteAll();
 }

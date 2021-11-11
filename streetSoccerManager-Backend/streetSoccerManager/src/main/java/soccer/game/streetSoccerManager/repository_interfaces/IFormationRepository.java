@@ -8,7 +8,7 @@ public interface IFormationRepository {
     List<Formation> getAll();
     Formation get(Long id);
     Boolean delete(Long id);
-    Boolean add(Formation formation);
-    Boolean update(Formation formation);
+    Formation add(Formation formation);
+    Formation update(Formation formation);
     void deleteAll();
 }

@@ -20,18 +20,14 @@ public class PlayerStatsController {
 
     @Qualifier("playerStatsService")
     private IPlayerStatsService playerStatsService;
-    private PlayerStatsConverter playerStatsConverter = new PlayerStatsConverter();
 
     public PlayerStatsController(IPlayerStatsService playerStatsService) {
         this.playerStatsService = playerStatsService;
     }
 
     @GetMapping
-    public ResponseEntity<List<PlayerStats>> getAll() {
-        List<PlayerStats> playerStats = null;
-
-        playerStats = playerStatsService.getAll();
-
+    public ResponseEntity<List<PlayerStatsDTO>> getAll() {
+        List<PlayerStatsDTO> playerStats = playerStatsService.getAll();
         if(playerStats != null) {
             return ResponseEntity.ok().body(playerStats);
         } else {
@@ -40,16 +36,13 @@ public class PlayerStatsController {
     }
 
     @PostMapping()
-    public ResponseEntity<PlayerStatsDTO> createPlayerStats(@RequestBody PlayerStatsDTO playerStatsDTO) {
-        PlayerStats playerStats = playerStatsConverter.convertPlayerStatsDtoToPlayerStats(playerStatsDTO);
-        if (!playerStatsService.add(playerStats)){
-            String entity =  "Player stats with id " + playerStats.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+    public ResponseEntity<PlayerStatsDTO> createPlayerStats(@RequestBody PlayerStatsDTO playerStats) {
+        PlayerStatsDTO createdPlayerStats = playerStatsService.add(playerStats);
+        if (createdPlayerStats == null){
+            String msg =  "Player stats with id " + playerStats.getId() + " already exists.";
+            return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            String url = "playerStats" + "/" + playerStats.getId(); // url of the created student
-            URI uri = URI.create(url);
-            PlayerStatsDTO playerStatsDTOtoReturn = playerStatsConverter.convertPlayerStatsToPlayerStatsDto(playerStatsService.get(playerStats.getId()));
-            return new ResponseEntity(playerStatsDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(createdPlayerStats,HttpStatus.CREATED);
         }
 
     }

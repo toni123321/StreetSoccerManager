@@ -34,21 +34,19 @@ public class UserJPADatabase implements IUserRepository {
     }
 
     @Override
-    public Boolean add(User user) {
+    public User add(User user) {
         if(user.getId() == null) {
-            userRepo.save(user);
-            return true;
+            return userRepo.save(user);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(User user) {
+    public User update(User user) {
         if(user.getId() != null) {
-            userRepo.save(user);
-            return true;
+            return userRepo.save(user);
         }
-        return false;
+        return null;
     }
 
     @Override

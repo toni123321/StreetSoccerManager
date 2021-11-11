@@ -34,21 +34,19 @@ public class PlayerTeamInfoJPADatabase implements IPlayerTeamInfoRepository {
     }
 
     @Override
-    public Boolean add(PlayerTeamInfo playerTeamInfo) {
+    public PlayerTeamInfo add(PlayerTeamInfo playerTeamInfo) {
         if(playerTeamInfo.getId() == null) {
-            playerTeamInfoJPARepository.save(playerTeamInfo);
-            return true;
+            return playerTeamInfoJPARepository.save(playerTeamInfo);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(PlayerTeamInfo playerTeamInfo) {
+    public PlayerTeamInfo update(PlayerTeamInfo playerTeamInfo) {
         if(playerTeamInfo.getId() != null) {
-            playerTeamInfoJPARepository.save(playerTeamInfo);
-            return true;
+            return playerTeamInfoJPARepository.save(playerTeamInfo);
         }
-        return false;
+        return null;
     }
 
     @Override

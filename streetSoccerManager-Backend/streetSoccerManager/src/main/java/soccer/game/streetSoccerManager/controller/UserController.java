@@ -58,7 +58,8 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        if (!userService.add(userDTO)){
+        UserDTO createdUser = userService.add(userDTO);
+        if (createdUser == null){
             String entity =  "user with id " + userDTO.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {

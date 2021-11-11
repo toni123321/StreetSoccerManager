@@ -35,21 +35,19 @@ public class PlayerPositionInfoJPADatabase implements IPlayerPositionInfoReposit
     }
 
     @Override
-    public Boolean add(PlayerPositionInfo playerPositionInfo) {
+    public PlayerPositionInfo add(PlayerPositionInfo playerPositionInfo) {
         if(playerPositionInfo.getId() == null) {
-            playerPositionInfoRepo.save(playerPositionInfo);
-            return true;
+            return playerPositionInfoRepo.save(playerPositionInfo);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(PlayerPositionInfo playerPositionInfo) {
+    public PlayerPositionInfo update(PlayerPositionInfo playerPositionInfo) {
         if(playerPositionInfo.getId() != null) {
-            playerPositionInfoRepo.save(playerPositionInfo);
-            return true;
+            return playerPositionInfoRepo.save(playerPositionInfo);
         }
-        return false;
+        return null;
     }
 
     @Override

@@ -1,13 +1,14 @@
 package soccer.game.streetSoccerManager.service_interfaces;
 
+import soccer.game.streetSoccerManager.model.dtos.PlayerTeamInfoDTO;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
 
 import java.util.List;
 
 public interface IPlayerTeamInfoService {
-    List<PlayerTeamInfo> getAll();
-    PlayerTeamInfo get(Long id);
+    List<PlayerTeamInfoDTO> getAll();
+    PlayerTeamInfoDTO get(Long id);
     Boolean delete(Long id);
-    Boolean add(PlayerTeamInfo playerTeamInfo);
-    Boolean update(PlayerTeamInfo playerTeamInfo);
+    PlayerTeamInfoDTO add(PlayerTeamInfoDTO playerTeamInfo);
+    PlayerTeamInfoDTO update(PlayerTeamInfoDTO playerTeamInfo);
 }

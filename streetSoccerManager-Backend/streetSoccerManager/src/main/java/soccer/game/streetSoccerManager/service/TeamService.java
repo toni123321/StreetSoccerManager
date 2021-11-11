@@ -72,14 +72,23 @@ public class TeamService implements ITeamService {
 
     @Override
     public Boolean add(Team team) {
-        team.setFormation(dataStore.getDefaultFormation());
-        team.setRating(calcTeamRating(team));
-        return dataStore.add(team);
+//        team.setFormation(dataStore.getDefaultFormation());
+//        team.setRating(calcTeamRating(team));
+//        return dataStore.add(team);
+        if(dataStore.add(team) != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Boolean update(Team team) {
-        return dataStore.update(team);
+        if(dataStore.update(team) != null)
+        {
+            return true;
+        }
+        return false;
     }
 
 

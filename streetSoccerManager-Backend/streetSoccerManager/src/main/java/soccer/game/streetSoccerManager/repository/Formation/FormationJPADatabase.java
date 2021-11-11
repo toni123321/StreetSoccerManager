@@ -40,21 +40,19 @@ public class FormationJPADatabase implements IFormationRepository {
     }
 
     @Override
-    public Boolean add(Formation formation) {
+    public Formation add(Formation formation) {
         if(formation.getId() == null) {
-            formationRepo.save(formation);
-            return true;
+            return formationRepo.save(formation);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(Formation formation) {
+    public Formation update(Formation formation) {
         if(formation.getId() != null) {
-            formationRepo.save(formation);
-            return true;
+            return formationRepo.save(formation);
         }
-        return false;
+        return null;
     }
 
     @Override

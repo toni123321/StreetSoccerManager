@@ -9,10 +9,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PlayerStatsDTO {
     private Long id;
-    private int overallRating;
+    private int skills;
+    private int physical;
 
-    public PlayerStatsDTO(Long id, int overallRating) {
+    public PlayerStatsDTO(Long id, int skills, int physical) {
         this.id = id;
-        this.overallRating = overallRating;
+        this.skills = skills;
+        this.physical = physical;
     }
 }

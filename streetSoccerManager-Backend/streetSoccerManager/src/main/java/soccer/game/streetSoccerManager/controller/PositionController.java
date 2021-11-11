@@ -26,11 +26,8 @@ public class PositionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Position>> getAll() {
-        List<Position> positions = null;
-
-        positions = positionService.getAll();
-
+    public ResponseEntity<List<PositionDTO>> getAll() {
+        List<PositionDTO> positions = positionService.getAll();
         if(positions != null) {
             return ResponseEntity.ok().body(positions);
         } else {
@@ -39,16 +36,13 @@ public class PositionController {
     }
 
     @PostMapping()
-    public ResponseEntity<PositionDTO> createPosition(@RequestBody PositionDTO positionDTO) {
-        Position position = positionConverter.convertPositionDtoToPosition(positionDTO);
-        if (!positionService.add(position)){
-            String entity =  "Position with id " + position.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+    public ResponseEntity<PositionDTO> createPosition(@RequestBody PositionDTO position) {
+        PositionDTO createdPosition = positionService.add(position);
+        if (createdPosition == null){
+            String msg =  "Position with id " + position.getId() + " already exists.";
+            return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            String url = "team" + "/" + position.getId(); // url of the created student
-            URI uri = URI.create(url);
-            PositionDTO positionDTOtoReturn = positionConverter.convertPositionToPositionDto(positionService.get(position.getId()));
-            return new ResponseEntity(positionDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(createdPosition,HttpStatus.CREATED);
         }
 
     }

@@ -37,21 +37,19 @@ public class PlayerAdditionalInfoJPADatabase implements IPlayerAdditionalInfoRep
     }
 
     @Override
-    public Boolean add(PlayerAdditionalInfo playerAdditionalInfo) {
+    public PlayerAdditionalInfo add(PlayerAdditionalInfo playerAdditionalInfo) {
         if(playerAdditionalInfo.getId() == null) {
-            playerAdditionalInfoRepo.save(playerAdditionalInfo);
-            return true;
+            return playerAdditionalInfoRepo.save(playerAdditionalInfo);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(PlayerAdditionalInfo playerAdditionalInfo) {
+    public PlayerAdditionalInfo update(PlayerAdditionalInfo playerAdditionalInfo) {
         if(playerAdditionalInfo.getId() != null) {
-            playerAdditionalInfoRepo.save(playerAdditionalInfo);
-            return true;
+            return playerAdditionalInfoRepo.save(playerAdditionalInfo);
         }
-        return false;
+        return null;
     }
 
     @Override

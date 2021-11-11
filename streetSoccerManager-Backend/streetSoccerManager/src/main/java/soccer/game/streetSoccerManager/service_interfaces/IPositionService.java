@@ -1,14 +1,15 @@
 package soccer.game.streetSoccerManager.service_interfaces;
 
+import soccer.game.streetSoccerManager.model.dtos.PositionDTO;
 import soccer.game.streetSoccerManager.model.entities.Position;
 
 
 import java.util.List;
 
 public interface IPositionService {
-    List<Position> getAll();
-    Position get(Long id);
+    List<PositionDTO> getAll();
+    PositionDTO get(Long id);
     Boolean delete(Long id);
-    Boolean add(Position position);
-    Boolean update(Position position);
+    PositionDTO add(PositionDTO position);
+    PositionDTO update(PositionDTO position);
 }

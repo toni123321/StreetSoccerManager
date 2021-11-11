@@ -15,7 +15,7 @@ import java.util.List;
 public class UserService implements IUserService {
 
     private IUserRepository dataStore;
-    private ModelMapper modelMapper;
+    private ModelMapper modelMapper = new ModelMapper();
 
     public UserService(@Qualifier("userJPADatabase") IUserRepository dataStore) {
         this.dataStore = dataStore;
@@ -24,7 +24,7 @@ public class UserService implements IUserService {
     @Override
     public List<UserDTO> getAll() {
         List<User> users = dataStore.getAll();
-        List<UserDTO> usersDTO = modelMapper.map(users, new TypeToken<List<User>>() {}.getType());
+        List<UserDTO> usersDTO = modelMapper.map(users, new TypeToken<List<UserDTO>>() {}.getType());
         return usersDTO;
     }
 
@@ -42,14 +42,24 @@ public class UserService implements IUserService {
 
 
     @Override
-    public Boolean add(UserDTO user) {
-        User userEntity = modelMapper.map(user, User.class);
-        return dataStore.add(userEntity);
+    public UserDTO add(UserDTO user) {
+        User userInputEntity = modelMapper.map(user, User.class);
+        User userOutputEntity = dataStore.add(userInputEntity);
+        if(userOutputEntity != null) {
+            UserDTO userOutputDTO = modelMapper.map(userOutputEntity, UserDTO.class);
+            return userOutputDTO;
+        }
+        return null;
     }
 
     @Override
-    public Boolean update(UserDTO user) {
-        User userEntity = modelMapper.map(user, User.class);
-        return dataStore.update(userEntity);
+    public UserDTO update(UserDTO user) {
+        User userInputEntity = modelMapper.map(user, User.class);
+        User userOutputEntity = dataStore.update(userInputEntity);
+        if(userOutputEntity != null) {
+            UserDTO userOutputDTO = modelMapper.map(userOutputEntity, UserDTO.class);
+            return userOutputDTO;
+        }
+        return null;
     }
 }

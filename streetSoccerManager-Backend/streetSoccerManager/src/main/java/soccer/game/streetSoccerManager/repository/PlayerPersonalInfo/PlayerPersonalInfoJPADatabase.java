@@ -34,21 +34,19 @@ public class PlayerPersonalInfoJPADatabase implements IPlayerPersonalInfoReposit
     }
 
     @Override
-    public Boolean add(PlayerPersonalInfo playerPersonalInfo) {
+    public PlayerPersonalInfo add(PlayerPersonalInfo playerPersonalInfo) {
         if(playerPersonalInfo.getId() == null) {
-            playerPersonalInfoJPARepo.save(playerPersonalInfo);
-            return true;
+            return playerPersonalInfoJPARepo.save(playerPersonalInfo);
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Boolean update(PlayerPersonalInfo playerPersonalInfo) {
+    public PlayerPersonalInfo update(PlayerPersonalInfo playerPersonalInfo) {
         if(playerPersonalInfo.getId() != null) {
-            playerPersonalInfoJPARepo.save(playerPersonalInfo);
-            return true;
+            return playerPersonalInfoJPARepo.save(playerPersonalInfo);
         }
-        return false;
+        return null;
     }
 
     @Override

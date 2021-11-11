@@ -8,7 +8,7 @@ public interface IPlayerPersonalInfoRepository {
     List<PlayerPersonalInfo> getAll();
     PlayerPersonalInfo get(Long id);
     Boolean delete(Long id);
-    Boolean add(PlayerPersonalInfo playerPersonalInfo);
-    Boolean update(PlayerPersonalInfo playerPersonalInfo);
+    PlayerPersonalInfo add(PlayerPersonalInfo playerPersonalInfo);
+    PlayerPersonalInfo update(PlayerPersonalInfo playerPersonalInfo);
     void deleteAll();
 }

@@ -13,6 +13,4 @@ public interface ITeamService {
 
     List<Team> getCustomTeams();
     List<Team> getOfficialTeams();
-
-    //List<Team> getOpponentsForFriendlyMatch();
 }

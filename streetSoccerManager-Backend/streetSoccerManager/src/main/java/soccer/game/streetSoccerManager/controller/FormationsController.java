@@ -19,19 +19,14 @@ import java.util.List;
 public class FormationsController {
     @Qualifier("formationService")
     private IFormationService formationService;
-    private FormationConverter formationConverter = new FormationConverter();
-    ModelMapper modelMapper = new ModelMapper();
 
     public FormationsController(IFormationService formationService) {
         this.formationService = formationService;
     }
 
-
-
     @GetMapping("{id}")
-    public ResponseEntity<Formation> getFormation(@PathVariable(value = "id") Long id) {
-        Formation formation = formationService.get(id);
-
+    public ResponseEntity<FormationDTO> getFormation(@PathVariable(value = "id") Long id) {
+        FormationDTO formation = formationService.get(id);
         if(formation != null) {
             return ResponseEntity.ok().body(formation);
         } else {
@@ -39,20 +34,15 @@ public class FormationsController {
         }
     }
 
-
     @GetMapping
-    public ResponseEntity<List<Formation>> getAll() {
-        List<Formation> formations = null;
-
-        formations = formationService.getAll();
-
+    public ResponseEntity<List<FormationDTO>> getAll() {
+        List<FormationDTO> formations = formationService.getAll();
         if(formations != null) {
             return ResponseEntity.ok().body(formations);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteFormation(@PathVariable Long id) {
@@ -63,25 +53,20 @@ public class FormationsController {
     }
 
     @PostMapping()
-    public ResponseEntity<FormationDTO> createFormation(@RequestBody FormationDTO formationDTO) {
-        Formation formation = formationConverter.convertFormationDtoToFormation(formationDTO);
-        if (!formationService.add(formation)){
-            String entity =  "Formation with id " + formation.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+    public ResponseEntity<FormationDTO> createFormation(@RequestBody FormationDTO formation) {
+        FormationDTO createdFormation = formationService.add(formation);
+        if (createdFormation == null){
+            String msg =  "Formation with id " + formation.getId() + " already exists.";
+            return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-           /* String url = "team" + "/" + team.getId(); // url of the created student
-            URI uri = URI.create(url);*/
-            FormationDTO formationDTOtoReturn = formationConverter.convertFormationToFormationDto(formationService.get(formation.getId()));
-            return new ResponseEntity(formationDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(createdFormation,HttpStatus.CREATED);
         }
-
     }
 
     @PutMapping()
-    public ResponseEntity<FormationDTO> updateFormation(@RequestBody FormationDTO formationDTO) {
-        Formation formation = formationConverter.convertFormationDtoToFormation(formationDTO);
-        // Idempotent method. Always update (even if the resource has already been updated before).
-        if (formationService.update(formation)) {
+    public ResponseEntity<FormationDTO> updateFormation(@RequestBody FormationDTO formation) {
+        FormationDTO updatedFormation = formationService.update(formation);
+        if (updatedFormation != null) {
             return ResponseEntity.noContent().build();
         } else {
             return new ResponseEntity("Please provide a valid formation id",HttpStatus.NOT_FOUND);

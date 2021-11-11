@@ -10,7 +10,6 @@ import soccer.game.streetSoccerManager.model.entities.Position;
 @NoArgsConstructor
 public class PlayerPositionInfoDTO {
     private Long id;
-    private int positionIndex;
     private Position defaultPosition;
     private Position currentPosition;
     private boolean isStarting;

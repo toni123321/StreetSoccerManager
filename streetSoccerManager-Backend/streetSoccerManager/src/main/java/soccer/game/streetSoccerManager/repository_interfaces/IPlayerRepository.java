@@ -8,7 +8,7 @@ public interface IPlayerRepository {
     List<Player> getAll();
     Player get(Long id);
     Boolean delete(Long id);
-    Boolean add(Player player);
-    Boolean update(Player player);
+    Player add(Player player);
+    Player update(Player player);
     void deleteAll();
 }
