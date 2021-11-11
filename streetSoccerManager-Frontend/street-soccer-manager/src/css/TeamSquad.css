@@ -47,8 +47,10 @@
 
 .reserves {
     display: flex;
-    gap: 20px;
     margin-block: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    grid-gap: 20px;
 }
 
 .reserves .fas {
@@ -73,12 +75,17 @@
   
 .player {
     display: inline-block;
-    background: aliceblue;
+    background: repeating-linear-gradient( 
+        45deg, #1d1c86, transparent 120px);
+    color:white;
     padding-block: 20px;
     padding-inline: 30px;
     border-radius: 30px;
 }
 
+.reserves .player {
+    background: repeating-linear-gradient(45deg, #0000006e, transparent 120px);
+}
 
 .player hr {
     height: 4px !important;
@@ -160,6 +167,7 @@
 }
 
 .playerForRotation {
+    margin-top:10px;
     background-color: cyan;
     padding:10px;
     font-size: 20px;
@@ -167,26 +175,26 @@
     width: 300px;
     border-radius: 30px;
     margin-inline: auto;
+    background: repeating-radial-gradient(#3535a7, transparent 200px);
+    color:white;
 
 }
 
 
 .availableForSwapping .fa-stack, .playerToRotateWith  .fa-stack {
-    color: lightskyblue;
+    color: deepskyblue;
 }
 
 .availableForSwapping .shirt-text, .playerToRotateWith .shirt-text {
     color: black;
 }
 
-.playerToRotateWith .player{
-    background-color: lightgreen;
-}
+
 
 .rotatePlayers {
     padding: 15px;
     border-radius: 20px;
-    background-color: lightskyblue;
+    background-color: deepskyblue;
     width: 200px;
     margin-bottom: 20px;
 }
@@ -217,4 +225,11 @@
     margin-top:10px;
     width: 150px;
     height: 150px;
+}
+
+.close-rotation-container {
+    font-size: 30px;
+    background: repeating-radial-gradient(#3535a7, transparent 30px);
+    border-radius: 25px;
+    color: white;
 }

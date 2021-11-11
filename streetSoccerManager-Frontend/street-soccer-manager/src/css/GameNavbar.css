@@ -17,6 +17,7 @@
     align-items: flex-start;
     font-weight: 500;
     padding: 0px !important;
+    border-radius: 30px;
 
     
     height:12rem;
@@ -24,6 +25,7 @@
 
 #nav-items-frow .nav-item {
     height: 15rem;
+    
 }
 
 
@@ -70,6 +72,7 @@
     padding: 4px 4px;
     background: ghostwhite;
     border-bottom-right-radius: 15px;
+    border-top-left-radius: 20px;
     
 }
 

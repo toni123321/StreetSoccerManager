@@ -35,7 +35,7 @@ const SignUpForm = () => {
                         <input id="email" type="text" className="input"/>
                     </div>
                     <div className="group">
-                        <input type="submit" className="button" value="Sign Up"/>
+                        <input type="submit" className="button sign-in-up" value="Sign Up"/>
                     </div>
                     <div className="hr"></div>
                     <div className="foot-lnk">
