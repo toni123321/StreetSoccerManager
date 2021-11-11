@@ -8,40 +8,40 @@ import {LinkContainer} from "react-router-bootstrap";
 const GameNavbar = ({team}) => {
 
     return (
-        <Container className="game-navbar" >
-        <Row id="nav-items-frow">
-            <Col className="nav-item" id="playMatch">
+        <Container className="game-navbar">
+        <Row id="nav-items-frow" className="justify-content-sm-center">
+            <Col xs="12" md="6" className="nav-item" id="playMatch">
                 <LinkContainer to="/chooseOpponent">
                     <Nav.Link>Play match</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col className="nav-item" id="playTournament">
+            <Col xs="12" md="6" className="nav-item" id="playTournament">
                 <LinkContainer to="#">
                     <Nav.Link>Play tournament</Nav.Link>
                 </LinkContainer>
             </Col>
         </Row>
         <Row id="nav-items-srow">
-            <Col className="nav-item" id="trainPlayers">
+            <Col xs="12" md="4" className="nav-item" id="trainPlayers">
                 <LinkContainer to="#">
                     <Nav.Link>Train players</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col className="nav-item" id="teamSquad">
+            <Col xs="12" md="4" className="nav-item" id="teamSquad">
                 <LinkContainer to="/teamSquad">
                     <Nav.Link>Team squad</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col className="nav-item" id="shop">
+            <Col xs="12" md="4" className="nav-item" id="shop">
                 <LinkContainer to="#">
                     <Nav.Link>Shop</Nav.Link>
                 </LinkContainer>   
             </Col>
-            <Col className="nav-item" id="settings">
+            {/* <Col className="nav-item" id="settings">
                 <LinkContainer to="#">
                     <Nav.Link>Settings</Nav.Link>
                 </LinkContainer>
-            </Col>
+            </Col> */}
             
         </Row>
         </Container>

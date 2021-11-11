@@ -13,7 +13,7 @@ function MainNavbar() {
             <div>
                 <div>
                 
-                <Navbar className="main-navbar" collapseOnSelect expand="lg" bg="primary" variant="dark">
+                <Navbar className="main-navbar" collapseOnSelect expand="lg"  variant="dark">
                     <Container>
                         
                         <Navbar.Brand id="nav-brand">Street Soccer Manager</Navbar.Brand>

@@ -17,14 +17,17 @@
     }
 }
 
-
+.main-navbar {
+    background: repeating-linear-gradient(
+        45deg, #00006a, transparent);;
+}
 
 .main-navbar .nav-link.active {
     color: floralwhite !important;
 }
 
 .main-navbar .nav-link {
-    color: black !important;
+    color: white !important;
 }
 
 .main-navbar {
@@ -32,7 +35,7 @@
     /* border-bottom-left-radius: 45px;
     border: 4px dashed black;
     width: 80%; */
-    max-width: 1190px;
+    /* max-width: 1190px; */
     height: 40%;
 }
 

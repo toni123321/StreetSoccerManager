@@ -49,7 +49,7 @@ const LoginForm = ({handleLogin}) => {
                         <label htmlFor="check">Keep me Signed in</label>
                     </div>
                     <div className="group">
-                        <input type="submit" className="button" value="Sign In"/>
+                        <input type="submit" className="button sign-in-up" value="Sign In"/>
                     </div>
                     <div className="hr"></div>
                     <div className="foot-lnk">

@@ -141,7 +141,7 @@ function RotatePlayersContainer() {
 
     return (
         <>
-            <button onClick={closeRotationContainer}><i className="fas fa-times"></i></button>
+            <button className="close-rotation-container" onClick={closeRotationContainer}><i class="far fa-hand-point-left"></i></button>
             <div className="playerForRotation">
                 {playerForRotation.id} {playerForRotation.playerPersonalInfo.firstName[0]}.{playerForRotation.playerPersonalInfo.lastName}
             </div>
