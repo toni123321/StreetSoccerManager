@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.dtos.UserDTO;
-import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
-import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 import soccer.game.streetSoccerManager.service_interfaces.IUserService;
-import soccer.game.streetSoccerManager.model.entities.User;
 
 import java.util.List;
 
@@ -63,7 +60,7 @@ public class UserController {
             String entity =  "user with id " + userDTO.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            return new ResponseEntity(userDTO,HttpStatus.CREATED);
+            return new ResponseEntity(createdUser,HttpStatus.CREATED);
         }
     }
 

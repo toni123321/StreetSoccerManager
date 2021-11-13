@@ -1,9 +1,9 @@
-//package soccer.game.streetSoccerManager.repository.User;
+//package soccer.game.streetSoccerManager.repository.UserEntity;
 //
 //import lombok.Getter;
 //import org.springframework.stereotype.Repository;
 //import soccer.game.streetSoccerManager.repository_interfaces.IUserRepository;
-//import soccer.game.streetSoccerManager.model.entities.User;
+//import soccer.game.streetSoccerManager.model.entities.UserEntity;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -11,24 +11,24 @@
 //@Repository
 //public class UserStubDatabase implements IUserRepository {
 //    @Getter
-//    private List<User> users = new ArrayList<>();
+//    private List<UserEntity> users = new ArrayList<>();
 //
 //    public UserStubDatabase() {
 ////        users.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
 ////        users.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 ////
 ////        users.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
-//        users.add(new User(0l, "peter@gmail.com", "123", null, null, null));
+//        users.add(new UserEntity(0l, "peter@gmail.com", "123", null, null, null));
 //    }
 //
 //    @Override
-//    public List<User> getAll() {
+//    public List<UserEntity> getAll() {
 //        return users;
 //    }
 //
 //    @Override
-//    public User get(Long id) {
-//        for (User user : users) {
+//    public UserEntity get(Long id) {
+//        for (UserEntity user : users) {
 //            if (user.getId().equals(id))
 //                return user;
 //        }
@@ -37,7 +37,7 @@
 //
 //    @Override
 //    public Boolean delete(Long id) {
-//        User user = get(id);
+//        UserEntity user = get(id);
 //        if (user == null){
 //            return false;
 //        }
@@ -46,7 +46,7 @@
 //    }
 //
 //    @Override
-//    public Boolean add(User user) {
+//    public Boolean add(UserEntity user) {
 //        if(user.getId() == null) {
 //            user.setId(Long.valueOf(users.size()));
 //        }
@@ -58,9 +58,9 @@
 //    }
 //
 //    @Override
-//    public Boolean update(User user) {
+//    public Boolean update(UserEntity user) {
 //
-//        User oldUser = this.get(user.getId());
+//        UserEntity oldUser = this.get(user.getId());
 //        if (oldUser == null) {
 //            return false;
 //        }

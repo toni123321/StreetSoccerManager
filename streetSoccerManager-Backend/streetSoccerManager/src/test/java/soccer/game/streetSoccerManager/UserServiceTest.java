@@ -5,8 +5,8 @@
 //import org.springframework.boot.test.context.SpringBootTest;
 //import soccer.game.streetSoccerManager.model.entities.Admin;
 //import soccer.game.streetSoccerManager.model.entities.EndUser;
-//import soccer.game.streetSoccerManager.model.entities.User;
-//import soccer.game.streetSoccerManager.repository.repositories.User.UserStubDatabase;
+//import soccer.game.streetSoccerManager.model.entities.UserEntity;
+//import soccer.game.streetSoccerManager.repository.repositories.UserEntity.UserStubDatabase;
 //import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
 //import soccer.game.streetSoccerManager.service.UserService;
 //import soccer.game.streetSoccerManager.serviceInterfaces.IUserService;
@@ -23,9 +23,9 @@
 //        IUserService userService = new UserService(userRepository);
 //
 //        // Act
-//        List<User> users = userService.getAll();
+//        List<UserEntity> users = userService.getAll();
 //
-//        List<User> usersExpected = new ArrayList<>();
+//        List<UserEntity> usersExpected = new ArrayList<>();
 //        usersExpected.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
 //        usersExpected.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 //        usersExpected.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
@@ -43,7 +43,7 @@
 //        IUserService userService = new UserService(userRepository);
 //
 //        // Act
-//        User user = userService.get(0l);
+//        UserEntity user = userService.get(0l);
 //
 //        // Assert
 //        Assertions.assertEquals(new EndUser(0l, "peter@gmail.com", "123", "pete", 100), user);
@@ -57,9 +57,9 @@
 //
 //        // Act
 //        userService.delete(0l);
-//        List<User> users = userService.getAll();
+//        List<UserEntity> users = userService.getAll();
 //
-//        List<User> usersExpected = new ArrayList<>();
+//        List<UserEntity> usersExpected = new ArrayList<>();
 //        usersExpected.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
 //        usersExpected.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 //        usersExpected.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
@@ -77,9 +77,9 @@
 //
 //        // Act
 //        userService.add(new EndUser(3l, "george@gmail.com", "324", "george", 25));
-//        List<User> users = userService.getAll();
+//        List<UserEntity> users = userService.getAll();
 //
-//        List<User> usersExpected = new ArrayList<>();
+//        List<UserEntity> usersExpected = new ArrayList<>();
 //        usersExpected.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
 //        usersExpected.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 //        usersExpected.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
@@ -97,9 +97,9 @@
 //
 //        // Act
 //        userService.update(new EndUser(0l, "george@gmail.com", "324", "george", 25));
-//        List<User> users = userService.getAll();
+//        List<UserEntity> users = userService.getAll();
 //
-//        List<User> usersExpected = new ArrayList<>();
+//        List<UserEntity> usersExpected = new ArrayList<>();
 //        usersExpected.add(new EndUser(0l, "peter@gmail.com", "123", "pete", 100));
 //        usersExpected.add(new EndUser(1l, "john@gmail.com", "456", "jo", 10));
 //        usersExpected.add(new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1"));
