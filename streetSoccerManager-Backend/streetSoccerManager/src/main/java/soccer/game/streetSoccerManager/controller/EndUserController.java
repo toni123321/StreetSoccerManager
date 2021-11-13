@@ -8,7 +8,7 @@
 //import soccer.game.streetSoccerManager.model.dtos.EndUserDTO;
 //import soccer.game.streetSoccerManager.model.entities.Admin;
 //import soccer.game.streetSoccerManager.model.entities.EndUser;
-//import soccer.game.streetSoccerManager.model.entities.User;
+//import soccer.game.streetSoccerManager.model.entities.UserEntity;
 //import soccer.game.streetSoccerManager.serviceInterfaces.IFormationService;
 //import soccer.game.streetSoccerManager.serviceInterfaces.ITeamService;
 //import soccer.game.streetSoccerManager.serviceInterfaces.IUserService;
@@ -30,7 +30,7 @@
 //    }
 //
 //    @GetMapping("{id}")
-//    public ResponseEntity<User> getEndUser(@PathVariable(value = "id") Long id) {
+//    public ResponseEntity<UserEntity> getEndUser(@PathVariable(value = "id") Long id) {
 //
 //        EndUser user;
 //        if(userService.get(id) instanceof Admin){
@@ -50,8 +50,8 @@
 //
 //
 //    @GetMapping
-//    public ResponseEntity<List<User>> getAllEndUsers() {
-//        List<User> users = null;
+//    public ResponseEntity<List<UserEntity>> getAllEndUsers() {
+//        List<UserEntity> users = null;
 //        users = userService.getAll().stream().filter(EndUser.class::isInstance).collect(Collectors.toList());
 //        if(users != null) {
 //            return ResponseEntity.ok().body(users);

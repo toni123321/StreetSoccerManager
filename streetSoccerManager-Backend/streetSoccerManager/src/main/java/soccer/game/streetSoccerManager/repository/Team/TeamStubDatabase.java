@@ -4,7 +4,7 @@
 //import org.springframework.stereotype.Repository;
 //import soccer.game.streetSoccerManager.model.entities.*;
 //import soccer.game.streetSoccerManager.repository.Formation.FormationStubDatabase;
-//import soccer.game.streetSoccerManager.repository.User.UserStubDatabase;
+//import soccer.game.streetSoccerManager.repository.UserEntity.UserStubDatabase;
 //import soccer.game.streetSoccerManager.repository_interfaces.IFormationRepository;
 //import soccer.game.streetSoccerManager.repository_interfaces.ITeamRepository;
 //import soccer.game.streetSoccerManager.repository_interfaces.IUserRepository;
@@ -22,7 +22,7 @@
 //    private List<Formation> formations = formationFakeDatabase.getAll();
 //
 //    private IUserRepository userFakeDatabase = new UserStubDatabase();
-//    private List<User> users = userFakeDatabase.getAll();
+//    private List<UserEntity> users = userFakeDatabase.getAll();
 //
 //
 //    public TeamStubDatabase() {

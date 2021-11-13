@@ -5,8 +5,6 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
-import soccer.game.streetSoccerManager.model.dtos.UserDTO;
-import soccer.game.streetSoccerManager.model.entities.User;
 import soccer.game.streetSoccerManager.repository_interfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
 import soccer.game.streetSoccerManager.model.entities.Formation;
