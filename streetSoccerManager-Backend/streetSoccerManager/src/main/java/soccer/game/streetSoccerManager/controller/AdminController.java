@@ -8,7 +8,7 @@
 //import soccer.game.streetSoccerManager.model.converters.AdminConverter;
 //import soccer.game.streetSoccerManager.model.dtos.AdminDTO;
 //import soccer.game.streetSoccerManager.model.dtos.EndUserDTO;
-//import soccer.game.streetSoccerManager.model.entities.User;
+//import soccer.game.streetSoccerManager.model.entities.UserEntity;
 //import soccer.game.streetSoccerManager.serviceInterfaces.IUserService;
 //
 //import java.net.URI;
@@ -31,7 +31,7 @@
 //    }
 //
 //    @GetMapping("{id}")
-//    public ResponseEntity<User> getAdmin(@PathVariable(value = "id") Long id) {
+//    public ResponseEntity<UserEntity> getAdmin(@PathVariable(value = "id") Long id) {
 //
 //        Admin user;
 //        if(userService.get(id) instanceof Admin){
@@ -51,8 +51,8 @@
 //
 //
 //    @GetMapping
-//    public ResponseEntity<List<User>> getAllAdmins() {
-//        List<User> users = null;
+//    public ResponseEntity<List<UserEntity>> getAllAdmins() {
+//        List<UserEntity> users = null;
 //        users = userService.getAll().stream().filter(Admin.class::isInstance).collect(Collectors.toList());
 //        if(users != null) {
 //            return ResponseEntity.ok().body(users);
