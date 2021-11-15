@@ -104,17 +104,15 @@ function RotatePlayersContainer() {
     const handlePostPlayers = () => {
         const playerForRotationPositionData = {
             id: playerForRotation.playerPositionInfo.id,
-            positionIndex: playerToRotateWith.playerPositionInfo.positionIndex,
             defaultPosition: playerForRotation.playerPositionInfo.defaultPosition,
-            currentPosition:  playerForRotation.playerPositionInfo.currentPosition,
+            currentPosition:  playerToRotateWith.playerPositionInfo.currentPosition,
             starting: playerForRotation.playerPositionInfo.starting
           }
 
         const playerToRotateWithPositionData = {
             id: playerToRotateWith.playerPositionInfo.id,
-            positionIndex: playerForRotation.playerPositionInfo.positionIndex,
             defaultPosition:playerToRotateWith.playerPositionInfo.defaultPosition ,
-            currentPosition: playerToRotateWith.playerPositionInfo.currentPosition,
+            currentPosition: playerForRotation.playerPositionInfo.currentPosition,
             starting: playerToRotateWith.playerPositionInfo.starting
         }
         console.log(playerToRotateWithPositionData);

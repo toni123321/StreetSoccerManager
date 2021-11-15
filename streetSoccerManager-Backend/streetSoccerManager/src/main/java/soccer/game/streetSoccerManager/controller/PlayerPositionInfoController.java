@@ -48,7 +48,7 @@ public class PlayerPositionInfoController {
 
     @PutMapping()
     public ResponseEntity<PlayerPositionInfoDTO> updatePlayerPositionInfo(@RequestBody PlayerPositionInfoDTO playerPositionInfo) {
-        PlayerPositionInfoDTO updatedPlayerPositionInfo = playerPositionInfoService.add(playerPositionInfo);
+        PlayerPositionInfoDTO updatedPlayerPositionInfo = playerPositionInfoService.update(playerPositionInfo);
         if (updatedPlayerPositionInfo != null) {
             return ResponseEntity.ok().body(updatedPlayerPositionInfo);
         } else {

@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.service;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
@@ -21,13 +22,15 @@ public class PlayerPositionInfoService implements IPlayerPositionInfoService {
 
     public PlayerPositionInfoService(@Qualifier("playerPositionInfoJPADatabase")IPlayerPositionInfoRepository dataStore) {
         this.dataStore = dataStore;
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
 
 
     @Override
     public List<PlayerPositionInfoDTO> getAll() {
         List<PlayerPositionInfo> playersPositionInfo = dataStore.getAll();
-        List<PlayerPositionInfoDTO> playersPositionInfoDTO = modelMapper.map(playersPositionInfo, new TypeToken<List<PlayerPersonalInfoDTO>>() {}.getType());
+
+        List<PlayerPositionInfoDTO> playersPositionInfoDTO = modelMapper.map(playersPositionInfo, new TypeToken<List<PlayerPositionInfoDTO>>() {}.getType());
         return playersPositionInfoDTO;
     }
 
