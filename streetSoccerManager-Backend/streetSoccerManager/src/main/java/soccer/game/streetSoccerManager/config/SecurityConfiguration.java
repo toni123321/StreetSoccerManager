@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.cors.CorsConfiguration;
 import soccer.game.streetSoccerManager.filter.JWTAuthenticationFilter;
 import soccer.game.streetSoccerManager.filter.JWTAuthorizationFilter;
+import soccer.game.streetSoccerManager.handlers.AuthFailureHandler;
 import soccer.game.streetSoccerManager.service.AuthenticationUserDetailService;
 
 import java.util.List;
@@ -46,6 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/formations").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(new AuthFailureHandler())
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
