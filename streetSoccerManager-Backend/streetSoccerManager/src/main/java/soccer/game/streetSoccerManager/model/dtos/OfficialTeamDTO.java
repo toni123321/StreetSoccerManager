@@ -1,11 +1,8 @@
 package soccer.game.streetSoccerManager.model.dtos;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import soccer.game.streetSoccerManager.model.entities.Formation;
-import soccer.game.streetSoccerManager.model.entities.User;
 
 @Data
 @NoArgsConstructor

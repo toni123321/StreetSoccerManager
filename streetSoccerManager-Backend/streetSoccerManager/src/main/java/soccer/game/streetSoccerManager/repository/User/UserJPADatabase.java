@@ -2,11 +2,12 @@ package soccer.game.streetSoccerManager.repository.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import soccer.game.streetSoccerManager.model.entities.User;
+import soccer.game.streetSoccerManager.model.entities.UserEntity;
 import soccer.game.streetSoccerManager.repository_interfaces.jpa.IUserJPARepository;
 import soccer.game.streetSoccerManager.repository_interfaces.IUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserJPADatabase implements IUserRepository {
@@ -14,14 +15,20 @@ public class UserJPADatabase implements IUserRepository {
     IUserJPARepository userRepo;
 
     @Override
-    public List<User> getAll() {
+    public List<UserEntity> getAll() {
         return userRepo.findAll();
     }
 
     @Override
-    public User get(Long id) {
-        User user = userRepo.findById(id).orElse(null);
-        return user;
+    public UserEntity get(Long id) {
+        UserEntity userEntity = userRepo.findById(id).orElse(null);
+        return userEntity;
+    }
+
+    @Override
+    public UserEntity getByEmail(String email) {
+        UserEntity userEntity = userRepo.findUserByEmail(email).orElse(null);
+        return userEntity;
     }
 
     @Override
@@ -34,17 +41,18 @@ public class UserJPADatabase implements IUserRepository {
     }
 
     @Override
-    public User add(User user) {
-        if(user.getId() == null) {
-            return userRepo.save(user);
+    public UserEntity add(UserEntity userEntity) {
+        Optional<UserEntity> existingUser = userRepo.findUserByEmail(userEntity.getEmail());
+        if(!existingUser.isPresent()) {
+            return userRepo.save(userEntity);
         }
         return null;
     }
 
     @Override
-    public User update(User user) {
-        if(user.getId() != null) {
-            return userRepo.save(user);
+    public UserEntity update(UserEntity userEntity) {
+        if(userEntity.getId() != null) {
+            return userRepo.save(userEntity);
         }
         return null;
     }

@@ -14,7 +14,7 @@
 //@NoArgsConstructor
 //@Data
 //@EqualsAndHashCode(callSuper = true, exclude = {"team"})
-//public class EndUser extends User {
+//public class EndUser extends UserEntity {
 //    private String nickname;
 //    private double points;
 //    @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)

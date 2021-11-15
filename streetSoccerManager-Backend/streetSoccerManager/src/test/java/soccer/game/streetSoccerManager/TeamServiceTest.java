@@ -4,7 +4,7 @@
 //import org.springframework.boot.test.context.SpringBootTest;
 //import soccer.game.streetSoccerManager.model.entities.*;
 //import soccer.game.streetSoccerManager.repository.repositories.Formation.FormationStubDatabase;
-//import soccer.game.streetSoccerManager.repository.repositories.User.UserStubDatabase;
+//import soccer.game.streetSoccerManager.repository.repositories.UserEntity.UserStubDatabase;
 //import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IFormationRepository;
 //import soccer.game.streetSoccerManager.repository.repositoryInterfaces.ITeamRepository;
 //import soccer.game.streetSoccerManager.repository.repositoryInterfaces.IUserRepository;
@@ -26,9 +26,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //
 //        // Act
 //        List<Team> teams = teamService.getAll();
@@ -52,9 +52,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //        IFormationRepository formationRepository = new FormationStubDatabase();
 //        IUserRepository userRepository = new UserStubDatabase();
 //
@@ -76,9 +76,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //        IFormationRepository formationRepository = new FormationStubDatabase();
 //        IUserRepository userRepository = new UserStubDatabase();
 //
@@ -102,9 +102,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //
 //        // Act
 //        Team team = teamService.get(1l);
@@ -120,9 +120,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //
 //        // Act
 //        teamService.delete(1l);
@@ -145,9 +145,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //
 //        // Act
 //
@@ -173,9 +173,9 @@
 //        ITeamService teamService = new TeamService(teamRepository);
 //        Formation formationOne = new Formation(1l, "1-2-1");
 //        Formation formationTwo = new Formation(2l, "2-1-1");
-//        User userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
-//        User userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
-//        User admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
+//        UserEntity userOne = new EndUser(0l, "peter@gmail.com", "123", "pete", 100);
+//        UserEntity userTwo = new EndUser(1l, "john@gmail.com", "456", "jo", 10);
+//        UserEntity admin = new Admin(2l, "admin1@gmail.com", "admin1", "Admin1", "Admin1");
 //
 //        // Act
 //        teamService.update(new OfficialTeam(3l,  "Parma", formationTwo, "Manager3"));

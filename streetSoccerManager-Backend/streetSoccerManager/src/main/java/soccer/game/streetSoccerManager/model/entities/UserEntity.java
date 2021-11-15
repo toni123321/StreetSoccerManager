@@ -12,7 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(exclude = {"team"})
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,12 +26,13 @@ public class User {
     private String nickname;
     @Column(nullable = true)
     private int points;
+    private String role;
 
     @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)
     @JsonIgnore
     protected CustomTeam team;
 
-    public User(Long id, String email, String password, String firstName, String lastName, String nickname) {
+    public UserEntity(Long id, String email, String password, String firstName, String lastName, String nickname) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -40,7 +41,7 @@ public class User {
         this.nickname = nickname;
     }
 
-    public User(String email, String password, String firstName, String lastName, String nickname) {
+    public UserEntity(String email, String password, String firstName, String lastName, String nickname) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
