@@ -20,7 +20,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping("{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable(value = "id") Long id) {
         UserDTO user = userService.get(id);
@@ -30,7 +29,6 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
@@ -64,16 +62,16 @@ public class UserController {
         }
     }
 
-//    @PutMapping()
-//    public ResponseEntity<UserDTO> updateUser(@RequestBody AdminDTO adminDTO) {
-//        // Idempotent method. Always update (even if the resource has already been updated before).
-//        Admin admin = adminConverter.convertAdminDtoToAdmin(adminDTO);
-//        if (Boolean.TRUE.equals(userService.update(admin))) {
-//            return ResponseEntity.noContent().build();
-//        } else {
-//            return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping()
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+        UserDTO createdUser = userService.update(userDTO);
+        if (createdUser == null){
+            String entity =  "user with id:" + userDTO.getId() + "does not exists.";
+            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        } else {
+            return new ResponseEntity(createdUser,HttpStatus.CREATED);
+        }
+    }
 
 
 

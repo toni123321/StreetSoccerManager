@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import soccer.game.streetSoccerManager.filter.JWTAuthenticationFilter;
 import soccer.game.streetSoccerManager.filter.JWTAuthorizationFilter;
@@ -35,21 +36,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().configurationSource(request -> corsConfiguration).and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, AuthenticationConfigConstants.SIGN_UP_URL).permitAll()
                 .antMatchers("/h2-ui/**").permitAll()
-                .antMatchers("/teams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/players").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/playerStats/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/playersPositionInfo").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/officialTeams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/customTeams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/friendlyMatches").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/formations").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/teams").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/players").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/playerStats/**").hasAnyAuthority("ADMIN")
+//                .antMatchers("/playersPositionInfo").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/officialTeams").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/customTeams").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/friendlyMatches").hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/formations").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new AuthFailureHandler())
                 .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true).and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security
