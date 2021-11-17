@@ -1,32 +1,24 @@
 import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 
-function Player({player, rotationMode, handleRotation}) {
+function Player({player, rotationMode, handleRotation, changeRotationMode}) {
   
 
   const openRotationPlayerContainer = () => {
     // save player id in local storage
     localStorage.setItem('playerForRotationId', player.id);
+    changeRotationMode();
   }
 
   const handleChosenPlayerForRotation = () => {
-    console.log("chosen for rotation", player.id);
-    //getPlayersForRotation(player);
     handleRotation(player);
-
   }
  
   return (
     <div className="player" onClick={rotationMode == true ? handleChosenPlayerForRotation : undefined}>
-        {/* <span className="kitNr">{player.kitNr}</span> */}
-        
-        {/* <div className="overallRating">{player.playerStats.overallRating}</div> */}
-        
         {rotationMode != true ?
         (
-          <Link to='/rotatePlayers'>
-            <button onClick={openRotationPlayerContainer}><i className="fas fa-exchange-alt"></i></button>
-          </Link>
+          <button onClick={openRotationPlayerContainer}><i className="fas fa-exchange-alt"></i></button>
         )
         :
         (<></>)
