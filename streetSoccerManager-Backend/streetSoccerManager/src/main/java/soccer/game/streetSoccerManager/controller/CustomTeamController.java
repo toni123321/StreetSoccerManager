@@ -15,21 +15,19 @@ import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 public class CustomTeamController {
     @Qualifier("teamService")
     private ITeamService teamService;
-    private CustomTeamConverter customTeamConverter = new CustomTeamConverter();
 
     public CustomTeamController(ITeamService teamService) {
         this.teamService = teamService;
     }
 
     @PostMapping()
-    public ResponseEntity<CustomTeamDTO> createCustomTeam(@RequestBody CustomTeamDTO customTeamDTO) {
-        CustomTeam customTeam = customTeamConverter.convertCustomTeamDtoToCustomTeam(customTeamDTO);
-        if (!teamService.add(customTeam)){
+    public ResponseEntity<CustomTeamDTO> createCustomTeam(@RequestBody CustomTeamDTO customTeam) {
+        CustomTeamDTO customTeamDTO = ((CustomTeamDTO) teamService.add(customTeam));
+        if (customTeamDTO == null){
             String entity =  "Team with id " + customTeam.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            CustomTeamDTO customTeamDTOToReturn = customTeamConverter.convertCustomTeamToCustomTeamDto(((CustomTeam) teamService.get(customTeam.getId())));
-            return new ResponseEntity(customTeamDTOToReturn,HttpStatus.CREATED);
+            return new ResponseEntity(customTeamDTO,HttpStatus.CREATED);
         }
 
     }

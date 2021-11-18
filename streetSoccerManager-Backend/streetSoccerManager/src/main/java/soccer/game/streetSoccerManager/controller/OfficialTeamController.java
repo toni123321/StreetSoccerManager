@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.converters.OfficialTeamConverter;
+import soccer.game.streetSoccerManager.model.dtos.CustomTeamDTO;
 import soccer.game.streetSoccerManager.model.dtos.OfficialTeamDTO;
+import soccer.game.streetSoccerManager.model.dtos.TeamDTO;
 import soccer.game.streetSoccerManager.model.entities.OfficialTeam;
 import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 
@@ -15,22 +16,21 @@ import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 public class OfficialTeamController {
     @Qualifier("teamService")
     private ITeamService teamService;
-    private OfficialTeamConverter officialTeamConverter = new OfficialTeamConverter();
 
     public OfficialTeamController(ITeamService teamService) {
         this.teamService = teamService;
     }
 
     @PostMapping()
-    public ResponseEntity<OfficialTeamDTO> createTeam(@RequestBody OfficialTeamDTO officialTeamDTO) {
-        OfficialTeam officialTeam = officialTeamConverter.convertOfficialTeamDtoToOfficialTeam(officialTeamDTO);
-        if (!teamService.add(officialTeam)){
+    public ResponseEntity<TeamDTO> createTeam(@RequestBody OfficialTeamDTO officialTeam) {
+        TeamDTO officialTeamDTO = teamService.add(officialTeam);
+        if (officialTeamDTO == null){
             String entity =  "Team with id " + officialTeam.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            OfficialTeamDTO officialTeamDTOtoReturn = officialTeamConverter.convertOfficialTeamToOfficialTeamDto(((OfficialTeam) teamService.get(officialTeam.getId())));
-            return new ResponseEntity(officialTeamDTOtoReturn,HttpStatus.CREATED);
+            return new ResponseEntity(officialTeamDTO,HttpStatus.CREATED);
         }
-
     }
+
+
 }

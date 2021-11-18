@@ -4,6 +4,7 @@ package soccer.game.streetSoccerManager.controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetSoccerManager.model.dtos.TeamDTO;
 import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 import soccer.game.streetSoccerManager.model.entities.Team;
 
@@ -17,16 +18,13 @@ public class TeamsController {
     @Qualifier("teamService")
     private ITeamService teamService;
 
-
     public TeamsController(ITeamService teamService) {
         this.teamService = teamService;
     }
 
-
-
     @GetMapping("{id}")
-    public ResponseEntity<Team> getTeam(@PathVariable(value = "id") Long id) {
-        Team team = teamService.get(id);
+    public ResponseEntity<TeamDTO> getTeam(@PathVariable(value = "id") Long id) {
+        TeamDTO team = teamService.get(id);
 
         if(team != null) {
             return ResponseEntity.ok().body(team);
@@ -37,10 +35,10 @@ public class TeamsController {
 
 
     @GetMapping
-    public ResponseEntity<List<Team>> getAllTeams(
+    public ResponseEntity<List<TeamDTO>> getAllTeams(
             @RequestParam(value = "isCustom") Optional<Boolean> isCustom)
     {
-        List<Team> teams = null;
+        List<TeamDTO> teams = null;
         if(isCustom.isPresent())
         {
             if(Boolean.TRUE.equals(isCustom.get())){
@@ -76,12 +74,9 @@ public class TeamsController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
-        if(teamService.delete(id)) {
-            // Idempotent method. Always return the same response (even if the resource has already been deleted before).
-            return ResponseEntity.ok().body("Successfully deleted!");
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity deleteTeam(@PathVariable Long id) {
+        teamService.delete(id);
+        return ResponseEntity.ok().build();
     }
 
 
