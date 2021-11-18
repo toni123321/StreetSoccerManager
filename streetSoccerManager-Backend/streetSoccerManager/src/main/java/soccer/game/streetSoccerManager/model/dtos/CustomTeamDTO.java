@@ -7,16 +7,11 @@ import soccer.game.streetSoccerManager.model.entities.UserEntity;
 
 @Data
 @NoArgsConstructor
-public class CustomTeamDTO {
-    private Long id;
-    private String name;
-    private Formation formation;
+public class CustomTeamDTO extends TeamDTO{
     private UserEntity manager;
 
-    public CustomTeamDTO(Long id, String name, Formation formation, UserEntity manager) {
-        this.id = id;
-        this.name = name;
-        this.formation = formation;
+    public CustomTeamDTO(Long id, String name, Formation formation, int rating, UserEntity manager) {
+        super(id, name, formation, rating);
         this.manager = manager;
     }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
 import soccer.game.streetSoccerManager.model.entities.Formation;
 import soccer.game.streetSoccerManager.repository_interfaces.IFormationRepository;
 import soccer.game.streetSoccerManager.service.FormationService;
@@ -14,6 +15,7 @@ import soccer.game.streetSoccerManager.service_interfaces.IFormationService;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
@@ -22,6 +24,7 @@ public class FormationServiceUnitTest {
 
     @Mock
     IFormationRepository formationRepository;
+    IFormationService formationService;
 
     @BeforeEach
     public void setUp()  {
@@ -31,19 +34,21 @@ public class FormationServiceUnitTest {
                 new Formation(2l, "2-1-1")
         );
         when(formationRepository.getAll()).thenReturn(formations);
+        when(formationRepository.get(1l)).thenReturn(formations.get(0));
+        when(formationRepository.add(new Formation("3-1-0"))).thenReturn(new Formation(3l, "3-1-0"));
+        when(formationRepository.update(new Formation(2l, "3-1-0"))).thenReturn(new Formation(2l, "3-1-0"));
+        formationService = new FormationService(formationRepository);
+
     }
 
     @Test
     void GetAllFormationsSuccessScenario() {
-        // Arrange
-        IFormationService formationService = new FormationService(formationRepository);
-
         // Act
-        List<Formation> formations = formationService.getAll();
+        List<FormationDTO> formations = formationService.getAll();
 
-        List<Formation> formationsExpected = new ArrayList<>();
-        formationsExpected.add(new Formation(1l, "1-2-1"));
-        formationsExpected.add(new Formation(2l, "2-1-1"));
+        List<FormationDTO> formationsExpected = new ArrayList<>();
+        formationsExpected.add(new FormationDTO(1l, "1-2-1"));
+        formationsExpected.add(new FormationDTO(2l, "2-1-1"));
 
         // Assert
         Assertions.assertEquals(formationsExpected, formations);
@@ -51,67 +56,37 @@ public class FormationServiceUnitTest {
 
     @Test
     void GetFormationSuccessScenario() {
-        IFormationService formationService = new FormationService(formationRepository);
 
         // Act
-        Formation formation = formationService.get(1l);
+        FormationDTO formation = formationService.get(1l);
 
         // Assert
-        Assertions.assertEquals(new Formation(1l, "1-2-1"), formation);
+        Assertions.assertEquals(new FormationDTO(1l, "1-2-1"), formation);
     }
 
     @Test
     void DeleteFormationSuccessScenario(){
-        // Arrange
-        IFormationService formationService = new FormationService(formationRepository);
-
         // Act
         formationService.delete(1l);
-        List<Formation> formations = formationService.getAll();
-
-        List<Formation> formationsExpected = new ArrayList<>();
-        formationsExpected.add(new Formation(1l, "1-2-1"));
-        formationsExpected.add(new Formation(2l, "2-1-1"));
-        formationsExpected.remove(0);
-
-        // Assert
-        Assertions.assertEquals(formationsExpected, formations);
+        verify(formationRepository).delete(1l);
+        when(formationRepository.delete(2l)).thenReturn(true);
+        Assertions.assertEquals(true, formationService.delete(2l));
     }
 
     @Test
     void AddFormationSuccessScenario() {
-        // Arrange
-        IFormationService formationService = new FormationService(formationRepository);
-
         // Act
-        formationService.add(new Formation(3l, "3-1-0"));
-        List<Formation> formations = formationService.getAll();
-
-        List<Formation> formationsExpected = new ArrayList<>();
-        formationsExpected.add(new Formation(1l, "1-2-1"));
-        formationsExpected.add(new Formation(2l, "2-1-1"));
-        formationsExpected.add(new Formation(3l, "3-1-0"));
-
+        FormationDTO newFormation = formationService.add(new FormationDTO("3-1-0"));
         // Assert
-        Assertions.assertEquals(formationsExpected, formations);
+        Assertions.assertEquals(new FormationDTO(3l, "3-1-0"), newFormation);
     }
 
     @Test
     void UpdateTeamSuccessScenario(){
-        // Arrange
-        IFormationService formationService = new FormationService(formationRepository);
-
         // Act
-        formationService.update(new Formation(2l, "3-1-0"));
-        List<Formation> formations = formationService.getAll();
-
-        List<Formation> formationsExpected = new ArrayList<>();
-        formationsExpected.add(new Formation(1l, "1-2-1"));
-        formationsExpected.add(new Formation(2l, "2-1-1"));
-        formationsExpected.set(1, new Formation(2l, "3-1-0"));
-
+        FormationDTO updatedFormation = formationService.update(new FormationDTO(2l, "3-1-0"));
         // Assert
-        Assertions.assertEquals(formationsExpected, formations);
+        Assertions.assertEquals(new FormationDTO(2l, "3-1-0"), updatedFormation);
     }
 
 
