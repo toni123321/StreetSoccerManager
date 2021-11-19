@@ -1,6 +1,9 @@
 package soccer.game.streetSoccerManager.controller;
 
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,28 +20,33 @@ import java.util.Optional;
 public class TeamsController {
     @Qualifier("teamService")
     private ITeamService teamService;
+    private ModelMapper modelMapper;
+
 
     public TeamsController(ITeamService teamService) {
         this.teamService = teamService;
+        this.modelMapper = new ModelMapper();
+        this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
+
 
     @GetMapping("{id}")
     public ResponseEntity<TeamDTO> getTeam(@PathVariable(value = "id") Long id) {
-        TeamDTO team = teamService.get(id);
+        Team teamEntity = teamService.get(id);
+        TeamDTO teamDTO = modelMapper.map(teamEntity, TeamDTO.class);
 
-        if(team != null) {
-            return ResponseEntity.ok().body(team);
+        if(teamDTO != null) {
+            return ResponseEntity.ok().body(teamDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-
     @GetMapping
     public ResponseEntity<List<TeamDTO>> getAllTeams(
             @RequestParam(value = "isCustom") Optional<Boolean> isCustom)
     {
-        List<TeamDTO> teams = null;
+        List<Team> teams = null;
         if(isCustom.isPresent())
         {
             if(Boolean.TRUE.equals(isCustom.get())){
@@ -52,41 +60,20 @@ public class TeamsController {
             teams = teamService.getAll();
         }
 
-        if(teams != null) {
-            return ResponseEntity.ok().body(teams);
+        List<TeamDTO> teamDTOs = modelMapper.map(teams, new TypeToken<List<TeamDTO>>() {}.getType());
+        if(teamDTOs != null) {
+            return ResponseEntity.ok().body(teamDTOs);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-//    @GetMapping("/opponentsFriendlyMatch")
-//    public ResponseEntity<List<Team>> getOpponentsForFriendlyMatch() {
-//        List<Team> teams = null;
-//        teams = teamService.getAll();
-//
-//        if(teams != null) {
-//            return ResponseEntity.ok().body(teams);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-
-
-
     @DeleteMapping("{id}")
-    public ResponseEntity deleteTeam(@PathVariable Long id) {
-        teamService.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
+        if(teamService.delete(id)) {
+            return ResponseEntity.ok().body("Successfully deleted!");
+        }
+        return ResponseEntity.notFound().build();
     }
 
-
-//    @PutMapping()
-//    public ResponseEntity<Team> updateTeam(@RequestBody Team team) {
-//        // Idempotent method. Always update (even if the resource has already been updated before).
-//        if (teamService.update(team)) {
-//            return ResponseEntity.noContent().build();
-//        } else {
-//            return new ResponseEntity("Please provide a valid team id",HttpStatus.NOT_FOUND);
-//        }
-//    }
 }

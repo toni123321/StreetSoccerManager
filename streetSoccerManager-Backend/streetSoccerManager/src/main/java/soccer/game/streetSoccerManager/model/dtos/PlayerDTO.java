@@ -1,16 +1,12 @@
 package soccer.game.streetSoccerManager.model.dtos;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import soccer.game.streetSoccerManager.model.entities.PlayerAdditionalInfo;
 import soccer.game.streetSoccerManager.model.entities.PlayerPersonalInfo;
 import soccer.game.streetSoccerManager.model.entities.PlayerPositionInfo;
 import soccer.game.streetSoccerManager.model.entities.PlayerTeamInfo;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Data
 @NoArgsConstructor
@@ -21,11 +17,4 @@ public class PlayerDTO {
     private PlayerTeamInfo playerTeamInfo;
     private PlayerAdditionalInfo playerAdditionalInfo;
 
-    public PlayerDTO(Long id, PlayerPersonalInfo playerPersonalInfo, PlayerPositionInfo playerPositionInfo, PlayerTeamInfo playerTeamInfo, PlayerAdditionalInfo playerAdditionalInfo) {
-        this.id = id;
-        this.playerPersonalInfo = playerPersonalInfo;
-        this.playerPositionInfo = playerPositionInfo;
-        this.playerTeamInfo = playerTeamInfo;
-        this.playerAdditionalInfo = playerAdditionalInfo;
-    }
 }

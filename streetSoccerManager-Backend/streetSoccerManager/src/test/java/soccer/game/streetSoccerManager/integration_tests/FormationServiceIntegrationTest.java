@@ -20,8 +20,8 @@ public class FormationServiceIntegrationTest {
     //Arrange
     @Autowired
     FormationService formationService;
-    List<FormationDTO> formations = new ArrayList<>();
-    List<FormationDTO> formationsExpected = new ArrayList<>();
+    List<Formation> formations = new ArrayList<>();
+    List<Formation> formationsExpected = new ArrayList<>();
 
     @BeforeEach
     void clearDB() {
@@ -30,11 +30,11 @@ public class FormationServiceIntegrationTest {
         formationsExpected.clear();
 
         // Add
-        formationService.add(new FormationDTO("1-2-1"));
-        formationService.add(new FormationDTO("2-1-1"));
+        formationService.add(new Formation("1-2-1"));
+        formationService.add(new Formation("2-1-1"));
         formations = formationService.getAll();
-        formationsExpected.add(new FormationDTO(formations.get(0).getId(),  "1-2-1"));
-        formationsExpected.add(new FormationDTO(formations.get(1).getId(),  "2-1-1"));
+        formationsExpected.add(new Formation(formations.get(0).getId(),  "1-2-1"));
+        formationsExpected.add(new Formation(formations.get(1).getId(),  "2-1-1"));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class FormationServiceIntegrationTest {
     @Test
     void GetFormationSuccessScenario() {
         // Act
-        FormationDTO formation = formationService.get(formations.get(0).getId());
+        Formation formation = formationService.get(formations.get(0).getId());
 
         // Assert
         Assertions.assertEquals(new Formation(formations.get(0).getId(), "1-2-1"), formation);
@@ -66,10 +66,10 @@ public class FormationServiceIntegrationTest {
     @Test
     void AddFormationSuccessScenario() {
         // Act
-        formationService.add(new FormationDTO("3-1-0"));
+        formationService.add(new Formation("3-1-0"));
         formations = formationService.getAll();
         Long lastIndexId = formations.get(formations.size() - 1).getId();
-        formationsExpected.add(new FormationDTO(lastIndexId, "3-1-0"));
+        formationsExpected.add(new Formation(lastIndexId, "3-1-0"));
 
         // Assert
         Assertions.assertEquals(formationsExpected, formationService.getAll());
@@ -78,8 +78,8 @@ public class FormationServiceIntegrationTest {
     @Test
     void UpdateTeamSuccessScenario(){
         // Act
-        formationService.update(new FormationDTO(formations.get(0).getId(), "3-1-0"));
-        formationsExpected.set(0, new FormationDTO(formations.get(0).getId(), "3-1-0"));
+        formationService.update(new Formation(formations.get(0).getId(), "3-1-0"));
+        formationsExpected.set(0, new Formation(formations.get(0).getId(), "3-1-0"));
 
         // Assert
         Assertions.assertEquals(formationsExpected, formationService.getAll());

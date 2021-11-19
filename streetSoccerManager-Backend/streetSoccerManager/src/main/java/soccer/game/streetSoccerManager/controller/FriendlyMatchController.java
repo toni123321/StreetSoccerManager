@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.dtos.FriendlyMatchDTO;
-import soccer.game.streetSoccerManager.model.dtos.MatchInfoDTO;
 import soccer.game.streetSoccerManager.model.entities.*;
 import soccer.game.streetSoccerManager.service_interfaces.IMatchService;
 
@@ -47,8 +46,8 @@ public class FriendlyMatchController {
 //        }
 //    }
 
-    @PostMapping()
-    public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody MatchInfoDTO matchInfoDTO) {
+//    @PostMapping()
+//    public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody MatchInfoDTO matchInfoDTO) {
 //        modelMapper.getConfiguration().setAmbiguityIgnored(true);
 //
 //        MatchInfo matchInfo = modelMapper.map(matchInfoDTO, MatchInfo.class);
@@ -77,6 +76,6 @@ public class FriendlyMatchController {
 //        FriendlyMatchDTO friendlyMatchDTOtoReturn = modelMapper.map(matchService.getAll().get(matchService.getAll().size() - 1), FriendlyMatchDTO.class);
 //
 //        return new ResponseEntity(friendlyMatchDTOtoReturn,HttpStatus.CREATED);
-        return null;
-    }
+//        return null;
+//    }
 }

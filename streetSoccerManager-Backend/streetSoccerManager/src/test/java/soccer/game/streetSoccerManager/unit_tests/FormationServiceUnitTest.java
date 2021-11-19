@@ -44,11 +44,11 @@ public class FormationServiceUnitTest {
     @Test
     void GetAllFormationsSuccessScenario() {
         // Act
-        List<FormationDTO> formations = formationService.getAll();
+        List<Formation> formations = formationService.getAll();
 
-        List<FormationDTO> formationsExpected = new ArrayList<>();
-        formationsExpected.add(new FormationDTO(1l, "1-2-1"));
-        formationsExpected.add(new FormationDTO(2l, "2-1-1"));
+        List<Formation> formationsExpected = new ArrayList<>();
+        formationsExpected.add(new Formation(1l, "1-2-1"));
+        formationsExpected.add(new Formation(2l, "2-1-1"));
 
         // Assert
         Assertions.assertEquals(formationsExpected, formations);
@@ -58,10 +58,10 @@ public class FormationServiceUnitTest {
     void GetFormationSuccessScenario() {
 
         // Act
-        FormationDTO formation = formationService.get(1l);
+        Formation formation = formationService.get(1l);
 
         // Assert
-        Assertions.assertEquals(new FormationDTO(1l, "1-2-1"), formation);
+        Assertions.assertEquals(new Formation(1l, "1-2-1"), formation);
     }
 
     @Test
@@ -76,17 +76,17 @@ public class FormationServiceUnitTest {
     @Test
     void AddFormationSuccessScenario() {
         // Act
-        FormationDTO newFormation = formationService.add(new FormationDTO("3-1-0"));
+        Formation newFormation = formationService.add(new Formation("3-1-0"));
         // Assert
-        Assertions.assertEquals(new FormationDTO(3l, "3-1-0"), newFormation);
+        Assertions.assertEquals(new Formation(3l, "3-1-0"), newFormation);
     }
 
     @Test
     void UpdateTeamSuccessScenario(){
         // Act
-        FormationDTO updatedFormation = formationService.update(new FormationDTO(2l, "3-1-0"));
+        Formation updatedFormation = formationService.update(new Formation(2l, "3-1-0"));
         // Assert
-        Assertions.assertEquals(new FormationDTO(2l, "3-1-0"), updatedFormation);
+        Assertions.assertEquals(new Formation(2l, "3-1-0"), updatedFormation);
     }
 
 
