@@ -10,12 +10,12 @@ const GameNavbar = ({team}) => {
     return (
         <Container className="game-navbar">
         <Row id="nav-items-frow" className="justify-content-sm-center">
-            <Col xs="12" md="6" className="nav-item" id="playMatch">
+            <Col xs="12" md="5" className="nav-item" id="playMatch">
                 <LinkContainer to="/chooseOpponent">
                     <Nav.Link>Play match</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col xs="12" md="6" className="nav-item" id="playTournament">
+            <Col xs="12" md="5" className="nav-item" id="playTournament">
                 <LinkContainer to="#">
                     <Nav.Link>Play tournament</Nav.Link>
                 </LinkContainer>
@@ -27,12 +27,12 @@ const GameNavbar = ({team}) => {
                     <Nav.Link>Train players</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col xs="12" md="4" className="nav-item" id="teamSquad">
+            <Col xs="12" md="3" className="nav-item" id="teamSquad">
                 <LinkContainer to="/teamSquad">
                     <Nav.Link>Team squad</Nav.Link>
                 </LinkContainer>
             </Col>
-            <Col xs="12" md="4" className="nav-item" id="shop">
+            <Col xs="12" md="3" className="nav-item" id="shop">
                 <LinkContainer to="#">
                     <Nav.Link>Shop</Nav.Link>
                 </LinkContainer>   
