@@ -52,7 +52,7 @@ public class PlayerStatsController {
 
     @DeleteMapping("{id}")
     public ResponseEntity deletePlayerStats(@PathVariable Long id) {
-        if(playerStatsService.delete(id)) {
+        if(Boolean.TRUE.equals(playerStatsService.delete(id))) {
             return ResponseEntity.ok().body("Successfully deleted!");
         }
         return ResponseEntity.notFound().build();

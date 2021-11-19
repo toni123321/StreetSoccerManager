@@ -50,7 +50,7 @@ public class FormationsController {
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteFormation(@PathVariable Long id) {
-        if(formationService.delete(id)) {
+        if(Boolean.TRUE.equals(formationService.delete(id))) {
             return ResponseEntity.ok().body("Successfully deleted!");
         }
         return ResponseEntity.notFound().build();
@@ -62,7 +62,7 @@ public class FormationsController {
         Formation createdFormationEntity = formationService.add(inputtedFormationEntity);
         FormationDTO createdFormationDTO = modelMapper.map(createdFormationEntity, FormationDTO.class);
         if (createdFormationDTO == null){
-            String msg =  "Formation with id " + createdFormationDTO.getId() + " already exists.";
+            String msg =  "Formation with id " + formation.getId() + " already exists.";
             return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
             return new ResponseEntity(createdFormationDTO,HttpStatus.CREATED);

@@ -10,7 +10,7 @@ import soccer.game.streetSoccerManager.model.dtos.PlayerPositionInfoDTO;
 import soccer.game.streetSoccerManager.model.entities.PlayerPositionInfo;
 import soccer.game.streetSoccerManager.service_interfaces.IPlayerPositionInfoService;
 
-import java.net.URI;
+
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
