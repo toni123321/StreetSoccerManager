@@ -1,17 +1,17 @@
 package soccer.game.streetSoccerManager.service_interfaces;
 
-import soccer.game.streetSoccerManager.model.dtos.TeamDTO;
 import soccer.game.streetSoccerManager.model.entities.Team;
 
 import java.util.List;
 
 public interface ITeamService {
-    List<TeamDTO> getAll();
-    TeamDTO get(Long id);
+    List<Team> getAll();
+    Team get(Long id);
     Boolean delete(Long id);
-    TeamDTO add(TeamDTO team);
-    TeamDTO update(TeamDTO team);
+    Team add(Team team);
+    Team update(Team team);
 
-    List<TeamDTO> getCustomTeams();
-    List<TeamDTO> getOfficialTeams();
+    List<Team> getCustomTeams();
+    List<Team> getOfficialTeams();
+
 }

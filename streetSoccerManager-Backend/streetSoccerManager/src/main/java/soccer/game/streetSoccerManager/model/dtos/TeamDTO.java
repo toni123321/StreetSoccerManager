@@ -11,11 +11,7 @@ public class TeamDTO {
     private String name;
     private Formation formation;
     private int rating;
+    private String managerName;
+    private UserDTO manager;
 
-    public TeamDTO(Long id, String name, Formation formation, int rating) {
-        this.id = id;
-        this.name = name;
-        this.formation = formation;
-        this.rating = rating;
-    }
 }

@@ -5,11 +5,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import soccer.game.streetSoccerManager.config.AuthenticationConfigConstants;
-import soccer.game.streetSoccerManager.model.dtos.UserDTO;
 import org.springframework.security.core.userdetails.User;
 
 import org.springframework.security.core.AuthenticationException;
@@ -21,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import org.springframework.security.core.Authentication;
+import soccer.game.streetSoccerManager.model.entities.UserEntity;
 
 @RequiredArgsConstructor
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -29,8 +28,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            UserDTO creds = new ObjectMapper()
-                    .readValue(request.getInputStream(), UserDTO.class);
+            UserEntity creds = new ObjectMapper()
+                    .readValue(request.getInputStream(), UserEntity.class);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getEmail(),

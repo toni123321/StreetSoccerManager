@@ -37,24 +37,23 @@ public class MatchService implements IMatchService {
 
     // play match - boolean
     @Override
-    public Boolean add(Match match) {
-///        if(dataStore.add(match) && playMatch)
-////        {
-////            return true;
-////        }
-////        if(get true)
-////        {
-////            delete
-////        }
-////        return false;
-//        return dataStore.add(match);
-        return true;
+    public Match add(Match match) {
+//        if(dataStore.add(match) && playMatch)
+//        {
+//            return true;
+//        }
+//        if(get true)
+//        {
+//            delete
+//        }
+//        return false;
+        return dataStore.add(match);
 
     }
 
     @Override
-    public Boolean update(Match match) {
-//        return dataStore.update(match);
-        return true;
+    public Match update(Match match) {
+        return dataStore.update(match);
     }
+
 }

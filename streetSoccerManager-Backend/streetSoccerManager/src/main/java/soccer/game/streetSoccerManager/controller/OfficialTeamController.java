@@ -1,13 +1,8 @@
 package soccer.game.streetSoccerManager.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.dtos.CustomTeamDTO;
-import soccer.game.streetSoccerManager.model.dtos.OfficialTeamDTO;
-import soccer.game.streetSoccerManager.model.dtos.TeamDTO;
-import soccer.game.streetSoccerManager.model.entities.OfficialTeam;
 import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
@@ -16,21 +11,11 @@ import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 public class OfficialTeamController {
     @Qualifier("teamService")
     private ITeamService teamService;
+    private ModelMapper modelMapper;
 
     public OfficialTeamController(ITeamService teamService) {
         this.teamService = teamService;
+        this.modelMapper = new ModelMapper();
     }
-
-    @PostMapping()
-    public ResponseEntity<TeamDTO> createTeam(@RequestBody OfficialTeamDTO officialTeam) {
-        TeamDTO officialTeamDTO = teamService.add(officialTeam);
-        if (officialTeamDTO == null){
-            String entity =  "Team with id " + officialTeam.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
-        } else {
-            return new ResponseEntity(officialTeamDTO,HttpStatus.CREATED);
-        }
-    }
-
 
 }
