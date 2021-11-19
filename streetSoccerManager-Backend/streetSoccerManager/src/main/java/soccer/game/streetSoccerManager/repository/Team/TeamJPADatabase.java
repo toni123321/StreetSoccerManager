@@ -33,21 +33,7 @@ public class TeamJPADatabase implements ITeamRepository {
     public Boolean delete(Long id) {
         if(get(id) != null) {
             Team team = get(id);
-
-//            for (MatchInfo matchInfo : team.getMatchInfoHomeTeam()) {
-//                matchInfo.setHomeTeam(null);
-//            }
-//            for (MatchInfo matchInfo : team.getMatchInfoAwayTeam()) {
-//                matchInfo.setAwayTeam(null);
-//            }
-//            for (PlayerTeamInfo playerTeamInfo : team.getPlayersTeamInfo()) {
-//                playerTeamInfo.setTeam(null);
-//            }
-//            if (team instanceof CustomTeam) {
-//                ((CustomTeam) team).setManager(null);
-//            }
-//            team.setFormation(null);
-//            teamRepo.delete(team);
+            teamRepo.delete(team);
             return true;
 
         }

@@ -70,7 +70,7 @@ public class TeamsController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
-        if(teamService.delete(id)) {
+        if(Boolean.TRUE.equals(teamService.delete(id))) {
             return ResponseEntity.ok().body("Successfully deleted!");
         }
         return ResponseEntity.notFound().build();

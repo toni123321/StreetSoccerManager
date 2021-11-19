@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name ="player")
 @NoArgsConstructor
 @Data
-public class Player implements Comparable<Player>{
+public class Player{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -39,9 +39,4 @@ public class Player implements Comparable<Player>{
         this.playerAdditionalInfo = playerAdditionalInfo;
     }
 
-    // todo: Add implementation
-    @Override
-    public int compareTo(Player o) {
-        return 0;
-    }
 }

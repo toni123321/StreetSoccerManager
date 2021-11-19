@@ -10,14 +10,13 @@ import soccer.game.streetSoccerManager.model.dtos.PositionDTO;
 import soccer.game.streetSoccerManager.model.entities.Position;
 import soccer.game.streetSoccerManager.service_interfaces.IPositionService;
 
-import java.net.URI;
+
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/positions")
 public class PositionController {
-    // todo: implement controller logic
     @Qualifier("positionService")
     private IPositionService positionService;
     private ModelMapper modelMapper;
@@ -51,7 +50,7 @@ public class PositionController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletePosition(@PathVariable Long id) {
-        if(positionService.delete(id)) {
+        if(Boolean.TRUE.equals(positionService.delete(id))) {
             return ResponseEntity.ok().body("Successfully deleted!");
         }
         return ResponseEntity.notFound().build();

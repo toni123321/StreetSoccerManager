@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @SpringBootTest
-public class FormationServiceUnitTest {
+class FormationServiceUnitTest {
 
     @Mock
     IFormationRepository formationRepository;

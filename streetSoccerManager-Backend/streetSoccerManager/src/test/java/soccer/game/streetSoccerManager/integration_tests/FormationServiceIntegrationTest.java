@@ -15,7 +15,7 @@ import java.util.List;
 
 @ActiveProfiles("test")
 @SpringBootTest
-public class FormationServiceIntegrationTest {
+class FormationServiceIntegrationTest {
 
     //Arrange
     @Autowired

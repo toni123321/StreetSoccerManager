@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 public class PositionDTO {
     private Long id;
     private String category;
-    private String position;
+    private String name;
 
 }

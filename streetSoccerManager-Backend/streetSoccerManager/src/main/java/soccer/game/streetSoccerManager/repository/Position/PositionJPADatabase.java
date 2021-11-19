@@ -26,8 +26,8 @@ public class PositionJPADatabase implements IPositionRepository {
     }
 
     @Override
-    public Position get(String searchedPosition) {
-        return positionRepo.findFirstByPosition(searchedPosition);
+    public Position get(String searchedName) {
+        return positionRepo.findFirstByName(searchedName);
     }
 
     @Override

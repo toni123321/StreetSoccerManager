@@ -32,9 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         corsConfiguration.setExposedHeaders(List.of("Authorization"));
 
 
-        http.cors().configurationSource(request -> corsConfiguration).and().csrf().disable().authorizeRequests()
+        http.cors().configurationSource(request -> corsConfiguration).and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, AuthenticationConfigConstants.SIGN_UP_URL).permitAll()
                 .antMatchers("/h2-ui/**").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/**").permitAll()
 //                .antMatchers("/teams").hasAnyAuthority("USER", "ADMIN")
 //                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
@@ -46,14 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/customTeams").hasAnyAuthority("USER", "ADMIN")
 //                .antMatchers("/friendlyMatches").hasAnyAuthority("USER", "ADMIN")
 //                .antMatchers("/formations").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(new AuthFailureHandler())
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true).and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
                 // this disables session creation on Spring Security

@@ -10,6 +10,7 @@ import soccer.game.streetSoccerManager.model.entities.CustomTeam;
 import soccer.game.streetSoccerManager.model.entities.Team;
 import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 
+
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
 @RequestMapping("/customTeams")
@@ -32,7 +33,7 @@ public class CustomTeamController {
             String msg =  "Custom team with id " + customTeam.getId() + " already exists.";
             return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            return new ResponseEntity(createdCustomTeamDTO,HttpStatus.CREATED);
+            return new ResponseEntity<CustomTeamDTO>(createdCustomTeamDTO,HttpStatus.CREATED);
         }
     }
 
