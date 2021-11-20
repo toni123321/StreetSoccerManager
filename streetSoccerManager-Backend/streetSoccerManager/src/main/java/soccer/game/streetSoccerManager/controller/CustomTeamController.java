@@ -33,7 +33,7 @@ public class CustomTeamController {
             String msg =  "Custom team with id " + customTeam.getId() + " already exists.";
             return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            return new ResponseEntity<CustomTeamDTO>(createdCustomTeamDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdCustomTeamDTO,HttpStatus.CREATED);
         }
     }
 
@@ -45,7 +45,7 @@ public class CustomTeamController {
         if (updatedCustomTeamDTO == null){
             return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedCustomTeamDTO,HttpStatus.OK);
+            return new ResponseEntity<>(updatedCustomTeamDTO,HttpStatus.OK);
         }
     }
 
