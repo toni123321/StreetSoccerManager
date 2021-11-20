@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Data
 public class FriendlyMatch extends Match {
-    public FriendlyMatch(Long id, Team homeTeam, Team awayTeam, String result, String statistic) {
-        super(id, homeTeam, awayTeam, result, statistic);
+    public FriendlyMatch(Team homeTeam, Team awayTeam, String result, String statistic) {
+        super(homeTeam, awayTeam, result, statistic);
     }
 }

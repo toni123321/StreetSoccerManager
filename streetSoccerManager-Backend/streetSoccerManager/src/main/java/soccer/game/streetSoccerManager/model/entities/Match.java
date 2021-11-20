@@ -26,8 +26,7 @@ public class Match {
     protected String result;
     protected String statistic;
 
-    public Match(Long id, Team homeTeam, Team awayTeam, String result, String statistic) {
-        this.id = id;
+    public Match(Team homeTeam, Team awayTeam, String result, String statistic) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.result = result;

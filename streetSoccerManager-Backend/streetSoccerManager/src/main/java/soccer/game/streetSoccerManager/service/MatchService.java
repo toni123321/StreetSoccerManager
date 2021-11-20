@@ -2,7 +2,10 @@ package soccer.game.streetSoccerManager.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import soccer.game.streetSoccerManager.model.dtos.StartFriendlyMatchDTO;
+import soccer.game.streetSoccerManager.model.entities.FriendlyMatch;
 import soccer.game.streetSoccerManager.model.entities.Match;
+import soccer.game.streetSoccerManager.model.entities.Team;
 import soccer.game.streetSoccerManager.repository_interfaces.IMatchRepository;
 import soccer.game.streetSoccerManager.service_interfaces.IMatchService;
 
@@ -12,7 +15,6 @@ import java.util.List;
 public class MatchService implements IMatchService {
     private IMatchRepository dataStore;
 
-    // todo change datastore
     public MatchService(@Qualifier("matchJPADatabase") IMatchRepository dataStore) {
         this.dataStore = dataStore;
     }
@@ -34,21 +36,38 @@ public class MatchService implements IMatchService {
         return dataStore.delete(id);
     }
 
+    @Override
+    public Match playFriendlyMatch(StartFriendlyMatchDTO startMatchInfo){
+        // play friendly match algorithm
+        FriendlyMatch friendlyMatch;
+        String result = "";
+        String statistic = "";
+
+        Team homeTeam = startMatchInfo.getHomeTeam();
+        Team awayTeam = startMatchInfo.getAwayTeam();
+        if(homeTeam.getRating() > awayTeam.getRating()){
+            result = "1:0";
+            statistic = "Home team win";
+
+        }
+        else if(homeTeam.getRating() < awayTeam.getRating()){
+            result = "0:1";
+            statistic = "Away team win";
+        }
+        else
+        {
+            result = "0:0";
+            statistic = "Draw";
+        }
+        friendlyMatch = new FriendlyMatch(homeTeam, awayTeam, result, statistic);
+
+        return add(friendlyMatch);
+    }
 
     // play match - boolean
     @Override
     public Match add(Match match) {
-//        if(dataStore.add(match) && playMatch)
-//        {
-//            return true;
-//        }
-//        if(get true)
-//        {
-//            delete
-//        }
-//        return false;
         return dataStore.add(match);
-
     }
 
     @Override
