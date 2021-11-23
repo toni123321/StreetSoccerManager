@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import StartingPlayersContainer from "./StartingPlayersContainer";
 import styles from "../css/TeamSquad.css";
 import PlayerService from '../services/PlayerService';
 import Player from "./Player";
@@ -88,28 +87,28 @@ const TeamSquad = () => {
         <div className="team-squad">
             <Container className="startingTeam">
             <Row>
-                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LW", "ST", "RW"].includes(player.playerPositionInfo.currentPosition.position)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
+                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LW", "ST", "RW"].includes(player.playerPositionInfo.currentPosition.name)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
                 <Col>
                 <Player key={player.id} player={player} rotationMode={false} changeRotationMode={changeRotationMode}/>
                 </Col>
                 ))}
             </Row>
             <Row>
-                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LM", "CM", "RM"].includes(player.playerPositionInfo.currentPosition.position)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
+                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LM", "CM", "RM"].includes(player.playerPositionInfo.currentPosition.name)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
                 <Col>
                 <Player key={player.id} player={player} rotationMode={false} changeRotationMode={changeRotationMode}/>
                 </Col>
                 ))}
             </Row>
             <Row>
-                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LB", "CB", "RB"].includes(player.playerPositionInfo.currentPosition.position)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
+                {players && players.filter(player => player.playerPositionInfo.starting == true && ["LB", "CB", "RB"].includes(player.playerPositionInfo.currentPosition.name)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
                 <Col>
                 <Player key={player.id} player={player} rotationMode={false} changeRotationMode={changeRotationMode}/>
                 </Col>
                 ))}
             </Row>
             <Row>
-                {players && players.filter(player => player.playerPositionInfo.starting == true && ["GK"].includes(player.playerPositionInfo.currentPosition.position)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
+                {players && players.filter(player => player.playerPositionInfo.starting == true && ["GK"].includes(player.playerPositionInfo.currentPosition.name)).sort((a, b) => a.playerPositionInfo.currentPosition.id - b.playerPositionInfo.currentPosition.id).map((player, index) => (
                 <Col>
                 <Player key={player.id} player={player} rotationMode={false} changeRotationMode={changeRotationMode}/>
                 </Col>
