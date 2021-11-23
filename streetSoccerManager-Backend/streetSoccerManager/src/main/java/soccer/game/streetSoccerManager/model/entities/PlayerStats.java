@@ -27,4 +27,9 @@ public class PlayerStats {
         this.skills = skills;
         this.physical = physical;
     }
+
+    public PlayerStats(int skills, int physical) {
+        this.skills = skills;
+        this.physical = physical;
+    }
 }

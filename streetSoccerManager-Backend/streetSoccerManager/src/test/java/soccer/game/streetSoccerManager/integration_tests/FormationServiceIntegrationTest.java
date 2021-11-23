@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import soccer.game.streetSoccerManager.model.dtos.FormationDTO;
 import soccer.game.streetSoccerManager.model.entities.Formation;
 import soccer.game.streetSoccerManager.service.FormationService;
 
@@ -84,6 +83,4 @@ class FormationServiceIntegrationTest {
         // Assert
         Assertions.assertEquals(formationsExpected, formationService.getAll());
     }
-
-
 }

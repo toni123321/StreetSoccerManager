@@ -11,4 +11,5 @@ public interface IPlayerStatsService {
     Boolean delete(Long id);
     PlayerStats add(PlayerStats playerStats);
     PlayerStats update(PlayerStats playerStats);
+    void deleteAll();
 }

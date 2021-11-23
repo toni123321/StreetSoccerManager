@@ -11,4 +11,5 @@ public interface IUserService {
     Boolean delete(Long id);
     UserEntity add(UserEntity user);
     UserEntity update(UserEntity user);
+    void deleteAll();
 }

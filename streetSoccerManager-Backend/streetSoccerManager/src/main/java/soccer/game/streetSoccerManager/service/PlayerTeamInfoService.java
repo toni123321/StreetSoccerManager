@@ -44,4 +44,9 @@ public class PlayerTeamInfoService implements IPlayerTeamInfoService {
         return dataStore.update(playerTeamInfo);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }

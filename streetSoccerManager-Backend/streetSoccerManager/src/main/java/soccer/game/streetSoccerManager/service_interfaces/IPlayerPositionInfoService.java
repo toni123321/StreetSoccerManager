@@ -10,4 +10,5 @@ public interface IPlayerPositionInfoService {
     Boolean delete(Long id);
     PlayerPositionInfo add(PlayerPositionInfo playerPositionInfo);
     PlayerPositionInfo update(PlayerPositionInfo playerPositionInfo);
+    void deleteAll();
 }

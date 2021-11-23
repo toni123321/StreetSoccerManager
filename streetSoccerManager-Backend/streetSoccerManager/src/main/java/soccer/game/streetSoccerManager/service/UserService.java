@@ -59,4 +59,9 @@ public class UserService implements IUserService {
         }
         return null;
     }
+
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
 }

@@ -41,6 +41,11 @@ public class TeamService implements ITeamService {
     }
 
     @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
+    @Override
     public Team get(Long id) {
         return dataStore.get(id);
     }
