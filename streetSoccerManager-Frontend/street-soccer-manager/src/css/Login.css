@@ -56,21 +56,11 @@ body{
 	background: #373B44;  /* fallback for old browsers */
 	background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
 	background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+	background: linear-gradient(to right, #4286f4, #755a99);
 	
 }
 
-/* body::after {
-	content: "";
-	background: url(https://www.visitphilly.com/wp-content/uploads/2021/07/crtsy-philadelphia-union-dusk-soccer-2200x1237px.jpg) no-repeat center center fixed;
-	opacity: 0.8;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	position: absolute;
-	z-index: -1;   
-  } */
+
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
