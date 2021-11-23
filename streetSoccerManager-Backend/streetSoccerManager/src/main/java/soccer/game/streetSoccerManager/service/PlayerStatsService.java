@@ -43,4 +43,9 @@ public class PlayerStatsService implements IPlayerStatsService {
         return dataStore.update(stat);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }

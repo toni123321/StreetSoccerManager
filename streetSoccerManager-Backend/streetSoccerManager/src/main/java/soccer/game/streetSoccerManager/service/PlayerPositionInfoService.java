@@ -45,4 +45,9 @@ public class PlayerPositionInfoService implements IPlayerPositionInfoService {
         return dataStore.update(playerPositionInfo);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }

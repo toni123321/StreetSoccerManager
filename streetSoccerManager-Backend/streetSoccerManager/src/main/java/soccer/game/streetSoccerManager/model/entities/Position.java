@@ -32,6 +32,10 @@ public class Position {
         this.category = category;
         this.name = name;
     }
+    public Position(String category, String name) {
+        this.category = category;
+        this.name = name;
+    }
 
 
 }

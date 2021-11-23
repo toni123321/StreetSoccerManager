@@ -35,4 +35,9 @@ public class PlayerPositionInfo {
         this.currentPosition = currentPosition;
         this.isStarting = isStarting;
     }
+    public PlayerPositionInfo(Position defaultPosition, Position currentPosition, boolean isStarting) {
+        this.defaultPosition = defaultPosition;
+        this.currentPosition = currentPosition;
+        this.isStarting = isStarting;
+    }
 }

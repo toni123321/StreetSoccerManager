@@ -42,4 +42,9 @@ public class PositionService implements IPositionService {
         return dataStore.update(position);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }

@@ -11,4 +11,5 @@ public interface IPositionService {
     Boolean delete(Long id);
     Position add(Position position);
     Position update(Position position);
+    void deleteAll();
 }

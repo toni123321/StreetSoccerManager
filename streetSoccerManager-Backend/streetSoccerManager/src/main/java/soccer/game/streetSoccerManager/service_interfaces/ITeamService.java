@@ -13,5 +13,6 @@ public interface ITeamService {
 
     List<Team> getCustomTeams();
     List<Team> getOfficialTeams();
+    void deleteAll();
 
 }

@@ -10,4 +10,5 @@ public interface IPlayerTeamInfoService {
     Boolean delete(Long id);
     PlayerTeamInfo add(PlayerTeamInfo playerTeamInfo);
     PlayerTeamInfo update(PlayerTeamInfo playerTeamInfo);
+    void deleteAll();
 }
