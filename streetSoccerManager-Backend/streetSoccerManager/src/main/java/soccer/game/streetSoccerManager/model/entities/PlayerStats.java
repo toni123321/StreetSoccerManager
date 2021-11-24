@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 
 @Entity
@@ -25,6 +24,11 @@ public class PlayerStats {
 
     public PlayerStats(Long id, int skills, int physical) {
         this.id = id;
+        this.skills = skills;
+        this.physical = physical;
+    }
+
+    public PlayerStats(int skills, int physical) {
         this.skills = skills;
         this.physical = physical;
     }

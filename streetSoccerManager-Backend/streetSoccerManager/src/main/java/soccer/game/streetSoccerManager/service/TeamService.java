@@ -15,15 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class TeamService implements ITeamService {
-
-
     private ITeamRepository dataStore;
-
 
     public TeamService(@Qualifier("teamJPADatabase") ITeamRepository dataStore) {
         this.dataStore = dataStore;
     }
-
 
     @Override
     public List<Team> getAll() {
@@ -42,6 +38,11 @@ public class TeamService implements ITeamService {
         return getAll().stream().
                 filter(OfficialTeam.class::isInstance).
                 collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
     }
 
     @Override
@@ -71,24 +72,18 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public Boolean add(Team team) {
+    public Team add(Team team) {
 //        team.setFormation(dataStore.getDefaultFormation());
 //        team.setRating(calcTeamRating(team));
 //        return dataStore.add(team);
-        if(dataStore.add(team) != null)
-        {
-            return true;
-        }
-        return false;
+        return dataStore.add(team);
+
     }
 
     @Override
-    public Boolean update(Team team) {
-        if(dataStore.update(team) != null)
-        {
-            return true;
-        }
-        return false;
+    public Team update(Team team) {
+        return dataStore.update(team);
+
     }
 
 

@@ -29,4 +29,8 @@ public class PlayerTeamInfo {
         this.kitNr = kitNr;
         this.team = team;
     }
+    public PlayerTeamInfo(int kitNr, Team team) {
+        this.kitNr = kitNr;
+        this.team = team;
+    }
 }

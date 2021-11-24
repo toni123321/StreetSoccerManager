@@ -1,11 +1,8 @@
 package soccer.game.streetSoccerManager.handlers;
 
 
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.csrf.InvalidCsrfTokenException;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;

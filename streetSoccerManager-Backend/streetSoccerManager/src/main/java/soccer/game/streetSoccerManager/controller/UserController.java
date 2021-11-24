@@ -1,10 +1,13 @@
 package soccer.game.streetSoccerManager.controller;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetSoccerManager.model.dtos.UserDTO;
+import soccer.game.streetSoccerManager.model.entities.UserEntity;
 import soccer.game.streetSoccerManager.service_interfaces.IUserService;
 
 import java.util.List;
@@ -15,16 +18,19 @@ import java.util.List;
 public class UserController {
     @Qualifier("userService")
     private IUserService userService;
+    private ModelMapper modelMapper;
 
     public UserController(IUserService userService) {
         this.userService = userService;
+        this.modelMapper = new ModelMapper();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<UserDTO> getUser(@PathVariable(value = "id") Long id) {
-        UserDTO user = userService.get(id);
-        if(user != null) {
-            return ResponseEntity.ok().body(user);
+        UserEntity userEntity = userService.get(id);
+        UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+        if(userDTO != null) {
+            return ResponseEntity.ok().body(userDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -32,11 +38,11 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = null;
-        users = userService.getAll();
+        List<UserEntity> userEntities = userService.getAll();
+        List<UserDTO> userDTOs = modelMapper.map(userEntities, new TypeToken<List<UserDTO>>() {}.getType());
 
-        if(users != null) {
-            return ResponseEntity.ok().body(users);
+        if(userDTOs != null) {
+            return ResponseEntity.ok().body(userDTOs);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -44,32 +50,36 @@ public class UserController {
 
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id) {
-        userService.delete(id);
-        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
-        return ResponseEntity.ok().build();
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        if(Boolean.TRUE.equals(userService.delete(id))) {
+            return ResponseEntity.ok().body("Successfully deleted!");
+        }
+        return ResponseEntity.notFound().build();
 
     }
 
     @PostMapping()
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        UserDTO createdUser = userService.add(userDTO);
-        if (createdUser == null){
-            String entity =  "user with id " + userDTO.getId() + " already exists.";
+        UserEntity userEntityInput = modelMapper.map(userDTO, UserEntity.class);
+        UserEntity createdUserEntity = userService.add(userEntityInput);
+        UserDTO createdUserDTO = modelMapper.map(createdUserEntity, UserDTO.class);
+        if (createdUserDTO == null){
+            String entity =  "User with id " + userDTO.getId() + " already exists.";
             return new ResponseEntity(entity, HttpStatus.CONFLICT);
         } else {
-            return new ResponseEntity(createdUser,HttpStatus.CREATED);
+            return new ResponseEntity(createdUserDTO,HttpStatus.CREATED);
         }
     }
 
     @PutMapping()
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
-        UserDTO createdUser = userService.update(userDTO);
-        if (createdUser == null){
-            String entity =  "user with id:" + userDTO.getId() + "does not exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+        UserEntity inputtedUserEntity = modelMapper.map(userDTO, UserEntity.class);
+        UserEntity updatedUserEntity = userService.update(inputtedUserEntity);
+        UserDTO updatedUserDTO = modelMapper.map(updatedUserEntity, UserDTO.class);
+        if (updatedUserDTO == null){
+            return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(createdUser,HttpStatus.CREATED);
+            return new ResponseEntity(updatedUserDTO,HttpStatus.OK);
         }
     }
 

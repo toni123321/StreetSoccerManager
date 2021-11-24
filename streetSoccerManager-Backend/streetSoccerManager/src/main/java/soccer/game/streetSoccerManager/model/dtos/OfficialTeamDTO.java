@@ -6,18 +6,13 @@ import soccer.game.streetSoccerManager.model.entities.Formation;
 
 @Data
 @NoArgsConstructor
-public class OfficialTeamDTO {
+public class OfficialTeamDTO{
     private Long id;
     private String name;
     private Formation formation;
+    private int rating;
     private String managerName;
 
-    public OfficialTeamDTO(Long id, String name, Formation formation, String managerName) {
-        this.id = id;
-        this.name = name;
-        this.formation = formation;
-        this.managerName = managerName;
-    }
 }
 
 

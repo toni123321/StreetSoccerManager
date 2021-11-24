@@ -31,4 +31,10 @@ public class PlayerPersonalInfo {
         this.lastName = lastName;
         this.dob = dob;
     }
+
+    public PlayerPersonalInfo(String firstName, String lastName, Calendar dob) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+    }
 }

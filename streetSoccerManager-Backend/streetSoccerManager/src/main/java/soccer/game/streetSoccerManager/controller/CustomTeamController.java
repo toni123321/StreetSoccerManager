@@ -1,13 +1,15 @@
 package soccer.game.streetSoccerManager.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.converters.CustomTeamConverter;
 import soccer.game.streetSoccerManager.model.dtos.CustomTeamDTO;
 import soccer.game.streetSoccerManager.model.entities.CustomTeam;
+import soccer.game.streetSoccerManager.model.entities.Team;
 import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
+
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
 @RestController
@@ -15,23 +17,38 @@ import soccer.game.streetSoccerManager.service_interfaces.ITeamService;
 public class CustomTeamController {
     @Qualifier("teamService")
     private ITeamService teamService;
-    private CustomTeamConverter customTeamConverter = new CustomTeamConverter();
+    private ModelMapper modelMapper;
 
     public CustomTeamController(ITeamService teamService) {
         this.teamService = teamService;
+        this.modelMapper = new ModelMapper();
     }
 
     @PostMapping()
-    public ResponseEntity<CustomTeamDTO> createCustomTeam(@RequestBody CustomTeamDTO customTeamDTO) {
-        CustomTeam customTeam = customTeamConverter.convertCustomTeamDtoToCustomTeam(customTeamDTO);
-        if (!teamService.add(customTeam)){
-            String entity =  "Team with id " + customTeam.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+    public ResponseEntity<CustomTeamDTO> createCustomTeam(@RequestBody CustomTeamDTO customTeam) {
+        CustomTeam inputtedCustomTeamEntity = modelMapper.map(customTeam, CustomTeam.class);
+        Team createdCustomTeamEntity = teamService.add(inputtedCustomTeamEntity);
+        CustomTeamDTO createdCustomTeamDTO = modelMapper.map(createdCustomTeamEntity, CustomTeamDTO.class);
+        if (createdCustomTeamDTO == null){
+            String msg =  "Custom team with id " + customTeam.getId() + " already exists.";
+            return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            CustomTeamDTO customTeamDTOToReturn = customTeamConverter.convertCustomTeamToCustomTeamDto(((CustomTeam) teamService.get(customTeam.getId())));
-            return new ResponseEntity(customTeamDTOToReturn,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdCustomTeamDTO,HttpStatus.CREATED);
         }
-
     }
+
+    @PutMapping()
+    public ResponseEntity<CustomTeamDTO> updateCustomTeam(@RequestBody CustomTeamDTO customTeam) {
+        CustomTeam inputtedCustomTeamEntity = modelMapper.map(customTeam, CustomTeam.class);
+        Team updatedCustomTeamEntity = teamService.update(inputtedCustomTeamEntity);
+        CustomTeamDTO updatedCustomTeamDTO = modelMapper.map(updatedCustomTeamEntity, CustomTeamDTO.class);
+        if (updatedCustomTeamDTO == null){
+            return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(updatedCustomTeamDTO,HttpStatus.OK);
+        }
+    }
+
+
 
 }

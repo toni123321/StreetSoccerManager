@@ -12,9 +12,4 @@ public class PlayerTeamInfoDTO {
     private int kitNr;
     private Team team;
 
-    public PlayerTeamInfoDTO(Long id, int kitNr, Team team) {
-        this.id = id;
-        this.kitNr = kitNr;
-        this.team = team;
-    }
 }
