@@ -1,11 +1,12 @@
 package soccer.game.streetSoccerManager.controller;
 
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import soccer.game.streetSoccerManager.model.converters.PlayerConverter;
 import soccer.game.streetSoccerManager.model.dtos.PlayerDTO;
 import soccer.game.streetSoccerManager.service_interfaces.IPlayerService;
 import soccer.game.streetSoccerManager.model.entities.Player;
@@ -21,17 +22,20 @@ public class PlayersController {
 
     @Qualifier("playerService")
     private IPlayerService playerService;
+    private ModelMapper modelMapper;
 
 
     public PlayersController(IPlayerService playerService) {
         this.playerService = playerService;
+        this.modelMapper = new ModelMapper();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<PlayerDTO> getPlayer(@PathVariable(value = "id") Long id) {
-        PlayerDTO player = playerService.get(id);
-        if(player != null) {
-            return ResponseEntity.ok().body(player);
+        Player playerEntity = playerService.get(id);
+        PlayerDTO playerDTO = modelMapper.map(playerEntity, PlayerDTO.class);
+        if(playerDTO != null) {
+            return ResponseEntity.ok().body(playerDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -41,7 +45,7 @@ public class PlayersController {
     public ResponseEntity<List<PlayerDTO>> getAllPlayers(
             @RequestParam(value = "teamId") Optional<Long> teamId,
             @RequestParam(value = "starting") Optional<Boolean> starting) {
-        List<PlayerDTO> players = null;
+        List<Player> players = null;
         if(teamId.isPresent()){
             if(starting.isPresent())
             {
@@ -57,8 +61,9 @@ public class PlayersController {
             players = playerService.getAll();
         }
 
+        List<PlayerDTO> playerDTOs =  modelMapper.map(players, new TypeToken<List<PlayerDTO>>() {}.getType());
         if(players != null) {
-            return ResponseEntity.ok().body(players);
+            return ResponseEntity.ok().body(playerDTOs);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -68,14 +73,15 @@ public class PlayersController {
     public ResponseEntity<List<PlayerDTO>> getPlayersAvailableForSwapping(
             @RequestParam(value = "teamId") Optional<Long> teamId,
             @RequestParam(value = "playerToSwapId") Optional<Long> playerToSwapId) {
-        List<PlayerDTO> players = null;
+        List<Player> players = null;
 
         if(teamId.isPresent() && playerToSwapId.isPresent()){
             players = playerService.getAllPlayersInTeamAvailableForSwapping(teamId.get(), playerToSwapId.get());
         }
 
+        List<PlayerDTO> playerDTOs = modelMapper.map(players, new TypeToken<List<PlayerDTO>>() {}.getType());
         if(players != null) {
-            return ResponseEntity.ok().body(players);
+            return ResponseEntity.ok().body(playerDTOs);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -84,30 +90,34 @@ public class PlayersController {
 
     @DeleteMapping("{id}")
     public ResponseEntity deletePlayer(@PathVariable Long id) {
-        playerService.delete(id);
-        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
-        return ResponseEntity.ok().build();
-
+        if(Boolean.TRUE.equals(playerService.delete(id))) {
+            return ResponseEntity.ok().body("Successfully deleted!");
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping()
     public ResponseEntity<PlayerDTO> createPlayer(@RequestBody PlayerDTO player) {
-        PlayerDTO createdPlayer = playerService.add(player);
-        if (createdPlayer == null){
+        Player inputtedPlayerEntity = modelMapper.map(player, Player.class);
+        Player createdPlayerEntity = playerService.add(inputtedPlayerEntity);
+        PlayerDTO createdPlayerDTO = modelMapper.map(createdPlayerEntity, PlayerDTO.class);
+        if (createdPlayerDTO == null){
             String msg =  "Player with id " + player.getId() + " already exists.";
             return new ResponseEntity(msg, HttpStatus.CONFLICT);
         } else {
-            return new ResponseEntity(createdPlayer,HttpStatus.CREATED);
+            return new ResponseEntity(createdPlayerDTO,HttpStatus.CREATED);
         }
     }
 
     @PutMapping()
     public ResponseEntity<PlayerDTO> updatePlayer(@RequestBody PlayerDTO player) {
-        PlayerDTO updatedPlayer = playerService.update(player);
-        if(updatedPlayer != null) {
-            return ResponseEntity.noContent().build();
+        Player inputtedPlayerEntity = modelMapper.map(player, Player.class);
+        Player updatedPlayerEntity = playerService.add(inputtedPlayerEntity);
+        PlayerDTO updatedPlayerDTO = modelMapper.map(updatedPlayerEntity, PlayerDTO.class);
+        if (updatedPlayerDTO == null){
+            return new ResponseEntity("Please provide a valid player id", HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity("Please provide a valid player id",HttpStatus.NOT_FOUND);
+            return new ResponseEntity(updatedPlayerDTO,HttpStatus.CREATED);
         }
     }
 

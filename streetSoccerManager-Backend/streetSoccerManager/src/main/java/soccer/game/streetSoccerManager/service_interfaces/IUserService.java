@@ -1,14 +1,15 @@
 package soccer.game.streetSoccerManager.service_interfaces;
 
-import soccer.game.streetSoccerManager.model.dtos.UserDTO;
+import soccer.game.streetSoccerManager.model.entities.UserEntity;
 
 import java.util.List;
 
 public interface IUserService {
-    List<UserDTO> getAll();
-    UserDTO get(Long id);
-    UserDTO getByEmail(String email);
+    List<UserEntity> getAll();
+    UserEntity get(Long id);
+    UserEntity getByEmail(String email);
     Boolean delete(Long id);
-    UserDTO add(UserDTO user);
-    UserDTO update(UserDTO user);
+    UserEntity add(UserEntity user);
+    UserEntity update(UserEntity user);
+    void deleteAll();
 }

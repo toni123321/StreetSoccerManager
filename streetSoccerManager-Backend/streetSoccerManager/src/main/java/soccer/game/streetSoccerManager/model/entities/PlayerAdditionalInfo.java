@@ -16,7 +16,7 @@ public class PlayerAdditionalInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double price;
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "playerStatsId")
     private PlayerStats playerStats;
 
@@ -26,6 +26,11 @@ public class PlayerAdditionalInfo {
 
     public PlayerAdditionalInfo(Long id, double price, PlayerStats playerStats) {
         this.id = id;
+        this.price = price;
+        this.playerStats = playerStats;
+    }
+
+    public PlayerAdditionalInfo(double price, PlayerStats playerStats) {
         this.price = price;
         this.playerStats = playerStats;
     }

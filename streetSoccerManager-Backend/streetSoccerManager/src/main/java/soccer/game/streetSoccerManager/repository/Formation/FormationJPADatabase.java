@@ -26,8 +26,7 @@ public class FormationJPADatabase implements IFormationRepository {
         {
             return null;
         }
-        Formation formation = formationRepo.findById(id).orElse(null);
-        return formation;
+        return formationRepo.findById(id).orElse(null);
     }
 
     @Override

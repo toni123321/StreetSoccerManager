@@ -1,38 +1,34 @@
 package soccer.game.streetSoccerManager.model.entities;
 
 import lombok.Data;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Objects;
 
 
 @Entity
 @Table(name ="player")
 @NoArgsConstructor
 @Data
-public class Player implements Comparable<Player>{
+@EqualsAndHashCode(exclude = {"id"})
+public class Player{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="playerPersonalInfoId")
-
     private PlayerPersonalInfo playerPersonalInfo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="playerPositionInfoId")
     private PlayerPositionInfo playerPositionInfo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="playerTeamInfoId")
     private PlayerTeamInfo playerTeamInfo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name="playerAdditionalInfoId")
     private PlayerAdditionalInfo playerAdditionalInfo;
 
@@ -44,9 +40,11 @@ public class Player implements Comparable<Player>{
         this.playerAdditionalInfo = playerAdditionalInfo;
     }
 
-    // todo: Add implementation
-    @Override
-    public int compareTo(Player o) {
-        return 0;
+    public Player(PlayerPersonalInfo playerPersonalInfo, PlayerPositionInfo playerPositionInfo, PlayerTeamInfo playerTeamInfo, PlayerAdditionalInfo  playerAdditionalInfo) {
+        this.playerPersonalInfo = playerPersonalInfo;
+        this.playerPositionInfo = playerPositionInfo;
+        this.playerTeamInfo = playerTeamInfo;
+        this.playerAdditionalInfo = playerAdditionalInfo;
     }
+
 }

@@ -6,7 +6,7 @@
 }
 
 .startingTeam {
-    background: center center  url("../resources/test.png") no-repeat;
+    background: center center  url("../resources/pitch.png") no-repeat;
     background-size: 100% 100%;
     background-color: rgb(62, 128, 193);
 }
@@ -40,7 +40,7 @@
     gap: 20px;
     
     height: 25rem;
-    background: center center transparent url("../resources/pitch-half\ \(1\).png") no-repeat;
+    /* background: center center transparent url("../resources/pitch-half\ \(1\).png") no-repeat; */
     background-size: 100% 100%;
 
 }
@@ -118,12 +118,12 @@
 }
 
 
-.chooseOpponent .col .homeTeamName, .chooseOpponent .col .awayTeamName {
+/* .chooseOpponent .col .homeTeamName, .chooseOpponent .col .awayTeamName {
     border: 1px solid black;
     border-radius: 25px;
     padding: 30px;
     background-color: azure;
-}
+} */
 .chooseOpponent .homeTeam {
     margin-right: 10px;
 }
@@ -199,32 +199,8 @@
     margin-bottom: 20px;
 }
 
-.changeSides {
-    display: flex;
-    height: 20%;
-    justify-content: center;
-    align-self: center;
-}
-
-.changeSides button {
-    padding: 20px;
-    font-size: 30px;
-    border-radius: 30px;
-    background-color: lightskyblue;
-}
-
 .chooseOpponent .carousel-indicators {
     display: none !important;
-}
-
-.teamToChoose, .userTeam {
-    margin-inline: 50px;
-}
-
-.chooseOpponent img {
-    margin-top:10px;
-    width: 150px;
-    height: 150px;
 }
 
 .close-rotation-container {

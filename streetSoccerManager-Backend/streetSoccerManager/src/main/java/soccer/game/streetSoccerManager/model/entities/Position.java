@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 
@@ -18,7 +17,7 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String category;
-    private String position;
+    private String name;
 
     @OneToMany(mappedBy = "defaultPosition", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -28,10 +27,14 @@ public class Position {
     @JsonIgnore
     private Set<PlayerPositionInfo> playersCurrentPosition;
 
-    public Position(Long id, String category, String position) {
+    public Position(Long id, String category, String name) {
         this.id = id;
         this.category = category;
-        this.position = position;
+        this.name = name;
+    }
+    public Position(String category, String name) {
+        this.category = category;
+        this.name = name;
     }
 
 
