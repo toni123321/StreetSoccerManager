@@ -42,4 +42,9 @@ public class PlayerAdditionalInfoService implements IPlayerAdditionalInfoService
         return dataStore.update(playerAdditionalInfo);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }
