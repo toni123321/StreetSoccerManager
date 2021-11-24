@@ -10,4 +10,5 @@ public interface IPlayerPersonalInfoService {
     Boolean delete(Long id);
     PlayerPersonalInfo add(PlayerPersonalInfo playerPersonalInfo);
     PlayerPersonalInfo update(PlayerPersonalInfo playerPersonalInfo);
+    void deleteAll();
 }

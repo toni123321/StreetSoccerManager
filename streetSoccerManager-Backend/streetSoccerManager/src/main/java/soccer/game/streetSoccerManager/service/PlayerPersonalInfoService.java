@@ -44,4 +44,9 @@ public class PlayerPersonalInfoService implements IPlayerPersonalInfoService {
         return dataStore.update(playerPersonalInfo);
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 }

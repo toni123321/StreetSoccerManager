@@ -17,4 +17,5 @@ public interface IPlayerService {
 
     List<Player> getStartingPlayers(Long teamId);
     List<Player> getReserves(Long teamId);
+    void deleteAll();
 }

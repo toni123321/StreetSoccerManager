@@ -10,4 +10,5 @@ public interface IPlayerAdditionalInfoService {
     Boolean delete(Long id);
     PlayerAdditionalInfo add(PlayerAdditionalInfo playerAdditionalInfo);
     PlayerAdditionalInfo update(PlayerAdditionalInfo playerAdditionalInfo);
+    void deleteAll();
 }

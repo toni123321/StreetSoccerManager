@@ -91,5 +91,10 @@ public class PlayerService implements IPlayerService {
                 collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
+    }
+
 
 }
