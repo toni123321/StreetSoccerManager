@@ -42,6 +42,20 @@ public class TeamsController {
         }
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<TeamDTO> getTeamByUserId(@PathVariable(value = "userId") Long userId) {
+        Team teamEntity = teamService.getTeamByUserId(userId);
+        TeamDTO teamDTO = modelMapper.map(teamEntity, TeamDTO.class);
+
+        if(teamDTO != null) {
+            return ResponseEntity.ok().body(teamDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
     @GetMapping
     public ResponseEntity<List<TeamDTO>> getAllTeams(
             @RequestParam(value = "isCustom") Optional<Boolean> isCustom)

@@ -4,10 +4,14 @@ import TeamService from "../services/TeamService";
 import styles from "../css/CreateTeam.css";
 import CreateTeamForm from './CreateTeamForm';
 import GameNavbar from './GameNavbar';
+import { useHistory } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 import FormationService from '../services/FormationService';
 
 function CreateTeam() {
+    let history = useHistory();
+    const cookies = new Cookies();
 
     const initialTeamState = {
         id: null,
@@ -27,7 +31,7 @@ function CreateTeam() {
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-
+        
         const createdTeam = localStorage.getItem("team");
         console.log("Created team: ", createTeam);
         if (createdTeam) {
@@ -87,7 +91,7 @@ function CreateTeam() {
     const newTeam = () => {
         setTeam(initialTeamState);
         setSubmitted(false);
-        localStorage.clear();
+        localStorage.removeItem("team");
     };
 
     return (
@@ -97,9 +101,9 @@ function CreateTeam() {
                 <>
                 <h2>Team name: {team.name}</h2>
                 <GameNavbar team={team}/>
-                <button onClick={newTeam}>
+                {/* <button onClick={newTeam}>
                     Add
-                </button>
+                </button> */}
                 </>
             ) 
             :

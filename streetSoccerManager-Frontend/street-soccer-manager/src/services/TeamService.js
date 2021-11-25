@@ -1,44 +1,66 @@
 import http from "../api/api-client.js";
 
-const getAll = () => {
-  return http.get("/teams");
+const getAll = (token) => {
+  return http.get("/teams", 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
 
-const getCustomTeams = () => {
-  return http.get(`/teams?isCustom=${true}`);
+const getCustomTeams = (token) => {
+  return http.get(`/teams?isCustom=${true}`, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  }
+  });
 };
 
-const getOfficialTeams = () => {
-  return http.get(`/teams?isCustom=${false}`);
+const getOfficialTeams = (token) => {
+  return http.get(`/teams?isCustom=${false}`, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  }
+  });
 };
 
-const get = id => {
-  return http.get(`/teams/${id}`);
+const get = (id, token) => {
+  return http.get(`/teams/${id}`, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
 
-const create = data => {
-  return http.post("/teams", data);
+const getTeamByUserId = (userId, token) => {
+  return http.get(`/teams/user/${userId}`, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
 
-const update = (id, data) => {
-  return http.put(`/teams/${id}`, data);
-};
 
-const remove = id => {
-  return http.delete(`/teams/${id}`);
-};
 
-const removeAll = () => {
-  return http.delete(`/teams`);
+const create = (data, token) => {
+  return http.post("/teams", data, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
-
 
 export default {
   getAll,
   get,
+  getTeamByUserId,
   create,
-  update,
-  remove,
   getCustomTeams,
   getOfficialTeams
 };

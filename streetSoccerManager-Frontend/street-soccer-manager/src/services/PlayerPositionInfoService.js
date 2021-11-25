@@ -1,23 +1,37 @@
 import http from "../api/api-client.js";
 
-const getAll = () => {
-  return http.get("/playersPositionInfo");
+const getAll = (token) => {
+  return http.get("/playersPositionInfo", token);
 };
 
-const get = id => {
-  return http.get(`/playersPositionInfo/${id}`);
+const get = (id, token) => {
+  return http.get(`/playersPositionInfo/${id}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
-const create = data => {
-  return http.post("/playersPositionInfo", data);
+const create = (data, token) => {
+  return http.post("/playersPositionInfo", data, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
-const update = (data) => {
-  return http.put(`/playersPositionInfo`, data);
+const update = (data, token) => {
+  return http.put(`/playersPositionInfo`, data, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
 
-const remove = id => {
-  return http.delete(`/playersPositionInfo/${id}`);
+const remove = (id, token) => {
+  return http.delete(`/playersPositionInfo/${id}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
 

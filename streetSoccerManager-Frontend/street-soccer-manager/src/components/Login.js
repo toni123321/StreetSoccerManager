@@ -7,16 +7,19 @@ import UserService from "../services/UserService";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import jwt_decode from "jwt-decode";
+import TeamService from "../services/TeamService";
 
 const Login = () => {
+    let history = useHistory();
     const cookies = new Cookies();
  
     const [isUserLogged, setIsUserLogged] = useState(false);
     const [loginError, setLoginError] = useState(false);
 
     useEffect(() => {
-        if(cookies.get('login-token') != null){
+        if(cookies.get('login-token') !== undefined){
             setIsUserLogged(true);
+            // history.push("/game");
         } 
     }, []);
 
@@ -32,15 +35,37 @@ const Login = () => {
             cookies.set('login-token', token, {sameSite: 'lax'});
             console.log(cookies.get('login-token'));
             setIsUserLogged(true);
+            console.log(decode_token.sub);
+            getUserByEmail(decode_token.sub, token);
+            //history.push("/game");
+            
         }
         catch (error) {
             setLoginError(true);
         }
     }
 
+    function getUserByEmail(email, token) {
+        UserService.getUserByEmail(email, token)
+        .then((response) => {
+            getUserTeam(response.data.id, token);
+        }
+        );
+        
+    }
+
+    async function getUserTeam(userId, token){
+        TeamService.getTeamByUserId(userId, token)
+        .then((response) => {
+            localStorage.setItem("team", JSON.stringify(response.data));
+        }
+        );
+    }
+
     function handleLogout() {
         cookies.remove('login-token', {sameSite: 'lax'});
         setIsUserLogged(false);
+        localStorage.removeItem("team");
     }
 
     return (
@@ -50,6 +75,7 @@ const Login = () => {
             <div className="welcome">
                 <h1>Welcome</h1>
                 <button onClick={handleLogout}>Log out</button>
+
             </div>
             ) :
             (
