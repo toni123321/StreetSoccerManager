@@ -259,9 +259,9 @@ function ChooseOpponent() {
                 </Container>
             </div>
             
-            <div>Chosen opponent: {chosenOpponent.name}</div>
-            <div>{homeTeam.name} vs {awayTeam.name}</div>
-            <button onClick={handleSaveData}>Next <i className="fas fa-angle-double-right"></i></button>
+            {/* <div>Chosen opponent: {chosenOpponent.name}</div>
+            <div>{homeTeam.name} vs {awayTeam.name}</div> */}
+            <button onClick={handleSaveData} className="btn-next">Next</button>
             </>
         ) : 
         (

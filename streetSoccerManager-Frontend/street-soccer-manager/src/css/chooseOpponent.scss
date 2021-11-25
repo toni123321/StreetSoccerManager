@@ -1,4 +1,39 @@
+.chooseOpponent {
+    margin-top: 10%;
+}
 
+.chooseOpponent .carousel-indicators {
+    display: none !important;
+}
+.chooseOpponent .homeTeam {
+    margin-right: 10px;
+}
+
+.carousel-control-next,
+.carousel-control-prev, .carousel-indicators  {
+    filter: invert(100%);
+}
+
+.changeSides h3 {
+    display: block;
+}
+
+
+.playMatch, .goBack {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.playMatch {
+    margin-right: 20px;
+}
+
+.playMatch i,    .goBack i {
+    font-size: 20px;
+    color: black;
+}
 
 .team-role ,.team-selected{
     border: 1px solid black;
@@ -86,4 +121,16 @@
 
 .filledStar {
     color: yellow;
+}
+
+.btn-next {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(
+45deg, #8a23cb, transparent);
+    border-radius: 20px;
+    color: whitesmoke;
+    font-size: 20px;
+    font-family: cursive;
+    font-weight: bold;
 }
