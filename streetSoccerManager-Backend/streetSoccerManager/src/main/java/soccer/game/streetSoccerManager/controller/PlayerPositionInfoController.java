@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class PlayerPositionInfoController {
     public PlayerPositionInfoController(IPlayerPositionInfoService playerPositionInfoService) {
         this.playerPositionInfoService = playerPositionInfoService;
         this.modelMapper = new ModelMapper();
+        this.modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
 
     @GetMapping
