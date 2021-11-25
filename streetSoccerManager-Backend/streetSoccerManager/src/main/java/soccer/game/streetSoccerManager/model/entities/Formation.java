@@ -19,7 +19,7 @@ public class Formation {
     private String name; // 1-2-1
 
 
-    @OneToMany(mappedBy="formation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="formation", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Team> teams;
 

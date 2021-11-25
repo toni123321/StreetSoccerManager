@@ -37,14 +37,14 @@ class PlayerPersonalInfoIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPlayersPersonalInfoSuccessScenario() {
         // Assert
         Assertions.assertEquals(playersPersonalInfoExpected, playerPersonalInfoService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPlayerPersonalInfoSuccessScenario() {
         // Act
         PlayerPersonalInfo playerPersonalInfo = playerPersonalInfoService.get(playersPersonalInfo.get(0).getId());
 
@@ -53,7 +53,7 @@ class PlayerPersonalInfoIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePlayerPersonalInfoSuccessScenario(){
         // Act
         playerPersonalInfoService.delete(playersPersonalInfo.get(0).getId());
         playersPersonalInfoExpected.remove(0);
@@ -63,7 +63,7 @@ class PlayerPersonalInfoIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPlayerPersonalInfoSuccessScenario() {
         // Act
         playerPersonalInfoService.add(new PlayerPersonalInfo("Juan", "Mata", new GregorianCalendar(1987, 5, 15)));
         playersPersonalInfo = playerPersonalInfoService.getAll();
@@ -75,7 +75,7 @@ class PlayerPersonalInfoIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePlayerPersonalInfoSuccessScenario(){
         // Act
         playerPersonalInfoService.update(new PlayerPersonalInfo(playersPersonalInfo.get(0).getId(), "Lionel", "Messi", new GregorianCalendar(1985, 5, 15)));
         playersPersonalInfoExpected.set(0, new PlayerPersonalInfo(playersPersonalInfo.get(0).getId(), "Lionel", "Messi", new GregorianCalendar(1985, 5, 15)));

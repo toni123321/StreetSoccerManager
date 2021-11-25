@@ -43,14 +43,14 @@ class PlayerPositionInfoIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPlayersPositionInfoSuccessScenario() {
         // Assert
         Assertions.assertEquals(playersPositionInfoExpected, playerPositionInfoService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPlayerPositionInfoSuccessScenario() {
         // Act
         PlayerPositionInfo playerPositionInfo = playerPositionInfoService.get(playersPositionInfo.get(0).getId());
 
@@ -59,7 +59,7 @@ class PlayerPositionInfoIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePlayerPositionInfoSuccessScenario(){
         // Act
         playerPositionInfoService.delete(playersPositionInfo.get(0).getId());
         playersPositionInfoExpected.remove(0);
@@ -69,7 +69,7 @@ class PlayerPositionInfoIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPlayerPositionInfoSuccessScenario() {
         // Act
         playerPositionInfoService.add(new PlayerPositionInfo(positionService.getAll().get(0), positionService.getAll().get(1), true));
         playersPositionInfo = playerPositionInfoService.getAll();
@@ -81,7 +81,7 @@ class PlayerPositionInfoIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePlayerPositionInfoSuccessScenario(){
         // Act
         playerPositionInfoService.update(new PlayerPositionInfo(playersPositionInfo.get(0).getId(), positionService.getAll().get(0), positionService.getAll().get(0), false));
         playersPositionInfoExpected.set(0, new PlayerPositionInfo(playersPositionInfo.get(0).getId(), positionService.getAll().get(0), positionService.getAll().get(0), false));

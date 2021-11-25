@@ -16,7 +16,7 @@ import java.util.List;
 
 @ActiveProfiles("test")
 @SpringBootTest
-class PositionServiceIntegrationTest {
+class PositionIntegrationTest {
     //Arrange
     @Autowired
     PositionService positionService;
@@ -38,14 +38,14 @@ class PositionServiceIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPositionsSuccessScenario() {
         // Assert
         Assertions.assertEquals(positionsExpected, positionService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPositionSuccessScenario() {
         // Act
         Position position = positionService.get(positions.get(0).getId());
 
@@ -54,7 +54,7 @@ class PositionServiceIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePositionSuccessScenario(){
         // Act
         positionService.delete(positions.get(0).getId());
         positionsExpected.remove(0);
@@ -64,7 +64,7 @@ class PositionServiceIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPositionSuccessScenario() {
         // Act
         positionService.add(new Position("ATACK", "RW"));
         positions = positionService.getAll();
@@ -76,7 +76,7 @@ class PositionServiceIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePositionSuccessScenario(){
         // Act
         positionService.update(new Position(positions.get(0).getId(), "DEF", "CB"));
         positionsExpected.set(0, new Position(positions.get(0).getId(), "DEF", "CB"));
