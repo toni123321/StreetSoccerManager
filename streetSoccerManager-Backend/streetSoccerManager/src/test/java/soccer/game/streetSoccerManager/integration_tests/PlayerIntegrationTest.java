@@ -112,14 +112,14 @@ public class PlayerIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPlayersSuccessScenario() {
         // Assert
         Assertions.assertEquals(playersExpected, playerService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPlayerSuccessScenario() {
         // Act
         Player player = playerService.get(players.get(0).getId());
 
@@ -128,7 +128,7 @@ public class PlayerIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePlayerSuccessScenario(){
         // Act
         playerService.delete(players.get(0).getId());
         playersExpected.remove(0);
@@ -138,7 +138,7 @@ public class PlayerIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPlayerSuccessScenario() {
         // Act
 
         playerService.add(new Player(playerPersonalInfoService.getAll().get(2), playerPositionInfoService.getAll().get(2), playerTeamInfoService.getAll().get(2), playerAdditionalInfoService.getAll().get(2)));
@@ -151,7 +151,7 @@ public class PlayerIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePlayerSuccessScenario(){
         // Act
         playerService.update(new Player(players.get(0).getId(), playerPersonalInfoService.getAll().get(2), playerPositionInfoService.getAll().get(0), playerTeamInfoService.getAll().get(0), playerAdditionalInfoService.getAll().get(0)));
         playersExpected.set(0, new Player(players.get(0).getId(),playerPersonalInfoService.getAll().get(2), playerPositionInfoService.getAll().get(0), playerTeamInfoService.getAll().get(0), playerAdditionalInfoService.getAll().get(0)));

@@ -46,14 +46,14 @@ public class PlayerAdditionalInfoIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPlayersAdditionalInfoSuccessScenario() {
         // Assert
         Assertions.assertEquals(playersAdditionalInfoExpected, playerAdditionalInfoService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPlayerAdditionalInfoSuccessScenario() {
         // Act
         PlayerAdditionalInfo playerAdditionalInfo = playerAdditionalInfoService.get(playersAdditionalInfo.get(0).getId());
 
@@ -62,7 +62,7 @@ public class PlayerAdditionalInfoIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePlayerAdditionalInfoSuccessScenario(){
         // Act
         playerAdditionalInfoService.delete(playersAdditionalInfo.get(0).getId());
         playersAdditionalInfoExpected.remove(0);
@@ -72,7 +72,7 @@ public class PlayerAdditionalInfoIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPlayerAdditionalInfoSuccessScenario() {
         // Act
         playerStatsService.add(new PlayerStats(58, 79));
         playerAdditionalInfoService.add(new PlayerAdditionalInfo(200, playerStatsService.getAll().get(2)));
@@ -85,7 +85,7 @@ public class PlayerAdditionalInfoIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePlayerAdditionalInfoSuccessScenario(){
         // Act
         playerAdditionalInfoService.update(new PlayerAdditionalInfo(playersAdditionalInfo.get(0).getId(), 159, playerStatsService.getAll().get(0)));
         playersAdditionalInfoExpected.set(0, new PlayerAdditionalInfo(playersAdditionalInfo.get(0).getId(), 159, playerStatsService.getAll().get(0)));

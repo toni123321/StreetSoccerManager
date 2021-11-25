@@ -36,14 +36,14 @@ class PlayerStatsIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllPlayersStatsSuccessScenario() {
         // Assert
         Assertions.assertEquals(playersStatsExpected, playerStatsService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetPlayerStatsSuccessScenario() {
         // Act
         PlayerStats playerStats = playerStatsService.get(playersStats.get(0).getId());
 
@@ -52,7 +52,7 @@ class PlayerStatsIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeletePlayerStatsSuccessScenario(){
         // Act
         playerStatsService.delete(playersStats.get(0).getId());
         playersStatsExpected.remove(0);
@@ -62,7 +62,7 @@ class PlayerStatsIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddPlayerStatsSuccessScenario() {
         // Act
         playerStatsService.add(new PlayerStats(75, 65));
         playersStats = playerStatsService.getAll();
@@ -74,7 +74,7 @@ class PlayerStatsIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdatePlayerStatsSuccessScenario(){
         // Act
         playerStatsService.update(new PlayerStats(playersStats.get(0).getId(), 65, 70));
         playersStatsExpected.set(0, new PlayerStats(playersStats.get(0).getId(), 65, 70));

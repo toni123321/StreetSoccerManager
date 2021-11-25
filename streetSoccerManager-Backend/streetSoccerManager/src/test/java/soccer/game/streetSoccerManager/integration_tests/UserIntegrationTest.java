@@ -37,14 +37,14 @@ class UserIntegrationTest {
     }
 
     @Test
-    void getAllFormationsSuccessScenario() {
+    void getAllUsersSuccessScenario() {
         // Assert
         Assertions.assertEquals(usersExpected, userService.getAll()) ;
     }
 
 
     @Test
-    void GetFormationSuccessScenario() {
+    void GetUserSuccessScenario() {
         // Act
         UserEntity user = userService.get(users.get(0).getId());
 
@@ -53,7 +53,7 @@ class UserIntegrationTest {
     }
 
     @Test
-    void DeleteFormationSuccessScenario(){
+    void DeleteUserSuccessScenario(){
         // Act
         userService.delete(users.get(0).getId());
         usersExpected.remove(0);
@@ -63,7 +63,7 @@ class UserIntegrationTest {
     }
 
     @Test
-    void AddFormationSuccessScenario() {
+    void AddUserSuccessScenario() {
         // Act
         userService.add(new UserEntity("erick@gmail.com", "test", "Erick", "Hill", "erick25"));
         users = userService.getAll();
@@ -76,7 +76,7 @@ class UserIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdateUserSuccessScenario(){
         // Act
         userService.update(new UserEntity(users.get(0).getId(), "peter@gmail.com", "123", "Peter", "Petrov", "pesho@go"));
         users = userService.getAll();

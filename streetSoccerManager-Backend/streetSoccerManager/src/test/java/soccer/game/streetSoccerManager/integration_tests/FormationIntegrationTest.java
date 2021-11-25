@@ -14,7 +14,7 @@ import java.util.List;
 
 @ActiveProfiles("test")
 @SpringBootTest
-class FormationServiceIntegrationTest {
+class FormationIntegrationTest {
 
     //Arrange
     @Autowired
@@ -75,7 +75,7 @@ class FormationServiceIntegrationTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdateFormationSuccessScenario(){
         // Act
         formationService.update(new Formation(formations.get(0).getId(), "3-1-0"));
         formationsExpected.set(0, new Formation(formations.get(0).getId(), "3-1-0"));
