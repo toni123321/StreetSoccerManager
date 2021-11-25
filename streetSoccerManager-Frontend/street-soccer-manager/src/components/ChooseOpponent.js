@@ -7,6 +7,7 @@ import {Col, Row, Container} from 'react-bootstrap';
 import "../css/chooseOpponent.scss";
 import yourTeamLogo from "../resources/your-team-logo.png";
 import opponentTeamLogo from "../resources/opponent-team-logo.png";
+import TeamRating from './TeamRating';
 
 
 function ChooseOpponent() {
@@ -26,12 +27,14 @@ function ChooseOpponent() {
             "password": "",
             "nickname": "",
             "points": null
-        }
+        },
+        rating: null
     }
 
     const initialTeamSideState = {
         id: null,
-        name: ""
+        name: "",
+        rating: null
     }
 
     const [userTeam, setUserTeam] = useState(initialTeamState);
@@ -43,7 +46,8 @@ function ChooseOpponent() {
         id: null,
         name: "",
         formation: null,
-        managerName: ""
+        managerName: "",
+        rating: null
     });
 
     const [opponents, setOpponents] = useState([]);
@@ -57,7 +61,8 @@ function ChooseOpponent() {
 
             const homeTeamState = {
                 id: foundTeam.id,
-                name: foundTeam.name
+                name: foundTeam.name,
+                rating: foundTeam.rating
             }
             setHomeTeam(homeTeamState);
         } 
@@ -104,9 +109,11 @@ function ChooseOpponent() {
     const handleSelectOpponent = (opponent, isHomeTeam) => {
         //console.log(getOpponent(index).name);
         setChosenOpponent(opponent);
+        console.log("Opponent", opponent.rating);
         const opponentTeamState = {
             id: opponent.id,
-            name: opponent.name
+            name: opponent.name,
+            rating: opponent.rating
         }
         isHomeTeam ? setHomeTeam(opponentTeamState): setAwayTeam(opponentTeamState);
     }
@@ -175,7 +182,7 @@ function ChooseOpponent() {
                                 (<div className="userTeam">
                                     <div className="team-name">{userTeam.name}</div>
                                     <img className="team-logo" src={yourTeamLogo}/>
-                            
+                                    <TeamRating rating={homeTeam.rating}/>
                                 </div>) :
                                 (
                                     <Carousel interval={null}>
@@ -185,17 +192,13 @@ function ChooseOpponent() {
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
                                             </div>
+                                            <TeamRating rating={opponent.rating}/>
                                         </Carousel.Item>
                                     )}
                                     </Carousel>
                                 )
                             }
-                            <div className="team-stars-rating">
-                            {[...Array(5)].map((i) =>
-                                <i class="fas fa-star"></i>
-                            )}
-                            </div>
-                            <div className="team-rating">OVR: 80</div>
+                            
                             
                             
                         </div>
@@ -221,6 +224,8 @@ function ChooseOpponent() {
                                 (<div className="userTeam">
                                     <div className="team-name">{userTeam.name}</div>
                                     <img className="team-logo" src={yourTeamLogo}/>
+                                    <TeamRating rating={awayTeam.rating}/>
+                                    
                                 </div>) :
                                 (
                                     <Carousel interval={null}>
@@ -230,18 +235,12 @@ function ChooseOpponent() {
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
                                             </div>
+                                            <TeamRating rating={opponent.rating}/>
                                         </Carousel.Item>
                                     )}
                                     </Carousel>
                                 )
                         }
-                        <div className="team-stars-rating">
-                        {[...Array(5)].map((i) =>
-                        <i class="fas fa-star"></i>
-                        )}
-                        </div>
-                        
-                        <div className="team-rating">OVR: 80</div>
                         
                         </div>
                         {awayTeam.id === userTeam.id ?
