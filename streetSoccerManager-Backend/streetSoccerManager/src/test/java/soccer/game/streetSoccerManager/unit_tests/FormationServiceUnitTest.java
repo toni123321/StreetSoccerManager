@@ -84,13 +84,11 @@ class FormationServiceUnitTest {
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdateFormationSuccessScenario(){
         // Act
         Formation updatedFormation = formationService.update(new Formation(2l, "3-1-0"));
         // Assert
         Assertions.assertEquals(new Formation(2l, "3-1-0"), updatedFormation);
         Assertions.assertEquals(null, formationService.update(new Formation("3-1-0")));
     }
-
-
 }
