@@ -21,8 +21,7 @@ public class PositionJPADatabase implements IPositionRepository {
 
     @Override
     public Position get(Long id) {
-        Position position = positionRepo.findById(id).orElse(null);
-        return position;
+        return positionRepo.findById(id).orElse(null);
     }
 
     @Override

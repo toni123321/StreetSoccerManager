@@ -30,18 +30,28 @@ public class FormationService implements IFormationService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
 
     @Override
     public Formation add(Formation formation) {
-        return dataStore.add(formation);
+        if(formation.getId() == null) {
+            return dataStore.add(formation);
+        }
+        return null;
     }
 
     @Override
     public Formation update(Formation formation) {
-        return dataStore.update(formation);
+        if(formation.getId() != null) {
+            return dataStore.update(formation);
+        }
+        return null;
     }
 
     @Override

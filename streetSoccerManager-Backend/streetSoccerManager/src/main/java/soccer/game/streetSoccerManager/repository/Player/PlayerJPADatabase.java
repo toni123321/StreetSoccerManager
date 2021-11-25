@@ -21,8 +21,7 @@ public class PlayerJPADatabase implements IPlayerRepository {
 
     @Override
     public Player get(Long id) {
-        Player player = playerRepo.findById(id).orElse(null);
-        return player;
+        return playerRepo.findById(id).orElse(null);
     }
 
     @Override

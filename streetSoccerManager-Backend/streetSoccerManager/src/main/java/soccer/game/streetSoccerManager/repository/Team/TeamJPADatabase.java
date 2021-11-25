@@ -25,8 +25,7 @@ public class TeamJPADatabase implements ITeamRepository {
 
     @Override
     public Team get(Long id) {
-        Team team = teamRepo.findById(id).orElse(null);
-        return team;
+        return teamRepo.findById(id).orElse(null);
     }
 
     @Override

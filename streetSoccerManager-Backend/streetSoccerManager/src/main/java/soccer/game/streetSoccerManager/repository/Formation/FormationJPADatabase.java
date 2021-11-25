@@ -27,27 +27,18 @@ public class FormationJPADatabase implements IFormationRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            formationRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        formationRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public Formation add(Formation formation) {
-        if(formation.getId() == null) {
-            return formationRepo.save(formation);
-        }
-        return null;
+        return formationRepo.save(formation);
     }
 
     @Override
     public Formation update(Formation formation) {
-        if(formation.getId() != null) {
-            return formationRepo.save(formation);
-        }
-        return null;
+        return formationRepo.save(formation);
     }
 
     @Override
