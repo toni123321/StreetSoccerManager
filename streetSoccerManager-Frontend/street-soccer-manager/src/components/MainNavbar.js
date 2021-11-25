@@ -6,8 +6,21 @@ import Routers from "./Routers";
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import styles from "../css/MainNavbar.css";
+import Cookies from 'universal-cookie';
+import { useHistory } from 'react-router-dom';
 
 function MainNavbar() {
+    let history = useHistory();
+    const cookies = new Cookies();
+    const token = cookies.get('login-token');
+    console.log(token);
+    
+    // function handleLogOut() {
+    //     cookies.remove('login-token', {sameSite: 'lax'});
+    //     //setIsUserLogged(false);
+    //     localStorage.removeItem("team");
+    // }
+
     return (
         <BrowserRouter>
             <div>
@@ -34,9 +47,12 @@ function MainNavbar() {
                             <LinkContainer to="/contact">
                                 <Nav.Link ><i className="far fa-address-book"></i> Contact</Nav.Link>
                             </LinkContainer>
+                           
                             <LinkContainer to="/login">
                             <Nav.Link ><i className="fas fa-sign-in-alt"></i> Log in</Nav.Link>
                             </LinkContainer>
+                        
+                            
                             
                         </Nav>
                         </Navbar.Collapse>
