@@ -79,3 +79,11 @@
     width: 200px !important;
     height: 200px !important;
 }
+
+.team-stars-rating i:not(:last-child) {
+    margin-right: 4px;
+}
+
+.filledStar {
+    color: yellow;
+}
