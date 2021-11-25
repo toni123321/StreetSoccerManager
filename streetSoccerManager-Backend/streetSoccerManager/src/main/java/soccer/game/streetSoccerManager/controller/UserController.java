@@ -26,8 +26,19 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable(value = "id") Long id) {
         UserEntity userEntity = userService.get(id);
+        UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+        if(userDTO != null) {
+            return ResponseEntity.ok().body(userDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserDTO> getUserByEmail(@PathVariable(value = "email") String email) {
+        UserEntity userEntity = userService.getByEmail(email);
         UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
         if(userDTO != null) {
             return ResponseEntity.ok().body(userDTO);
