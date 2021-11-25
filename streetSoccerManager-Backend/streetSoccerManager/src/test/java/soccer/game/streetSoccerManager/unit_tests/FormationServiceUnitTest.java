@@ -69,6 +69,9 @@ class FormationServiceUnitTest {
         verify(formationRepository).delete(1l);
         when(formationRepository.delete(2l)).thenReturn(true);
         Assertions.assertEquals(true, formationService.delete(2l));
+        when(formationRepository.get(3l)).thenReturn(null);
+        when(formationRepository.delete(3l)).thenReturn(false);
+        Assertions.assertEquals(false, formationService.delete(3l));
     }
 
     @Test
