@@ -20,8 +20,7 @@ public class PlayerTeamInfoJPADatabase implements IPlayerTeamInfoRepository {
 
     @Override
     public PlayerTeamInfo get(Long id) {
-        PlayerTeamInfo playerTeamInfo = playerTeamInfoJPARepository.findById(id).orElse(null);
-        return playerTeamInfo;
+        return playerTeamInfoJPARepository.findById(id).orElse(null);
     }
 
     @Override

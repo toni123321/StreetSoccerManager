@@ -28,7 +28,6 @@ class FormationServiceUnitTest {
 
     @BeforeEach
     public void setUp()  {
-
         List<Formation> formations = List.of(
                 new Formation(1l, "1-2-1"),
                 new Formation(2l, "2-1-1")
@@ -38,7 +37,6 @@ class FormationServiceUnitTest {
         when(formationRepository.add(new Formation("3-1-0"))).thenReturn(new Formation(3l, "3-1-0"));
         when(formationRepository.update(new Formation(2l, "3-1-0"))).thenReturn(new Formation(2l, "3-1-0"));
         formationService = new FormationService(formationRepository);
-
     }
 
     @Test
@@ -56,7 +54,6 @@ class FormationServiceUnitTest {
 
     @Test
     void GetFormationSuccessScenario() {
-
         // Act
         Formation formation = formationService.get(1l);
 

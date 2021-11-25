@@ -21,8 +21,7 @@ public class PlayerPositionInfoJPADatabase implements IPlayerPositionInfoReposit
 
     @Override
     public PlayerPositionInfo get(Long id) {
-        PlayerPositionInfo playerPositionInfo = playerPositionInfoRepo.findById(id).orElse(null);
-        return playerPositionInfo;
+        return playerPositionInfoRepo.findById(id).orElse(null);
     }
 
     @Override

@@ -20,8 +20,7 @@ public class PlayerAdditionalInfoJPADatabase implements IPlayerAdditionalInfoRep
 
     @Override
     public PlayerAdditionalInfo get(Long id) {
-        PlayerAdditionalInfo playerAdditionalInfo = playerAdditionalInfoRepo.findById(id).orElse(null);
-        return playerAdditionalInfo;
+        return playerAdditionalInfoRepo.findById(id).orElse(null);
     }
 
     @Override
