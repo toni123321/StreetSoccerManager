@@ -34,6 +34,7 @@ class FormationServiceUnitTest {
         );
         when(formationRepository.getAll()).thenReturn(formations);
         when(formationRepository.get(1l)).thenReturn(formations.get(0));
+        when(formationRepository.get(2l)).thenReturn(formations.get(1));
         when(formationRepository.add(new Formation("3-1-0"))).thenReturn(new Formation(3l, "3-1-0"));
         when(formationRepository.update(new Formation(2l, "3-1-0"))).thenReturn(new Formation(2l, "3-1-0"));
         formationService = new FormationService(formationRepository);
