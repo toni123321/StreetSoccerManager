@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import FriendlyMatchService from '../services/FriendlyMatchService';
+import  "../css/playMatch.scss";
 
 function PlayMatch({chooseNewOpponent, chosenOpponent, homeTeam, awayTeam}) {
     const initialTeamState = {
@@ -79,14 +80,16 @@ function PlayMatch({chooseNewOpponent, chosenOpponent, homeTeam, awayTeam}) {
     }
 
     return (
-        <>
-        <div>{matchInfo.homeTeam.name} vs {matchInfo.awayTeam.name}</div>
+        <div className="startMatch">
+        {/* <div>{matchInfo.homeTeam.name} vs {matchInfo.awayTeam.name}</div> */}
         <div className="teams">
-            {homeTeam.name} vs {awayTeam.name}
+            <span className="team-oppponents">{homeTeam.name}</span>
+            <span className="team-vs">VS</span>
+            <span className="team-oppponents">{awayTeam.name}</span>
         </div>
-        <button className="playMatch" onClick={startMatch}><i class="fas fa-futbol"></i> Play match <i class="fas fa-futbol"></i></button>
-        <button className="goBack" onClick={goBack}><i class="fas fa-hand-point-left"></i> Go back</button>
-        </>
+        <button className="goBack" onClick={goBack}>Go back</button>
+        <button className="playMatch" onClick={startMatch}>Play match</button>
+        </div>
     );
 }
 
