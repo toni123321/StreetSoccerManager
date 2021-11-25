@@ -2,6 +2,7 @@ package soccer.game.streetSoccerManager.model.entities;
 
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -12,7 +13,7 @@ import javax.persistence.OneToOne;
 @Data
 @EqualsAndHashCode(exclude = {"manager"})
 public class CustomTeam extends Team{
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "userId")
     private UserEntity manager;
 

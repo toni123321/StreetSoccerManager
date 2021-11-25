@@ -41,6 +41,13 @@ public class TeamService implements ITeamService {
     }
 
     @Override
+    public Team getTeamByUserId(Long id){
+        return getAll().stream()
+                .filter(team -> ((CustomTeam) team).getManager().getId().equals(id))
+                .findFirst().orElse(null);
+    }
+
+    @Override
     public void deleteAll() {
         dataStore.deleteAll();
     }

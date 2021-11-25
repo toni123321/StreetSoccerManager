@@ -22,10 +22,6 @@ public class FormationJPADatabase implements IFormationRepository {
 
     @Override
     public Formation get(Long id) {
-        if(formationRepo.findById(id).isEmpty())
-        {
-            return null;
-        }
         return formationRepo.findById(id).orElse(null);
     }
 
