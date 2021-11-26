@@ -24,11 +24,11 @@ const Login = () => {
     }, []);
 
     async function handleLogin(details) {
-        try{
-            setLoginError(false);
-            const response = await UserService.login(details);
+        
+        setLoginError(false);
+        UserService.login(details)
+        .then(response => {
             console.log(response.data.Authorization);
-            
             const token = response.data.Authorization;
             const decode_token = jwt_decode(token);
 
@@ -37,12 +37,11 @@ const Login = () => {
             setIsUserLogged(true);
             console.log(decode_token.sub);
             getUserByEmail(decode_token.sub, token);
-            //history.push("/game");
-            
-        }
-        catch (error) {
+            //history.push("/game");   
+        })
+        .catch (error => {
             setLoginError(true);
-        }
+        })
     }
 
     function getUserByEmail(email, token) {
