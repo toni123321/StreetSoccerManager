@@ -32,7 +32,7 @@ function Player({player, rotationMode, handleRotation, changeRotationMode}) {
         <div>{player.playerPersonalInfo.firstName[0]}.{player.playerPersonalInfo.lastName}</div>
         <hr/>
         <div>{player.playerPositionInfo.positionIndex}</div>
-        <div>{player.playerPositionInfo.currentPosition.position} {player.playerAdditionalInfo.playerStats.overallRating}</div>
+        <div>{player.playerPositionInfo.currentPosition.name} {player.playerAdditionalInfo.playerStats.overallRating}</div>
        
         
         

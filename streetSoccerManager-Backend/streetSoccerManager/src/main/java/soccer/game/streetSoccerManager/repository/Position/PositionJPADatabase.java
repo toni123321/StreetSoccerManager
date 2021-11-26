@@ -31,27 +31,18 @@ public class PositionJPADatabase implements IPositionRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            positionRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        positionRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public Position add(Position position) {
-        if(position.getId() == null) {
-            return positionRepo.save(position);
-        }
-        return null;
+        return positionRepo.save(position);
     }
 
     @Override
     public Position update(Position position) {
-        if(position.getId() != null) {
-            return positionRepo.save(position);
-        }
-        return null;
+        return positionRepo.save(position);
     }
 
     @Override

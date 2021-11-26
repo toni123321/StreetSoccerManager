@@ -51,7 +51,8 @@ const Login = () => {
             getUserTeam(response.data.id, token);
         }
         );
-        
+        // const response = await UserService.getUserByEmail(email, token);
+        // console.log(response.data);
     }
 
     async function getUserTeam(userId, token){
