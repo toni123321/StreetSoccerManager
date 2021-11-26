@@ -62,7 +62,6 @@ public class PositionController {
         Position createdPositionEntity = positionService.add(inputtedPositionEntity);
         PositionDTO createdPositionDTO = modelMapper.map(createdPositionEntity, PositionDTO.class);
         if (createdPositionDTO == null){
-            String msg =  "Position with id " + position.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdPositionDTO,HttpStatus.CREATED);

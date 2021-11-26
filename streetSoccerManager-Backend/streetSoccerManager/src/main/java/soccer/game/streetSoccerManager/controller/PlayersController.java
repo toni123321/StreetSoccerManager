@@ -102,7 +102,6 @@ public class PlayersController {
         Player createdPlayerEntity = playerService.add(inputtedPlayerEntity);
         PlayerDTO createdPlayerDTO = modelMapper.map(createdPlayerEntity, PlayerDTO.class);
         if (createdPlayerDTO == null){
-            String msg =  "Player with id " + player.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdPlayerDTO,HttpStatus.CREATED);

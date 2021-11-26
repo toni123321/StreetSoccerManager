@@ -75,7 +75,6 @@ public class UserController {
         UserEntity createdUserEntity = userService.add(userEntityInput);
         UserDTO createdUserDTO = modelMapper.map(createdUserEntity, UserDTO.class);
         if (createdUserDTO == null){
-            String entity =  "User with id " + userDTO.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdUserDTO,HttpStatus.CREATED);

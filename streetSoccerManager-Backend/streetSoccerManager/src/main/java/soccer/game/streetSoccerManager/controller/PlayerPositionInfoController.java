@@ -46,7 +46,6 @@ public class PlayerPositionInfoController {
         PlayerPositionInfoDTO createdPlayerPositionInfoDTO = modelMapper.map(createdPlayerPositionInfoEntity, PlayerPositionInfoDTO.class);
 
         if (createdPlayerPositionInfoDTO == null){
-            String entity =  "PlayerPositionInfo with id " + playerPositionInfo.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdPlayerPositionInfoDTO,HttpStatus.CREATED);
@@ -60,7 +59,6 @@ public class PlayerPositionInfoController {
         PlayerPositionInfoDTO updatedPlayerPositionInfoDTO = modelMapper.map(updatedPlayerPositionInfoEntity, PlayerPositionInfoDTO.class);
 
         if (updatedPlayerPositionInfoDTO == null){
-            //return new ResponseEntity("Please provide a valid player position info id", HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(updatedPlayerPositionInfoDTO,HttpStatus.CREATED);

@@ -30,7 +30,6 @@ public class FriendlyMatchController {
         MatchDTO createdMatchDTO = modelMapper.map(createdMatchEntity, MatchDTO.class);
         if (createdMatchDTO == null){
             String msg =  "Match already exists.";
-            //return new ResponseEntity(msg, HttpStatus.CONFLICT);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdMatchDTO,HttpStatus.CREATED);

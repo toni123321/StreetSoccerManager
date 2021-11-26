@@ -64,7 +64,6 @@ public class PlayerStatsController {
         PlayerStats createdPlayerStatsEntity = playerStatsService.add(inputtedPlayerStatsEntity);
         PlayerStatsDTO createdPlayerStatsDTO = modelMapper.map(createdPlayerStatsEntity, PlayerStatsDTO.class);
         if (createdPlayerStatsDTO == null){
-            String msg =  "Player stats with id " + playerStats.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdPlayerStatsDTO,HttpStatus.CREATED);
@@ -77,7 +76,6 @@ public class PlayerStatsController {
         PlayerStats updatedPlayerStatsEntity = playerStatsService.update(inputtedPlayerStatsEntity);
         PlayerStatsDTO updatedPlayerStatsDTO = modelMapper.map(updatedPlayerStatsEntity, PlayerStatsDTO.class);
         if (updatedPlayerStatsDTO == null){
-            //return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(updatedPlayerStatsDTO,HttpStatus.CREATED);

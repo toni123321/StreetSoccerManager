@@ -30,7 +30,6 @@ public class CustomTeamController {
         Team createdCustomTeamEntity = teamService.add(inputtedCustomTeamEntity);
         CustomTeamDTO createdCustomTeamDTO = modelMapper.map(createdCustomTeamEntity, CustomTeamDTO.class);
         if (createdCustomTeamDTO == null){
-            String msg =  "Custom team with id " + customTeam.getId() + " already exists.";
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdCustomTeamDTO,HttpStatus.CREATED);
