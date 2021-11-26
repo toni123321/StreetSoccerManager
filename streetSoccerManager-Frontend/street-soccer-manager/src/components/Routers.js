@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import About from "./About";
 import Home from "./Home";
@@ -12,12 +12,22 @@ import SignUp from './SignUp';
 import TeamSquad from './TeamSquad';
 import ChooseOpponent from './ChooseOpponent';
 import RotatePlayersContainer from './RotatePlayersContainer';
+import Cookies from 'universal-cookie';
 
 const Routers = () => {
+    const cookies = new Cookies();
+
     return (
         <Switch>
-            <Route exact path="/" component={Home} />
+            {/* {cookies.get('login-token') !== undefined 
+            ?
             <Route exact path="/game" component={CreateTeam} />
+            :
+            <Redirect to="/login"/>
+            } */}
+
+            <Route exact path="/" component={Home} />
+            <Route exact path="/game" component={CreateTeam} />            
             
             <Route exact path="/about" component={About} />
 
@@ -30,6 +40,8 @@ const Routers = () => {
 
             <Route exact path="/rotatePlayers" component={RotatePlayersContainer} />
 
+            
+            
             
             {/* <Route path="/createTeam" component={CreateTeam} /> */}
         </Switch>
