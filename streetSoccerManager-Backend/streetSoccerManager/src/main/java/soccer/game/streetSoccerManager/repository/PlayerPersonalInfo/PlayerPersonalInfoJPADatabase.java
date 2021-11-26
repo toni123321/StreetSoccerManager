@@ -20,33 +20,23 @@ public class PlayerPersonalInfoJPADatabase implements IPlayerPersonalInfoReposit
 
     @Override
     public PlayerPersonalInfo get(Long id) {
-        PlayerPersonalInfo playerPersonalInfo = playerPersonalInfoJPARepo.findById(id).orElse(null);
-        return playerPersonalInfo;
+        return playerPersonalInfoJPARepo.findById(id).orElse(null);
     }
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            playerPersonalInfoJPARepo.deleteById(id);
-            return true;
-        }
-        return false;
+        playerPersonalInfoJPARepo.deleteById(id);
+        return true;
     }
 
     @Override
     public PlayerPersonalInfo add(PlayerPersonalInfo playerPersonalInfo) {
-        if(playerPersonalInfo.getId() == null) {
-            return playerPersonalInfoJPARepo.save(playerPersonalInfo);
-        }
-        return null;
+        return playerPersonalInfoJPARepo.save(playerPersonalInfo);
     }
 
     @Override
     public PlayerPersonalInfo update(PlayerPersonalInfo playerPersonalInfo) {
-        if(playerPersonalInfo.getId() != null) {
-            return playerPersonalInfoJPARepo.save(playerPersonalInfo);
-        }
-        return null;
+        return playerPersonalInfoJPARepo.save(playerPersonalInfo);
     }
 
     @Override

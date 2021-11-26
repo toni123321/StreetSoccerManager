@@ -8,11 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import soccer.game.streetSoccerManager.filter.JWTAuthenticationFilter;
 import soccer.game.streetSoccerManager.filter.JWTAuthorizationFilter;
-import soccer.game.streetSoccerManager.handlers.AuthFailureHandler;
 import soccer.game.streetSoccerManager.service.AuthenticationUserDetailService;
 
 import java.util.List;
@@ -22,6 +20,11 @@ import java.util.List;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AuthenticationUserDetailService authenticationUserDetailService;
+
+    private static final String userRole = "USER";
+    private static final String adminRole = "ADMIN";
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -37,15 +40,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-ui/**").permitAll()
                 .antMatchers("/login").permitAll()
 //                .antMatchers("/**").permitAll()
-                .antMatchers("/teams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/positions").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/players").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/playerStats/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/playersPositionInfo").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/officialTeams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/customTeams").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/friendlyMatches").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/formations").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/teams").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/positions").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/players").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/playerStats").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/playersPositionInfo").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/officialTeams").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/customTeams").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/friendlyMatches").hasAnyAuthority(userRole, adminRole)
+                .antMatchers("/formations").hasAnyAuthority(userRole, adminRole)
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

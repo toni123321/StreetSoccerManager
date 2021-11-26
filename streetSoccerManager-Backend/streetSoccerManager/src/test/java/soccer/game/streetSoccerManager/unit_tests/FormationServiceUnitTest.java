@@ -80,15 +80,15 @@ class FormationServiceUnitTest {
         Formation newFormation = formationService.add(new Formation("3-1-0"));
         // Assert
         Assertions.assertEquals(new Formation(3l, "3-1-0"), newFormation);
+        Assertions.assertEquals(null, formationService.add(new Formation(3l, "3-1-0")));
     }
 
     @Test
-    void UpdateTeamSuccessScenario(){
+    void UpdateFormationSuccessScenario(){
         // Act
         Formation updatedFormation = formationService.update(new Formation(2l, "3-1-0"));
         // Assert
         Assertions.assertEquals(new Formation(2l, "3-1-0"), updatedFormation);
+        Assertions.assertEquals(null, formationService.update(new Formation("3-1-0")));
     }
-
-
 }

@@ -32,7 +32,6 @@ const TeamSquad = () => {
     const [rotationMode, setRotationMode] = useState(false);
 
     useEffect(() => {
-        
         const createdTeam = localStorage.getItem("team");
         if (createdTeam) {
           const foundTeam = JSON.parse(createdTeam);

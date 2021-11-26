@@ -30,8 +30,7 @@ public class CustomTeamController {
         Team createdCustomTeamEntity = teamService.add(inputtedCustomTeamEntity);
         CustomTeamDTO createdCustomTeamDTO = modelMapper.map(createdCustomTeamEntity, CustomTeamDTO.class);
         if (createdCustomTeamDTO == null){
-            String msg =  "Custom team with id " + customTeam.getId() + " already exists.";
-            return new ResponseEntity(msg, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(createdCustomTeamDTO,HttpStatus.CREATED);
         }
@@ -43,7 +42,7 @@ public class CustomTeamController {
         Team updatedCustomTeamEntity = teamService.update(inputtedCustomTeamEntity);
         CustomTeamDTO updatedCustomTeamDTO = modelMapper.map(updatedCustomTeamEntity, CustomTeamDTO.class);
         if (updatedCustomTeamDTO == null){
-            return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(updatedCustomTeamDTO,HttpStatus.OK);
         }

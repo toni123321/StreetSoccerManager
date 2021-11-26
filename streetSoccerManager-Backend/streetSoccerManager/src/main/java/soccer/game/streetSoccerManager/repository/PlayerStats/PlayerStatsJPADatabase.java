@@ -20,33 +20,23 @@ public class PlayerStatsJPADatabase implements IPlayerStatsRepository {
 
     @Override
     public PlayerStats get(Long id) {
-        PlayerStats playerStats = playerStatsRepo.findById(id).orElse(null);
-        return playerStats;
+        return playerStatsRepo.findById(id).orElse(null);
     }
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
             playerStatsRepo.deleteById(id);
             return true;
-        }
-        return false;
     }
 
     @Override
     public PlayerStats add(PlayerStats stat) {
-        if(stat.getId() == null) {
-            return playerStatsRepo.save(stat);
-        }
-        return null;
+        return playerStatsRepo.save(stat);
     }
 
     @Override
     public PlayerStats update(PlayerStats stat) {
-        if(stat.getId() != null) {
-            return playerStatsRepo.save(stat);
-        }
-        return null;
+        return playerStatsRepo.save(stat);
     }
 
     @Override

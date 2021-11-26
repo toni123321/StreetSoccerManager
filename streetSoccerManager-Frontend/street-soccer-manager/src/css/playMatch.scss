@@ -1,12 +1,12 @@
 
-.startMatch {
+.startMatch, .matchEnd {
     background: linear-gradient(
         45deg, #8121bd, #1f1daf88);
     padding: 20px;
         
 }
 
-.teams {
+.teams, .match-result, .match-statistic {
     font-size: 30px;
     font-weight: 400;
     color: white;

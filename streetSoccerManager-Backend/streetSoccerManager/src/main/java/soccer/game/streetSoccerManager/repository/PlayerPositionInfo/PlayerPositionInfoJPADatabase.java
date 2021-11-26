@@ -26,27 +26,18 @@ public class PlayerPositionInfoJPADatabase implements IPlayerPositionInfoReposit
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            playerPositionInfoRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        playerPositionInfoRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public PlayerPositionInfo add(PlayerPositionInfo playerPositionInfo) {
-        if(playerPositionInfo.getId() == null) {
-            return playerPositionInfoRepo.save(playerPositionInfo);
-        }
-        return null;
+        return playerPositionInfoRepo.save(playerPositionInfo);
     }
 
     @Override
     public PlayerPositionInfo update(PlayerPositionInfo playerPositionInfo) {
-        if(playerPositionInfo.getId() != null) {
-            return playerPositionInfoRepo.save(playerPositionInfo);
-        }
-        return null;
+        return playerPositionInfoRepo.save(playerPositionInfo);
     }
 
     @Override
