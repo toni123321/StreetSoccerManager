@@ -31,8 +31,8 @@ function Player({player, rotationMode, handleRotation, changeRotationMode}) {
         </div>
         <div>{player.playerPersonalInfo.firstName[0]}.{player.playerPersonalInfo.lastName}</div>
         <hr/>
-        <div>{player.playerPositionInfo.positionIndex}</div>
-        <div>{player.playerPositionInfo.currentPosition.name} {player.playerAdditionalInfo.playerStats.overallRating}</div>
+        <div>{player.playerPositionInfo.currentPosition.name}</div>
+        <div>OVR:{(player.playerAdditionalInfo.playerStats.skills + player.playerAdditionalInfo.playerStats.physical)/2}</div>
        
         
         
