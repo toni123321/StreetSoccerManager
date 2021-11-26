@@ -63,9 +63,9 @@ public class PositionController {
         PositionDTO createdPositionDTO = modelMapper.map(createdPositionEntity, PositionDTO.class);
         if (createdPositionDTO == null){
             String msg =  "Position with id " + position.getId() + " already exists.";
-            return new ResponseEntity(msg, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdPositionDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdPositionDTO,HttpStatus.CREATED);
         }
 
     }
@@ -76,9 +76,9 @@ public class PositionController {
         Position updatedPositionEntity = positionService.update(inputtedPositionEntity);
         PositionDTO updatedPositionDTO = modelMapper.map(updatedPositionEntity, PositionDTO.class);
         if (updatedPositionDTO == null){
-            return new ResponseEntity("Please provide a valid position id",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedPositionDTO, HttpStatus.OK);
+            return new ResponseEntity<>(updatedPositionDTO, HttpStatus.OK);
         }
 
     }

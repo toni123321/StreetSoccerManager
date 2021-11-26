@@ -47,9 +47,9 @@ public class PlayerPositionInfoController {
 
         if (createdPlayerPositionInfoDTO == null){
             String entity =  "PlayerPositionInfo with id " + playerPositionInfo.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdPlayerPositionInfoDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdPlayerPositionInfoDTO,HttpStatus.CREATED);
         }
     }
 
@@ -60,9 +60,10 @@ public class PlayerPositionInfoController {
         PlayerPositionInfoDTO updatedPlayerPositionInfoDTO = modelMapper.map(updatedPlayerPositionInfoEntity, PlayerPositionInfoDTO.class);
 
         if (updatedPlayerPositionInfoDTO == null){
-            return new ResponseEntity("Please provide a valid player position info id", HttpStatus.NOT_FOUND);
+            //return new ResponseEntity("Please provide a valid player position info id", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedPlayerPositionInfoDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(updatedPlayerPositionInfoDTO,HttpStatus.CREATED);
         }
     }
 }

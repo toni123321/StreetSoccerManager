@@ -76,9 +76,9 @@ public class UserController {
         UserDTO createdUserDTO = modelMapper.map(createdUserEntity, UserDTO.class);
         if (createdUserDTO == null){
             String entity =  "User with id " + userDTO.getId() + " already exists.";
-            return new ResponseEntity(entity, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdUserDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdUserDTO,HttpStatus.CREATED);
         }
     }
 
@@ -88,9 +88,9 @@ public class UserController {
         UserEntity updatedUserEntity = userService.update(inputtedUserEntity);
         UserDTO updatedUserDTO = modelMapper.map(updatedUserEntity, UserDTO.class);
         if (updatedUserDTO == null){
-            return new ResponseEntity("Please provide a valid user id",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedUserDTO,HttpStatus.OK);
+            return new ResponseEntity<>(updatedUserDTO,HttpStatus.OK);
         }
     }
 

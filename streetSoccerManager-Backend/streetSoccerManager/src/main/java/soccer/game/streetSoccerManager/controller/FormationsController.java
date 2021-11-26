@@ -63,9 +63,9 @@ public class FormationsController {
         FormationDTO createdFormationDTO = modelMapper.map(createdFormationEntity, FormationDTO.class);
         if (createdFormationDTO == null){
             String msg =  "Formation with id " + formation.getId() + " already exists.";
-            return new ResponseEntity(msg, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdFormationDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdFormationDTO,HttpStatus.CREATED);
         }
     }
 
@@ -75,9 +75,10 @@ public class FormationsController {
         Formation updatedFormationEntity = formationService.add(inputtedFormationEntity);
         FormationDTO updatedFormationDTO = modelMapper.map(updatedFormationEntity, FormationDTO.class);
         if (updatedFormationDTO == null){
-            return new ResponseEntity("Please provide a valid position id",HttpStatus.NOT_FOUND);
+            //return new ResponseEntity("Please provide a valid position id",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(updatedFormationDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(updatedFormationDTO,HttpStatus.CREATED);
         }
     }
 

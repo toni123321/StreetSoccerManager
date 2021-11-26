@@ -65,21 +65,22 @@ public class PlayerStatsController {
         PlayerStatsDTO createdPlayerStatsDTO = modelMapper.map(createdPlayerStatsEntity, PlayerStatsDTO.class);
         if (createdPlayerStatsDTO == null){
             String msg =  "Player stats with id " + playerStats.getId() + " already exists.";
-            return new ResponseEntity(msg, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdPlayerStatsDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdPlayerStatsDTO,HttpStatus.CREATED);
         }
     }
 
     @PutMapping()
-    public ResponseEntity<FormationDTO> updateFormation(@RequestBody PlayerStatsDTO playerStats) {
+    public ResponseEntity<PlayerStatsDTO> updatePlayerStats(@RequestBody PlayerStatsDTO playerStats) {
         PlayerStats inputtedPlayerStatsEntity = modelMapper.map(playerStats, PlayerStats.class);
         PlayerStats updatedPlayerStatsEntity = playerStatsService.update(inputtedPlayerStatsEntity);
         PlayerStatsDTO updatedPlayerStatsDTO = modelMapper.map(updatedPlayerStatsEntity, PlayerStatsDTO.class);
         if (updatedPlayerStatsDTO == null){
-            return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
+            //return new ResponseEntity("Please provide a valid player stats id", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedPlayerStatsDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(updatedPlayerStatsDTO,HttpStatus.CREATED);
         }
     }
 }

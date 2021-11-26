@@ -103,9 +103,9 @@ public class PlayersController {
         PlayerDTO createdPlayerDTO = modelMapper.map(createdPlayerEntity, PlayerDTO.class);
         if (createdPlayerDTO == null){
             String msg =  "Player with id " + player.getId() + " already exists.";
-            return new ResponseEntity(msg, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity(createdPlayerDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdPlayerDTO,HttpStatus.CREATED);
         }
     }
 
@@ -115,9 +115,9 @@ public class PlayersController {
         Player updatedPlayerEntity = playerService.add(inputtedPlayerEntity);
         PlayerDTO updatedPlayerDTO = modelMapper.map(updatedPlayerEntity, PlayerDTO.class);
         if (updatedPlayerDTO == null){
-            return new ResponseEntity("Please provide a valid player id", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(updatedPlayerDTO,HttpStatus.CREATED);
+            return new ResponseEntity<>(updatedPlayerDTO,HttpStatus.CREATED);
         }
     }
 
