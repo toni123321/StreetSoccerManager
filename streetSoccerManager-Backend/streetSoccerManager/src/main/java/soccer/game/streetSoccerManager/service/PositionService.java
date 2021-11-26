@@ -29,17 +29,27 @@ public class PositionService implements IPositionService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Position add(Position position) {
-        return dataStore.add(position);
+        if(position.getId() == null) {
+            return dataStore.add(position);
+        }
+        return null;
     }
 
     @Override
     public Position update(Position position) {
-        return dataStore.update(position);
+        if(position.getId() != null) {
+            return dataStore.update(position);
+        }
+        return null;
     }
 
     @Override

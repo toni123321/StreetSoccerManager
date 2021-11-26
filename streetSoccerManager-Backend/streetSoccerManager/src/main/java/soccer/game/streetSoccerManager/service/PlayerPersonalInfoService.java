@@ -31,17 +31,29 @@ public class PlayerPersonalInfoService implements IPlayerPersonalInfoService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerPersonalInfo add(PlayerPersonalInfo playerPersonalInfo) {
-        return dataStore.add(playerPersonalInfo);
+        if(playerPersonalInfo.getId() == null) {
+            return dataStore.add(playerPersonalInfo);
+        }
+        return null;
+
     }
 
     @Override
     public PlayerPersonalInfo update(PlayerPersonalInfo playerPersonalInfo) {
-        return dataStore.update(playerPersonalInfo);
+        if(playerPersonalInfo.getId() != null) {
+            return dataStore.update(playerPersonalInfo);
+        }
+        return null;
+
     }
 
     @Override

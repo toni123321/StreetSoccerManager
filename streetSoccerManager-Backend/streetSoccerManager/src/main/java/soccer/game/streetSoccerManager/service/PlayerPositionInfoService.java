@@ -32,17 +32,27 @@ public class PlayerPositionInfoService implements IPlayerPositionInfoService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerPositionInfo add(PlayerPositionInfo playerPositionInfo) {
-        return dataStore.add(playerPositionInfo);
+        if(playerPositionInfo.getId() == null) {
+            return dataStore.add(playerPositionInfo);
+        }
+        return null;
     }
 
     @Override
     public PlayerPositionInfo update(PlayerPositionInfo playerPositionInfo) {
-        return dataStore.update(playerPositionInfo);
+        if(playerPositionInfo.getId() != null) {
+            return dataStore.update(playerPositionInfo);
+        }
+        return null;
     }
 
     @Override

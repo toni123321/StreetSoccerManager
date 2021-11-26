@@ -30,17 +30,27 @@ public class PlayerStatsService implements IPlayerStatsService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerStats add(PlayerStats stat) {
-        return dataStore.add(stat);
+        if(stat.getId() == null) {
+            return dataStore.add(stat);
+        }
+        return null;
     }
 
     @Override
     public PlayerStats update(PlayerStats stat) {
-        return dataStore.update(stat);
+        if(stat.getId() != null) {
+            return dataStore.update(stat);
+        }
+        return null;
     }
 
     @Override

@@ -19,7 +19,7 @@
 }
 
 
-.playMatch, .goBack {
+.playMatch, .goBack, .playAgain {
     border-radius: 20px;
     padding: 10px;
     background-color: dodgerblue;
@@ -30,10 +30,6 @@
     margin-right: 20px;
 }
 
-.playMatch i,    .goBack i {
-    font-size: 20px;
-    color: black;
-}
 
 .team-role ,.team-selected{
     border: 1px solid black;
