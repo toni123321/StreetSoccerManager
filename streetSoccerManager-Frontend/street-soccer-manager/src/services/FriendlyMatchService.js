@@ -4,8 +4,13 @@ const getAll = () => {
   return http.get("/friendlyMatches");
 };
 
-const playMatch = data => {
-  return http.post("/friendlyMatches", data);
+const playMatch = (data, token) => {
+  return http.post("/friendlyMatches", data, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
 };
 
 
