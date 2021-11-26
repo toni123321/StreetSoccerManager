@@ -210,9 +210,9 @@ function ChooseOpponent() {
                         :
                         (
                         chosenOpponent.id === null ?
-                        (<h3 className="team-selected">Not ready</h3>)
+                        (<h3 className="team-selected">Not selected</h3>)
                         :
-                        (<h3 className="team-selected">Ready</h3>)
+                        (<h3 className="team-selected">Selected - {chosenOpponent.name}</h3>)
                         )
                         }
                     </Col>
@@ -251,9 +251,9 @@ function ChooseOpponent() {
                         :
                         (
                         chosenOpponent.id === null ?
-                        (<h3 className="team-selected">Not ready</h3>)
+                        (<h3 className="team-selected">Not selected</h3>)
                         :
-                        (<h3 className="team-selected">Ready</h3>)
+                        (<h3 className="team-selected">Selected - {chosenOpponent.name}</h3>)
                         )
                         }
                     </Col>
