@@ -1,6 +1,5 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerRepository;

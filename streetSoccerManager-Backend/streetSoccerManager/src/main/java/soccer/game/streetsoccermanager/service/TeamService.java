@@ -72,7 +72,7 @@ public class TeamService implements ITeamService {
 //            rating += playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats().getOverallRating();
 
         }
-        if(playersTeamInfo.size() != 0){
+        if(playersTeamInfo.isEmpty()){
             rating /= playersTeamInfo.size();
         }
         return rating;
