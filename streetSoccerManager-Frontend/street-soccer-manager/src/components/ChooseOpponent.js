@@ -8,10 +8,13 @@ import "../css/chooseOpponent.scss";
 import yourTeamLogo from "../resources/your-team-logo.png";
 import opponentTeamLogo from "../resources/opponent-team-logo.png";
 import TeamRating from './TeamRating';
+import Cookies from 'universal-cookie';
 
 
 function ChooseOpponent() {
-    
+    const cookies = new Cookies();
+    const token = cookies.get('login-token');
+
     const [index, setIndex] = useState(0);
 
     const initialTeamState = {
@@ -69,7 +72,7 @@ function ChooseOpponent() {
     }, [])
 
     async function retrieveOpponents() {
-        const response = await TeamService.getOfficialTeams();
+        const response = await TeamService.getOfficialTeams(token);
         setOpponents(response.data);
     }
 
@@ -207,9 +210,9 @@ function ChooseOpponent() {
                         :
                         (
                         chosenOpponent.id === null ?
-                        (<h3 className="team-selected">Not ready</h3>)
+                        (<h3 className="team-selected">Not selected</h3>)
                         :
-                        (<h3 className="team-selected">Ready</h3>)
+                        (<h3 className="team-selected">Selected - {chosenOpponent.name}</h3>)
                         )
                         }
                     </Col>
@@ -248,9 +251,9 @@ function ChooseOpponent() {
                         :
                         (
                         chosenOpponent.id === null ?
-                        (<h3 className="team-selected">Not ready</h3>)
+                        (<h3 className="team-selected">Not selected</h3>)
                         :
-                        (<h3 className="team-selected">Ready</h3>)
+                        (<h3 className="team-selected">Selected - {chosenOpponent.name}</h3>)
                         )
                         }
                     </Col>
