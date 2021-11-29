@@ -4,8 +4,12 @@ import PlayerService from '../services/PlayerService';
 import Player from "./Player";
 import {Container, Col, Row} from 'react-bootstrap';
 import RotatePlayersContainer from './RotatePlayersContainer';
+import Cookies from 'universal-cookie';
 
 const TeamSquad = () => {
+    const cookies = new Cookies();
+    const token = cookies.get('login-token');
+
     const initialTeamState = {
         id: null,
         name: "",
@@ -37,7 +41,7 @@ const TeamSquad = () => {
     }, []);
     
     async function retrievePlayers(teamId) {
-        const response = await PlayerService.getAllInTeam(teamId);
+        const response = await PlayerService.getAllInTeam(teamId, token);
         setPlayers(response.data);
     }
 

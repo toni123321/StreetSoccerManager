@@ -2,8 +2,13 @@ import React, {useEffect, useState} from 'react';
 import PlayerService from '../services/PlayerService';
 import Player from './Player';
 import PlayerPositionInfoService from '../services/PlayerPositionInfoService';
+import Cookies from 'universal-cookie';
+
 
 function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
+    const cookies = new Cookies();
+    const token = cookies.get('login-token');
+
     const playerInitialState = {
         id: null,
         playerPersonalInfo: {
@@ -31,20 +36,22 @@ function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
     const [playersAvailableForRotation, setPlayersAvailableForRotation] = useState(null);
 
     useEffect(() => {
+        
         const playerForRotationId = localStorage.getItem("playerForRotationId");
         if (playerForRotationId) {
+
           retrievePlayer(playerForRotationId);
         } 
     }, []);
 
     async function retrievePlayer(id) {
-        const response = await PlayerService.get(id);
+        const response = await PlayerService.get(id, token);
         setPlayerForRotation(response.data);
         retrievePlayersAvailableForRotation(response.data.playerTeamInfo.team.id, response.data.id);
     }
 
     const retrievePlayersAvailableForRotation = (teamId, playerToSwapId) => {
-        PlayerService.getAllInTeamAvailableForSwapping(teamId, playerToSwapId)
+        PlayerService.getAllInTeamAvailableForSwapping(teamId, playerToSwapId, token)
         .then(response => {
           setPlayersAvailableForRotation(response.data);
         })
@@ -77,7 +84,7 @@ function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
             starting: playerForRotation.playerPositionInfo.starting
         }
         
-        PlayerPositionInfoService.update(playerForRotationPositionInputData)
+        PlayerPositionInfoService.update(playerForRotationPositionInputData, token)
         .then(response => {
             
         })
@@ -85,7 +92,7 @@ function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
             console.log(e);
         });
 
-        PlayerPositionInfoService.update(playerToRotateWithPositionInputData)
+        PlayerPositionInfoService.update(playerToRotateWithPositionInputData, token)
         .then(response => {
             
         })

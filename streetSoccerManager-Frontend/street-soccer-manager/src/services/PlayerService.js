@@ -4,12 +4,18 @@ const getAll = () => {
   return http.get("/players");
 };
 
-const getAllInTeam = (teamId) => {
-  return http.get(`/players?teamId=${teamId}`);
+const getAllInTeam = (teamId, token) => {
+  return http.get(`/players?teamId=${teamId}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 }
 
-const getAllInTeamAvailableForSwapping = (teamId, playerToSwapId) => {
-  return http.get(`/players/availableForSwapping?teamId=${teamId}&playerToSwapId=${playerToSwapId}`);
+const getAllInTeamAvailableForSwapping = (teamId, playerToSwapId, token) => {
+  return http.get(`/players/availableForSwapping?teamId=${teamId}&playerToSwapId=${playerToSwapId}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 }
 
 const getStartingPlayers = (teamId) => {
@@ -21,24 +27,32 @@ const getReserves = (teamId) => {
 }
 
 
-const get = id => {
-  return http.get(`/players/${id}`);
+const get = (id, token) => {
+  return http.get(`/players/${id}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
-const create = data => {
-  return http.post("/players", data);
+const create = (data, token) => {
+  return http.post("/players", data,
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
-const update = (data) => {
-  return http.put(`/players`, data);
+const update = (data, token) => {
+  return http.put(`/players`, data), 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }};
 };
 
-const remove = id => {
-  return http.delete(`/players/${id}`);
-};
-
-const removeAll = () => {
-  return http.delete(`/players`);
+const remove = (id, token) => {
+  return http.delete(`/players/${id}`, 
+  {headers:{
+    'Authorization': `Bearer ${token}`
+  }});
 };
 
 
