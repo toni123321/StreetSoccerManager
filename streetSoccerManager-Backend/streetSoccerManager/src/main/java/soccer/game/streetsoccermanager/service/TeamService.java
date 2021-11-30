@@ -62,29 +62,15 @@ public class TeamService implements ITeamService {
         return dataStore.delete(id);
     }
 
-    public int calcTeamRating(Team team){
-        int rating = 0;
-        List<PlayerTeamInfo> playersTeamInfo = new ArrayList<>();
-        if( team.getPlayersTeamInfo() != null) {
-            playersTeamInfo = team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer().getPlayerPositionInfo().isStarting()).collect(Collectors.toList());
-        }
-        for (PlayerTeamInfo playerTeamInfo: playersTeamInfo) {
-//            rating += playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats().getOverallRating();
 
-        }
-        if(playersTeamInfo.isEmpty()){
-            rating /= playersTeamInfo.size();
-        }
-        return rating;
-    }
 
     @Override
     public Team add(Team team) {
-//        team.setFormation(dataStore.getDefaultFormation());
-//        team.setRating(calcTeamRating(team));
-//        return dataStore.add(team);
+        if(team instanceof CustomTeam)
+        {
+            team.setFormation(dataStore.getDefaultFormation());
+        }
         return dataStore.add(team);
-
     }
 
     @Override
@@ -92,6 +78,4 @@ public class TeamService implements ITeamService {
         return dataStore.update(team);
 
     }
-
-
 }

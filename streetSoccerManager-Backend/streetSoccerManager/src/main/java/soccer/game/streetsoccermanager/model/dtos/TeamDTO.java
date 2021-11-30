@@ -13,5 +13,4 @@ public class TeamDTO {
     private int rating;
     private String managerName;
     private UserDTO manager;
-
 }

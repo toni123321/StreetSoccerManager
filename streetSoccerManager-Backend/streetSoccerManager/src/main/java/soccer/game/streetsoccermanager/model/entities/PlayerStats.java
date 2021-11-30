@@ -1,7 +1,6 @@
 package soccer.game.streetsoccermanager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.annotations.Formula;
 
@@ -19,12 +18,17 @@ public class PlayerStats {
     private Long id;
     private int skills;
     private int physical;
-    @Formula("(SKILLS + PHYSICAL) / 2")
+    @Transient
     private int overallRating;
 
     @OneToOne(mappedBy = "playerStats", cascade = CascadeType.ALL)
     @JsonIgnore
     protected PlayerAdditionalInfo playerAdditionalInfo;
+
+    @PostLoad
+    public void onPostLoad() {
+        this.overallRating = (getSkills() + getPhysical()) / 2;
+    }
 
     public PlayerStats(Long id, int skills, int physical) {
         this.id = id;
