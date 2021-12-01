@@ -56,7 +56,7 @@ public class Team {
     }
 
     private int calcTeamRating(){
-        int rating = 0;
+        int overalRating = 0;
         int startingPlayersRating = 0;
         int reservesRating = 0;
 
@@ -95,9 +95,9 @@ public class Team {
             reservesRating /= reservesTeamInfo.size();
         }
 
-        rating = ((int) Math.round((startingPlayersRating * 0.8) + (reservesRating * 0.2)));
+        overalRating = ((int) Math.round((startingPlayersRating * 0.8) + (reservesRating * 0.2)));
 
-        return rating;
+        return overalRating;
     }
 
     public Team(Long id, String name, Formation formation) {
