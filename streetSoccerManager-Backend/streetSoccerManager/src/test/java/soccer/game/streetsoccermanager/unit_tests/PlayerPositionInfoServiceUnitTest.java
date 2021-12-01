@@ -36,7 +36,7 @@ class PlayerPositionInfoServiceUnitTest {
     }
 
     @Test
-    public void exampleTest(){
+    void exampleTest(){
         String test = "test";
         Assertions.assertEquals("test", test);
     }
