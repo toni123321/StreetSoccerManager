@@ -1,6 +1,8 @@
 package soccer.game.streetsoccermanager.unit_tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -32,6 +34,13 @@ class PlayerPositionInfoServiceUnitTest {
 //        when(formationRepository.update(new Formation(2l, "3-1-0"))).thenReturn(new Formation(2l, "3-1-0"));
 //        formationService = new FormationService(formationRepository);
     }
+
+    @Test
+    void exampleTest(){
+        String test = "test";
+        Assertions.assertEquals("test", test);
+    }
+
 
 //    @Test
 //    void GetAllPlayersPositionInfoSuccessScenario() {

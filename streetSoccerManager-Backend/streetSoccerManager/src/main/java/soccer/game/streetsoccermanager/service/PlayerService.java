@@ -77,7 +77,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getStartingPlayers(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.getPlayerPositionInfo().isStarting() == true).
+                filter(player -> player.getPlayerPositionInfo().isStarting()).
                 collect(Collectors.toList());
     }
 
@@ -85,7 +85,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getReserves(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.getPlayerPositionInfo().isStarting() == false).
+                filter(player -> !player.getPlayerPositionInfo().isStarting()).
                 collect(Collectors.toList());
     }
 
