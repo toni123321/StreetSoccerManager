@@ -35,11 +35,6 @@ public class PlayerStats {
     @JsonIgnore
     protected PlayerAdditionalInfo playerAdditionalInfo;
 
-//    @PostLoad
-//    public void onPostLoad() {
-//        this.overallRating = (getSkills() + getPhysical()) / 2;
-//    }
-
     public PlayerStats(Long id, int skills, int physical) {
         this.id = id;
         this.skills = skills;

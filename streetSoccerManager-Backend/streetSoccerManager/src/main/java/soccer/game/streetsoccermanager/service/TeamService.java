@@ -4,12 +4,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.OfficialTeam;
-import soccer.game.streetsoccermanager.model.entities.PlayerTeamInfo;
 import soccer.game.streetsoccermanager.repository_interfaces.ITeamRepository;
 import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 import soccer.game.streetsoccermanager.model.entities.Team;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
