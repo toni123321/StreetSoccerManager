@@ -1,16 +1,16 @@
 package soccer.game.streetsoccermanager.model.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
 @Table(name ="player")
 @NoArgsConstructor
-@Data
-@EqualsAndHashCode(exclude = {"id"})
+@Getter
+@Setter
 public class Player{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,4 +47,16 @@ public class Player{
         this.playerAdditionalInfo = playerAdditionalInfo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        Player player = (Player) o;
+        return getPlayerPersonalInfo().equals(player.getPlayerPersonalInfo()) && getPlayerPositionInfo().equals(player.getPlayerPositionInfo()) && getPlayerTeamInfo().equals(player.getPlayerTeamInfo()) && getPlayerAdditionalInfo().equals(player.getPlayerAdditionalInfo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPlayerPersonalInfo(), getPlayerPositionInfo(), getPlayerTeamInfo(), getPlayerAdditionalInfo());
+    }
 }

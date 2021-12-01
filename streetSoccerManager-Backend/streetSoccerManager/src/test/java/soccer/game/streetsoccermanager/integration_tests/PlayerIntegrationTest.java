@@ -47,15 +47,17 @@ class PlayerIntegrationTest {
         playerService.deleteAll();
         playerPersonalInfoService.deleteAll();
 
+        playerTeamInfoService.deleteAll();
 
         playerPositionInfoService.deleteAll();
         positionService.deleteAll();
 
 
-        playerAdditionalInfoService.deleteAll();
         playerStatsService.deleteAll();
+        playerAdditionalInfoService.deleteAll();
 
-        playerTeamInfoService.deleteAll();
+
+
         userService.deleteAll();
         teamService.deleteAll();
         formationService.deleteAll();
