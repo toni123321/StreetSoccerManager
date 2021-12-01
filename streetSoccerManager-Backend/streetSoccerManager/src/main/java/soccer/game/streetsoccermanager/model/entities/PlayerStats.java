@@ -21,14 +21,24 @@ public class PlayerStats {
     @Transient
     private int overallRating;
 
+    public int getOverallRating() {
+        int calcValue = (getSkills() + getPhysical()) / 2;
+        setOverallRating(calcValue);
+        return overallRating;
+    }
+
+    public void setOverallRating(int overallRating) {
+        this.overallRating = overallRating;
+    }
+
     @OneToOne(mappedBy = "playerStats", cascade = CascadeType.ALL)
     @JsonIgnore
     protected PlayerAdditionalInfo playerAdditionalInfo;
 
-    @PostLoad
-    public void onPostLoad() {
-        this.overallRating = (getSkills() + getPhysical()) / 2;
-    }
+//    @PostLoad
+//    public void onPostLoad() {
+//        this.overallRating = (getSkills() + getPhysical()) / 2;
+//    }
 
     public PlayerStats(Long id, int skills, int physical) {
         this.id = id;

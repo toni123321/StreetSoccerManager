@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
 @Table(name ="player_additional_info")
 @NoArgsConstructor
-@Data
-@EqualsAndHashCode(exclude = {"id", "player"})
+@Getter
+@Setter
 public class PlayerAdditionalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,5 +34,18 @@ public class PlayerAdditionalInfo {
     public PlayerAdditionalInfo(double price, PlayerStats playerStats) {
         this.price = price;
         this.playerStats = playerStats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlayerAdditionalInfo)) return false;
+        PlayerAdditionalInfo that = (PlayerAdditionalInfo) o;
+        return Double.compare(that.getPrice(), getPrice()) == 0 && getPlayerStats().equals(that.getPlayerStats());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPrice(), getPlayerStats());
     }
 }
