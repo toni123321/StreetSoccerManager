@@ -2,6 +2,7 @@ package soccer.game.streetsoccermanager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 
@@ -17,6 +18,18 @@ public class PlayerStats {
     private Long id;
     private int skills;
     private int physical;
+    @Transient
+    private int overallRating;
+
+    public int getOverallRating() {
+        int calcValue = (getSkills() + getPhysical()) / 2;
+        setOverallRating(calcValue);
+        return overallRating;
+    }
+
+    public void setOverallRating(int overallRating) {
+        this.overallRating = overallRating;
+    }
 
     @OneToOne(mappedBy = "playerStats", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -26,6 +39,7 @@ public class PlayerStats {
         this.id = id;
         this.skills = skills;
         this.physical = physical;
+        this.overallRating = (skills + physical) / 2;
     }
 
     public PlayerStats(int skills, int physical) {
