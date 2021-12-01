@@ -49,7 +49,7 @@ public class PlayersController {
         if(teamId.isPresent()){
             if(starting.isPresent())
             {
-                players = (starting.get()) ?
+                players = (Boolean.TRUE.equals(starting.get())) ?
                         playerService.getStartingPlayers(teamId.get())
                         : playerService.getReserves(teamId.get());
             }
