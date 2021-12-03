@@ -2,7 +2,6 @@ package soccer.game.streetsoccermanager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 

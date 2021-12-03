@@ -8,9 +8,12 @@ import java.util.stream.Collectors;
 
 
 public class RatingManager {
+    private RatingManager() {
+
+    }
+
     public static int calcPlayerOverallRating(PlayerStats playerStats){
-        int overallRating = (playerStats.getSkills() + playerStats.getPhysical()) / 2;
-        return overallRating;
+        return (playerStats.getSkills() + playerStats.getPhysical()) / 2;
     }
 
 
@@ -71,19 +74,5 @@ public class RatingManager {
         return reservesRating;
 
     }
-
-    public static int calcAttackingRating(){
-        return 0;
-    }
-
-    public static int calcMidfieldRating(){
-        return 0;
-    }
-
-    public static int calcDefenceRating(){
-        return 0;
-    }
-
-
 
 }

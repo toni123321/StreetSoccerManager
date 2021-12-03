@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetsoccermanager.model.dtos.*;
-import soccer.game.streetsoccermanager.model.entities.Formation;
 import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
 import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
@@ -50,10 +49,11 @@ public class FriendlyMatchController {
     @PutMapping("/playMatch")
     public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody PlayFriendlyMatchDTO matchDTO){
         Match updatedMatchEntity = matchService.playFriendlyMatch(matchDTO.getFriendlyMatch().getId(), matchDTO.getCommand());
-        FriendlyMatchDTO updatedMatchDTO = modelMapper.map(updatedMatchEntity, FriendlyMatchDTO.class);
-        if (updatedMatchDTO == null){
+
+        if (updatedMatchEntity == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
+            FriendlyMatchDTO updatedMatchDTO = modelMapper.map(updatedMatchEntity, FriendlyMatchDTO.class);
             return new ResponseEntity<>(updatedMatchDTO,HttpStatus.CREATED);
         }
     }

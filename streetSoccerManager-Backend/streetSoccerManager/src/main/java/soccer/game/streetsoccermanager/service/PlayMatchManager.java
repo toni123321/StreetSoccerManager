@@ -3,15 +3,26 @@ package soccer.game.streetsoccermanager.service;
 import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
 
+
 public class PlayMatchManager {
 
-    public static Match playFriendlyMatch(Match match, String command) {
+    private PlayMatchManager(){
+
+    }
+
+    public static Match playFriendlyMatch(Match match, String command) throws Exception {
         int homeTeamRating = RatingManager.calcTeamOverallRating(match.getHomeTeam());
         int awayTeamRating = RatingManager.calcTeamOverallRating(match.getAwayTeam());
 
         FriendlyMatch friendlyMatch;
         String result = "";
         String statistic = "";
+        String action = "";
+
+        if(command.equals("ATTACK")){
+            action = "ATTACK";
+        }
+
 
         if(homeTeamRating > awayTeamRating){
             result = "1:0";
@@ -27,8 +38,14 @@ public class PlayMatchManager {
             result = "0:0";
             statistic = "Draw";
         }
-        friendlyMatch = new FriendlyMatch(match.getId(), match.getHomeTeam(), match.getAwayTeam(), result, statistic, 0);
-        return friendlyMatch;
+
+        if(!action.equals(""))
+        {
+            friendlyMatch = new FriendlyMatch(match.getId(), match.getHomeTeam(), match.getAwayTeam(), result, statistic, 0);
+            return friendlyMatch;
+        }else{
+            throw new Exception("Bad command");
+        }
     }
 
 
