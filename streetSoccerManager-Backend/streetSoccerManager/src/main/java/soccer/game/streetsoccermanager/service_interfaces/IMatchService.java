@@ -11,5 +11,5 @@ public interface IMatchService {
     Boolean delete(Long id);
     Match add(Match match);
     Match update(Match match);
-    Match playFriendlyMatch(StartFriendlyMatchDTO startMatchInfo);
+    Match playFriendlyMatch(Long matchId, String command);
 }
