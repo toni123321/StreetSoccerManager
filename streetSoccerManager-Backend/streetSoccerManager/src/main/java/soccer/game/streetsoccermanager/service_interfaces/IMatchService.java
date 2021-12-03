@@ -1,6 +1,6 @@
 package soccer.game.streetsoccermanager.service_interfaces;
 
-import soccer.game.streetsoccermanager.model.dtos.StartFriendlyMatchDTO;
+
 import soccer.game.streetsoccermanager.model.entities.Match;
 
 import java.util.List;
