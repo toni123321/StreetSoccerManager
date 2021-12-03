@@ -7,6 +7,6 @@ import soccer.game.streetsoccermanager.model.entities.Team;
 @Data
 @NoArgsConstructor
 public class StartFriendlyMatchDTO {
-    private Team homeTeam;
-    private Team awayTeam;
+    private TeamDTO homeTeam;
+    private TeamDTO awayTeam;
 }

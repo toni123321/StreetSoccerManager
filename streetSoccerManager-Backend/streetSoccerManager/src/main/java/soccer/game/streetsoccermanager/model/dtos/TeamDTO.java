@@ -9,8 +9,7 @@ import soccer.game.streetsoccermanager.model.entities.Formation;
 public class TeamDTO {
     private Long id;
     private String name;
-    private Formation formation;
-    private int rating;
+    private FormationDTO formation;
     private String managerName;
     private UserDTO manager;
 }
