@@ -34,8 +34,10 @@ class TeamServiceUnitTest {
         when(teamRepository.getAll()).thenReturn(teams);
         when(teamRepository.get(1l)).thenReturn(teams.get(0));
         when(teamRepository.get(2l)).thenReturn(teams.get(1));
-        when(teamRepository.add(new OfficialTeam("Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"))).
-                thenReturn(new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"));
+        when(teamRepository.add(new CustomTeam(3l, "Ajax-2020", new Formation(1l, "1-2-1"),
+                        new UserEntity(2l,"peter@gmail.com", "jj12", "Peter", "Petrov", "Pesho", "USER")))).
+                thenReturn(new CustomTeam(3l, "Ajax-2020", new Formation(1l, "1-2-1"),
+                        new UserEntity(2l,"peter@gmail.com", "jj12", "Peter", "Petrov", "Pesho", "USER")));
         when(teamRepository.update(new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Xavi Hernández"))).
                 thenReturn(new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Xavi Hernández"));
         teamService = new TeamService(teamRepository);
@@ -80,10 +82,13 @@ class TeamServiceUnitTest {
     @Test
     void AddTeamSuccessScenario() {
         // Act
-        Team newTeam = teamService.add(new OfficialTeam("Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"));
+        Team newTeam = teamService.add(new CustomTeam("Ajax-2020", new Formation(1l, "1-2-1"),
+                new UserEntity(2l,"peter@gmail.com", "jj12", "Peter", "Petrov", "Pesho", "USER")));
         // Assert
-        Assertions.assertEquals(new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"), newTeam);
-        Assertions.assertEquals(null, teamService.add(new OfficialTeam(3l,"Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri")));
+        Assertions.assertEquals(new CustomTeam(3l, "Ajax-2020", new Formation(1l, "1-2-1"),
+                new UserEntity(2l,"peter@gmail.com", "jj12", "Peter", "Petrov", "Pesho", "USER")), newTeam);
+        Assertions.assertEquals(null, teamService.add(new CustomTeam(3l, "Ajax-2020", new Formation(1l, "1-2-1"),
+                new UserEntity(2l,"peter@gmail.com", "jj12", "Peter", "Petrov", "Pesho", "USER"))));
     }
 
     @Test

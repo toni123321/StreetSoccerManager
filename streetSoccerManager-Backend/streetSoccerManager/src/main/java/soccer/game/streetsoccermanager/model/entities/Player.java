@@ -3,7 +3,6 @@ package soccer.game.streetsoccermanager.model.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 
 @Entity

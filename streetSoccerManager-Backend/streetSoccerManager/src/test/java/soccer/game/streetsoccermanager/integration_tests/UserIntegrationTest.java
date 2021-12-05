@@ -43,9 +43,18 @@ class UserIntegrationTest {
 
 
     @Test
-    void GetUserSuccessScenario() {
+    void GetUserByIdSuccessScenario() {
         // Act
         UserEntity user = userService.get(users.get(0).getId());
+
+        // Assert
+        Assertions.assertEquals(new UserEntity(users.get(0).getId(), "peter@gmail.com", users.get(0).getPassword(), "Peter", "Petrov", "pesho", "USER"), user);
+    }
+
+    @Test
+    void GetUserByEmailSuccessScenario() {
+        // Act
+        UserEntity user = userService.getByEmail(users.get(0).getEmail());
 
         // Assert
         Assertions.assertEquals(new UserEntity(users.get(0).getId(), "peter@gmail.com", users.get(0).getPassword(), "Peter", "Petrov", "pesho", "USER"), user);
