@@ -35,6 +35,7 @@ public class PlayerTeamInfo {
         this.team = team;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
