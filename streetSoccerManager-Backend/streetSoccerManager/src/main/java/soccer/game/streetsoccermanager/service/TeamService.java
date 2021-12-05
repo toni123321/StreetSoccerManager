@@ -70,6 +70,10 @@ public class TeamService implements ITeamService {
     @Override
     public Team add(Team team) {
         if(team.getId() == null) {
+            if(team instanceof CustomTeam)
+            {
+                team.setFormation(dataStore.getDefaultFormation());
+            }
             return dataStore.add(team);
         }
         return null;

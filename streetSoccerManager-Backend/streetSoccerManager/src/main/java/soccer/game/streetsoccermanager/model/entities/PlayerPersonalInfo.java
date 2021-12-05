@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Objects;
 
 
 @Entity
@@ -37,18 +36,5 @@ public class PlayerPersonalInfo {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlayerPersonalInfo)) return false;
-        PlayerPersonalInfo that = (PlayerPersonalInfo) o;
-        return getFirstName().equals(that.getFirstName()) && getLastName().equals(that.getLastName()) && getDob().equals(that.getDob());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getFirstName(), getLastName(), getDob());
     }
 }
