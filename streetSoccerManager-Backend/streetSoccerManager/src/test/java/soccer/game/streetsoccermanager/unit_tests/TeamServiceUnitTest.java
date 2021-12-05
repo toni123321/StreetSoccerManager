@@ -58,6 +58,31 @@ class TeamServiceUnitTest {
     }
 
     @Test
+    void GetOfficialTeamsSuccessScenario() {
+        // Act
+        List<Team> teams = teamService.getOfficialTeams();
+
+        List<Team> teamsExpected = new ArrayList<>();
+        teamsExpected.add(new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman"));
+
+        // Assert
+        Assertions.assertEquals(teamsExpected, teams);
+    }
+
+    @Test
+    void GetCustomTeamsSuccessScenario() {
+        // Act
+        List<Team> teams = teamService.getCustomTeams();
+
+        List<Team> teamsExpected = new ArrayList<>();
+        teamsExpected.add(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
+                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")));
+        // Assert
+        Assertions.assertEquals(teamsExpected, teams);
+    }
+
+
+    @Test
     void GetTeamSuccessScenario() {
         // Act
         Team team = teamService.get(1l);
@@ -66,6 +91,17 @@ class TeamServiceUnitTest {
         Assertions.assertEquals(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
                 new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")), team);
     }
+
+    @Test
+    void GetTeamByUserIdSuccessScenario() {
+        // Act
+        Team team = teamService.getTeamByUserId(1l);
+
+        // Assert
+        Assertions.assertEquals(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
+                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")), team);
+    }
+
 
     @Test
     void DeleteTeamSuccessScenario(){
