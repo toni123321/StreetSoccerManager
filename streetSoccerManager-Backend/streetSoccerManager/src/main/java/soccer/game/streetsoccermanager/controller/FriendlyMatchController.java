@@ -49,7 +49,6 @@ public class FriendlyMatchController {
     @PutMapping("/playMatch")
     public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody PlayFriendlyMatchDTO matchDTO){
         Match updatedMatchEntity = matchService.playFriendlyMatch(matchDTO.getFriendlyMatch().getId(), matchDTO.getCommand());
-
         if (updatedMatchEntity == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
