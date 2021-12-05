@@ -30,10 +30,9 @@ class TeamIntegrationTest {
     @BeforeEach
     void clearDB() {
         // Clear
-
-
         formationService.deleteAll();
         userService.deleteAll();
+        teamService.deleteAll();
         teamsExpected.clear();
 
 
