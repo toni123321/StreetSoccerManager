@@ -48,13 +48,7 @@ public class MatchService implements IMatchService {
     @Override
     public Match playFriendlyMatch(Long matchId, String command) {
         Match match = get(matchId);
-        try {
-            return this.update(PlayMatchManager.playFriendlyMatch(match, command));
-        }
-        catch (Exception e){
-            e.getMessage();
-            return match;
-        }
+        return this.update(PlayMatchManager.playFriendlyMatch(match, command));
     }
 
 }
