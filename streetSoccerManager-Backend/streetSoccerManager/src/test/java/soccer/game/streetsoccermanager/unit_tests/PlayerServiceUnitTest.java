@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @SpringBootTest
-public class PlayerServiceUnitTest {
+class PlayerServiceUnitTest {
     @Mock
     IPlayerRepository playerRepository;
     IPlayerService playerService;

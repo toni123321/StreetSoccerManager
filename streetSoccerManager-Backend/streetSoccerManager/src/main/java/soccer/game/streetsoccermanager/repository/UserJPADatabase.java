@@ -7,7 +7,6 @@ import soccer.game.streetsoccermanager.repository_interfaces.jpa.IUserJPAReposit
 import soccer.game.streetsoccermanager.repository_interfaces.IUserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class UserJPADatabase implements IUserRepository {
