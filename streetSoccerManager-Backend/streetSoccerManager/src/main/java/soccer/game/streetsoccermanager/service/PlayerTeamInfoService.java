@@ -29,17 +29,27 @@ public class PlayerTeamInfoService implements IPlayerTeamInfoService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerTeamInfo add(PlayerTeamInfo playerTeamInfo) {
-        return dataStore.add(playerTeamInfo);
+        if(playerTeamInfo.getId() == null) {
+            return dataStore.add(playerTeamInfo);
+        }
+        return null;
     }
 
     @Override
     public PlayerTeamInfo update(PlayerTeamInfo playerTeamInfo) {
-        return dataStore.update(playerTeamInfo);
+        if(playerTeamInfo.getId() != null) {
+            return dataStore.update(playerTeamInfo);
+        }
+        return null;
     }
 
     @Override

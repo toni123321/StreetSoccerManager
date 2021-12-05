@@ -2,10 +2,7 @@ package soccer.game.streetsoccermanager.service;
 
 import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class PlayMatchManager {

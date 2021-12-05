@@ -32,17 +32,27 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Player add(Player player) {
-        return dataStore.add(player);
+        if(player.getId() == null) {
+            return dataStore.add(player);
+        }
+        return null;
     }
 
     @Override
     public Player update(Player player) {
-        return dataStore.update(player);
+        if(player.getId() != null) {
+            return dataStore.update(player);
+        }
+        return null;
     }
 
     @Override

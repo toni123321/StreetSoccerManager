@@ -37,25 +37,27 @@ public class UserService implements IUserService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
 
     @Override
     public UserEntity add(UserEntity user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        UserEntity createdUser = dataStore.add(user);
-        if(createdUser != null) {
-            return createdUser;
+        if(user.getId() == null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return dataStore.add(user);
         }
         return null;
     }
 
     @Override
     public UserEntity update(UserEntity user) {
-        UserEntity updatedUser = dataStore.update(user);
-        if(updatedUser != null) {
-            return updatedUser;
+        if(user.getId() != null) {
+            return dataStore.update(user);
         }
         return null;
     }

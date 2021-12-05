@@ -31,28 +31,18 @@ public class UserJPADatabase implements IUserRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            userRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        userRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public UserEntity add(UserEntity userEntity) {
-        Optional<UserEntity> existingUser = userRepo.findUserByEmail(userEntity.getEmail());
-        if(!existingUser.isPresent()) {
-            return userRepo.save(userEntity);
-        }
-        return null;
+        return userRepo.save(userEntity);
     }
 
     @Override
     public UserEntity update(UserEntity userEntity) {
-        if(userEntity.getId() != null) {
-            return userRepo.save(userEntity);
-        }
-        return null;
+        return userRepo.save(userEntity);
     }
 
     @Override

@@ -30,29 +30,18 @@ public class TeamJPADatabase implements ITeamRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            Team team = get(id);
-            teamRepo.delete(team);
-            return true;
-
-        }
-        return false;
+       teamRepo.deleteById(id);
+       return true;
     }
 
     @Override
     public Team add(Team team) {
-        if(team.getId() == null) {
-            return teamRepo.save(team);
-        }
-        return null;
+        return teamRepo.save(team);
     }
 
     @Override
     public Team update(Team team) {
-        if(team.getId() != null) {
-            return teamRepo.save(team);
-        }
-        return null;
+        return teamRepo.save(team);
     }
 
     @Override
