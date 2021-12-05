@@ -30,25 +30,40 @@ public class MatchService implements IMatchService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Match add(Match match) {
-        match.setResult("0:0");
-        match.setStatistic("Match started");
-        return dataStore.add(match);
+        if(match.getId() == null) {
+            match.setResult("0:0");
+            match.setStatistic("Match started");
+            return dataStore.add(match);
+        }
+        return null;
     }
 
     @Override
     public Match update(Match match) {
-        return dataStore.update(match);
+        if(match.getId() != null) {
+            return dataStore.update(match);
+        }
+        return null;
     }
 
     @Override
     public Match playFriendlyMatch(Long matchId, String command) {
         Match match = get(matchId);
         return this.update(PlayMatchManager.playFriendlyMatch(match, command));
+    }
+
+    @Override
+    public void deleteAll() {
+        dataStore.deleteAll();
     }
 
 }

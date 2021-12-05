@@ -12,4 +12,5 @@ public interface IMatchService {
     Match add(Match match);
     Match update(Match match);
     Match playFriendlyMatch(Long matchId, String command);
+    void deleteAll();
 }

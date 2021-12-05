@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="match")
 @Data
-@EqualsAndHashCode(exclude = {"id", "homeTeam", "awayTeam"})
+@EqualsAndHashCode()
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Match {
