@@ -28,7 +28,7 @@ class TeamServiceUnitTest {
     public void setUp()  {
         List<Team> teams = List.of(
                 new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER", 0)),
+                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman")
         );
         when(teamRepository.getAll()).thenReturn(teams);
@@ -48,7 +48,7 @@ class TeamServiceUnitTest {
 
         List<Team> teamsExpected = new ArrayList<>();
         teamsExpected.add(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER", 0)));
+                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")));
         teamsExpected.add(new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman"));
 
         // Assert
@@ -62,7 +62,7 @@ class TeamServiceUnitTest {
 
         // Assert
         Assertions.assertEquals(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER", 0)), team);
+                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")), team);
     }
 
     @Test

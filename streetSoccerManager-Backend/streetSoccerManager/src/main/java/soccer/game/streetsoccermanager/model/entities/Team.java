@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Table(name ="team")
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude = {"playersTeamInfo", "homeTeamsMatches", "awayTeamMatches"})
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,16 +54,4 @@ public class Team {
         this.formation = formation;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Team)) return false;
-        Team team = (Team) o;
-        return getId().equals(team.getId()) && getName().equals(team.getName()) && getFormation().equals(team.getFormation());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getFormation());
-    }
 }

@@ -10,8 +10,8 @@ import java.util.Objects;
 @Entity
 @Table(name ="player_position_info")
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude = {"player"})
 public class PlayerPositionInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,16 +42,4 @@ public class PlayerPositionInfo {
         this.isStarting = isStarting;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlayerPositionInfo)) return false;
-        PlayerPositionInfo that = (PlayerPositionInfo) o;
-        return isStarting() == that.isStarting() && getDefaultPosition().equals(that.getDefaultPosition()) && getCurrentPosition().equals(that.getCurrentPosition());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getDefaultPosition(), getCurrentPosition(), isStarting());
-    }
 }

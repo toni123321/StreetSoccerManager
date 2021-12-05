@@ -11,8 +11,8 @@ import java.util.Objects;
 @Entity
 @Table(name ="player_personal_info")
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude = {"player"})
 public class PlayerPersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
