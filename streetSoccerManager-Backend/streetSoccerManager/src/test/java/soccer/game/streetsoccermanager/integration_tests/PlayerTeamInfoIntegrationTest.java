@@ -42,7 +42,7 @@ class PlayerTeamInfoIntegrationTest {
         playersTeamInfoExpected.clear();
 
         // Add
-        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho"));
+        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho", "USER", 0));
         formationService.add(new Formation("1-2-1"));
         teamService.add(new CustomTeam("Barca 2020", formationService.getAll().get(0), userService.getAll().get(0)));
 
