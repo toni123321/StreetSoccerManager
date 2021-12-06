@@ -38,7 +38,6 @@ public class PlayerStatsService implements IPlayerStatsService {
     @Override
     public PlayerStats add(PlayerStats stat) {
         if(stat.getId() == null) {
-            RatingManager.calcPlayerOverallRating(stat);
             return dataStore.add(stat);
         }
         return null;
