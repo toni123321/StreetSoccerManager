@@ -51,21 +51,12 @@ class PlayerIntegrationTest {
 
         playerPositionInfoService.deleteAll();
         positionService.deleteAll();
-
-
         playerStatsService.deleteAll();
         playerAdditionalInfoService.deleteAll();
-
-
-
-        userService.deleteAll();
         teamService.deleteAll();
         formationService.deleteAll();
-
-
+        userService.deleteAll();
         playersExpected.clear();
-
-
 
         // Add
 
