@@ -21,8 +21,7 @@ const TeamSquad = () => {
             id: null,
             email: "",
             password: "",
-            nickname: "",
-            points: null
+            nickname: ""
         }
     }
 

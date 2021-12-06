@@ -164,6 +164,10 @@
     font-weight:bolder;
 }
 
-
+@media only screen and (max-width: 767px) {
+    #trainPlayers::after, #shop::after, #teamSquad::after {
+        background-size: 20% 40%!important; 
+    }
+}
 
 
