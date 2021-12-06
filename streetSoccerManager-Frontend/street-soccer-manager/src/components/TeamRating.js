@@ -1,16 +1,34 @@
 import React,{useState, useEffect } from 'react';
+import RatingService from '../services/RatingService';
+import Cookies from 'universal-cookie';
 
-function TeamRating({rating}) {
+function TeamRating({id}) {
+    const [rating, setRating] = useState(null);
+
     const [filledStars, setFilledStars] = useState(null);
     
     const [emptyStars, setEmptyStars] = useState(null);
 
+    const cookies = new Cookies();
+    const token = cookies.get('login-token');
+
     useEffect(() => {
+        console.log(id);
+        retrieveTeamRating(id);
         let nrOfFilledStars = calcStarsRating();
         setFilledStars(nrOfFilledStars);
         setEmptyStars(5 - nrOfFilledStars);
-    }, []);
+    }, [id]);
 
+    function retrieveTeamRating(teamId) {
+        RatingService.getTeamRating(teamId, token)
+        .then((response) => {
+            console.log(response);
+            setRating(response.data);
+        }, (error) => {
+            console.log(error);
+        });
+    }
 
     function calcStarsRating () {
         if(rating <= 60) {

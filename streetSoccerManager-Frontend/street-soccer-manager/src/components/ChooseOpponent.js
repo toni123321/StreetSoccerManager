@@ -9,6 +9,7 @@ import yourTeamLogo from "../resources/your-team-logo.png";
 import opponentTeamLogo from "../resources/opponent-team-logo.png";
 import TeamRating from './TeamRating';
 import Cookies from 'universal-cookie';
+import RatingService from '../services/RatingService';
 
 
 function ChooseOpponent() {
@@ -20,24 +21,13 @@ function ChooseOpponent() {
     const initialTeamState = {
         id: null,
         name: "",
-        formation: {
-            id:null,
-            name: ""
-        },
-        manager: {
-            "id": null,
-            "email": "",
-            "password": "",
-            "nickname": "",
-            "points": null
-        },
-        rating: null
+        formation: null,
+        manager:null
     }
 
     const initialTeamSideState = {
         id: null,
-        name: "",
-        rating: null
+        name: ""
     }
 
     const [userTeam, setUserTeam] = useState(initialTeamState);
@@ -49,8 +39,7 @@ function ChooseOpponent() {
         id: null,
         name: "",
         formation: null,
-        managerName: "",
-        rating: null
+        managerName: ""
     });
 
     const [opponents, setOpponents] = useState([]);
@@ -60,20 +49,33 @@ function ChooseOpponent() {
         const createdTeam = localStorage.getItem("team");
         if (createdTeam) {
             const foundTeam = JSON.parse(createdTeam);
+            console.log("Created team", foundTeam);
             setUserTeam(foundTeam);
 
             const homeTeamState = {
                 id: foundTeam.id,
-                name: foundTeam.name,
-                rating: foundTeam.rating
+                name: foundTeam.name
             }
             setHomeTeam(homeTeamState);
         } 
     }, [])
 
-    async function retrieveOpponents() {
-        const response = await TeamService.getOfficialTeams(token);
-        setOpponents(response.data);
+    function retrieveTeamRating(teamId) {
+        RatingService.getTeamRating(teamId, token)
+        .then((response) => {
+            return response.data;
+        }, (error) => {
+            console.log(error);
+        });
+    }
+
+    function retrieveOpponents() {
+        TeamService.getOfficialTeams(token)
+        .then((response) => {
+            setOpponents(response.data);
+        }, (error) => {
+            console.log(error);
+        });
     }
 
 
@@ -112,11 +114,9 @@ function ChooseOpponent() {
     const handleSelectOpponent = (opponent, isHomeTeam) => {
         //console.log(getOpponent(index).name);
         setChosenOpponent(opponent);
-        console.log("Opponent", opponent.rating);
         const opponentTeamState = {
             id: opponent.id,
-            name: opponent.name,
-            rating: opponent.rating
+            name: opponent.name
         }
         isHomeTeam ? setHomeTeam(opponentTeamState): setAwayTeam(opponentTeamState);
     }
@@ -177,7 +177,7 @@ function ChooseOpponent() {
 
             <div className="chooseOpponent">
                 <Container>
-                <Row>
+                <Row className="justify-content-md-center">
                     <Col xs={12} md={5} className="homeTeam">
                         <h3 className="team-role">Home team</h3>
                         <div className="homeTeamName team">
@@ -185,7 +185,8 @@ function ChooseOpponent() {
                                 (<div className="userTeam">
                                     <div className="team-name">{userTeam.name}</div>
                                     <img className="team-logo" src={yourTeamLogo}/>
-                                    <TeamRating rating={homeTeam.rating}/>
+                                    <TeamRating id={homeTeam.id}/>
+                                    {console.log(homeTeam.id)}
                                 </div>) :
                                 (
                                     <Carousel interval={null}>
@@ -195,7 +196,7 @@ function ChooseOpponent() {
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
                                             </div>
-                                            <TeamRating rating={opponent.rating}/>
+                                            <TeamRating id={opponent.id}/>
                                         </Carousel.Item>
                                     )}
                                     </Carousel>
@@ -216,7 +217,7 @@ function ChooseOpponent() {
                         )
                         }
                     </Col>
-                    <Col className="changeSides" xs={12} md={1}>
+                    <Col className="changeSides mx-auto" xs={11} md={1}>
                     <div className="title-vs">VS</div>
                     <button onClick={changeHomeAwayTeam}><i class="fas fa-exchange-alt"></i></button>
                     </Col>
@@ -227,7 +228,7 @@ function ChooseOpponent() {
                                 (<div className="userTeam">
                                     <div className="team-name">{userTeam.name}</div>
                                     <img className="team-logo" src={yourTeamLogo}/>
-                                    <TeamRating rating={awayTeam.rating}/>
+                                    <TeamRating id={awayTeam.id}/>
                                     
                                 </div>) :
                                 (
@@ -238,7 +239,7 @@ function ChooseOpponent() {
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
                                             </div>
-                                            <TeamRating rating={opponent.rating}/>
+                                            <TeamRating id={opponent.id}/>
                                         </Carousel.Item>
                                     )}
                                     </Carousel>
