@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,9 +14,11 @@ import soccer.game.streetsoccermanager.repository_interfaces.IUserRepository;
 import soccer.game.streetsoccermanager.service.AuthenticationUserDetailService;
 import soccer.game.streetsoccermanager.service.UserService;
 import soccer.game.streetsoccermanager.service_interfaces.IUserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
@@ -49,6 +50,8 @@ class AuthenticationUserDetailServiceUnitTest {
         Assertions.assertEquals(
                 new User(mockedUser.getEmail(), mockedUser.getPassword(),  Arrays.asList(new SimpleGrantedAuthority(mockedUser.getRole()))),
                 user);
+        Throwable exception = assertThrows(UsernameNotFoundException.class, () -> authenticationUserDetailService.loadUserByUsername("john@gmail.com"));
+        Assertions.assertEquals("john@gmail.com", exception.getMessage());
 
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import soccer.game.streetsoccermanager.model.entities.*;
 import soccer.game.streetsoccermanager.repository_interfaces.IMatchRepository;
 import soccer.game.streetsoccermanager.service.MatchService;
+import soccer.game.streetsoccermanager.service.PlayMatchManager;
 import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
 
 import java.util.ArrayList;
@@ -144,5 +145,11 @@ class MatchServiceUnitTest {
                 new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 "2:2", "Draw", 30)));
+    }
+
+    @Test
+    void PlayFriendlyMatch() {
+        Match playedMatch = matchService.playFriendlyMatch(1l, "ATTACK");
+        Assertions.assertEquals(PlayMatchManager.playFriendlyMatch(matchService.get(1l), "ATTACK"), playedMatch);
     }
 }
