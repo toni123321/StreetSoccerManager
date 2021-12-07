@@ -53,12 +53,7 @@ public class RatingManager {
         int startingPlayersRating = 0;
 
         for (PlayerTeamInfo playerTeamInfo: getStartingPlayersTeamInfo(team)) {
-            if(playerTeamInfo.getPlayer() != null &&
-                    playerTeamInfo.getPlayer().getPlayerAdditionalInfo() != null &&
-                    playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats() != null
-            ) {
-                startingPlayersRating += calcPlayerOverallRating(playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats());
-            }
+            startingPlayersRating += calcPlayerOverallRating(playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats());
         }
         if(Boolean.FALSE.equals(getStartingPlayersTeamInfo(team).isEmpty())) {
             startingPlayersRating /= getStartingPlayersTeamInfo(team).size();
@@ -69,12 +64,7 @@ public class RatingManager {
     public static int calcReservesPlayersRating(Team team) {
         int reservesRating = 0;
         for (PlayerTeamInfo playerTeamInfo: getReservesPlayersTeamInfo(team)) {
-            if(playerTeamInfo.getPlayer() != null &&
-                    playerTeamInfo.getPlayer().getPlayerAdditionalInfo() != null &&
-                    playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats() != null
-            ) {
-                reservesRating += calcPlayerOverallRating(playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats());
-            }
+            reservesRating += calcPlayerOverallRating(playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats());
         }
         if(Boolean.FALSE.equals(getReservesPlayersTeamInfo(team).isEmpty())) {
             reservesRating /= getReservesPlayersTeamInfo(team).size();
