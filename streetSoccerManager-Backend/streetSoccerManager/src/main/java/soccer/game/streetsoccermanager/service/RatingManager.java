@@ -29,8 +29,7 @@ public class RatingManager {
 
     private static List<PlayerTeamInfo> getStartingPlayersTeamInfo(Team team) {
         try {
-            return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
-                            p.getPlayer().getPlayerPositionInfo() != null &&
+            return team.getPlayersTeamInfo().stream().filter(p ->
                             p.getPlayer().getPlayerPositionInfo().isStarting()).
                     collect(Collectors.toList());
         }
@@ -41,8 +40,7 @@ public class RatingManager {
 
     private static List<PlayerTeamInfo> getReservesPlayersTeamInfo(Team team) {
         try {
-            return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
-                            p.getPlayer().getPlayerPositionInfo() != null &&
+            return team.getPlayersTeamInfo().stream().filter(p ->
                             !p.getPlayer().getPlayerPositionInfo().isStarting()).
                     collect(Collectors.toList());
         }
