@@ -3,6 +3,7 @@ import soccer.game.streetsoccermanager.model.entities.PlayerStats;
 import soccer.game.streetsoccermanager.model.entities.PlayerTeamInfo;
 import soccer.game.streetsoccermanager.model.entities.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,18 +28,27 @@ public class RatingManager {
     }
 
     private static List<PlayerTeamInfo> getStartingPlayersTeamInfo(Team team) {
-      return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
-              p.getPlayer().getPlayerPositionInfo() != null &&
-              p.getPlayer().getPlayerPositionInfo().isStarting()).
-              collect(Collectors.toList());
-
+        try {
+            return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
+                            p.getPlayer().getPlayerPositionInfo() != null &&
+                            p.getPlayer().getPlayerPositionInfo().isStarting()).
+                    collect(Collectors.toList());
+        }
+        catch (NullPointerException e){
+            return new ArrayList<>();
+        }
     }
 
     private static List<PlayerTeamInfo> getReservesPlayersTeamInfo(Team team) {
-        return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
-                p.getPlayer().getPlayerPositionInfo() != null &&
-                !p.getPlayer().getPlayerPositionInfo().isStarting()).
-                collect(Collectors.toList());
+        try {
+            return team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer() != null &&
+                            p.getPlayer().getPlayerPositionInfo() != null &&
+                            !p.getPlayer().getPlayerPositionInfo().isStarting()).
+                    collect(Collectors.toList());
+        }
+        catch (NullPointerException e){
+            return new ArrayList<>();
+        }
     }
 
     public static int calcStartingPlayersRating(Team team){

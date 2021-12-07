@@ -3,30 +3,30 @@ package soccer.game.streetsoccermanager.unit_tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import soccer.game.streetsoccermanager.model.entities.*;
-import soccer.game.streetsoccermanager.service.AuthenticationUserDetailService;
 import soccer.game.streetsoccermanager.service.RatingManager;
-import soccer.game.streetsoccermanager.service.UserService;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.mockito.Mockito.when;
 
 
 @ActiveProfiles("test")
 @SpringBootTest
 class RatingManagerUnitTest {
 
-    CustomTeam team;
+    CustomTeam customTeam;
+    OfficialTeam officialTeam;
+
     @BeforeEach
     public void setUp()  {
-        team = new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
+        customTeam = new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
                 new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER"));
+        new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman");
+
         List<PlayerTeamInfo> playersTeamInfo = List.of(
                 new PlayerTeamInfo(1l, 10, new Team(1l, "Barcelona", new Formation(1l, "1-2-1"))),
                 new PlayerTeamInfo(2l, 6, new Team(1l, "Barcelona", new Formation(1l, "1-2-1")))
@@ -46,7 +46,7 @@ class RatingManagerUnitTest {
 
         playersTeamInfo.get(0).setPlayer(players.get(0));
         playersTeamInfo.get(1).setPlayer(players.get(1));
-        team.setPlayersTeamInfo(playersTeamInfo.stream().collect(Collectors.toSet()));
+        customTeam.setPlayersTeamInfo(new HashSet<>(playersTeamInfo));
 
     }
 
@@ -58,18 +58,30 @@ class RatingManagerUnitTest {
     }
 
     @Test
-    void getStartingPlayersTeamInfo(){
-        int ovrRating = RatingManager.calcPlayerOverallRating(team.getPlayersTeamInfo().
-                stream().collect(Collectors.toList()).get(0).
-                getPlayer().getPlayerAdditionalInfo().getPlayerStats()) / 1;
-        Assertions.assertEquals(ovrRating, RatingManager.calcStartingPlayersRating(team));
+    void calcStartingPlayersRating(){
+        int ovrRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(0).
+                getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+        Assertions.assertEquals(ovrRating, RatingManager.calcStartingPlayersRating(customTeam));
+        Assertions.assertEquals(0, RatingManager.calcStartingPlayersRating(officialTeam));
     }
 
     @Test
-    void getReservesPlayersTeamInfo(){
-        int ovrRating = RatingManager.calcPlayerOverallRating(team.getPlayersTeamInfo().
-                stream().collect(Collectors.toList()).get(1).
-                getPlayer().getPlayerAdditionalInfo().getPlayerStats()) / 1;
-        Assertions.assertEquals(ovrRating, RatingManager.calcReservesPlayersRating(team));
+    void calcReservesPlayersRating(){
+        int ovrRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(1).
+                getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+        Assertions.assertEquals(ovrRating, RatingManager.calcReservesPlayersRating(customTeam));
+        Assertions.assertEquals(0, RatingManager.calcReservesPlayersRating(officialTeam));
     }
+
+    @Test
+    void calcTeamOverallRating() {
+        int ovrStartingPlayersRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(0).
+                getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+        int ovrReservesRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(1).
+                getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+
+        int  overallRating = ((int) Math.round((ovrStartingPlayersRating * 0.8) + (ovrReservesRating * 0.2)));
+        Assertions.assertEquals(overallRating, RatingManager.calcTeamOverallRating(customTeam));
+    }
+
 }
