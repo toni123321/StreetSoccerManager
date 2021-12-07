@@ -2,10 +2,10 @@ import {React, useEffect} from 'react';
 import styles from "../css/GameNavbar.css"
 import { Nav, Row, Col, Container } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
+import Cookies from 'universal-cookie';
+import { useHistory } from 'react-router-dom';
 
-
-const GameNavbar = ({team}) => {
-    
+const GameNavbar = ({team}) => {    
     return (
         <Container className="game-navbar">
         <Row id="nav-items-frow" className="justify-content-sm-center game-nav-first-view">

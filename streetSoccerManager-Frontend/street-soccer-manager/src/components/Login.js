@@ -23,8 +23,7 @@ const Login = () => {
         } 
     }, []);
 
-    async function handleLogin(details) {
-        
+    function handleLogin(details) {
         setLoginError(false);
         UserService.login(details)
         .then(response => {
@@ -37,7 +36,7 @@ const Login = () => {
             setIsUserLogged(true);
             console.log(decode_token.sub);
             getUserByEmail(decode_token.sub, token);
-            //history.push("/game");   
+            history.push("/game");   
         })
         .catch (error => {
             setLoginError(true);
@@ -54,8 +53,8 @@ const Login = () => {
         // console.log(response.data);
     }
 
-    async function getUserTeam(userId, token){
-        TeamService.getTeamByUserId(userId, token)
+    function getUserTeam(userId, token){
+         TeamService.getTeamByUserId(userId, token)
         .then((response) => {
             localStorage.setItem("team", JSON.stringify(response.data));
         }
