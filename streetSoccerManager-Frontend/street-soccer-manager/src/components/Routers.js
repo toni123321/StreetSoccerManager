@@ -19,12 +19,7 @@ const Routers = () => {
 
     return (
         <Switch>
-            {/* {cookies.get('login-token') !== undefined 
-            ?
-            <Route exact path="/game" component={CreateTeam} />
-            :
-            <Redirect to="/login"/>
-            } */}
+            
 
             <Route exact path="/" component={Home} />
             <Route exact path="/game" component={CreateTeam} />            
@@ -40,7 +35,12 @@ const Routers = () => {
 
             <Route exact path="/rotatePlayers" component={RotatePlayersContainer} />
 
-            
+            {/* {cookies.get('login-token') !== undefined 
+            ?
+            <Route exact path="/game" component={CreateTeam} />
+            :
+            <Redirect to="/login"/>
+            } */}
             
             
             {/* <Route path="/createTeam" component={CreateTeam} /> */}

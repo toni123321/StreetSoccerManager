@@ -32,31 +32,45 @@ function CreateTeam() {
 
     useEffect(() => {
         
-        const createdTeam = localStorage.getItem("team");
-        console.log("Created team: ", createTeam);
-        if (createdTeam) {
-          const foundTeam = JSON.parse(createdTeam);
-          setTeam(foundTeam);
-          setSubmitted(true);
-        } 
-        else
-        {
-            const id = 1;
-            TeamService.get(id)
-                .then(response => {
-                    setTeam({
-                        id: response.data.id,
-                        name: response.data.name,
-                        formation: {
-                            id: response.data.formation.id,
-                            name: response.data.formation.name
-                        },
-                        manager: response.data.manager
-                     });
-                    setSubmitted(true);
-                    localStorage.setItem('team', JSON.stringify(response.data));
-            });
+        if(cookies.get('login-token') === undefined){ 
+                history.push("/login");
         }
+        
+        let createdTeam;
+        setTimeout(function() {
+            createdTeam = localStorage.getItem("team");
+
+            console.log("Created team: ", createTeam);
+            if (createdTeam) {
+            const foundTeam = JSON.parse(createdTeam);
+            setTeam(foundTeam);
+            setSubmitted(true);
+            console.log("Submitted", submitted);
+            } 
+
+        }, 50);
+
+        
+        
+        
+        // else
+        // {
+        //     const id = 1;
+        //     TeamService.get(id)
+        //         .then(response => {
+        //             setTeam({
+        //                 id: response.data.id,
+        //                 name: response.data.name,
+        //                 formation: {
+        //                     id: response.data.formation.id,
+        //                     name: response.data.formation.name
+        //                 },
+        //                 manager: response.data.manager
+        //              });
+        //             setSubmitted(true);
+        //             localStorage.setItem('team', JSON.stringify(response.data));
+        //     });
+        // }
       }, []);
 
     const createTeam = (teamName) => {
