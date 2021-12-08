@@ -57,10 +57,11 @@ function MainNavbar() {
                             {auth.isUserLogged ?
                             (
                             <>  
-                            <NavDropdown title="Account" id="basic-nav-dropdown">
+                            <NavDropdown title={<i className="fas fa-user-circle"/>} className="profile-avatar" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/account">
-                                <div>View account</div>
+                                <div><i class="fas fa-user"></i> View account</div>
                             </NavDropdown.Item>
+                            <NavDropdown.Divider />
                             <NavDropdown.Item>
                                 <div onClick={() => {
                                         auth.signout(() => history.push("/"));
