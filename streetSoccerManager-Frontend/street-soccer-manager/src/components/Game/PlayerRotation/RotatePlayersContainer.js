@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import PlayerService from '../services/PlayerService';
-import Player from './Player';
-import PlayerPositionInfoService from '../services/PlayerPositionInfoService';
+import PlayerService from '../../../services/PlayerService';
+import Player from '../Player/Player';
+import PlayerPositionInfoService from '../../../services/PlayerPositionInfoService';
 import Cookies from 'universal-cookie';
 
 

@@ -1,5 +1,5 @@
 import {React, useEffect} from 'react';
-import styles from "../css/GameNavbar.css"
+import styles from "../../../css/GameNavbar.scss"
 import { Nav, Row, Col, Container } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import Cookies from 'universal-cookie';

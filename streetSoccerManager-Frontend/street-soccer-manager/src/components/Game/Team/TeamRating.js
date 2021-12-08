@@ -1,5 +1,5 @@
 import React,{useState, useEffect } from 'react';
-import RatingService from '../services/RatingService';
+import RatingService from '../../../services/RatingService';
 import Cookies from 'universal-cookie';
 
 function TeamRating({id}) {

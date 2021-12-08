@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import styles from "../css/TeamSquad.css";
-import PlayerService from '../services/PlayerService';
-import Player from "./Player";
+import styles from "../../../css/TeamSquad.scss";
+import PlayerService from '../../../services/PlayerService';
+import Player from "../Player/Player";
 import {Container, Col, Row} from 'react-bootstrap';
-import RotatePlayersContainer from './RotatePlayersContainer';
+import RotatePlayersContainer from '../PlayerRotation/RotatePlayersContainer';
 import Cookies from 'universal-cookie';
 
 const TeamSquad = () => {

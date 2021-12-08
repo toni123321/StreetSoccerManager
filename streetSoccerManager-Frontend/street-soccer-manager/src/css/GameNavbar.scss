@@ -17,23 +17,23 @@
     justify-content: center;
 }
 
-.nav-item {
+// nav-item {
     
-    height: 7.5rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-weight: 500;
-    padding: 0px !important;
-    /* border-radius: 30px; */
+//     height: 7.5rem;
+//     display: flex;
+//     justify-content: flex-start;
+//     align-items: flex-start;
+//     font-weight: 500;
+//     padding: 0px !important;
+//     /* border-radius: 30px; */
 
-    border:2px solid white;
-    background: #0F2027;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #76d5ff, #562dd0, #164254);
-    height:12rem;
-}
+//     border:2px solid white;
+//     background: #0F2027;  /* fallback for old browsers */
+//     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+//     background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//     background: linear-gradient(to right, #76d5ff, #562dd0, #164254);
+//     height:12rem;
+// }
 
 #nav-items-frow .nav-item {
     height: 15rem;
@@ -168,6 +168,12 @@
     #trainPlayers::after, #shop::after, #teamSquad::after {
         background-size: 20% 40%!important; 
     }
+}
+
+
+.main-navbar .dropdown-menu {
+    width: 150px;
+    margin-inline: auto;
 }
 
 
