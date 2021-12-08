@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import FriendlyMatchService from '../services/FriendlyMatchService';
-import  "../css/playMatch.scss";
+import FriendlyMatchService from '../../../services/FriendlyMatchService';
+import  "../../../css/playMatch.scss";
 import Cookies from 'universal-cookie';
 import { useHistory } from 'react-router-dom';
 

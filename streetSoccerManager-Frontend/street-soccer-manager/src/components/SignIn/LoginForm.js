@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Nav } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
-import styles from "../css/Login.css";
+import styles from "../../css/Login.scss";
 
 const LoginForm = ({handleLogin}) => {
 

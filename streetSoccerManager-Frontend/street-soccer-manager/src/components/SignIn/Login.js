@@ -2,12 +2,12 @@
 import React, {useState, useEffect} from "react";
 import LoginForm from './LoginForm';
 import { useHistory } from 'react-router-dom';
-import FrontendUserService from "../services/FrontendUserService";
-import UserService from "../services/UserService";
+import FrontendUserService from "../../services/FrontendUserService";
+import UserService from "../../services/UserService";
 import axios from "axios";
 import Cookies from 'universal-cookie';
 import jwt_decode from "jwt-decode";
-import TeamService from "../services/TeamService";
+import TeamService from "../../services/TeamService";
 
 const Login = () => {
     let history = useHistory();

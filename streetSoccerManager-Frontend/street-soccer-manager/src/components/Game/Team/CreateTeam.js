@@ -1,13 +1,13 @@
 import React from 'react';
 import {useState, useEffect} from "react";
-import TeamService from "../services/TeamService";
-import styles from "../css/CreateTeam.css";
+import TeamService from "../../../services/TeamService";
+import styles from "../../../css/CreateTeam.scss";
 import CreateTeamForm from './CreateTeamForm';
-import GameNavbar from './GameNavbar';
+import GameNavbar from '../GameNavbar/GameNavbar';
 import { useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
-import FormationService from '../services/FormationService';
+import FormationService from '../../../services/FormationService';
 
 function CreateTeam() {
     let history = useHistory();
@@ -31,46 +31,23 @@ function CreateTeam() {
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-        
-        if(cookies.get('login-token') === undefined){ 
-                history.push("/login");
-        }
-        
+        // if(cookies.get('login-token') === undefined){
+        //     history.push("/login");
+        // }
+
         let createdTeam;
         setTimeout(function() {
             createdTeam = localStorage.getItem("team");
 
             console.log("Created team: ", createTeam);
             if (createdTeam) {
-            const foundTeam = JSON.parse(createdTeam);
-            setTeam(foundTeam);
-            setSubmitted(true);
-            console.log("Submitted", submitted);
-            } 
+                const foundTeam = JSON.parse(createdTeam);
+                setTeam(foundTeam);
+                setSubmitted(true);
+                console.log("Submitted", submitted);
+            }
 
         }, 50);
-
-        
-        
-        
-        // else
-        // {
-        //     const id = 1;
-        //     TeamService.get(id)
-        //         .then(response => {
-        //             setTeam({
-        //                 id: response.data.id,
-        //                 name: response.data.name,
-        //                 formation: {
-        //                     id: response.data.formation.id,
-        //                     name: response.data.formation.name
-        //                 },
-        //                 manager: response.data.manager
-        //              });
-        //             setSubmitted(true);
-        //             localStorage.setItem('team', JSON.stringify(response.data));
-        //     });
-        // }
       }, []);
 
     const createTeam = (teamName) => {

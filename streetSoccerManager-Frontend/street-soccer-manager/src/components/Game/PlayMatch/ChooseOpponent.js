@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import TeamService from '../services/TeamService';
-import ChoosePlayersForFriendlyMatch from './ChoosePlayersForFriendlyMatch';
+import TeamService from '../../../services/TeamService';
 import Carousel from 'react-bootstrap/Carousel'
 import PlayMatch from './PlayMatch';
 import {Col, Row, Container} from 'react-bootstrap';
-import "../css/chooseOpponent.scss";
-import yourTeamLogo from "../resources/your-team-logo.png";
-import opponentTeamLogo from "../resources/opponent-team-logo.png";
-import TeamRating from './TeamRating';
+import "../../../css/chooseOpponent.scss";
+import yourTeamLogo from "../../../resources/your-team-logo.png";
+import opponentTeamLogo from "../../../resources/opponent-team-logo.png";
+import TeamRating from '../Team/TeamRating';
 import Cookies from 'universal-cookie';
-import RatingService from '../services/RatingService';
+import RatingService from '../../../services/RatingService';
 
 
 function ChooseOpponent() {
