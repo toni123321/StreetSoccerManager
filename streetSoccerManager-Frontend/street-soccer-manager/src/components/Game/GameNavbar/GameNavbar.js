@@ -7,7 +7,12 @@ import { useHistory } from 'react-router-dom';
 
 const GameNavbar = ({team}) => {    
     return (
+        <div className="game-navbar-container">
+       
         <Container className="game-navbar">
+        {/* <Row id="nav-items-frow" className="team-name-row">
+            <h2 className="team-name">Team name: {team.name}</h2>
+        </Row> */}
         <Row id="nav-items-frow" className="justify-content-sm-center game-nav-first-view">
             <Col xs="12" md="5" className="nav-item" id="playMatch">
                 <LinkContainer to="/chooseOpponent">
@@ -45,6 +50,7 @@ const GameNavbar = ({team}) => {
             
         </Row>
         </Container>
+        </div>
     );
 }
 

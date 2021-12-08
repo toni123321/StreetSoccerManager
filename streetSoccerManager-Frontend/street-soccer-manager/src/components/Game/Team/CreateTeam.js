@@ -90,7 +90,6 @@ function CreateTeam() {
             {submitted ? 
             (
                 <>
-                <h2>Team name: {team.name}</h2>
                 <GameNavbar team={team}/>
                 {/* <button onClick={newTeam}>
                     Add
