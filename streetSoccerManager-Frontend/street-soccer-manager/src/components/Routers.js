@@ -15,6 +15,8 @@ import LoginPage from './SignIn/LoginPage';
 import Account from './Account';
 import Contact from './BasicPages/Contact';
 import NotFound from './NotFound/NotFound';
+import AdminRoute from '../routes/AdminRoute';
+import AddNews from './AdminView/AddNews';
 
 
 const Routers = () => {
@@ -55,6 +57,10 @@ const Routers = () => {
             <PrivateRoute path="/game">
               <CreateTeam />
             </PrivateRoute>
+
+            <AdminRoute path="/addNews">
+              <AddNews/>
+            </AdminRoute>
 
             <Route component={NotFound} />
 
