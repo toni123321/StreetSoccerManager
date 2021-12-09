@@ -1,0 +1,32 @@
+
+.not-found-parent {
+
+    margin-top: 30px;
+    width: 40%;
+    margin-inline: auto;
+}
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.not-found-img img {
+    width: 300px;
+    height: 200px;
+}
+
+
+.not-found-text h1, .not-found-text h2 {
+    color: blue;
+    font-family: cursive;
+}
+
+.not-found-text h1 {
+    font-size: 80px;
+}
+
+.not-found-text p {
+    font-family: inherit;
+}

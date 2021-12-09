@@ -49,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/customTeams").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/friendlyMatches").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/formations").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
+                .antMatchers("/ratings").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

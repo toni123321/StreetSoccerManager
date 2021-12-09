@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name ="user")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(exclude = {"team"})
+@EqualsAndHashCode(exclude = {"password", "team"})
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,29 +23,29 @@ public class UserEntity {
     private String lastName;
     @Column(nullable = true)
     private String nickname;
-    @Column(nullable = true)
-    private int points;
     private String role;
 
     @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)
     @JsonIgnore
     protected CustomTeam team;
 
-    public UserEntity(Long id, String email, String password, String firstName, String lastName, String nickname) {
+    public UserEntity(Long id, String email, String password, String firstName, String lastName, String nickname, String role) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
+        this.role = role;
     }
 
-    public UserEntity(String email, String password, String firstName, String lastName, String nickname) {
+    public UserEntity(String email, String password, String firstName, String lastName, String nickname, String role) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = nickname;
+        this.role = role;
     }
 
 }

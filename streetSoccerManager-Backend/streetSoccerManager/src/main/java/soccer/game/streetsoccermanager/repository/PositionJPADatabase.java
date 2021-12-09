@@ -25,11 +25,6 @@ public class PositionJPADatabase implements IPositionRepository {
     }
 
     @Override
-    public Position get(String searchedName) {
-        return positionRepo.findFirstByName(searchedName);
-    }
-
-    @Override
     public Boolean delete(Long id) {
         positionRepo.deleteById(id);
         return true;

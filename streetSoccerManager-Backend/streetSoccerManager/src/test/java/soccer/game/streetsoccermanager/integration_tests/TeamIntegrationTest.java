@@ -30,10 +30,9 @@ class TeamIntegrationTest {
     @BeforeEach
     void clearDB() {
         // Clear
-
-
         formationService.deleteAll();
         userService.deleteAll();
+        teamService.deleteAll();
         teamsExpected.clear();
 
 
@@ -41,7 +40,7 @@ class TeamIntegrationTest {
         // Add
         formationService.add(new Formation("1-2-1"));
         formationService.add(new Formation("2-1-1"));
-        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho"));
+        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho", "USER"));
 
         teamService.add(new CustomTeam("Soccer01", formationService.getAll().get(0), userService.getAll().get(0)));
         teamService.add(new OfficialTeam("Barcelona", formationService.getAll().get(0), "Pep Guardiola"));

@@ -29,17 +29,27 @@ public class PlayerAdditionalInfoService implements IPlayerAdditionalInfoService
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerAdditionalInfo add(PlayerAdditionalInfo playerAdditionalInfo) {
-        return dataStore.add(playerAdditionalInfo);
+        if(playerAdditionalInfo.getId() == null) {
+            return dataStore.add(playerAdditionalInfo);
+        }
+        return null;
     }
 
     @Override
     public PlayerAdditionalInfo update(PlayerAdditionalInfo playerAdditionalInfo) {
-        return dataStore.update(playerAdditionalInfo);
+        if(playerAdditionalInfo.getId() != null) {
+            return dataStore.update(playerAdditionalInfo);
+        }
+        return null;
     }
 
     @Override
