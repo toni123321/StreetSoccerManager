@@ -28,18 +28,16 @@ function LoginPage() {
   
     return (
       <div>
-        <p>You must log in to view the page at {from.pathname}</p>
+        {/* <p>You must log in to view the page at {from.pathname}</p> */}
         {loginError ? 
             (
             <>
             <h3>Wrong credentials</h3>
             </>
             ) 
-            : (<></>)}
-            <LoginForm handleLogin={handleLogin}/>
-            )
-            
+            : (<></>)
         }
+        <LoginForm handleLogin={handleLogin}/>
       </div>
     );
 }

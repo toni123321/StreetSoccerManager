@@ -5,18 +5,18 @@ import {
   Redirect
 } from "react-router-dom";
 
-function LoginRoute({ children, ...rest }) {
+function AdminRoute({ children, ...rest }) {
     let auth = useAuth();
     return (
         <Route
         {...rest}
         render={({ location }) =>
-            !auth.isUserLogged ? (
+            auth.isUserLogged? (
             children
             ) : (
             <Redirect
                 to={{
-                pathname: "/account",
+                pathname: "/loginPage",
                 state: { from: location }
                 }}
             />
@@ -26,4 +26,4 @@ function LoginRoute({ children, ...rest }) {
     );
 }
 
-export default LoginRoute;
+export default AdminRoute;

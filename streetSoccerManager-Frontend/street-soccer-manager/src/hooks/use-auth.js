@@ -27,11 +27,20 @@ export function useProvideAuth() {
 
   const [isUserLogged, setIsUserLogged] = useState(false);
 
+  // GUEST, USER, ADMIN
+  const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     if(cookies.get('login-token') !== undefined){
         setIsUserLogged(true);
+        const token = cookies.get('login-token') 
+        const decode_token = jwt_decode(token);
+        if(decode_token.role === "ADMIN"){
+          setIsAdmin(true);
+        }
+        
+        console.log(decode_token.role);
     }
-    
   }, [])
 
   function signin (details, from) {
@@ -40,12 +49,11 @@ export function useProvideAuth() {
         console.log(response.data.Authorization);
         const token = response.data.Authorization;
         const decode_token = jwt_decode(token);
-
+        console.log("Decoded token", decode_token);
         cookies.set('login-token', token, {sameSite: 'lax'});
-        console.log(cookies.get('login-token'));
         setIsUserLogged(true);
-        console.log(decode_token.sub);
         getUserByEmail(decode_token.sub, token);
+        setIsAdmin(true);
         history.replace(from);  
         return true;
     })
@@ -75,10 +83,12 @@ export function useProvideAuth() {
   function signout() {
     cookies.remove('login-token', {sameSite: 'lax'});
     setIsUserLogged(false);
+    setIsAdmin(false);
     localStorage.removeItem("team");
   };
 
   return {
+    isAdmin,
     isUserLogged,
     signin,
     signout

@@ -1,22 +1,16 @@
 import React from "react";
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, NavLink } from 'react-bootstrap';
 import {LinkContainer} from "react-router-bootstrap";
 import styles from "../css/MainNavbar.scss";
 import Cookies from 'universal-cookie';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import SignOut from "./SignOut/SignOut";
 import {useAuth} from "../hooks/use-auth.js";
 
 function MainNavbar() {
     const cookies = new Cookies();
     const token = cookies.get('login-token');
-    console.log(token);
     
-    // function handleLogOut() {
-    //     cookies.remove('login-token', {sameSite: 'lax'});
-    //     //setIsUserLogged(false);
-    //     localStorage.removeItem("team");
-    // }
 
     let history = useHistory();
     let auth = useAuth();
@@ -56,9 +50,21 @@ function MainNavbar() {
                             
                             {auth.isUserLogged ?
                             (
-                            <>  
+                            <>
+                            {auth.isAdmin ?
+                            (
+                            <NavDropdown title="Admin View" id="basic-nav-dropdown">
+                            <NavDropdown.Item as={Link} to="/addNews">
+                                <div>Add news</div>
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as={Link} to="/newsfeed">
+                                <div>View newsfeed</div>
+                            </NavDropdown.Item>
+                            </NavDropdown>
+                            ):(<></>)}
                             <NavDropdown title={<i className="fas fa-user-circle"/>} className="profile-avatar" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/account">
+                            <NavDropdown.Item as={Link} to="/account">
                                 <div><i class="fas fa-user"></i> View account</div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
