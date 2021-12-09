@@ -58,23 +58,32 @@ public class TeamService implements ITeamService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
 
 
     @Override
     public Team add(Team team) {
-        if(team instanceof CustomTeam)
-        {
-            team.setFormation(dataStore.getDefaultFormation());
+        if(team.getId() == null) {
+            if(team instanceof CustomTeam)
+            {
+                team.setFormation(dataStore.getDefaultFormation());
+            }
+            return dataStore.add(team);
         }
-        return dataStore.add(team);
+        return null;
     }
 
     @Override
     public Team update(Team team) {
-        return dataStore.update(team);
-
+        if(team.getId() != null) {
+            return dataStore.update(team);
+        }
+        return null;
     }
 }

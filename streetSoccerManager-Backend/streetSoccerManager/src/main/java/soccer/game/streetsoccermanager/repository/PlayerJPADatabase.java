@@ -25,27 +25,18 @@ public class PlayerJPADatabase implements IPlayerRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            playerRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        playerRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public Player add(Player player) {
-        if(player.getId() == null) {
-            return playerRepo.save(player);
-        }
-        return null;
+        return playerRepo.save(player);
     }
 
     @Override
     public Player update(Player player) {
-        if(player.getId() != null) {
-            return playerRepo.save(player);
-        }
-        return null;
+        return playerRepo.save(player);
     }
 
     @Override

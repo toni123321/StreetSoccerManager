@@ -25,30 +25,19 @@ public class PlayerAdditionalInfoJPADatabase implements IPlayerAdditionalInfoRep
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            PlayerAdditionalInfo playerAdditionalInfo = get(id);
-            playerAdditionalInfo.setPlayer(null);
-            playerAdditionalInfoRepo.deleteById(id);
-
-            return true;
-        }
-        return false;
+        playerAdditionalInfoRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public PlayerAdditionalInfo add(PlayerAdditionalInfo playerAdditionalInfo) {
-        if(playerAdditionalInfo.getId() == null) {
-            return playerAdditionalInfoRepo.save(playerAdditionalInfo);
-        }
-        return null;
+        return playerAdditionalInfoRepo.save(playerAdditionalInfo);
     }
 
     @Override
     public PlayerAdditionalInfo update(PlayerAdditionalInfo playerAdditionalInfo) {
-        if(playerAdditionalInfo.getId() != null) {
-            return playerAdditionalInfoRepo.save(playerAdditionalInfo);
-        }
-        return null;
+        return playerAdditionalInfoRepo.save(playerAdditionalInfo);
+
     }
 
     @Override

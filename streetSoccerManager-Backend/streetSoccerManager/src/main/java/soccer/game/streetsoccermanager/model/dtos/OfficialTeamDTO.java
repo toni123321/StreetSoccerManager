@@ -10,7 +10,6 @@ public class OfficialTeamDTO{
     private Long id;
     private String name;
     private Formation formation;
-    private int rating;
     private String managerName;
 
 }
