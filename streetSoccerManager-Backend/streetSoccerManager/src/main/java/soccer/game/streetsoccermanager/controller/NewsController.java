@@ -11,7 +11,6 @@ import soccer.game.streetsoccermanager.model.dtos.NewsDTO;
 import soccer.game.streetsoccermanager.model.entities.News;
 import soccer.game.streetsoccermanager.service_interfaces.INewsService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +27,7 @@ public class NewsController {
 
     @MessageMapping("/addNews")
     @SendTo("/topic/newsfeed")
-    public NewsDTO AddNews(News news) throws Exception {
+    public NewsDTO addNews(News news) throws IllegalArgumentException, InterruptedException {
         Thread.sleep(1000);
         News inputtedNewsEntity = modelMapper.map(news, News.class);
         News createdNewsEntity = newsService.add(inputtedNewsEntity);
@@ -43,7 +42,7 @@ public class NewsController {
 
     @MessageMapping("/updateNews")
     @SendTo("/topic/newsfeed")
-    public NewsDTO updateNews(@RequestBody NewsDTO news) throws Exception {
+    public NewsDTO updateNews(@RequestBody NewsDTO news) throws IllegalArgumentException, InterruptedException {
         Thread.sleep(1000);
         News inputtedNewsEntity = modelMapper.map(news, News.class);
         News updatedNewsEntity = newsService.add(inputtedNewsEntity);
