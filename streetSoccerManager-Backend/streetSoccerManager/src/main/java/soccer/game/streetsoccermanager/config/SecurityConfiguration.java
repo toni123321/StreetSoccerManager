@@ -39,6 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, AuthenticationConfigConstants.SIGN_UP_URL).permitAll()
                 .antMatchers("/h2-ui/**").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/ws/**").permitAll()
+                .antMatchers("/newsfeed/**").permitAll()
+
 //                .antMatchers("/**").permitAll()
                 .antMatchers("/teams").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/positions").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
