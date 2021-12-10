@@ -1,0 +1,65 @@
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+.add-news-form {
+    margin-block: 50px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 450px;
+    padding: 20px;
+    margin-inline: auto;
+    background: linear-gradient(
+        45deg, #a185d8, transparent);
+}
+
+.btn-add-news-form {
+    padding: 12px;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #4028ca, transparent);
+    border: 1px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.add-news-group label {
+    display: block;
+    font-family: 'Open Sans';
+    display: block;
+    font-size: 20px;
+    color:white;
+    margin-bottom: 10px;
+}
+
+.add-news-group input[name="title"] {
+    width: 100%;
+}
+
+.add-news-group input[name="title"], textarea {
+    border-radius: 20px;
+    border:1px;
+    padding:10px;
+}
+
+
+.add-news-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-news-group {
+    margin-top:20px;
+}
+
+
+.newsfeed-list .list-group-item {
+    position: unset !important;
+    display: unset !important;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: unset !important;
+    background-color: unset !important;
+    border: unset !important;
+}
