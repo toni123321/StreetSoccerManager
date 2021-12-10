@@ -71,7 +71,7 @@ public class FormationsController {
     @PutMapping()
     public ResponseEntity<FormationDTO> updateFormation(@RequestBody FormationDTO formation) {
         Formation inputtedFormationEntity = modelMapper.map(formation, Formation.class);
-        Formation updatedFormationEntity = formationService.add(inputtedFormationEntity);
+        Formation updatedFormationEntity = formationService.update(inputtedFormationEntity);
         FormationDTO updatedFormationDTO = modelMapper.map(updatedFormationEntity, FormationDTO.class);
         if (updatedFormationDTO == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
