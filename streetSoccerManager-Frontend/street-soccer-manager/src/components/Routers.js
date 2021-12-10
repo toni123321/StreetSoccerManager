@@ -36,6 +36,8 @@ const Routers = () => {
 
             <Route exact path="/contact" component={Contact} />
 
+            <Route exact path="/about" component={About} />
+            
             
             
             {/* <Route path="/loginPage">
@@ -48,10 +50,6 @@ const Routers = () => {
 
             <PrivateRoute path="/account">
               <Account/>
-            </PrivateRoute>
-
-            <PrivateRoute path="/about">
-              <About />
             </PrivateRoute>
 
             <PrivateRoute path="/game">
