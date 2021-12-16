@@ -71,6 +71,7 @@ class RatingManagerUnitTest {
                 getPlayer().getPlayerAdditionalInfo().getPlayerStats());
         Assertions.assertEquals(ovrRating, RatingManager.calcStartingPlayersRatingOnPosCategory(customTeam, "ATACK"));
         Assertions.assertEquals(0, RatingManager.calcStartingPlayersRatingOnPosCategory(officialTeam, "ATACK"));
+        Assertions.assertEquals(0, RatingManager.calcStartingPlayersRatingOnPosCategory(officialTeam, "TEST"));
     }
 
 
