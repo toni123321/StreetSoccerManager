@@ -25,7 +25,7 @@ class RatingManagerUnitTest {
     public void setUp()  {
         customTeam = new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
                 new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER"));
-        new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman");
+        officialTeam = new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman");
 
         List<PlayerTeamInfo> playersTeamInfo = List.of(
                 new PlayerTeamInfo(1l, 10, new Team(1l, "Barcelona", new Formation(1l, "1-2-1"))),
@@ -70,6 +70,7 @@ class RatingManagerUnitTest {
         int ovrRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(0).
                 getPlayer().getPlayerAdditionalInfo().getPlayerStats());
         Assertions.assertEquals(ovrRating, RatingManager.calcStartingPlayersRatingOnPosCategory(customTeam, "ATACK"));
+        Assertions.assertEquals(0, RatingManager.calcStartingPlayersRatingOnPosCategory(officialTeam, "ATACK"));
     }
 
 
