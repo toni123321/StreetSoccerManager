@@ -54,7 +54,6 @@ public class FriendlyMatchController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             else {
-                FriendlyMatchDTO updatedMatchDTO = modelMapper.map(updatedMatchEntity, FriendlyMatchDTO.class);
                 return new ResponseEntity<>("Play match in progress",HttpStatus.OK);
             }
         }
