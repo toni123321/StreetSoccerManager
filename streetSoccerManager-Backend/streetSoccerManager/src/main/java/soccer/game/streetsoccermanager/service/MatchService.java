@@ -1,10 +1,13 @@
 package soccer.game.streetsoccermanager.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.Match;
 import soccer.game.streetsoccermanager.repository_interfaces.IMatchRepository;
 import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
+import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
 import java.util.List;
 
@@ -12,8 +15,11 @@ import java.util.List;
 public class MatchService implements IMatchService {
     private IMatchRepository dataStore;
 
-    public MatchService(@Qualifier("matchJPADatabase") IMatchRepository dataStore) {
+    private ITeamService teamService;
+    @Autowired
+    public MatchService(IMatchRepository dataStore, ITeamService teamService) {
         this.dataStore = dataStore;
+        this.teamService = teamService;
     }
 
 
@@ -55,10 +61,17 @@ public class MatchService implements IMatchService {
         return null;
     }
 
+    private Boolean isUserTeamHome(Match match){
+        if(teamService.get(match.getHomeTeam().getId()) instanceof CustomTeam){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public Match playFriendlyMatch(Long matchId, String command) {
         Match match = get(matchId);
-        return this.update(PlayMatchManager.playFriendlyMatch(match, command));
+        return this.update(PlayMatchManager.playFriendlyMatch(match, command, isUserTeamHome(match)));
     }
 
     @Override
