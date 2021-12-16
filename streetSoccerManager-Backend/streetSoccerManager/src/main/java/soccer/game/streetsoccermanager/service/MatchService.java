@@ -1,7 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.Match;
@@ -62,10 +61,7 @@ public class MatchService implements IMatchService {
     }
 
     private Boolean isUserTeamHome(Match match){
-        if(teamService.get(match.getHomeTeam().getId()) instanceof CustomTeam){
-            return true;
-        }
-        return false;
+        return teamService.get(match.getHomeTeam().getId()) instanceof CustomTeam;
     }
 
     @Override

@@ -1,11 +1,8 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
-import soccer.game.streetsoccermanager.model.entities.Team;
-import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -17,8 +14,6 @@ public class PlayMatchManager {
     }
 
     public static Match playFriendlyMatch(Match match, String command, Boolean isUserTeamHome) {
-        int homeTeamRating = RatingManager.calcTeamOverallRating(match.getHomeTeam());
-        int awayTeamRating = RatingManager.calcTeamOverallRating(match.getAwayTeam());
 
         FriendlyMatch friendlyMatch;
         String result = "";
@@ -26,13 +21,10 @@ public class PlayMatchManager {
         int currentMin = match.getCurrentMinute();
 
         int action = getActionNr(match.getCurrentMinute());
-//        Boolean isUserTeamHome = isUserTeamHome(match);
 
-        if(isCommandValid(match, command, action, isUserTeamHome)) {
-            if(action <= 15){
-                result = updateMatchResult(match, command, isUserTeamHome);
-                currentMin += 2;
-            }
+        if(isCommandValid(command, action, isUserTeamHome) && action <= 15) {
+            result = updateMatchResult(match, command, isUserTeamHome);
+            currentMin += 2;
         }
 
         friendlyMatch = new FriendlyMatch(match.getId(), match.getHomeTeam(), match.getAwayTeam(), result, statistic, currentMin);
@@ -44,9 +36,8 @@ public class PlayMatchManager {
         int homeTeamGoals = Integer.parseInt(match.getResult().substring(0, 1));
         int awayTeamGoals = Integer.parseInt(match.getResult().substring(2));
 
-//        Boolean isUserTeamHome = isUserTeamHome(match);
 
-        String result = match.getResult();
+        String result;
 
         int ratingATTACKHomeTeam = 0;
         int ratingMIDHomeTeam = 0;
@@ -123,29 +114,23 @@ public class PlayMatchManager {
         }
         return goals;
     }
-    private static Boolean isUserTeamHome(Match match){
-        if(match.getHomeTeam() instanceof CustomTeam){
-            return true;
-        }
-        return false;
-    }
+
 
     private static int getActionNr(int currMinute){
         Integer[] minutesIntervals = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28};
-        if(Arrays.asList(minutesIntervals).contains(((Integer) currMinute))){
+        if(Arrays.asList(minutesIntervals).contains(currMinute)){
             return Arrays.asList(minutesIntervals).indexOf(currMinute) + 1;
         }
         return 0;
     }
 
-    private static boolean isCommandValid(Match match, String command, int action, Boolean isUserTeamHome) {
+    private static boolean isCommandValid(String command, int action, Boolean isUserTeamHome) {
         String [] acceptedUserCommands = {"ATTACK", "DEF"};
         String opponentCommand = "OPPONENT";
-        Boolean commandValid = false;
+        Boolean commandValid;
 
-//        Boolean isUserTeamHome = isUserTeamHome(match);
         if(action % 2 != 0){
-            if(isUserTeamHome) {
+            if(Boolean.TRUE.equals(isUserTeamHome)) {
                 commandValid = Arrays.stream(acceptedUserCommands).anyMatch(command::contains);
             }
             else{
@@ -153,7 +138,7 @@ public class PlayMatchManager {
             }
         }
         else {
-            if(isUserTeamHome) {
+            if(Boolean.TRUE.equals(isUserTeamHome)) {
                 commandValid = opponentCommand.equals(command);
             }
             else{
