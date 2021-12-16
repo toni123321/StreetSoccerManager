@@ -11,6 +11,7 @@ import soccer.game.streetsoccermanager.repository_interfaces.IMatchRepository;
 import soccer.game.streetsoccermanager.service.MatchService;
 import soccer.game.streetsoccermanager.service.PlayMatchManager;
 import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
+import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ class MatchServiceUnitTest {
     @Mock
     IMatchRepository matchRepository;
     IMatchService matchService;
+    @Mock
+    ITeamService teamService;
 
     @BeforeEach
     public void setUp()  {
@@ -37,6 +40,8 @@ class MatchServiceUnitTest {
                         new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                         "1:1", "Draw", 30)
         );
+        when(teamService.get(1l)).thenReturn(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
+                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")));
         when(matchRepository.getAll()).thenReturn(matches);
         when(matchRepository.get(1l)).thenReturn(matches.get(0));
         when(matchRepository.get(2l)).thenReturn(matches.get(1));
@@ -62,7 +67,7 @@ class MatchServiceUnitTest {
                                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                                 "2:2", "Draw", 30)
                 );
-        matchService = new MatchService(matchRepository);
+        matchService = new MatchService(matchRepository, teamService);
     }
 
     @Test
@@ -150,6 +155,6 @@ class MatchServiceUnitTest {
     @Test
     void PlayFriendlyMatch() {
         Match playedMatch = matchService.playFriendlyMatch(1l, "ATTACK");
-        Assertions.assertEquals(PlayMatchManager.playFriendlyMatch(matchService.get(1l), "ATTACK"), playedMatch);
+        Assertions.assertEquals(PlayMatchManager.playFriendlyMatch(matchService.get(1l), "ATTACK", true), playedMatch);
     }
 }

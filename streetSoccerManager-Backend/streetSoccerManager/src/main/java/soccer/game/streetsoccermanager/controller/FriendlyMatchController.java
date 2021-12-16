@@ -47,14 +47,18 @@ public class FriendlyMatchController {
     }
 
     @PutMapping("/playMatch")
-    public ResponseEntity<FriendlyMatchDTO> playFriendlyMatch(@RequestBody PlayFriendlyMatchDTO matchDTO){
-        Match updatedMatchEntity = matchService.playFriendlyMatch(matchDTO.getFriendlyMatch().getId(), matchDTO.getCommand());
-        if (updatedMatchEntity == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            FriendlyMatchDTO updatedMatchDTO = modelMapper.map(updatedMatchEntity, FriendlyMatchDTO.class);
-            return new ResponseEntity<>(updatedMatchDTO,HttpStatus.CREATED);
+    public ResponseEntity<String> playFriendlyMatch(@RequestBody PlayFriendlyMatchDTO matchDTO){
+        if(matchDTO.getFriendlyMatch().getCurrentMinute() < 30){
+            Match updatedMatchEntity = matchService.playFriendlyMatch(matchDTO.getFriendlyMatch().getId(), matchDTO.getCommand());
+            if (updatedMatchEntity == null){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            else {
+                FriendlyMatchDTO updatedMatchDTO = modelMapper.map(updatedMatchEntity, FriendlyMatchDTO.class);
+                return new ResponseEntity<>("Play match in progress",HttpStatus.OK);
+            }
         }
+        return new ResponseEntity<>("Play match finished!", HttpStatus.OK);
     }
 
 
