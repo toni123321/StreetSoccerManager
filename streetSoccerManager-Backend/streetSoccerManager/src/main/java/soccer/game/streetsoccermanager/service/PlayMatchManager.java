@@ -1,6 +1,5 @@
 package soccer.game.streetsoccermanager.service;
 
-import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
 

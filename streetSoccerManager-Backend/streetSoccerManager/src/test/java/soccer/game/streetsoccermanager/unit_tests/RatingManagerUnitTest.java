@@ -66,6 +66,14 @@ class RatingManagerUnitTest {
     }
 
     @Test
+    void calcStartingPlayersRatingOnPosCategory(){
+        int ovrRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(0).
+                getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+        Assertions.assertEquals(ovrRating, RatingManager.calcStartingPlayersRatingOnPosCategory(customTeam, "ATACK"));
+    }
+
+
+    @Test
     void calcReservesPlayersRating(){
         int ovrRating = RatingManager.calcPlayerOverallRating(new ArrayList<>(customTeam.getPlayersTeamInfo()).get(1).
                 getPlayer().getPlayerAdditionalInfo().getPlayerStats());
