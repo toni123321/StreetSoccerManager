@@ -15,8 +15,8 @@ public class PlayMatchManager {
     public static Match playFriendlyMatch(Match match, String command, Boolean isUserTeamHome) {
 
         FriendlyMatch friendlyMatch;
-        String result = "";
-        String statistic = "";
+        String result = match.getResult();
+        String statistic = match.getStatistic();
         int currentMin = match.getCurrentMinute();
 
         int action = getActionNr(match.getCurrentMinute());
