@@ -4,8 +4,17 @@ const getAll = () => {
   return http.get("/friendlyMatches");
 };
 
+const startMatch = (data, token) => {
+  return http.post("/friendlyMatches/startMatch", data, 
+  {
+    headers:{
+    'Authorization': `Bearer ${token}`
+  },
+  });
+}
+
 const playMatch = (data, token) => {
-  return http.post("/friendlyMatches", data, 
+  return http.put("/friendlyMatches/playMatch", data, 
   {
     headers:{
     'Authorization': `Bearer ${token}`
@@ -17,5 +26,6 @@ const playMatch = (data, token) => {
 
 export default {
   getAll,
+  startMatch,
   playMatch
 };
