@@ -47,6 +47,9 @@ public class MatchService implements IMatchService {
         if(match.getId() == null) {
             match.setResult("0:0");
             match.setStatistic("Match started");
+            if(Boolean.FALSE.equals(isUserTeamHome(match))){
+                return dataStore.add(PlayMatchManager.playFriendlyMatch(match, "OPPONENT", false));
+            }
             return dataStore.add(match);
         }
         return null;
