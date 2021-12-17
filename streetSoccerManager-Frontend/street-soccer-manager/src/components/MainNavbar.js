@@ -54,12 +54,12 @@ function MainNavbar() {
                             {auth.isAdmin ?
                             (
                             <NavDropdown title="Admin View" id="basic-nav-dropdown">
-                            <NavDropdown.Item as={Link} to="/addNews">
-                                <div>Add news</div>
+                            <NavDropdown.Item as={Link} to="/">
+                                <div>Home page</div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to="/newsfeed">
-                                <div>View newsfeed</div>
+                            <NavDropdown.Item as={Link} to="/about">
+                                <div>About page</div>
                             </NavDropdown.Item>
                             </NavDropdown>
                             ):(<></>)}

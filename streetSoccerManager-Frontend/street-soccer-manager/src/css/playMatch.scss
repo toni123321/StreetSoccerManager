@@ -20,3 +20,68 @@
 .goBack {
     margin-right: 20px;
 }
+
+.team-vs .result-divider {
+    margin-inline: 8px;
+}
+
+.matchStarted, .matchEnd {
+    margin-top: 50px;
+    color: white;
+    font-family: 'Font Awesome 5 Pro';
+    height: 400px;
+    background: linear-gradient(
+45deg, #7e14b4, transparent);
+    padding: 50px;
+}
+
+.matchEnd {
+    background: linear-gradient(
+45deg, #144ea4, transparent);
+}
+
+.matchResult {
+    margin-top: 20px;
+    border-bottom: 2px solid white;
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.matchResultItem {
+    flex: 1;
+    font-size: 25px;
+}
+
+.matchStarted h2, .matchEnd h2 {
+    font-family: cursive;
+}
+
+.matchActiveSimulation {
+    margin-top:50px;
+}
+
+.play-match-attack-btn, .play-match-def-btn {
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+    font-family: 'Font Awesome 5 Pro';
+}
+
+.play-match-attack-btn {
+    margin-right: 20px;
+}
+
+.play-match-action {
+    font-family: cursive;
+    margin-top: 20px;
+    font-size: 20px;
+
+}
+
+.play-match-navigation {
+    margin-top: 50px;
+}

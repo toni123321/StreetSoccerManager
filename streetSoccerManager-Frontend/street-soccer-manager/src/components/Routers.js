@@ -22,30 +22,16 @@ import AddNews from './AdminView/AddNews';
 const Routers = () => {
     return (
         <Switch>
-            <Route exact path="/" component={Home} />          
-        
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signUp" component={SignUp} />
-
-            <Route exact path="/teamSquad" component={TeamSquad} />
-            
-            <Route exact path="/chooseOpponent" component={ChooseOpponent} />
-
-            <Route exact path="/rotatePlayers" component={RotatePlayersContainer} />
-
-
-            <Route exact path="/contact" component={Contact} />
-
+            <Route exact path="/" component={Home} />     
             <Route exact path="/about" component={About} />
-            
-            
-            
-            {/* <Route path="/loginPage">
-              <LoginPage />
-            </Route> */}
+            <Route exact path="/contact" component={Contact} />
 
             <LoginRoute path="/loginPage">
                 <LoginPage/>
+            </LoginRoute>
+
+            <LoginRoute path="/signUp">
+                <SignUp/>
             </LoginRoute>
 
             <PrivateRoute path="/account">
@@ -54,6 +40,18 @@ const Routers = () => {
 
             <PrivateRoute path="/game">
               <CreateTeam />
+            </PrivateRoute>
+
+            <PrivateRoute path="/teamSquad">
+              <TeamSquad />
+            </PrivateRoute>
+
+            <PrivateRoute path="/chooseOpponent">
+              <ChooseOpponent />
+            </PrivateRoute>
+
+            <PrivateRoute path="/rotatePlayers">
+              <RotatePlayersContainer />
             </PrivateRoute>
 
             <AdminRoute path="/addNews">

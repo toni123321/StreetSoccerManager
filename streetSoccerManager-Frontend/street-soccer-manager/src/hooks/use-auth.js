@@ -53,7 +53,10 @@ export function useProvideAuth() {
         cookies.set('login-token', token, {sameSite: 'lax'});
         setIsUserLogged(true);
         getUserByEmail(decode_token.sub, token);
-        setIsAdmin(true);
+        
+        if(decode_token.role === "ADMIN"){
+          setIsAdmin(true);
+        }
         history.replace(from);  
         return true;
     })
