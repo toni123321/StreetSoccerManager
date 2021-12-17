@@ -38,6 +38,18 @@ public class RatingManager {
         }
     }
 
+    private static List<PlayerTeamInfo> getStartingPlayersTeamInfoOnPosCategory(Team team, String positionCategory){
+        try {
+            return team.getPlayersTeamInfo().stream().filter(p ->
+                            p.getPlayer().getPlayerPositionInfo().isStarting() &&
+                            p.getPlayer().getPlayerPositionInfo().getCurrentPosition().getCategory().equals(positionCategory)).
+                    collect(Collectors.toList());
+        }
+        catch (NullPointerException e){
+            return new ArrayList<>();
+        }
+    }
+
     private static List<PlayerTeamInfo> getReservesPlayersTeamInfo(Team team) {
         try {
             return team.getPlayersTeamInfo().stream().filter(p ->
@@ -59,6 +71,18 @@ public class RatingManager {
             startingPlayersRating /= getStartingPlayersTeamInfo(team).size();
         }
         return startingPlayersRating;
+    }
+
+    public static int calcStartingPlayersRatingOnPosCategory(Team team, String positionCategory){
+        int playersRating = 0;
+
+        for (PlayerTeamInfo playerTeamInfo: getStartingPlayersTeamInfoOnPosCategory(team, positionCategory)) {
+            playersRating += calcPlayerOverallRating(playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats());
+        }
+        if(Boolean.FALSE.equals(getStartingPlayersTeamInfoOnPosCategory(team, positionCategory).isEmpty())) {
+            playersRating /= getStartingPlayersTeamInfoOnPosCategory(team, positionCategory).size();
+        }
+        return playersRating;
     }
 
     public static int calcReservesPlayersRating(Team team) {
