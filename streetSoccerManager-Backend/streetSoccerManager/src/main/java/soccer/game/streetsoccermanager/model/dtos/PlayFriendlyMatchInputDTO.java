@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PlayFriendlyMatchDTO {
-    FriendlyMatchDTO friendlyMatch;
-    String command;
+public class PlayFriendlyMatchInputDTO {
+    private Long id;
+    private String command;
 }

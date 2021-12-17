@@ -1,10 +1,12 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.Match;
 import soccer.game.streetsoccermanager.repository_interfaces.IMatchRepository;
 import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
+import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
 import java.util.List;
 
@@ -12,8 +14,11 @@ import java.util.List;
 public class MatchService implements IMatchService {
     private IMatchRepository dataStore;
 
-    public MatchService(@Qualifier("matchJPADatabase") IMatchRepository dataStore) {
+    private ITeamService teamService;
+    @Autowired
+    public MatchService(IMatchRepository dataStore, ITeamService teamService) {
         this.dataStore = dataStore;
+        this.teamService = teamService;
     }
 
 
@@ -42,6 +47,9 @@ public class MatchService implements IMatchService {
         if(match.getId() == null) {
             match.setResult("0:0");
             match.setStatistic("Match started");
+            if(Boolean.FALSE.equals(isUserTeamHome(match))){
+                return dataStore.add(PlayMatchManager.playFriendlyMatch(match, "OPPONENT", false));
+            }
             return dataStore.add(match);
         }
         return null;
@@ -55,10 +63,14 @@ public class MatchService implements IMatchService {
         return null;
     }
 
+    private Boolean isUserTeamHome(Match match){
+        return teamService.get(match.getHomeTeam().getId()) instanceof CustomTeam;
+    }
+
     @Override
     public Match playFriendlyMatch(Long matchId, String command) {
         Match match = get(matchId);
-        return this.update(PlayMatchManager.playFriendlyMatch(match, command));
+        return this.update(PlayMatchManager.playFriendlyMatch(match, command, isUserTeamHome(match)));
     }
 
     @Override
