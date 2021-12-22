@@ -1,15 +1,18 @@
 package soccer.game.streetsoccermanager.controller;
 
+import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.dtos.UserDTO;
 import soccer.game.streetsoccermanager.model.entities.UserEntity;
 import soccer.game.streetsoccermanager.service_interfaces.IUserService;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
@@ -72,12 +75,19 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         UserEntity userEntityInput = modelMapper.map(userDTO, UserEntity.class);
-        UserEntity createdUserEntity = userService.add(userEntityInput);
-        UserDTO createdUserDTO = modelMapper.map(createdUserEntity, UserDTO.class);
-        if (createdUserDTO == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
+        try {
+            UserEntity createdUserEntity = userService.add(userEntityInput);
+            UserDTO createdUserDTO = modelMapper.map(createdUserEntity, UserDTO.class);
             return new ResponseEntity<>(createdUserDTO,HttpStatus.CREATED);
+        }
+        catch(EntityExistsException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        catch(EntryNotValidException e){
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        catch(NotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
