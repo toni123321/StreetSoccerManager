@@ -1,10 +1,9 @@
 package soccer.game.streetsoccermanager.service;
 
-import javassist.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.entities.UserEntity;
 import soccer.game.streetsoccermanager.repository_interfaces.IUserRepository;
