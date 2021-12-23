@@ -91,8 +91,9 @@ class UserServiceUnitTest {
 
     @Test()
     void AddUserFailScenario() throws EntityExistsException {
+        UserEntity user = new UserEntity(3l, "peter@gmail.com", "Peter@123", "Peter", "Petrov", "Pesho", "USER");
         Exception exception = Assertions.assertThrows(EntityExistsException.class, () -> {
-            userService.add(new UserEntity(3l, "peter@gmail.com", "Peter@123", "Peter", "Petrov", "Pesho", "USER"));
+            userService.add(user);
         });
 
         String expectedMessage = "User with such id already exists!";
