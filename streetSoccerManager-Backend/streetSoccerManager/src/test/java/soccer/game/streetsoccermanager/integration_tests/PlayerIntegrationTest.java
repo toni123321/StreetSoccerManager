@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.entities.*;
 import soccer.game.streetsoccermanager.service.*;
 
+import javax.persistence.EntityExistsException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -41,7 +43,7 @@ class PlayerIntegrationTest {
     FormationService formationService;
 
     @BeforeEach
-    void clearDB() {
+    void clearDB() throws EntryNotValidException, EntityExistsException {
         // Clear
 
         playerService.deleteAll();
@@ -68,7 +70,8 @@ class PlayerIntegrationTest {
         playerStatsService.add(new PlayerStats(70, 75));
         playerStatsService.add(new PlayerStats(80, 85));
 
-        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho", "USER"));
+
+        userService.add(new UserEntity("peter@gmail.com", "Peter@123", "Peter", "Petrov", "pesho", "USER"));
         formationService.add(new Formation("1-2-1"));
 
         teamService.add(new CustomTeam("Barca 2020", formationService.getAll().get(0), userService.getAll().get(0)));
@@ -92,7 +95,6 @@ class PlayerIntegrationTest {
         playerAdditionalInfoService.add(new PlayerAdditionalInfo(150, playerStatsService.getAll().get(0)));
         playerAdditionalInfoService.add(new PlayerAdditionalInfo(120, playerStatsService.getAll().get(1)));
         playerAdditionalInfoService.add(new PlayerAdditionalInfo(250, playerStatsService.getAll().get(2)));
-
 
 
         playerService.add(new Player(playerPersonalInfoService.getAll().get(0), playerPositionInfoService.getAll().get(0), playerTeamInfoService.getAll().get(0), playerAdditionalInfoService.getAll().get(0)));
