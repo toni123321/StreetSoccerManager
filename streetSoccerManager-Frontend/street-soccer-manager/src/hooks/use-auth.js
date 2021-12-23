@@ -38,49 +38,49 @@ export function useProvideAuth() {
         if(decode_token.role === "ADMIN"){
           setIsAdmin(true);
         }
-        
-        console.log(decode_token.role);
     }
   }, [])
 
   function signin (details, from) {
-    UserService.login(details)
-    .then(response => {
-        console.log(response.data.Authorization);
+    const promise = UserService.login(details)
+    const dataPromise = promise.then(response => {
         const token = response.data.Authorization;
         const decode_token = jwt_decode(token);
-        console.log("Decoded token", decode_token);
         cookies.set('login-token', token, {sameSite: 'lax'});
         setIsUserLogged(true);
-        getUserByEmail(decode_token.sub, token);
+        getUserByEmail(decode_token.sub, token)
+        .then((response) => response)
+        .catch(err=> err)
         
         if(decode_token.role === "ADMIN"){
           setIsAdmin(true);
         }
-        history.replace(from);  
-        return true;
     })
-    .catch (error => {
-        return false;
-    })
+    return dataPromise;
+  };
+
+  function signup (details, from) {
+    const promise = UserService.register(details)
+    const dataPromise = promise.then(response => response.data.firstName)
+    return dataPromise;
   };
 
   function getUserByEmail(email, token) {
-      UserService.getUserByEmail(email, token)
+      const dataPromise = UserService.getUserByEmail(email, token)
       .then((response) => {
-          getUserTeam(response.data.id, token);
-      }
-      );
-      // const response = await UserService.getUserByEmail(email, token);
-      // console.log(response.data);
+          getUserTeam(response.data.id, token)
+      })
+      .catch((err) => err)
+      return dataPromise;
   }
 
   function getUserTeam(userId, token){
-      TeamService.getTeamByUserId(userId, token)
+      const dataPromise = TeamService.getTeamByUserId(userId, token)
       .then((response) => {
           localStorage.setItem("team", JSON.stringify(response.data));
-      }
-      );
+      })
+      .catch(err => err)
+      return dataPromise;
   }
 
   function signout() {
@@ -94,6 +94,7 @@ export function useProvideAuth() {
     isAdmin,
     isUserLogged,
     signin,
+    signup,
     signout
   };
 }

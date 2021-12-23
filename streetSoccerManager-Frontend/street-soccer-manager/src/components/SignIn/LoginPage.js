@@ -17,13 +17,16 @@ function LoginPage() {
     
     function handleLogin (details) {
       setLoginError(false);
-      console.log(details);
-      // auth.signin(() => {
-      //   history.replace(from);
-      // });
-      if(auth.signin(details, from) !== true){
+
+      auth.signin(details, from)
+      .then(data => {
+        alert(`Successfull login`);
+        history.replace(from);
+      })
+      .catch(err => {
+        console.log(err);
         setLoginError(true);
-      }
+      })
     };
   
     return (
