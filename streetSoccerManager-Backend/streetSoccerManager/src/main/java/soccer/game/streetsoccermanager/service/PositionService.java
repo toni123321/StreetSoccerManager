@@ -1,5 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.Position;
@@ -13,7 +14,8 @@ public class PositionService implements IPositionService {
 
     private IPositionRepository dataStore;
 
-    public PositionService(@Qualifier("positionJPADatabase") IPositionRepository dataStore) {
+    @Autowired
+    public PositionService(IPositionRepository dataStore) {
         this.dataStore = dataStore;
     }
 

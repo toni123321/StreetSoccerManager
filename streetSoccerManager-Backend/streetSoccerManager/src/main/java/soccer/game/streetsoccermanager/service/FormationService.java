@@ -1,5 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.repository_interfaces.IFormationRepository;
@@ -12,7 +13,8 @@ import java.util.List;
 public class FormationService implements IFormationService {
     private IFormationRepository dataStore;
 
-    public FormationService(@Qualifier("formationJPADatabase") IFormationRepository dataStore) {
+    @Autowired
+    public FormationService(IFormationRepository dataStore) {
         this.dataStore = dataStore;
     }
 

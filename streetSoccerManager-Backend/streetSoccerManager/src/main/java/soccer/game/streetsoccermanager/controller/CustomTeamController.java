@@ -1,6 +1,7 @@
 package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,11 @@ import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 @RestController
 @RequestMapping("/customTeams")
 public class CustomTeamController {
-    @Qualifier("teamService")
+
     private ITeamService teamService;
     private ModelMapper modelMapper;
 
+    @Autowired
     public CustomTeamController(ITeamService teamService) {
         this.teamService = teamService;
         this.modelMapper = new ModelMapper();

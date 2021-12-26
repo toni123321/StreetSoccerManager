@@ -3,6 +3,7 @@ package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,10 @@ import java.util.Optional;
 @RequestMapping("/players")
 public class PlayersController {
 
-    @Qualifier("playerService")
     private IPlayerService playerService;
     private ModelMapper modelMapper;
 
-
+    @Autowired
     public PlayersController(IPlayerService playerService) {
         this.playerService = playerService;
         this.modelMapper = new ModelMapper();

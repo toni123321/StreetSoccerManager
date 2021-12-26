@@ -1,5 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerRepository;
@@ -14,7 +15,8 @@ public class PlayerService implements IPlayerService {
 
     private IPlayerRepository dataStore;
 
-    public PlayerService(@Qualifier("playerJPADatabase") IPlayerRepository dataStore) {
+    @Autowired
+    public PlayerService(IPlayerRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -22,8 +24,6 @@ public class PlayerService implements IPlayerService {
     public List<Player> getAll() {
         return dataStore.getAll();
     }
-
-
 
     @Override
     public Player get(Long id) {

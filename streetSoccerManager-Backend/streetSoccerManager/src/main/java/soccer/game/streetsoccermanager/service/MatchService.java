@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class MatchService implements IMatchService {
     private IMatchRepository dataStore;
-
     private ITeamService teamService;
+
     @Autowired
     public MatchService(IMatchRepository dataStore, ITeamService teamService) {
         this.dataStore = dataStore;

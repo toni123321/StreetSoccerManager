@@ -1,5 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.PlayerAdditionalInfo;
@@ -12,8 +13,8 @@ import java.util.List;
 public class PlayerAdditionalInfoService implements IPlayerAdditionalInfoService {
     private IPlayerAdditionalInfoRepository dataStore;
 
-
-    public PlayerAdditionalInfoService(@Qualifier("playerAdditionalInfoJPADatabase") IPlayerAdditionalInfoRepository dataStore) {
+    @Autowired
+    public PlayerAdditionalInfoService(IPlayerAdditionalInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 
