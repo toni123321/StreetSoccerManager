@@ -12,11 +12,15 @@ import java.util.stream.Collectors;
 
 @Repository
 public class TeamJPADatabase implements ITeamRepository {
-    @Autowired
-    ITeamJPARepository teamRepo;
+
+    private ITeamJPARepository teamRepo;
+    private IFormationJPARepository formationsRepo;
 
     @Autowired
-    IFormationJPARepository formationsRepo;
+    public TeamJPADatabase(ITeamJPARepository teamRepo, IFormationJPARepository formationsRepo) {
+        this.teamRepo = teamRepo;
+        this.formationsRepo = formationsRepo;
+    }
 
     @Override
     public List<Team> getAll() {

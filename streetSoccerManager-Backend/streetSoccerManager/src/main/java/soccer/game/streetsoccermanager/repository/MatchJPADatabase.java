@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class MatchJPADatabase implements IMatchRepository {
+
+    private IMatchJPARepository matchRepo;
+
     @Autowired
-    IMatchJPARepository matchRepo;
+    public MatchJPADatabase(IMatchJPARepository matchRepo) {
+        this.matchRepo = matchRepo;
+    }
 
     @Override
     public List<Match> getAll() {

@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerTeamInfoJPADatabase implements IPlayerTeamInfoRepository {
+
+    private IPlayerTeamInfoJPARepository playerTeamInfoJPARepository;
+
     @Autowired
-    IPlayerTeamInfoJPARepository playerTeamInfoJPARepository;
+    public PlayerTeamInfoJPADatabase(IPlayerTeamInfoJPARepository playerTeamInfoJPARepository) {
+        this.playerTeamInfoJPARepository = playerTeamInfoJPARepository;
+    }
 
     @Override
     public List<PlayerTeamInfo> getAll() {

@@ -10,8 +10,12 @@ import java.util.List;
 
 @Repository
 public class UserJPADatabase implements IUserRepository {
+    private IUserJPARepository userRepo;
+
     @Autowired
-    IUserJPARepository userRepo;
+    public UserJPADatabase(IUserJPARepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Override
     public List<UserEntity> getAll() {
