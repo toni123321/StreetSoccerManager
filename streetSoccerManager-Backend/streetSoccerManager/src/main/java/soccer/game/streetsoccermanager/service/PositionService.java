@@ -1,7 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.Position;
 import soccer.game.streetsoccermanager.repository_interfaces.IPositionRepository;

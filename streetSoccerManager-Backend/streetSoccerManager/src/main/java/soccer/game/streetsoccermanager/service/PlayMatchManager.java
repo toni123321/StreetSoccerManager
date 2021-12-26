@@ -93,8 +93,7 @@ public class PlayMatchManager {
         else{
             awayTeamGoals += goals;
         }
-        String result = homeTeamGoals + ":" + awayTeamGoals;
-        return result;
+        return homeTeamGoals + ":" + awayTeamGoals;
     }
 
     private static int scoreGoal(int attackRating, int defRating) {
