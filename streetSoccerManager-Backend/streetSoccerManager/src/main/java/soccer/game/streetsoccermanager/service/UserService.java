@@ -2,7 +2,6 @@ package soccer.game.streetsoccermanager.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
