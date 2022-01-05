@@ -1,23 +1,25 @@
 stages:
-  - docker-image-build
-  - docker-run-container
+  - build
+  - test
+  - sonarqube-analys
 
-
-be-image:
-  stage: docker-image-build
+build:
+  stage: build
   script:
     - cd streetSoccerManager-Backend/streetSoccerManager/
-    - ./gradlew build
+    - ./gradlew build -x test
     - ./gradlew.bat --stop
-    - docker build --build-arg JAR_FILE=build/libs/*.jar -t scm-be .
 
-fe-image:
-  stage: docker-image-build
+test:
+  stage: test
   script:
-    - cd streetSoccerManager-Frontend/street-soccer-manager/
-    - docker build -t scm-fe .
+    - cd streetSoccerManager-Backend/streetSoccerManager/
+    - ./gradlew test
+    - ./gradlew.bat --stop
 
-run-db-container:
-  stage: docker-run-container
-  script:
-    - docker run -d -p 1521:1521 -p 81:81 -v /c/TESTDB:/data --name=scm-h2db joedoe/h2db
+sonarqube-analys:
+  stage: sonarqube-analys
+  script: 
+    - cd streetSoccerManager-Backend/streetSoccerManager/
+    - ./gradlew sonarqube
+    - ./gradlew.bat --stop
