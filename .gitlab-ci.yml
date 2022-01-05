@@ -1,29 +1,5 @@
 stages:
-  - build
-  - test
-  - sonarqube-analys
   - docker-image-build
-
-build:
-  stage: build
-  script:
-    - cd streetSoccerManager-Backend/streetSoccerManager/
-    - ./gradlew build -x test
-    - ./gradlew.bat --stop
-
-test:
-  stage: test
-  script:
-    - cd streetSoccerManager-Backend/streetSoccerManager/
-    - ./gradlew test
-    - ./gradlew.bat --stop
-
-sonarqube-analys:
-  stage: sonarqube-analys
-  script: 
-    - cd streetSoccerManager-Backend/streetSoccerManager/
-    - ./gradlew sonarqube
-    - ./gradlew.bat --stop
 
 be-image:
   stage: docker-image-build
@@ -36,5 +12,5 @@ be-image:
 fe-image:
   stage: docker-image-build
   script:
-    - cd streetSoccerManager-Frontend/streetSoccerManager/
+    - cd streetSoccerManager-Frontend/street-soccer-manager/
     - docker build -t scm-fe .
