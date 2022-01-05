@@ -21,7 +21,7 @@ function LoginPage() {
       auth.signin(details, from)
       .then(data => {
         alert(`Successfull login`);
-        history.replace(from);
+        //history.replace(from);
       })
       .catch(err => {
         console.log(err);
