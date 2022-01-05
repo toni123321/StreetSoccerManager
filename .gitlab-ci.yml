@@ -2,7 +2,6 @@ stages:
   - build
   - test
   - sonarqube-analys
-  - be-docker
 
 build:
   stage: build
@@ -24,14 +23,6 @@ sonarqube-analys:
     - cd streetSoccerManager-Backend/streetSoccerManager/
     - ./gradlew sonarqube
     - ./gradlew.bat --stop
-
-be-docker:
-  stage: be-docker
-  script:
-    - cd streeSoccerManager-Backend/streetSoccerManager/
-    - ./gradlew build
-    - ./gradlew.bat --stop
-    - docker build --build-arg JAR_FILE=build/libs/*.jar -t test-be .
 
 
 
