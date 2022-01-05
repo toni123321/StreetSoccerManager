@@ -4,7 +4,7 @@ package soccer.game.streetsoccermanager.controller;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import soccer.game.streetsoccermanager.model.dtos.TeamDTO;
@@ -18,11 +18,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/teams")
 public class TeamsController {
-    @Qualifier("teamService")
+
     private ITeamService teamService;
     private ModelMapper modelMapper;
 
-
+    @Autowired
     public TeamsController(ITeamService teamService) {
         this.teamService = teamService;
         this.modelMapper = new ModelMapper();

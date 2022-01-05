@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerPositionInfoJPADatabase implements IPlayerPositionInfoRepository {
-    @Autowired
+
     private IPlayerPositionInfoJPARepository playerPositionInfoRepo;
+
+    @Autowired
+    public PlayerPositionInfoJPADatabase(IPlayerPositionInfoJPARepository playerPositionInfoRepo) {
+        this.playerPositionInfoRepo = playerPositionInfoRepo;
+    }
 
 
     @Override

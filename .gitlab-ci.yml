@@ -23,5 +23,3 @@ sonarqube-analys:
     - cd streetSoccerManager-Backend/streetSoccerManager/
     - ./gradlew sonarqube
     - ./gradlew.bat --stop
-
- 

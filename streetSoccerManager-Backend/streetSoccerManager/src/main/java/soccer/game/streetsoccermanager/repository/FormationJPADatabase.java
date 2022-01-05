@@ -10,9 +10,12 @@ import java.util.List;
 
 @Repository
 public class FormationJPADatabase implements IFormationRepository {
+    private IFormationJPARepository formationRepo;
 
     @Autowired
-    IFormationJPARepository formationRepo;
+    public FormationJPADatabase(IFormationJPARepository formationRepo) {
+        this.formationRepo = formationRepo;
+    }
 
 
     @Override

@@ -2,7 +2,7 @@ package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +17,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/formations")
 public class FormationsController {
-    @Qualifier("formationService")
+
     private IFormationService formationService;
     private ModelMapper modelMapper;
 
+    @Autowired
     public FormationsController(IFormationService formationService) {
         this.formationService = formationService;
         this.modelMapper = new ModelMapper();

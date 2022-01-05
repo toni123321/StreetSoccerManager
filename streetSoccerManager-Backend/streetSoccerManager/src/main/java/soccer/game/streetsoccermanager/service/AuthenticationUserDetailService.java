@@ -1,6 +1,7 @@
 package soccer.game.streetsoccermanager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,7 +18,13 @@ import java.util.Collection;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationUserDetailService implements UserDetailsService {
-    private final IUserService userService;
+    private IUserService userService;
+
+    @Autowired
+    public AuthenticationUserDetailService(IUserService userService) {
+        this.userService = userService;
+    }
+
     @Override public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity user = userService.getByEmail(email);
         if (user == null) {
