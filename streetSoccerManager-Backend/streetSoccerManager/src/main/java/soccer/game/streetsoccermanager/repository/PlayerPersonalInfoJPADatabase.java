@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerPersonalInfoJPADatabase implements IPlayerPersonalInfoRepository {
+
+    private IPlayerPersonalInfoJPARepository playerPersonalInfoJPARepo;
+
     @Autowired
-    IPlayerPersonalInfoJPARepository playerPersonalInfoJPARepo;
+    public PlayerPersonalInfoJPADatabase(IPlayerPersonalInfoJPARepository playerPersonalInfoJPARepo) {
+        this.playerPersonalInfoJPARepo = playerPersonalInfoJPARepo;
+    }
 
     @Override
     public List<PlayerPersonalInfo> getAll() {

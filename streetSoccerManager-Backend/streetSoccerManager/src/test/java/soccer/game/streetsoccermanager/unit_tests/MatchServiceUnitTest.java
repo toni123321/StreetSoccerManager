@@ -32,38 +32,38 @@ class MatchServiceUnitTest {
     public void setUp()  {
         List<Match> matches = List.of(
                 new FriendlyMatch(1l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                         new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman"),
                         "1:0", "Home team wins", 30),
                 new FriendlyMatch(2l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                         new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                         "1:1", "Draw", 30)
         );
         when(teamService.get(1l)).thenReturn(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")));
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")));
         when(matchRepository.getAll()).thenReturn(matches);
         when(matchRepository.get(1l)).thenReturn(matches.get(0));
         when(matchRepository.get(2l)).thenReturn(matches.get(1));
         when(matchRepository.add(new FriendlyMatch(
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 "2:1", "Home team wins", 30))).
                 thenReturn(
                     new FriendlyMatch(3l,
                             new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                             new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                                    new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                                    new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                             "2:1", "Home team wins", 30)
                 );
         when(matchRepository.update(new FriendlyMatch(2l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 "2:2", "Draw", 30))).
                 thenReturn(
                         new FriendlyMatch(2l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                                 "2:2", "Draw", 30)
                 );
@@ -96,7 +96,7 @@ class MatchServiceUnitTest {
 
         // Assert
         Assertions.assertEquals(new FriendlyMatch(1l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(2l, "Barcelona", new Formation(2l, "2-1-1"), "Ronald Koeman"),
                 "1:0", "Home team wins", 30), match);
     }
@@ -119,18 +119,18 @@ class MatchServiceUnitTest {
         Match newMatch = matchService.add(new FriendlyMatch(
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 "2:1", "Home team wins", 30));
         // Assert
         Assertions.assertEquals(new FriendlyMatch(3l,
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 "2:1", "Home team wins", 30), newMatch);
         Assertions.assertEquals(null, matchService.add(new FriendlyMatch(3l,
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                        new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                        new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 "2:1", "Home team wins", 30)));
     }
 
@@ -143,11 +143,11 @@ class MatchServiceUnitTest {
                 "2:2", "Draw", 30));
         // Assert
         Assertions.assertEquals(new FriendlyMatch(2l, new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 "2:2", "Draw", 30), updatedMatch);
         Assertions.assertEquals(null, matchService.update(new FriendlyMatch(new CustomTeam(1l, "Eindhoven 19", new Formation(1l, "1-2-1"),
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER")),
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER")),
                 new OfficialTeam(3l, "Juventus", new Formation(2l, "2-1-1"), "Massimiliano Allegri"),
                 "2:2", "Draw", 30)));
     }

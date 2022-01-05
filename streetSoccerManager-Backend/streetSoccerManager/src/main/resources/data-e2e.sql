@@ -1,0 +1,1 @@
+INSERT INTO NEWS (ID, CONTENT, TITLE) VALUES (1, 'Some text', 'News1');

@@ -1,12 +1,16 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.entities.UserEntity;
 import soccer.game.streetsoccermanager.repository_interfaces.IUserRepository;
 import soccer.game.streetsoccermanager.service_interfaces.IUserService;
+import soccer.game.streetsoccermanager.validation.UserProfileValidation;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
 
 @Service
@@ -15,7 +19,8 @@ public class UserService implements IUserService {
     private IUserRepository dataStore;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(@Qualifier("userJPADatabase") IUserRepository dataStore) {
+    @Autowired
+    public UserService(IUserRepository dataStore) {
         this.dataStore = dataStore;
         passwordEncoder = new BCryptPasswordEncoder();
     }
@@ -44,14 +49,26 @@ public class UserService implements IUserService {
         return false;
     }
 
-
     @Override
-    public UserEntity add(UserEntity user) {
+    public UserEntity add(UserEntity user) throws EntityExistsException, EntryNotValidException {
         if(user.getId() == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return dataStore.add(user);
+            if(getByEmail(user.getEmail()) instanceof UserEntity){
+                throw new EntityExistsException("This email is already in use!");
+            }
+            if(UserProfileValidation.isEmailValid(user.getEmail()) && UserProfileValidation.isPasswordValid(user.getPassword())) {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                return dataStore.add(user);
+            }
+            else if(Boolean.FALSE.equals(UserProfileValidation.isEmailValid(user.getEmail()))){
+                throw new EntryNotValidException("Email is not valid!");
+            }
+            else{
+                throw new EntryNotValidException("Password is not valid!");
+            }
         }
-        return null;
+        else{
+            throw new EntityExistsException("User with such id already exists!");
+        }
     }
 
     @Override

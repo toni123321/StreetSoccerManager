@@ -12,8 +12,12 @@ import java.util.List;
 @Repository
 public class NewsJPADatabase implements INewsRepository {
 
+    private INewsJPARepository newsRepo;
+
     @Autowired
-    INewsJPARepository newsRepo;
+    public NewsJPADatabase(INewsJPARepository newsRepo) {
+        this.newsRepo = newsRepo;
+    }
 
 
     @Override

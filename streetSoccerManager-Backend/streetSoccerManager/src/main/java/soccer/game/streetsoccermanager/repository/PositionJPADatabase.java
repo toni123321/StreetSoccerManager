@@ -11,8 +11,12 @@ import java.util.List;
 @Repository
 public class PositionJPADatabase implements IPositionRepository {
 
+    private IPositionJPARepository positionRepo;
+
     @Autowired
-    IPositionJPARepository positionRepo;
+    public PositionJPADatabase(IPositionJPARepository positionRepo) {
+        this.positionRepo = positionRepo;
+    }
 
     @Override
     public List<Position> getAll() {

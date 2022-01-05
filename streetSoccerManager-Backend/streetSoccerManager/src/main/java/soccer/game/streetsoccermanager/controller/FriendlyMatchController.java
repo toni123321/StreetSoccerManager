@@ -1,7 +1,7 @@
 package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,11 @@ import soccer.game.streetsoccermanager.service_interfaces.IMatchService;
 @RestController
 @RequestMapping("/friendlyMatches")
 public class FriendlyMatchController {
-    @Qualifier("matchService")
+
     private IMatchService matchService;
     private ModelMapper modelMapper;
 
+    @Autowired
     public FriendlyMatchController(IMatchService matchService) {
         this.matchService = matchService;
         this.modelMapper = new ModelMapper();

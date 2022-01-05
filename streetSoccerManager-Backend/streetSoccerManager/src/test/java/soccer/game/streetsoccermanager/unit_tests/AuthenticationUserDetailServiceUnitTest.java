@@ -36,7 +36,7 @@ class AuthenticationUserDetailServiceUnitTest {
     @BeforeEach
     public void setUp()  {
         UserEntity user =
-                new UserEntity(1l, "erick@gmail.com", "erick12345", "Erick", "Rodriguez", "Erick20", "USER");
+                new UserEntity(1l, "erick@gmail.com", "Erick_12345", "Erick", "Rodriguez", "Erick20", "USER");
         when(userRepository.getByEmail("erick@gmail.com")).thenReturn(user);
         mockedUser = user;
         userService = new UserService(userRepository);

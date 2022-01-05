@@ -5,10 +5,12 @@ import styles from "../../css/Login.scss";
 
 const LoginForm = ({handleLogin}) => {
 
-    const [details, setDetails] = useState({
+    const detailsState = {
         email: "",
         password: ""
-    })
+    }
+
+    const [details, setDetails] = useState(detailsState)
 
     const handleInput = (e) => {
         const {name, value} = e.target;
@@ -18,12 +20,13 @@ const LoginForm = ({handleLogin}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleLogin(details);
+        setDetails(detailsState);
     }
 
     return (
         <div className="login-wrap">
             <div className="login-html">
-                <LinkContainer to="/login">
+                <LinkContainer to="/loginPage">
                     <Nav.Link className="singInUp-links">Sign in</Nav.Link>
                 </LinkContainer>
 
@@ -36,11 +39,11 @@ const LoginForm = ({handleLogin}) => {
 
                     <div className="group">
                         <label htmlFor="email" className="label">Email</label>
-                        <input name="email" value={details.email} id="email" type="text" className="input" onChange={handleInput}/>
+                        <input name="email" placeholder='email...' value={details.email} id="email" type="text" className="input" onChange={handleInput}/>
                     </div>
                     <div className="group">
                         <label htmlFor="password" className="label">Password</label>
-                        <input name="password" value={details.password} id="password" type="password" className="input" data-type="password" onChange={handleInput}/>
+                        <input name="password" placeholder='password...' value={details.password} id="password" type="password" className="input" data-type="password" onChange={handleInput}/>
                     </div>
                     <div className="group">
                         <input id="check" type="checkbox" className="check" />

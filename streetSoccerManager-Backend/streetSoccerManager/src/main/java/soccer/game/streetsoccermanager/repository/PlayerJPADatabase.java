@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerJPADatabase implements IPlayerRepository {
+
+    private IPlayerJPARepository playerRepo;
+
     @Autowired
-    IPlayerJPARepository playerRepo;
+    public PlayerJPADatabase(IPlayerJPARepository playerRepo) {
+        this.playerRepo = playerRepo;
+    }
 
     @Override
     public List<Player> getAll() {
