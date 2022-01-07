@@ -14,7 +14,7 @@ import soccer.game.streetsoccermanager.service_interfaces.IPlayerPositionInfoSer
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/playersPositionInfo")
 public class PlayerPositionInfoController {

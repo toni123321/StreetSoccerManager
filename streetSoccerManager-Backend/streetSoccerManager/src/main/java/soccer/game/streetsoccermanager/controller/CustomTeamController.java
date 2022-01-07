@@ -11,7 +11,7 @@ import soccer.game.streetsoccermanager.model.entities.Team;
 import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/customTeams")
 public class CustomTeamController {

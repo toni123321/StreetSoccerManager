@@ -13,7 +13,7 @@ import soccer.game.streetsoccermanager.model.entities.Formation;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/formations")
 public class FormationsController {
