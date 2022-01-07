@@ -4,6 +4,7 @@ import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
 import soccer.game.streetsoccermanager.model.entities.Team;
 
+import java.sql.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -40,60 +41,44 @@ public class PlayMatchManager {
         // Teams
         Team homeTeam = match.getHomeTeam();
         Team awayTeam = match.getAwayTeam();
-
-        int attacking = 0;
-        int defence = 0;
-
         boolean homeTeamAttacks = false;
         int goals = 0;
 
         if((command.equals("ATTACK") && isUserTeamHome) ||
                 ((command.equals("DEF") || command.equals("OPPONENT")) && !isUserTeamHome)){
-            attacking =
-                    (RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(homeTeam, "MID") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(homeTeam, "ATACK")
-                    ) / 2;
-
-            defence =
-                    (RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(awayTeam, "MID") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(awayTeam, "DEF") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(awayTeam, "GK")
-                    ) / 3;
-
             homeTeamAttacks = true;
         }
-        else {
-            attacking =
-                    (RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(awayTeam, "MID") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(awayTeam, "ATACK")
-                    ) / 2;
 
-            defence =
-                    (RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(homeTeam, "MID") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(homeTeam, "DEF") +
-                    RatingManager.
-                            calcStartingPlayersRatingOnPosCategory(homeTeam, "GK")
-                    ) / 3;
-
-        }
-        // call function score_goal()
-        goals = scoreGoal(attacking, defence);
         if(homeTeamAttacks) {
+            goals = playAction(homeTeam, awayTeam);
             homeTeamGoals += goals;
         }
         else{
+            goals = playAction(awayTeam, homeTeam);
             awayTeamGoals += goals;
         }
         return homeTeamGoals + ":" + awayTeamGoals;
+    }
+
+    private static int playAction(Team attackTeam, Team defTeam){
+        int attacking = 0;
+        int defence = 0;
+        attacking =
+                (RatingManager.
+                        calcStartingPlayersRatingOnPosCategory(attackTeam, "MID") +
+                        RatingManager.
+                                calcStartingPlayersRatingOnPosCategory(attackTeam, "ATACK")
+                ) / 2;
+
+        defence =
+                (RatingManager.
+                        calcStartingPlayersRatingOnPosCategory(defTeam, "MID") +
+                        RatingManager.
+                                calcStartingPlayersRatingOnPosCategory(defTeam, "DEF") +
+                        RatingManager.
+                                calcStartingPlayersRatingOnPosCategory(defTeam, "GK")
+                ) / 3;
+        return scoreGoal(attacking, defence);
     }
 
     private static int scoreGoal(int attackRating, int defRating) {
