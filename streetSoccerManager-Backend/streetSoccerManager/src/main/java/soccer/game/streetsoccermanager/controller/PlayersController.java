@@ -15,7 +15,7 @@ import soccer.game.streetsoccermanager.model.entities.Player;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/players")
 public class PlayersController {

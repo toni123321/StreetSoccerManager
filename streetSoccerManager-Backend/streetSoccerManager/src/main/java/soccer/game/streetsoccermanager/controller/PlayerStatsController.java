@@ -12,7 +12,7 @@ import soccer.game.streetsoccermanager.service_interfaces.IPlayerStatsService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/playerStats")
 public class PlayerStatsController {

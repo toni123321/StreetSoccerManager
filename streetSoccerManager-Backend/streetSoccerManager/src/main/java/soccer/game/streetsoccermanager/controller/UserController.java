@@ -15,7 +15,7 @@ import soccer.game.streetsoccermanager.service_interfaces.IUserService;
 import javax.persistence.EntityExistsException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/users")
 public class UserController {

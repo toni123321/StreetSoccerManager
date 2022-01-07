@@ -9,7 +9,7 @@ import soccer.game.streetsoccermanager.service.RatingManager;
 import soccer.game.streetsoccermanager.service_interfaces.IPlayerService;
 import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/ratings")
 public class RatingController {

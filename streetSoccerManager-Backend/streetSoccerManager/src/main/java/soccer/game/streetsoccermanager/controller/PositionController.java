@@ -13,7 +13,7 @@ import soccer.game.streetsoccermanager.service_interfaces.IPositionService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/positions")
 public class PositionController {
