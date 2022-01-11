@@ -45,12 +45,12 @@ fe-image:
 be-container:
   stage: docker-container-run
   script:
-    - docker run -p 8080:8080 --rm --name scm-be -e DB_PROFILE=e2e scm-be
+    - docker run -dp 8080:8080 --rm --name scm-be -e DB_PROFILE=e2e scm-be
 
 fe-container:
   stage: docker-container-run
   script:
-    - docker run -p 3000:3000 --rm --name scm-fe scm-fe
+    - docker run -dp 3000:3000 --rm --name scm-fe scm-fe
 
 e2e-testing:
   stage: e2e-test
