@@ -42,6 +42,7 @@ function ChooseOpponent() {
     });
 
     const [opponents, setOpponents] = useState([]);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         retrieveOpponents();
@@ -118,6 +119,7 @@ function ChooseOpponent() {
             name: opponent.name
         }
         isHomeTeam ? setHomeTeam(opponentTeamState): setAwayTeam(opponentTeamState);
+        setError(false);
     }
 
     const handleSaveData = () => {
@@ -127,10 +129,12 @@ function ChooseOpponent() {
         {
             // save home, away teams in localStorage
             
+            setError(false);
             setGoNext(true);
         }
         else{
-            alert("You don't choose opponent!");
+            // alert("You haven't choosen an opponent!");
+            setError(true);
         }
     }
 
@@ -190,7 +194,7 @@ function ChooseOpponent() {
                                 (
                                     <Carousel interval={null}>
                                     {opponents.map((opponent) => 
-                                        <Carousel.Item key={opponent.id} onClick={() => handleSelectOpponent(opponent, true)}>
+                                        <Carousel.Item className={`opponent-${opponent.id}`} key={opponent.id} onClick={() => handleSelectOpponent(opponent, true)}>
                                             <div className="teamToChoose">  
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
@@ -233,7 +237,7 @@ function ChooseOpponent() {
                                 (
                                     <Carousel interval={null}>
                                     {opponents.map((opponent) => 
-                                        <Carousel.Item key={opponent.id} onClick={() => handleSelectOpponent(opponent, false)}>
+                                        <Carousel.Item className={`opponent-${opponent.id}`} key={opponent.id} onClick={() => handleSelectOpponent(opponent, false)}>
                                             <div className="teamToChoose">  
                                             <div className="team-name">{opponent.name}</div>
                                             <img className="team-logo" src={opponentTeamLogo}/>
@@ -264,6 +268,9 @@ function ChooseOpponent() {
             
             {/* <div>Chosen opponent: {chosenOpponent.name}</div>
             <div>{homeTeam.name} vs {awayTeam.name}</div> */}
+            {error ? 
+            (<h2 className="choose-opponent-error-msg">You haven't chosen an opponent!</h2>) 
+            : (<></>)}
             <button onClick={handleSaveData} className="btn-next">Next</button>
             </>
         ) : 

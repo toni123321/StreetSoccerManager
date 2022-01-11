@@ -16,32 +16,32 @@ const GameNavbar = ({team}) => {
         <Row id="nav-items-frow" className="justify-content-sm-center game-nav-first-view">
             <Col xs="12" md="5" className="nav-item" id="playMatch">
                 <LinkContainer to="/chooseOpponent">
-                    <Nav.Link>Play match</Nav.Link>
+                    <Nav.Link className="playMatchGameNavItem">Play match</Nav.Link>
 
                 </LinkContainer>
             </Col>
             <Col xs="12" md="5" className="nav-item" id="playTournament">
                 <LinkContainer to="#">
-                    <Nav.Link>Play tournament</Nav.Link>
+                    <Nav.Link className="playTournamentGameNavItem">Play tournament</Nav.Link>
                 </LinkContainer>
             </Col>
         </Row>
         <Row id="nav-items-srow" className="game-nav-second-view">
             <Col xs="12" md="4" className="nav-item" id="trainPlayers">
                 <LinkContainer to="#">
-                    <Nav.Link>Train players</Nav.Link>
+                    <Nav.Link className="trainPlayersGameNavItem">Train players</Nav.Link>
                 </LinkContainer>
             </Col>
             <Col xs="12" md="3" className="nav-item" id="teamSquad">
                 <LinkContainer to="/teamSquad">
-                    <Nav.Link>Team squad</Nav.Link>
+                    <Nav.Link className="teamSquadGameNavItem">Team squad</Nav.Link>
                 </LinkContainer>
             </Col>
             <Col xs="12" md="3" className="nav-item" id="shop">
                 <LinkContainer to="#">
-                    <Nav.Link>Shop</Nav.Link>
+                    <Nav.Link className="shopGameNavItem">Shop</Nav.Link>
                 </LinkContainer>  
-            </Col>
+            </Col> 
             {/* <Col className="nav-item" id="settings">
                 <LinkContainer to="#">
                     <Nav.Link>Settings</Nav.Link>

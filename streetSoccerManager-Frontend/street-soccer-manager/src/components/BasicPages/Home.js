@@ -4,8 +4,9 @@ import Stomp from 'stompjs';
 import AddNewsForm from "./AddNewsForm";
 import NewsFeedList from "./NewsFeedList";
 import axios from 'axios';
-// Set the backend location
 
+
+// Set the backend location
 const ENDPOINT = "http://localhost:8080/ws";
 
 function Home() {
@@ -51,9 +52,8 @@ function Home() {
     function onMessageReceived(data)
     {
         const result = JSON.parse(data.body);
-        
         setNewsList(newsList => [...newsList, result]);
-        alert("New news!");
+        //alert("New news!");
         console.log("Newsfeed", result);
         console.log("NewsList", newsList);
     };

@@ -28,6 +28,9 @@ public class PlayMatchManager {
             currentMin += 2;
         }
 
+        if(action == 15){
+            statistic = "Match ended";
+        }
         friendlyMatch = new FriendlyMatch(match.getId(), match.getHomeTeam(), match.getAwayTeam(), result, statistic, currentMin);
         return friendlyMatch;
 

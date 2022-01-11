@@ -15,16 +15,16 @@ describe('test newsfeed on home page', () => {
         cy.get('#title').type("Win for Sevilla")
         cy.get('#content').type("Sevilla wins the first place the League Europe group stage")
         cy.get('.btn-add-news-form').click()
-
-    
+       
         // check for alert
-        cy.on("window:alert", (str) => {
-              expect(str).to.equal("New news!");
-            cy.get('[name="alert"]').click();
-        }, false)
-
-        // check if new item is in the list of items
+        // cy.on("window:alert", (str) => {
+        //       expect(str).to.equal("New news!");
+        //     cy.get('[name="alert"]').click()        
+        // }, false)
+        
         cy.get('.list-group-item').should('have.length', 2)
+        // check if new item is in the list of items
+        
         // cy.get('.newsfeed-list')
         //     .contains(".list-group-item")
 
