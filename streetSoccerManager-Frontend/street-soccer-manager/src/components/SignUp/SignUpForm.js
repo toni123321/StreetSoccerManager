@@ -50,7 +50,7 @@ const SignUpForm = ({handleRegister}) => {
                 <form className="sign-up-htm" id="sign-up" onSubmit={handleSubmit(onSubmit)}>
                     <div className="group">
                         <label htmlFor="email" className="label">Email Address</label>
-                        <input id="email" placeholder='email...' type="text" className="input" name="email"
+                        <input id="email" placeholder='email...' type="text" className="input" name="email" value={details.email}
                         {...register("email", {
                             required: true,
                             maxLength: 50,
@@ -65,7 +65,7 @@ const SignUpForm = ({handleRegister}) => {
                     </div>
                     <div className="group">
                         <label htmlFor="nickname" className="label">Nickname</label>
-                        <input id="nickname" placeholder='nickname...' type="text" className="input" name="nickname"
+                        <input id="nickname" placeholder='nickname...' type="text" className="input" name="nickname" value={details.nickname}
                             {...register("nickname", {
                             required: true,
                             maxLength: 20,
@@ -82,7 +82,7 @@ const SignUpForm = ({handleRegister}) => {
                     </div>
                     <div className="group">
                         <label htmlFor="firstName" className="label">First name</label>
-                        <input id="firstName" placeholder='first name...' type="text" className="input" name="firstName"
+                        <input id="firstName" placeholder='first name...' type="text" className="input" name="firstName" value={details.firstName}
                             {...register("firstName", {
                             required: true,
                             maxLength: 20,
@@ -98,7 +98,7 @@ const SignUpForm = ({handleRegister}) => {
 
                     <div className="group">
                         <label htmlFor="lastName" className="label">Last name</label>
-                        <input id="lastName" placeholder='last name...' type="text" className="input" name="lastName"
+                        <input id="lastName" placeholder='last name...' type="text" className="input" name="lastName" value={details.lastName}
                             {...register("lastName", {
                             required: true,
                             maxLength: 20,
@@ -114,7 +114,7 @@ const SignUpForm = ({handleRegister}) => {
 
                     <div className="group">
                         <label htmlFor="password" className="label">Password</label>
-                        <input id="password" placeholder='password...' type="password" className="input" data-type="password" name="password"
+                        <input id="password" placeholder='password...' type="password" className="input" data-type="password" name="password" value={details.password}
                         {...register("password", {
                             required: true,
                             minLength: 8,
@@ -135,7 +135,7 @@ const SignUpForm = ({handleRegister}) => {
                     </div>
 
                     <div className="group">
-                        <input type="submit" className="button sign-in-up" value="Sign Up"/>
+                        <input type="submit" className="button sign-up-btn sign-in-up" value="Sign Up"/>
                     </div>
                     <div className="hr"></div>
                     <div className="foot-lnk">

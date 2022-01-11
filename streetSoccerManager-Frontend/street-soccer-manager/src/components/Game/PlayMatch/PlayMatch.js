@@ -152,9 +152,9 @@ function PlayMatch({chooseNewOpponent, chosenOpponent, homeTeam, awayTeam}) {
             <div className="startMatch">
             {/* <div>{matchInfo.homeTeam.name} vs {matchInfo.awayTeam.name}</div> */}
             <div className="teams">
-                <span className="team-oppponents">{homeTeam.name}</span>
+                <span className="team-opponents">{homeTeam.name}</span>
                 <span className="team-vs">VS</span>
-                <span className="team-oppponents">{awayTeam.name}</span>
+                <span className="team-opponents">{awayTeam.name}</span>
             </div>
             <button className="goBack" onClick={goBack}>Go back</button>
             <button className="playMatch" onClick={startMatch}>Play match</button>
@@ -167,9 +167,9 @@ function PlayMatch({chooseNewOpponent, chosenOpponent, homeTeam, awayTeam}) {
                 <div className="matchStarted">
                     <h2>Match started</h2>
                     <div className="matchResult">
-                        <div className="team-oppponents matchResultItem">{homeTeam.name}</div>
+                        <div className="team-opponents matchResultItem">{homeTeam.name}</div>
                         <div className="team-vs matchResultItem"><span>{homeTeamGoals}</span><span className='result-divider'>:</span><span>{awayTeamGoals}</span></div>
-                        <div className="team-oppponents matchResultItem">{awayTeam.name}</div>
+                        <div className="team-opponents matchResultItem">{awayTeam.name}</div>
                     </div>
                     {!actionInProgress ? 
                     (

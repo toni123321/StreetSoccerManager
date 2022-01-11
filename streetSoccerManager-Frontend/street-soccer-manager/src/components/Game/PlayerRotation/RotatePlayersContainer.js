@@ -106,7 +106,7 @@ function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
     return (
         <>
             <div className="playerForRotation">
-                {playerForRotation.id} {playerForRotation.playerPersonalInfo.firstName[0]}.{playerForRotation.playerPersonalInfo.lastName}
+                {playerForRotation.playerPersonalInfo.firstName[0]}.{playerForRotation.playerPersonalInfo.lastName}
             </div>
            
 
@@ -128,9 +128,9 @@ function RotatePlayersContainer({handleRotationOfPlayers, changeRotationMode}) {
             }
 
             <br/>
-            <button className="rotatePlayers" onClick={closeRotationContainer}>Back</button>
+            <button className="rotatePlayers go-back-btn" onClick={closeRotationContainer}>Back</button>
 
-            <button className="rotatePlayers" onClick={handlePostPlayers}>Confirm</button>
+            <button className="rotatePlayers rotate-players-btn" onClick={handlePostPlayers}>Confirm</button>
 
 
         </>
