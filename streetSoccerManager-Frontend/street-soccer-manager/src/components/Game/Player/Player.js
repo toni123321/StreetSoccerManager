@@ -15,10 +15,10 @@ function Player({player, rotationMode, handleRotation, changeRotationMode}) {
   }
  
   return (
-    <div className="player" onClick={rotationMode == true ? handleChosenPlayerForRotation : undefined}>
+    <div className={`player player-${player.id}`} onClick={rotationMode == true ? handleChosenPlayerForRotation : undefined}>
         {rotationMode != true ?
         (
-          <button onClick={openRotationPlayerContainer}><i className="fas fa-exchange-alt"></i></button>
+          <button className={`rotate-player-btn-${player.id}`} onClick={openRotationPlayerContainer}><i className="fas fa-exchange-alt"></i></button>
         )
         :
         (<></>)

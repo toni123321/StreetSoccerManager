@@ -20,7 +20,7 @@ function LoginPage() {
 
       auth.signin(details, from)
       .then(data => {
-        alert(`Successfull login`);
+        //alert(`Successfull login`);
         //history.replace(from);
       })
       .catch(err => {
@@ -35,7 +35,7 @@ function LoginPage() {
         {loginError ? 
             (
             <>
-            <h3>Wrong credentials</h3>
+            <h3 class="login-error">Wrong credentials</h3>
             </>
             ) 
             : (<></>)
