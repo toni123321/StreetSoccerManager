@@ -21,7 +21,7 @@ const SignUp = () => {
       setRegisterError(false);
       
       auth.signup(details, from).then(data => {
-        alert(`Successful registration, ${data}. Let's now log in!`);
+        //alert(`Successful registration, ${data}. Let's now log in!`);
         history.push("/loginPage");
       })
       .catch(err => {
@@ -36,7 +36,7 @@ const SignUp = () => {
         {registerError ? 
             (
             <>
-            <h3>Wrong registration details!</h3>
+            <h3 className="registration-error">Wrong registration details!</h3>
             </>
             ) 
             :

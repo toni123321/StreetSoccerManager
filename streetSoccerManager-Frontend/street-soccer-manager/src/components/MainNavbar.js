@@ -26,17 +26,17 @@ function MainNavbar() {
                         <Nav>
                             
                             <LinkContainer to="/" exact >
-                                <Nav.Link ><i className="fas fa-home"></i> Home</Nav.Link>
+                                <Nav.Link className="homeNavItem" ><i className="fas fa-home"></i> Home</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/game" exact>
-                                <Nav.Link ><i className="fas fa-gamepad"></i> Game</Nav.Link>
+                                <Nav.Link className="gameNavItem" ><i className="fas fa-gamepad"></i> Game</Nav.Link>
                             </LinkContainer>
                             
                             <LinkContainer to="/about" >
-                                <Nav.Link ><i className="fas fa-info"></i> About</Nav.Link>
+                                <Nav.Link className="aboutNavItem"><i className="fas fa-info"></i> About</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/contact">
-                                <Nav.Link ><i className="far fa-address-book"></i> Contact</Nav.Link>
+                                <Nav.Link className="contactNavItem"><i className="far fa-address-book"></i> Contact</Nav.Link>
                             </LinkContainer>
                            
                            {/* <LinkContainer to="/account">
@@ -64,11 +64,11 @@ function MainNavbar() {
                             </NavDropdown>
                             ):(<></>)}
                             <NavDropdown title={<i className="fas fa-user-circle"/>} className="profile-avatar" id="basic-nav-dropdown">
-                            <NavDropdown.Item as={Link} to="/account">
+                            <NavDropdown.Item className="accountNavItem" as={Link} to="/account">
                                 <div><i class="fas fa-user"></i> View account</div>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item>
+                            <NavDropdown.Item className="logoutNavItem">
                                 <div onClick={() => {
                                         auth.signout(() => history.push("/"));
                                     }}>
@@ -80,7 +80,7 @@ function MainNavbar() {
                             ):(
                             <>
                             <LinkContainer to="/loginPage" >
-                            <Nav.Link ><i className="fas fa-sign-in-alt"></i> Log in</Nav.Link>
+                            <Nav.Link className="loginNavItem"><i className="fas fa-sign-in-alt"></i> Log in</Nav.Link>
                             </LinkContainer>
                             </>)}
                         </Nav>
