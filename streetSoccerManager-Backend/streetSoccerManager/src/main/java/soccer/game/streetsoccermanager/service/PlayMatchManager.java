@@ -4,7 +4,6 @@ import soccer.game.streetsoccermanager.model.entities.FriendlyMatch;
 import soccer.game.streetsoccermanager.model.entities.Match;
 import soccer.game.streetsoccermanager.model.entities.Team;
 
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.Random;
 
