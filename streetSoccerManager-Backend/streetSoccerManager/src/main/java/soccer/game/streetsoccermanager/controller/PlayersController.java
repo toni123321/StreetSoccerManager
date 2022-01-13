@@ -3,7 +3,7 @@ package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +15,15 @@ import soccer.game.streetsoccermanager.model.entities.Player;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/players")
 public class PlayersController {
 
-    @Qualifier("playerService")
     private IPlayerService playerService;
     private ModelMapper modelMapper;
 
-
+    @Autowired
     public PlayersController(IPlayerService playerService) {
         this.playerService = playerService;
         this.modelMapper = new ModelMapper();
@@ -49,7 +48,7 @@ public class PlayersController {
         if(teamId.isPresent()){
             if(starting.isPresent())
             {
-                players = (starting.get()) ?
+                players = (Boolean.TRUE.equals(starting.get())) ?
                         playerService.getStartingPlayers(teamId.get())
                         : playerService.getReserves(teamId.get());
             }

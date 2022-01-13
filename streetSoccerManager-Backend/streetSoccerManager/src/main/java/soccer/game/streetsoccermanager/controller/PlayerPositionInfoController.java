@@ -3,7 +3,7 @@ package soccer.game.streetsoccermanager.controller;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +14,15 @@ import soccer.game.streetsoccermanager.service_interfaces.IPlayerPositionInfoSer
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/playersPositionInfo")
 public class PlayerPositionInfoController {
-    @Qualifier("playerPositionInfoService")
+
     private IPlayerPositionInfoService playerPositionInfoService;
     private ModelMapper modelMapper;
 
+    @Autowired
     public PlayerPositionInfoController(IPlayerPositionInfoService playerPositionInfoService) {
         this.playerPositionInfoService = playerPositionInfoService;
         this.modelMapper = new ModelMapper();

@@ -2,7 +2,7 @@ package soccer.game.streetsoccermanager.service;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.PlayerPositionInfo;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerPositionInfoRepository;
@@ -13,10 +13,12 @@ import java.util.List;
 @Service
 public class PlayerPositionInfoService implements IPlayerPositionInfoService {
     private IPlayerPositionInfoRepository dataStore;
-    private ModelMapper modelMapper = new ModelMapper();
+    private ModelMapper modelMapper;
 
-    public PlayerPositionInfoService(@Qualifier("playerPositionInfoJPADatabase")IPlayerPositionInfoRepository dataStore) {
+    @Autowired
+    public PlayerPositionInfoService(IPlayerPositionInfoRepository dataStore) {
         this.dataStore = dataStore;
+        modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     }
 

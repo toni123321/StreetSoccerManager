@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name ="player_team_info")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(exclude = {"id", "player"})
+@EqualsAndHashCode(exclude = {"player"})
 public class PlayerTeamInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

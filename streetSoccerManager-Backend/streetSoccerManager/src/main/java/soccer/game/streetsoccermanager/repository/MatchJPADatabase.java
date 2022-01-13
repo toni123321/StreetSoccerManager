@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class MatchJPADatabase implements IMatchRepository {
+
+    private IMatchJPARepository matchRepo;
+
     @Autowired
-    IMatchJPARepository matchRepo;
+    public MatchJPADatabase(IMatchJPARepository matchRepo) {
+        this.matchRepo = matchRepo;
+    }
 
     @Override
     public List<Match> getAll() {
@@ -25,27 +30,18 @@ public class MatchJPADatabase implements IMatchRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            matchRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        matchRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public Match add(Match match) {
-        if(match.getId() == null) {
-            return matchRepo.save(match);
-        }
-        return null;
+        return matchRepo.save(match);
     }
 
     @Override
     public Match update(Match match) {
-        if(match.getId() != null) {
-            return matchRepo.save(match);
-        }
-        return null;
+        return matchRepo.save(match);
     }
 
     @Override

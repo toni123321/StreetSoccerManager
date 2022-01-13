@@ -1,6 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.PlayerStats;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerStatsRepository;
@@ -12,7 +12,8 @@ import java.util.List;
 public class PlayerStatsService implements IPlayerStatsService {
     private IPlayerStatsRepository dataStore;
 
-    public PlayerStatsService(@Qualifier("playerStatsJPADatabase")IPlayerStatsRepository dataStore) {
+    @Autowired
+    public PlayerStatsService(IPlayerStatsRepository dataStore) {
         this.dataStore = dataStore;
     }
 

@@ -1,6 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.PlayerTeamInfo;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerTeamInfoRepository;
@@ -12,8 +12,8 @@ import java.util.List;
 public class PlayerTeamInfoService implements IPlayerTeamInfoService {
     private IPlayerTeamInfoRepository dataStore;
 
-
-    public PlayerTeamInfoService(@Qualifier("playerTeamInfoJPADatabase") IPlayerTeamInfoRepository dataStore) {
+    @Autowired
+    public PlayerTeamInfoService(IPlayerTeamInfoRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -29,17 +29,27 @@ public class PlayerTeamInfoService implements IPlayerTeamInfoService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public PlayerTeamInfo add(PlayerTeamInfo playerTeamInfo) {
-        return dataStore.add(playerTeamInfo);
+        if(playerTeamInfo.getId() == null) {
+            return dataStore.add(playerTeamInfo);
+        }
+        return null;
     }
 
     @Override
     public PlayerTeamInfo update(PlayerTeamInfo playerTeamInfo) {
-        return dataStore.update(playerTeamInfo);
+        if(playerTeamInfo.getId() != null) {
+            return dataStore.update(playerTeamInfo);
+        }
+        return null;
     }
 
     @Override

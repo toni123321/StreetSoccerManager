@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="match")
 @Data
-@EqualsAndHashCode(exclude = {"id", "homeTeam", "awayTeam"})
+@EqualsAndHashCode()
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Match {
@@ -25,11 +25,22 @@ public class Match {
 
     protected String result;
     protected String statistic;
+    protected int currentMinute;
 
-    public Match(Team homeTeam, Team awayTeam, String result, String statistic) {
+    public Match(Team homeTeam, Team awayTeam, String result, String statistic, int currentMinute) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.result = result;
         this.statistic = statistic;
+        this.currentMinute = currentMinute;
+    }
+
+    public Match(Long id, Team homeTeam, Team awayTeam, String result, String statistic, int currentMinute) {
+        this.id = id;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.result = result;
+        this.statistic = statistic;
+        this.currentMinute = currentMinute;
     }
 }

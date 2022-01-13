@@ -69,6 +69,7 @@ class PlayerStatsIntegrationTest {
         Long lastIndexId = playersStats.get(playersStats.size() - 1).getId();
         playersStatsExpected.add(new PlayerStats(lastIndexId, 75, 65));
 
+
         // Assert
         Assertions.assertEquals(playersStatsExpected, playerStatsService.getAll());
     }

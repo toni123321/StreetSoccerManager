@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerStatsJPADatabase implements IPlayerStatsRepository {
+
+    private IPlayerStatsJPARepository playerStatsRepo;
+
     @Autowired
-    IPlayerStatsJPARepository playerStatsRepo;
+    public PlayerStatsJPADatabase(IPlayerStatsJPARepository playerStatsRepo) {
+        this.playerStatsRepo = playerStatsRepo;
+    }
 
     @Override
     public List<PlayerStats> getAll() {

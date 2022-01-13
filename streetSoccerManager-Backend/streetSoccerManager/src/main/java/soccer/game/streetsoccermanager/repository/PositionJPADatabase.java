@@ -11,8 +11,12 @@ import java.util.List;
 @Repository
 public class PositionJPADatabase implements IPositionRepository {
 
+    private IPositionJPARepository positionRepo;
+
     @Autowired
-    IPositionJPARepository positionRepo;
+    public PositionJPADatabase(IPositionJPARepository positionRepo) {
+        this.positionRepo = positionRepo;
+    }
 
     @Override
     public List<Position> getAll() {
@@ -22,11 +26,6 @@ public class PositionJPADatabase implements IPositionRepository {
     @Override
     public Position get(Long id) {
         return positionRepo.findById(id).orElse(null);
-    }
-
-    @Override
-    public Position get(String searchedName) {
-        return positionRepo.findFirstByName(searchedName);
     }
 
     @Override

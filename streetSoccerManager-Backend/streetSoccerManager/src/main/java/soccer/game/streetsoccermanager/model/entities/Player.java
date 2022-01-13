@@ -1,8 +1,7 @@
 package soccer.game.streetsoccermanager.model.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 
 
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Table(name ="player")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode()
 public class Player{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
