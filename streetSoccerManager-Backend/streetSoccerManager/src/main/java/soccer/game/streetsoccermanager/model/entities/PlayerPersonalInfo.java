@@ -11,7 +11,7 @@ import java.util.Calendar;
 @Table(name ="player_personal_info")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(exclude = {"id", "player"})
+@EqualsAndHashCode(exclude = {"player"})
 public class PlayerPersonalInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

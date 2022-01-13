@@ -2,7 +2,7 @@ package soccer.game.streetsoccermanager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +13,15 @@ import soccer.game.streetsoccermanager.model.entities.Formation;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/formations")
 public class FormationsController {
-    @Qualifier("formationService")
+
     private IFormationService formationService;
     private ModelMapper modelMapper;
 
+    @Autowired
     public FormationsController(IFormationService formationService) {
         this.formationService = formationService;
         this.modelMapper = new ModelMapper();
@@ -71,7 +72,7 @@ public class FormationsController {
     @PutMapping()
     public ResponseEntity<FormationDTO> updateFormation(@RequestBody FormationDTO formation) {
         Formation inputtedFormationEntity = modelMapper.map(formation, Formation.class);
-        Formation updatedFormationEntity = formationService.add(inputtedFormationEntity);
+        Formation updatedFormationEntity = formationService.update(inputtedFormationEntity);
         FormationDTO updatedFormationDTO = modelMapper.map(updatedFormationEntity, FormationDTO.class);
         if (updatedFormationDTO == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -1,15 +1,14 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.model.entities.CustomTeam;
 import soccer.game.streetsoccermanager.model.entities.OfficialTeam;
-import soccer.game.streetsoccermanager.model.entities.PlayerTeamInfo;
 import soccer.game.streetsoccermanager.repository_interfaces.ITeamRepository;
 import soccer.game.streetsoccermanager.service_interfaces.ITeamService;
 import soccer.game.streetsoccermanager.model.entities.Team;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,8 @@ import java.util.stream.Collectors;
 public class TeamService implements ITeamService {
     private ITeamRepository dataStore;
 
-    public TeamService(@Qualifier("teamJPADatabase") ITeamRepository dataStore) {
+    @Autowired
+    public TeamService(ITeamRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -59,39 +59,32 @@ public class TeamService implements ITeamService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
-    public int calcTeamRating(Team team){
-        int rating = 0;
-        List<PlayerTeamInfo> playersTeamInfo = new ArrayList<>();
-        if( team.getPlayersTeamInfo() != null) {
-            playersTeamInfo = team.getPlayersTeamInfo().stream().filter(p -> p.getPlayer().getPlayerPositionInfo().isStarting()).collect(Collectors.toList());
-        }
-        for (PlayerTeamInfo playerTeamInfo: playersTeamInfo) {
-//            rating += playerTeamInfo.getPlayer().getPlayerAdditionalInfo().getPlayerStats().getOverallRating();
 
-        }
-        if(playersTeamInfo.isEmpty()){
-            rating /= playersTeamInfo.size();
-        }
-        return rating;
-    }
 
     @Override
     public Team add(Team team) {
-//        team.setFormation(dataStore.getDefaultFormation());
-//        team.setRating(calcTeamRating(team));
-//        return dataStore.add(team);
-        return dataStore.add(team);
-
+        if(team.getId() == null) {
+            if(team instanceof CustomTeam)
+            {
+                team.setFormation(dataStore.getDefaultFormation());
+            }
+            return dataStore.add(team);
+        }
+        return null;
     }
 
     @Override
     public Team update(Team team) {
-        return dataStore.update(team);
-
+        if(team.getId() != null) {
+            return dataStore.update(team);
+        }
+        return null;
     }
-
-
 }

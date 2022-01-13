@@ -1,6 +1,6 @@
 package soccer.game.streetsoccermanager.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerRepository;
 import soccer.game.streetsoccermanager.service_interfaces.IPlayerService;
@@ -14,7 +14,8 @@ public class PlayerService implements IPlayerService {
 
     private IPlayerRepository dataStore;
 
-    public PlayerService(@Qualifier("playerJPADatabase") IPlayerRepository dataStore) {
+    @Autowired
+    public PlayerService(IPlayerRepository dataStore) {
         this.dataStore = dataStore;
     }
 
@@ -23,8 +24,6 @@ public class PlayerService implements IPlayerService {
         return dataStore.getAll();
     }
 
-
-
     @Override
     public Player get(Long id) {
         return dataStore.get(id);
@@ -32,17 +31,27 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Boolean delete(Long id) {
-        return dataStore.delete(id);
+        if(get(id) != null) {
+            dataStore.delete(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Player add(Player player) {
-        return dataStore.add(player);
+        if(player.getId() == null) {
+            return dataStore.add(player);
+        }
+        return null;
     }
 
     @Override
     public Player update(Player player) {
-        return dataStore.update(player);
+        if(player.getId() != null) {
+            return dataStore.update(player);
+        }
+        return null;
     }
 
     @Override
@@ -77,7 +86,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getStartingPlayers(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.getPlayerPositionInfo().isStarting() == true).
+                filter(player -> player.getPlayerPositionInfo().isStarting()).
                 collect(Collectors.toList());
     }
 
@@ -85,7 +94,7 @@ public class PlayerService implements IPlayerService {
     public List<Player> getReserves(Long teamId) {
         return getAllPlayersInTeam(teamId).
                 stream().
-                filter(player -> player.getPlayerPositionInfo().isStarting() == false).
+                filter(player -> !player.getPlayerPositionInfo().isStarting()).
                 collect(Collectors.toList());
     }
 

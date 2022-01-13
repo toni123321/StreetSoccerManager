@@ -2,6 +2,10 @@ stages:
   - build
   - test
   - sonarqube-analys
+  - docker-image-build
+  - docker-container-run
+  - e2e-test
+  - docker-clean
 
 build:
   stage: build
@@ -24,6 +28,40 @@ sonarqube-analys:
     - ./gradlew sonarqube
     - ./gradlew.bat --stop
 
+be-image:
+  stage: docker-image-build
+  script:
+    - cd streetSoccerManager-Backend/streetSoccerManager/
+    - ./gradlew build
+    - ./gradlew.bat --stop
+    - docker build --build-arg JAR_FILE=build/libs/*.jar -t scm-be .
 
+fe-image:
+  stage: docker-image-build
+  script:
+    - cd streetSoccerManager-Frontend/street-soccer-manager/
+    - docker build -t scm-fe .
 
- 
+be-container:
+  stage: docker-container-run
+  script:
+    - docker run -dp 8080:8080 --rm --name scm-be -e DB_PROFILE=e2e scm-be
+
+fe-container:
+  stage: docker-container-run
+  script:
+    - docker run -dp 3000:3000 --rm --name scm-fe scm-fe
+
+e2e-testing:
+  stage: e2e-test
+  script:
+    - cd streetSoccerManager-Frontend/street-soccer-manager/
+    - npx cypress run
+
+docker clean:
+  stage: docker-clean
+  script:
+    - docker stop scm-fe
+    - docker stop scm-be
+    - docker image rm scm-fe
+    - docker image rm scm-be

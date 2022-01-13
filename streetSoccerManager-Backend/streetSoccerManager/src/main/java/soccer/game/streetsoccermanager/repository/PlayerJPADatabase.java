@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerJPADatabase implements IPlayerRepository {
+
+    private IPlayerJPARepository playerRepo;
+
     @Autowired
-    IPlayerJPARepository playerRepo;
+    public PlayerJPADatabase(IPlayerJPARepository playerRepo) {
+        this.playerRepo = playerRepo;
+    }
 
     @Override
     public List<Player> getAll() {
@@ -25,27 +30,18 @@ public class PlayerJPADatabase implements IPlayerRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            playerRepo.deleteById(id);
-            return true;
-        }
-        return false;
+        playerRepo.deleteById(id);
+        return true;
     }
 
     @Override
     public Player add(Player player) {
-        if(player.getId() == null) {
-            return playerRepo.save(player);
-        }
-        return null;
+        return playerRepo.save(player);
     }
 
     @Override
     public Player update(Player player) {
-        if(player.getId() != null) {
-            return playerRepo.save(player);
-        }
-        return null;
+        return playerRepo.save(player);
     }
 
     @Override

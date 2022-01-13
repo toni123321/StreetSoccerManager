@@ -1,51 +1,70 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import About from "./About";
-import Home from "./Home";
-import CreateTeam from "./CreateTeam";
-import LoginForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-import GameNavbar from './GameNavbar';
-import Login from './Login';
-import SignUp from './SignUp';
-import TeamSquad from './TeamSquad';
-import ChooseOpponent from './ChooseOpponent';
-import RotatePlayersContainer from './RotatePlayersContainer';
-import Cookies from 'universal-cookie';
+import About from "./BasicPages/About";
+import Home from "./BasicPages/Home";
+import CreateTeam from "./Game/Team/CreateTeam";
+import Login from './SignIn/Login';
+import SignUp from './SignUp/SignUp';
+import TeamSquad from './Game/Squad/TeamSquad';
+import ChooseOpponent from './Game/PlayMatch/ChooseOpponent';
+import RotatePlayersContainer from './Game/PlayerRotation/RotatePlayersContainer';
+import PrivateRoute from '../routes/PrivateRoute';
+import LoginRoute from '../routes/LoginRoute';
+import LoginPage from './SignIn/LoginPage';
+import Account from './Account';
+import Contact from './BasicPages/Contact';
+import NotFound from './NotFound/NotFound';
+import AdminRoute from '../routes/AdminRoute';
+import AddNews from './AdminView/AddNews';
+
 
 const Routers = () => {
-    const cookies = new Cookies();
-
     return (
         <Switch>
-            {/* {cookies.get('login-token') !== undefined 
-            ?
-            <Route exact path="/game" component={CreateTeam} />
-            :
-            <Redirect to="/login"/>
-            } */}
-
-            <Route exact path="/" component={Home} />
-            <Route exact path="/game" component={CreateTeam} />            
-            
+            <Route exact path="/" component={Home} />     
             <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
 
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signUp" component={SignUp} />
+            <LoginRoute path="/loginPage">
+                <LoginPage/>
+            </LoginRoute>
 
-            <Route exact path="/teamSquad" component={TeamSquad} />
-            
-            <Route exact path="/chooseOpponent" component={ChooseOpponent} />
+            <LoginRoute path="/signUp">
+                <SignUp/>
+            </LoginRoute>
 
-            <Route exact path="/rotatePlayers" component={RotatePlayersContainer} />
+            <PrivateRoute path="/account">
+              <Account/>
+            </PrivateRoute>
 
-            
-            
-            
-            {/* <Route path="/createTeam" component={CreateTeam} /> */}
+            <PrivateRoute path="/game">
+              <CreateTeam />
+            </PrivateRoute>
+
+            <PrivateRoute path="/teamSquad">
+              <TeamSquad />
+            </PrivateRoute>
+
+            <PrivateRoute path="/chooseOpponent">
+              <ChooseOpponent />
+            </PrivateRoute>
+
+            <PrivateRoute path="/rotatePlayers">
+              <RotatePlayersContainer />
+            </PrivateRoute>
+
+            <AdminRoute path="/addNews">
+              <AddNews/>
+            </AdminRoute>
+
+            <Route component={NotFound} />
+
         </Switch>
     );
+
+
+    
 }
 
 export default Routers;

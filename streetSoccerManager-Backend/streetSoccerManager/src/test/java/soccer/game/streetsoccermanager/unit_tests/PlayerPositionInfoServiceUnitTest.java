@@ -1,17 +1,22 @@
 package soccer.game.streetsoccermanager.unit_tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import soccer.game.streetsoccermanager.model.entities.PlayerPositionInfo;
 import soccer.game.streetsoccermanager.model.entities.Position;
 import soccer.game.streetsoccermanager.repository_interfaces.IPlayerPositionInfoRepository;
+import soccer.game.streetsoccermanager.service.PlayerPositionInfoService;
 import soccer.game.streetsoccermanager.service_interfaces.IPlayerPositionInfoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -23,65 +28,70 @@ class PlayerPositionInfoServiceUnitTest {
     @BeforeEach
     public void setUp()  {
         List<PlayerPositionInfo> playersPositionInfo = List.of(
-                new PlayerPositionInfo(1l, new Position(1l, "ATACK", "ST"), new Position(1l,"ATACK", "ST"), true)
+                new PlayerPositionInfo(1l, new Position(1l, "ATACK", "ST"), new Position(1l,"ATACK", "ST"), true),
+                new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), true)
         );
-//        when(formationRepository.getAll()).thenReturn(formations);
-//        when(formationRepository.get(1l)).thenReturn(formations.get(0));
-//        when(formationRepository.get(2l)).thenReturn(formations.get(1));
-//        when(formationRepository.add(new Formation("3-1-0"))).thenReturn(new Formation(3l, "3-1-0"));
-//        when(formationRepository.update(new Formation(2l, "3-1-0"))).thenReturn(new Formation(2l, "3-1-0"));
-//        formationService = new FormationService(formationRepository);
+        when(playerPositionInfoRepository.getAll()).thenReturn(playersPositionInfo);
+        when(playerPositionInfoRepository.get(1l)).thenReturn(playersPositionInfo.get(0));
+        when(playerPositionInfoRepository.get(2l)).thenReturn(playersPositionInfo.get(1));
+        when(playerPositionInfoRepository.add(
+                new PlayerPositionInfo(new Position(3l, "ATACK", "LW"), new Position(3l,"ATACK", "LW"), false))).
+                thenReturn(new PlayerPositionInfo(3l, new Position(3l, "ATACK", "LW"), new Position(3l,"ATACK", "LW"), false));
+        when(playerPositionInfoRepository.update(
+                new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), false))).
+                thenReturn(new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), false));
+        playerPositionInfoService = new PlayerPositionInfoService(playerPositionInfoRepository);
     }
 
-//    @Test
-//    void GetAllPlayersPositionInfoSuccessScenario() {
-//        // Act
-//        List<Formation> formations = formationService.getAll();
-//
-//        List<Formation> formationsExpected = new ArrayList<>();
-//        formationsExpected.add(new Formation(1l, "1-2-1"));
-//        formationsExpected.add(new Formation(2l, "2-1-1"));
-//
-//        // Assert
-//        Assertions.assertEquals(formationsExpected, formations);
-//    }
-//
-//    @Test
-//    void GetPlayerPositionInfoSuccessScenario() {
-//        // Act
-//        Formation formation = formationService.get(1l);
-//
-//        // Assert
-//        Assertions.assertEquals(new Formation(1l, "1-2-1"), formation);
-//    }
-//
-//    @Test
-//    void DeletePlayerPositionInfoSuccessScenario(){
-//        // Act
-//        formationService.delete(1l);
-//        verify(formationRepository).delete(1l);
-//        when(formationRepository.delete(2l)).thenReturn(true);
-//        Assertions.assertEquals(true, formationService.delete(2l));
-//        when(formationRepository.get(3l)).thenReturn(null);
-//        when(formationRepository.delete(3l)).thenReturn(false);
-//        Assertions.assertEquals(false, formationService.delete(3l));
-//    }
-//
-//    @Test
-//    void AddPlayerPositionInfoSuccessScenario() {
-//        // Act
-//        Formation newFormation = formationService.add(new Formation("3-1-0"));
-//        // Assert
-//        Assertions.assertEquals(new Formation(3l, "3-1-0"), newFormation);
-//        Assertions.assertEquals(null, formationService.add(new Formation(3l, "3-1-0")));
-//    }
-//
-//    @Test
-//    void UpdatePlayerPositionInfoSuccessScenario(){
-//        // Act
-//        Formation updatedFormation = formationService.update(new Formation(2l, "3-1-0"));
-//        // Assert
-//        Assertions.assertEquals(new Formation(2l, "3-1-0"), updatedFormation);
-//        Assertions.assertEquals(null, formationService.update(new Formation("3-1-0")));
-//    }
+    @Test
+    void GetAllPlayersPositionInfoSuccessScenario() {
+        // Act
+        List<PlayerPositionInfo> playersPositionInfoService = playerPositionInfoService.getAll();
+
+        List<PlayerPositionInfo> playersPositionInfoExpected = new ArrayList<>();
+        playersPositionInfoExpected.add(new PlayerPositionInfo(1l, new Position(1l, "ATACK", "ST"), new Position(1l,"ATACK", "ST"), true));
+        playersPositionInfoExpected.add(new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), true));
+
+        // Assert
+        Assertions.assertEquals(playersPositionInfoExpected, playersPositionInfoService);
+    }
+
+    @Test
+    void GetPlayerPositionInfoSuccessScenario() {
+        // Act
+        PlayerPositionInfo playerPositionInfo = playerPositionInfoService.get(1l);
+
+        // Assert
+        Assertions.assertEquals(new PlayerPositionInfo(1l, new Position(1l, "ATACK", "ST"), new Position(1l,"ATACK", "ST"), true), playerPositionInfo);
+    }
+
+    @Test
+    void DeletePlayerPositionInfoSuccessScenario(){
+        // Act
+        playerPositionInfoService.delete(1l);
+        verify(playerPositionInfoRepository).delete(1l);
+        when(playerPositionInfoRepository.delete(2l)).thenReturn(true);
+        Assertions.assertEquals(true, playerPositionInfoService.delete(2l));
+        when(playerPositionInfoRepository.get(3l)).thenReturn(null);
+        when(playerPositionInfoRepository.delete(3l)).thenReturn(false);
+        Assertions.assertEquals(false, playerPositionInfoService.delete(3l));
+    }
+
+    @Test
+    void AddPlayerPositionInfoSuccessScenario() {
+        // Act
+        PlayerPositionInfo newPlayerPositionInfo = playerPositionInfoService.add(new PlayerPositionInfo(new Position(3l, "ATACK", "LW"), new Position(3l,"ATACK", "LW"), false));
+        // Assert
+        Assertions.assertEquals(new PlayerPositionInfo(3l, new Position(3l, "ATACK", "LW"), new Position(3l,"ATACK", "LW"), false), newPlayerPositionInfo);
+        Assertions.assertEquals(null, playerPositionInfoService.add(new PlayerPositionInfo(3l, new Position(3l, "ATACK", "LW"), new Position(3l,"ATACK", "LW"), false)));
+    }
+
+    @Test
+    void UpdatePlayerPositionInfoSuccessScenario(){
+        // Act
+        PlayerPositionInfo updatedPlayerPositionInfo = playerPositionInfoService.update(new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), false));
+        // Assert
+        Assertions.assertEquals(new PlayerPositionInfo(2l, new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), false), updatedPlayerPositionInfo);
+        Assertions.assertEquals(null, playerPositionInfoService.update(new PlayerPositionInfo(new Position(2l, "DEF", "CB"), new Position(2l,"DEF", "CB"), false)));
+    }
 }

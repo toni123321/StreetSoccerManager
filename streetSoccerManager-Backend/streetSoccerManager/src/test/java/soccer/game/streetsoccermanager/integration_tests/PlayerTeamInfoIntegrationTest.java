@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.entities.*;
 import soccer.game.streetsoccermanager.service.FormationService;
 import soccer.game.streetsoccermanager.service.PlayerTeamInfoService;
 import soccer.game.streetsoccermanager.service.TeamService;
 import soccer.game.streetsoccermanager.service.UserService;
 
+import javax.persistence.EntityExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ class PlayerTeamInfoIntegrationTest {
     FormationService formationService;
 
     @BeforeEach
-    void clearDB() {
+    void clearDB() throws EntryNotValidException, EntityExistsException {
         // Clear
         playersTeamInfoService.deleteAll();
         userService.deleteAll();
@@ -42,7 +44,7 @@ class PlayerTeamInfoIntegrationTest {
         playersTeamInfoExpected.clear();
 
         // Add
-        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho"));
+        userService.add(new UserEntity("peter@gmail.com", "Peter@123", "Peter", "Petrov", "pesho", "USER"));
         formationService.add(new Formation("1-2-1"));
         teamService.add(new CustomTeam("Barca 2020", formationService.getAll().get(0), userService.getAll().get(0)));
 
@@ -50,7 +52,8 @@ class PlayerTeamInfoIntegrationTest {
         playersTeamInfoService.add(new PlayerTeamInfo(10, teamService.getAll().get(0)));
         playersTeamInfo = playersTeamInfoService.getAll();
         playersTeamInfoExpected.add(new PlayerTeamInfo(playersTeamInfo.get(0).getId(), 2, teamService.getAll().get(0)));
-        playersTeamInfoExpected.add(new PlayerTeamInfo(playersTeamInfo.get(1).getId(),  10, teamService.getAll().get(0)));
+        playersTeamInfoExpected.add(new PlayerTeamInfo(playersTeamInfo.get(1).getId(), 10, teamService.getAll().get(0)));
+
     }
 
     @Test

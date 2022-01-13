@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name ="player_position_info")
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(exclude = {"id", "player"})
+@EqualsAndHashCode(exclude = {"player"})
 public class PlayerPositionInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,4 +40,5 @@ public class PlayerPositionInfo {
         this.currentPosition = currentPosition;
         this.isStarting = isStarting;
     }
+
 }

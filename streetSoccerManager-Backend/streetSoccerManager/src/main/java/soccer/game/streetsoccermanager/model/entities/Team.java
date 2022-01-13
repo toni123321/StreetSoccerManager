@@ -3,7 +3,6 @@ package soccer.game.streetsoccermanager.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -27,18 +26,18 @@ public class Team {
 
     @OneToMany(mappedBy="team", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     private Set<PlayerTeamInfo> playersTeamInfo;
 
     @OneToMany(mappedBy = "homeTeam", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     protected Set<Match> homeTeamsMatches;
 
     @OneToMany(mappedBy = "awayTeam", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     protected Set<Match> awayTeamMatches;
-
-    @Column(nullable = true)
-    private int rating;
 
     public Team(Long id, String name, Formation formation) {
         this.id = id;

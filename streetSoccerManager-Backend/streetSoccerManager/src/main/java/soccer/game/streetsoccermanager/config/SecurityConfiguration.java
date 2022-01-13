@@ -39,6 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, AuthenticationConfigConstants.SIGN_UP_URL).permitAll()
                 .antMatchers("/h2-ui/**").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/ws/**").permitAll()
+                .antMatchers("/newsfeed/**").permitAll()
+
 //                .antMatchers("/**").permitAll()
                 .antMatchers("/teams").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/positions").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
@@ -49,6 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/customTeams").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/friendlyMatches").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .antMatchers("/formations").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
+                .antMatchers("/ratings").hasAnyAuthority(USER_ROLE, ADMIN_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

@@ -49,7 +49,7 @@ class PlayerPersonalInfoIntegrationTest {
         PlayerPersonalInfo playerPersonalInfo = playerPersonalInfoService.get(playersPersonalInfo.get(0).getId());
 
         // Assert
-        Assertions.assertEquals(new PlayerPersonalInfo("Lionel", "Messi", new GregorianCalendar(1997, 5, 15)), playerPersonalInfo);
+        Assertions.assertEquals(new PlayerPersonalInfo(playersPersonalInfo.get(0).getId(),"Lionel", "Messi", new GregorianCalendar(1997, 5, 15)), playerPersonalInfo);
     }
 
     @Test

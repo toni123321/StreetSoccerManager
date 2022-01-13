@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import soccer.game.streetsoccermanager.exceptions.EntryNotValidException;
 import soccer.game.streetsoccermanager.model.entities.*;
 import soccer.game.streetsoccermanager.service.FormationService;
 import soccer.game.streetsoccermanager.service.TeamService;
 import soccer.game.streetsoccermanager.service.UserService;
 
+import javax.persistence.EntityExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,24 +32,27 @@ class TeamIntegrationTest {
     @BeforeEach
     void clearDB() {
         // Clear
-
-
         formationService.deleteAll();
         userService.deleteAll();
+        teamService.deleteAll();
         teamsExpected.clear();
 
 
+        try {
+            // Add
+            formationService.add(new Formation("1-2-1"));
+            formationService.add(new Formation("2-1-1"));
+            userService.add(new UserEntity("peter@gmail.com", "Peter@123", "Peter", "Petrov", "pesho", "USER"));
 
-        // Add
-        formationService.add(new Formation("1-2-1"));
-        formationService.add(new Formation("2-1-1"));
-        userService.add(new UserEntity("peter@gmail.com", "123", "Peter", "Petrov", "pesho"));
+            teamService.add(new CustomTeam("Soccer01", formationService.getAll().get(0), userService.getAll().get(0)));
+            teamService.add(new OfficialTeam("Barcelona", formationService.getAll().get(0), "Pep Guardiola"));
+            teams = teamService.getAll();
+            teamsExpected.add(new CustomTeam(teams.get(0).getId(), "Soccer01", formationService.getAll().get(0), userService.getAll().get(0)));
+            teamsExpected.add(new OfficialTeam(teams.get(1).getId(), "Barcelona", formationService.getAll().get(0), "Pep Guardiola"));
+        }
+        catch(EntityExistsException | EntryNotValidException e){
 
-        teamService.add(new CustomTeam("Soccer01", formationService.getAll().get(0), userService.getAll().get(0)));
-        teamService.add(new OfficialTeam("Barcelona", formationService.getAll().get(0), "Pep Guardiola"));
-        teams = teamService.getAll();
-        teamsExpected.add(new CustomTeam(teams.get(0).getId(), "Soccer01", formationService.getAll().get(0), userService.getAll().get(0)));
-        teamsExpected.add(new OfficialTeam(teams.get(1).getId(),  "Barcelona", formationService.getAll().get(0), "Pep Guardiola"));
+        }
     }
 
     @Test

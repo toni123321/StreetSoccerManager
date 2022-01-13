@@ -10,8 +10,13 @@ import java.util.List;
 
 @Repository
 public class PlayerTeamInfoJPADatabase implements IPlayerTeamInfoRepository {
+
+    private IPlayerTeamInfoJPARepository playerTeamInfoJPARepository;
+
     @Autowired
-    IPlayerTeamInfoJPARepository playerTeamInfoJPARepository;
+    public PlayerTeamInfoJPADatabase(IPlayerTeamInfoJPARepository playerTeamInfoJPARepository) {
+        this.playerTeamInfoJPARepository = playerTeamInfoJPARepository;
+    }
 
     @Override
     public List<PlayerTeamInfo> getAll() {
@@ -25,27 +30,18 @@ public class PlayerTeamInfoJPADatabase implements IPlayerTeamInfoRepository {
 
     @Override
     public Boolean delete(Long id) {
-        if(get(id) != null) {
-            playerTeamInfoJPARepository.deleteById(id);
-            return true;
-        }
-        return false;
+        playerTeamInfoJPARepository.deleteById(id);
+        return true;
     }
 
     @Override
     public PlayerTeamInfo add(PlayerTeamInfo playerTeamInfo) {
-        if(playerTeamInfo.getId() == null) {
-            return playerTeamInfoJPARepository.save(playerTeamInfo);
-        }
-        return null;
+        return playerTeamInfoJPARepository.save(playerTeamInfo);
     }
 
     @Override
     public PlayerTeamInfo update(PlayerTeamInfo playerTeamInfo) {
-        if(playerTeamInfo.getId() != null) {
-            return playerTeamInfoJPARepository.save(playerTeamInfo);
-        }
-        return null;
+        return playerTeamInfoJPARepository.save(playerTeamInfo);
     }
 
     @Override
